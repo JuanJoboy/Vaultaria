@@ -1,2 +1,47 @@
-# This file will automatically update with entries for new content after a build and reload.
+Tiles: {
+	ZedVendingMachine.MapEntry: Zed Vending Machine
+	MarcusVendingMachine.MapEntry: Marcus Vending Machine
+}
 
+Items: {
+	MarcusVendingMachine: {
+		DisplayName: Marcus Vending Machine
+		Tooltip: ""
+	}
+
+	ZedVendingMachine: {
+		DisplayName: Zed Vending Machine
+		Tooltip: ""
+	}
+
+	AssaultRifleAmmo: {
+		DisplayName: Assault Rifle Ammo
+		Tooltip: ""
+	}
+
+	PistolAmmo: {
+		DisplayName: Pistol Ammo
+		Tooltip: ""
+	}
+
+	Shredifier: {
+		DisplayName: Shredifier
+		Tooltip: ""
+	}
+
+	UnkemptHarold: {
+		DisplayName: Unkempt Harold
+		Tooltip: ""
+	}
+
+	Fibber: {
+		DisplayName: Fibber
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	ShredifierBullet.DisplayName: Shredifier Bullet
+	UHBullet.DisplayName: U H Bullet
+	FibberBullet.DisplayName: Fibber Bullet
+}

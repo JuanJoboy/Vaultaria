@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using FirstMod.Content.Projectiles;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof;
 
-namespace FirstMod.Content.Items.Weapons.Ammo
+namespace Vaultaria.Content.Items.Weapons.Ammo
 {
     public class AssaultRifleAmmo : ModItem
     {
@@ -28,7 +28,7 @@ namespace FirstMod.Content.Items.Weapons.Ammo
             Item.consumable = true;
 
             Item.ammo = ModContent.ItemType<AssaultRifleAmmo>();
-            Item.shoot = ModContent.ProjectileType<UHBullet>();
+            Item.shoot = ModContent.ProjectileType<ShredifierBullet>();
 
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Gray;

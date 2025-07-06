@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Microsoft.Build.Evaluation;
 using System;
-using FirstMod.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
 {

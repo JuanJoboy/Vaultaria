@@ -4,9 +4,10 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using FirstMod.Content.Projectiles;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue;
+using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
 
-namespace FirstMod.Content.Items.Weapons.Ammo
+namespace Vaultaria.Content.Items.Weapons.Ammo
 {
     public class PistolAmmo : ModItem
     {

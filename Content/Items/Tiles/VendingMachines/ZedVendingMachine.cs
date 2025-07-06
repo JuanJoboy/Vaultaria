@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
 
-namespace Vaultaria.Content.Items.Tiles.VendingMachine
+namespace Vaultaria.Content.Items.Tiles.VendingMachines
 {
     public class ZedVendingMachine : ModTile
     {
@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Tiles.VendingMachine
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             // Gets the numerical ID of your VendingMachine item. This is the item that will drop when the tile is broken.
-            int itemType = ModContent.ItemType<Placeables.VendingMachine.ZedVendingMachine>();
+            int itemType = ModContent.ItemType<Placeables.VendingMachines.ZedVendingMachine>();
 
             // Spawns a new item in the world.
             Item.NewItem(

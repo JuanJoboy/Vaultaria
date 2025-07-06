@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Tiles.VendingMachine;
+using Vaultaria.Content.Items.Tiles.VendingMachines;
 
-namespace Vaultaria.Content.Items.Placeables.VendingMachine
+namespace Vaultaria.Content.Items.Placeables.VendingMachines
 {
     public class ZedVendingMachine : ModItem
     {
@@ -38,7 +38,7 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachine
             Item.maxStack = 9999;
             Item.consumable = true;
 
-            Item.createTile = ModContent.TileType<Tiles.ZedVendingMachine>();
+            Item.createTile = ModContent.TileType<Content.Items.Tiles.VendingMachines.ZedVendingMachine>();
             // Specifies which "style" of the tile to place. Useful for multi-frame tiles
             // or tiles with different visual variations. 0 means the first (default) style.
             Item.placeStyle = 0;

@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
+// using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo;
+using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
