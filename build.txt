@@ -1,0 +1,3 @@
+displayName = Vaultaria
+author = Doctor Zeus
+version = 0.1

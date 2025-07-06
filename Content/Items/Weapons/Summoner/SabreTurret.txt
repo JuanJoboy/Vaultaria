@@ -1,0 +1,2 @@
+Sentry that shoots bullets, rockets every few seconds and applies slag / ichor
+Icon in inventory and top left will be Axtons class mod

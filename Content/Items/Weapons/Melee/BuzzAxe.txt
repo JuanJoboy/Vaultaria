@@ -1,0 +1,2 @@
+left click - normal melee attack with buzz axe
+right click - throws the buzz axe with dynamite attached and does melee and explosive damage
