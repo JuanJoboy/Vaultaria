@@ -58,6 +58,11 @@ Items: {
 		DisplayName: Buzz Axe
 		Tooltip: ""
 	}
+
+	BricksFists: {
+		DisplayName: Bricks Fists
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -66,6 +71,8 @@ Projectiles: {
 	FibberBullet.DisplayName: Fibber Bullet
 	GrogBullet.DisplayName: Grog Bullet
 	BuzzAxeBombardier.DisplayName: Buzz Axe Bombardier
+	BricksFists.DisplayName: Bricks Fists
+	BerserkerFists.DisplayName: Berserker Fists
 }
 
 Buffs: {

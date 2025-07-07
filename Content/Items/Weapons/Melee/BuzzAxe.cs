@@ -39,7 +39,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // BuzzAxe Bombardier
             Item.shoot = ModContent.ProjectileType<BuzzAxeBombardier>();
             Item.shootSpeed = 5;
-            Item.mana = 0; // Doesn't cost anything to fire
 
             // Other properties
             Item.value = Item.buyPrice(gold: 4);
