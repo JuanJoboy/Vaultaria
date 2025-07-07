@@ -53,6 +53,11 @@ Items: {
 		DisplayName: Grog Nozzle
 		Tooltip: ""
 	}
+
+	BuzzAxe: {
+		DisplayName: Buzz Axe
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -60,6 +65,7 @@ Projectiles: {
 	UHBullet.DisplayName: U H Bullet
 	FibberBullet.DisplayName: Fibber Bullet
 	GrogBullet.DisplayName: Grog Bullet
+	BuzzAxeBombardier.DisplayName: Buzz Axe Bombardier
 }
 
 Buffs: {

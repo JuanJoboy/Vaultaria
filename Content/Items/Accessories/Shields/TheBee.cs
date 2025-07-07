@@ -41,7 +41,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
             if (player.statLife == player.statLifeMax2)
             {
-                player.GetDamage(DamageClass.Generic) += 0.4f; // Increases all damage by 40%
+                // Increases Ranged, Mage & Summoner damage by 40%
+                player.GetDamage(DamageClass.Ranged) += 0.4f;
+                player.GetDamage(DamageClass.Magic) += 0.4f;
+                player.GetDamage(DamageClass.Summon) += 0.4f;
             }
         }
     }

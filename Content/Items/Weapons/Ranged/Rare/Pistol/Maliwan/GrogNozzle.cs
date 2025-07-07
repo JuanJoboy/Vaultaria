@@ -89,9 +89,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         {
             if (!player.HasBuff(ModContent.BuffType<DrunkEffect>()))
             {
-                if(Main.rand.Next(0, 1000) == 500)
+                if(Main.rand.Next(0, 10) == 5)
                 {
-                    player.AddBuff(ModContent.BuffType<DrunkEffect>(), 30000); // 0.1% chance to apply a drunk effect on yourself for 5 seconds
+                    player.AddBuff(ModContent.BuffType<DrunkEffect>(), 300); // 0.1% chance to apply a drunk effect on yourself for 5 seconds
                 }
             }
         }
