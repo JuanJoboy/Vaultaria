@@ -43,10 +43,28 @@ Items: {
 		DisplayName: Eridium
 		Tooltip: ""
 	}
+
+	TheBee: {
+		DisplayName: The Bee
+		Tooltip: ""
+	}
+
+	GrogNozzle: {
+		DisplayName: Grog Nozzle
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	ShredifierBullet.DisplayName: Shredifier Bullet
 	UHBullet.DisplayName: U H Bullet
 	FibberBullet.DisplayName: Fibber Bullet
+	GrogBullet.DisplayName: Grog Bullet
+}
+
+Buffs: {
+	DrunkEffect: {
+		DisplayName: Drunk Effect
+		Description: Increases projectile count by 5
+	}
 }

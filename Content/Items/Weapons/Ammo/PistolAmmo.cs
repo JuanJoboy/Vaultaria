@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue;
 using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
+using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {
@@ -26,8 +27,6 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
 
             // Ammo
             Item.ammo = ModContent.ItemType<PistolAmmo>();
-            Item.shoot = ModContent.ProjectileType<UHBullet>();
-            Item.shoot = ModContent.ProjectileType<FibberBullet>();
 
             // Item Config
             Item.maxStack = Item.CommonMaxStack;

@@ -25,7 +25,6 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
 
             // Ammo
             Item.ammo = ModContent.ItemType<AssaultRifleAmmo>();
-            Item.shoot = ModContent.ProjectileType<ShredifierBullet>();
 
             // Item Config
             Item.maxStack = Item.CommonMaxStack;
