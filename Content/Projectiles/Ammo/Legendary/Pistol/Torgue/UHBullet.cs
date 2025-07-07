@@ -19,8 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 1;
             Projectile.damage = ProjectileID.Grenade;
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.Size = new Vector2(8, 8);
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;

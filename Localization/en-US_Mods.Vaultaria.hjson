@@ -38,6 +38,11 @@ Items: {
 		DisplayName: Fibber
 		Tooltip: ""
 	}
+
+	Eridium: {
+		DisplayName: Eridium
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

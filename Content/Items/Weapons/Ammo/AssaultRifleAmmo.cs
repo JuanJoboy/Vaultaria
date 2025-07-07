@@ -12,19 +12,18 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+            Item.ResearchUnlockCount = 100;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 8;
-            Item.height = 8;
+            Item.Size = new Vector2(8, 8);
 
             Item.damage = 0; // Does no damage. It's just used as the consumable ammo for all AR's
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 6;
 
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
 
             Item.ammo = ModContent.ItemType<AssaultRifleAmmo>();

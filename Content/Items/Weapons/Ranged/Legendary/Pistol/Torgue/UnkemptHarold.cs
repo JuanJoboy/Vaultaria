@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-// using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue;
 using System.Collections.Generic;
@@ -15,15 +15,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; // How many items need for research in Journey Mode
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
         {
             // Visual properties
-            Item.width = 60;
-            Item.height = 20;
-            Item.scale = 1.05f;
+            Item.Size = new Vector2(60, 20);
+            Item.scale = 1.3f;
             Item.useStyle = ItemUseStyleID.Shoot; // Use style for guns
             Item.rare = ItemRarityID.Yellow;
 

@@ -12,16 +12,14 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
         {
-            // Sets the width of the item's sprite when it's in the inventory or on the ground.
+            // Sets the width and height of the item's sprite when it's in the inventory or on the ground.
             // This does NOT affect the placed tile's size.
-            Item.width = 40;
-            // Sets the height of the item's sprite when it's in the inventory or on the ground.
-            Item.height = 40;
+            Item.Size = new Vector2(40, 40);
 
             // Determines how quickly the player can use the item. A lower number means faster use.
             // This specifically affects the delay between successive uses.
@@ -35,15 +33,17 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
             Item.autoReuse = true;
             Item.useTurn = true;
 
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
 
             Item.createTile = ModContent.TileType<Content.Items.Tiles.VendingMachines.MarcusVendingMachine>();
+
             // Specifies which "style" of the tile to place. Useful for multi-frame tiles
             // or tiles with different visual variations. 0 means the first (default) style.
             Item.placeStyle = 0;
 
             Item.value = Item.buyPrice(gold: 1);
+
             // Sets the rarity of the item, which affects its name color in the inventory.
             // ItemRarityID.Blue corresponds to the default blue rarity color.
             Item.rare = ItemRarityID.Blue;
