@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
@@ -23,36 +22,37 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             // Visual properties
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.3f;
-            Item.useStyle = ItemUseStyleID.Shoot; // Use style for guns
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
+            // Gun properties
+            Item.noMelee = true;
+            Item.shootSpeed = 10;
+            Item.shoot = ModContent.ProjectileType<ShredifierBullet>();
+            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+
             // Combat properties
-            Item.damage = 100; // Gun damage + bullet damage = final damage
-            Item.crit = 16;
+            Item.knockBack = 2.3f;
+            Item.damage = 100;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 1; // Delay between shots.
-            Item.useAnimation = 1; // How long shoot animation lasts in ticks.
-            Item.reuseDelay = 0; // How long the gun will be unable to shoot after useAnimation ends
-            Item.knockBack = 2.3f; // Gun knockback + bullet knockback = final knockback
+
+            Item.useTime = 1;
+            Item.useAnimation = 1;
+            Item.reuseDelay = 0;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = 10000;
-            Item.UseSound = SoundID.Item11; // Gun use sound
-
-            // Gun properties
-            Item.noMelee = true; // Item not dealing damage while held, we don’t hit mobs in the head with a gun
-            Item.shootSpeed = 10f; // Speed of a projectile. Mainly measured by eye
-            Item.shoot = ModContent.ProjectileType<ShredifierBullet>(); // What kind of projectile the gun fires, does not mean anything here because it is replaced by ammo
-            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+            Item.value = Item.buyPrice(gold: 10);
+            Item.UseSound = SoundID.Item11;
         }
 
         public override void AddRecipes()
         {
-            // CreateRecipe()
-            //     .AddIngredient<SteelShard>(9)
-            //     .AddTile(TileID.Anvils)
-            //     .Register();
+            CreateRecipe()
+                .AddIngredient<Eridium>(9)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
         }
 
         public override Vector2? HoldoutOffset()
@@ -70,11 +70,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             damage,
             knockback,
             player.whoAmI,
-            1f, // Projectile.ai[0] = 1f; (This bullet is the cloner)
-            0f  // Projectile.ai[1] = 0f; (Optional, if you don't need ai[1] yet)
+            1f,
+            0f
             );
 
-            return false; // Prevent vanilla from spawning the default ammo projectile
+            return false;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

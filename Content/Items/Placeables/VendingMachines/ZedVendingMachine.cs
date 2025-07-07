@@ -1,10 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Tiles.VendingMachines;
 
 namespace Vaultaria.Content.Items.Placeables.VendingMachines
 {
@@ -29,7 +26,7 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
 
-            Item.createTile = ModContent.TileType<Content.Items.Tiles.VendingMachines.ZedVendingMachine>();
+            Item.createTile = ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>();
             Item.placeStyle = 0;
             
             Item.value = Item.buyPrice(gold: 1);

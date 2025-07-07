@@ -1,13 +1,7 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.Audio;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Microsoft.Build.Evaluation;
-using System;
-using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
 {
@@ -15,27 +9,33 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
     {
         public override void SetDefaults()
         {
+            // Size
+            Projectile.Size = new Vector2(8, 8);
+
+            // Damage
+            Projectile.damage = ProjectileID.Grenade;
+            Projectile.friendly = true; // Hurts enemies
+            Projectile.hostile = false; // Doesn't hurt NPC's
+            Projectile.penetrate = 1; // Penetrates once
+            Projectile.aiStyle = 0; // Normal bullet style
+
+            // Bullet Config
+            Projectile.timeLeft = 600; // 10 seconds until despawn
+            Projectile.ignoreWater = true; // Doesn't slow down in water
+            Projectile.tileCollide = true; // Collides with tiles
+            Projectile.extraUpdates = 1;
+
             // Turn off immunity frames so that every projectile can hit
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 1;
-            Projectile.damage = ProjectileID.Grenade;
-            Projectile.Size = new Vector2(8, 8);
-            Projectile.aiStyle = 1;
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-            Projectile.penetrate = 1;
-            Projectile.timeLeft = 600;
-            Projectile.ignoreWater = true;
-            Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
 
             AIType = ProjectileID.ExplosiveBullet;
+
             // IMPORTANT: Initialize ai[0] here.
             // When the gun shoots, it should set ai[0] of the initial bullet to a special value (e.g., 1f)
             // Cloned bullets will have ai[0] = 0f (default).
             // This is just the default value if not set by the gun.
-            Projectile.ai[0] = 0f; // Default: This projectile is NOT a parent that needs to clone.
-                                   // The gun's Shoot method will override this for the first bullet.
+            Projectile.ai[0] = 0f; // Default: This projectile is NOT a parent that needs to clone. The gun's Shoot method will override this for the first bullet.
         }
 
         public override void AI()

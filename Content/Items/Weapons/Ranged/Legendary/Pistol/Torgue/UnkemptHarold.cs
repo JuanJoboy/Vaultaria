@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
@@ -26,33 +25,34 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
             Item.useStyle = ItemUseStyleID.Shoot; // Use style for guns
             Item.rare = ItemRarityID.Yellow;
 
-            // Combat properties
-            Item.damage = 20; // Gun damage + bullet damage = final damage
-            Item.crit = 10;
-            Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 20; // Delay between shots.
-            Item.useAnimation = 20; // How long shoot animation lasts in ticks.
-            Item.reuseDelay = 2; // How long the gun will be unable to shoot after useAnimation ends
-            Item.knockBack = 2.3f; // Gun knockback + bullet knockback = final knockback
-            Item.autoReuse = true;
-
-            // Other properties
-            Item.value = 10000;
-            Item.UseSound = SoundID.Item11; // Gun use sound
-
             // Gun properties
             Item.noMelee = true; // Item not dealing damage while held, we don’t hit mobs in the head with a gun
             Item.shootSpeed = 4f; // Speed of a projectile. Mainly measured by eye
-            Item.shoot = ModContent.ProjectileType<UHBullet>();
-            Item.useAmmo = ModContent.ItemType<PistolAmmo>();
+            Item.shoot = ModContent.ProjectileType<UHBullet>(); // Shoots this
+            Item.useAmmo = ModContent.ItemType<PistolAmmo>(); // Uses this ammo
+
+            // Combat properties
+            Item.knockBack = 2.3f; // Gun knockback + bullet knockback = final knockback
+            Item.damage = 20; // Gun damage + bullet damage = final damage
+            Item.crit = 10; // Crit chance + 4% base
+            Item.DamageType = DamageClass.Ranged; // Does ranged damage
+
+            Item.useTime = 20; // Delay between shots.
+            Item.useAnimation = 20; // How long shoot animation lasts in ticks.
+            Item.reuseDelay = 2; // How long the gun will be unable to shoot after useAnimation ends
+            Item.autoReuse = true; // Auto fire
+
+            // Other properties
+            Item.value = Item.buyPrice(gold: 5);
+            Item.UseSound = SoundID.Item11; // Gun use sound
         }
 
         public override void AddRecipes()
         {
-            // CreateRecipe()
-            //     .AddIngredient<SteelShard>(9)
-            //     .AddTile(TileID.Anvils)
-            //     .Register();
+            CreateRecipe()
+                .AddIngredient<Eridium>(9)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
         }
 
         public override Vector2? HoldoutOffset()

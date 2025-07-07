@@ -1,10 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Tiles.VendingMachines;
 
 namespace Vaultaria.Content.Items.Placeables.VendingMachines
 {
@@ -36,7 +33,7 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
 
-            Item.createTile = ModContent.TileType<Content.Items.Tiles.VendingMachines.MarcusVendingMachine>();
+            Item.createTile = ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>();
 
             // Specifies which "style" of the tile to place. Useful for multi-frame tiles
             // or tiles with different visual variations. 0 means the first (default) style.
