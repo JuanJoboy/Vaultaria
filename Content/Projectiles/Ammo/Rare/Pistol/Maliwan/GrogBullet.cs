@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
+using Vaultaria.Content.Buffs.Prefixes.Elements;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 {
@@ -63,12 +64,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.vampireHeal(250, Projectile.Center, target); // Heals on NPC hit
-
-            int chance = Main.rand.Next(0, 2);
-            if (chance == 1)
-            {
-                target.AddBuff(69, 300); // 50% chance to apply ichor
-            }
+            target.AddBuff(ModContent.BuffType<SlagBuff>(), 300); // 100% Chance to slag
         }
     }
 }

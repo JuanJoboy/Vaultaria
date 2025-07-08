@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Audio;
+using Terraria.Utilities;
+using Vaultaria.Content.Prefixes.Shields;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -16,6 +18,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
+
+            Main.buffNoTimeDisplay[BuffID.ObsidianSkin] = true;
+            Main.buffNoTimeDisplay[BuffID.Inferno] = true;
+            Main.buffNoTimeDisplay[BuffID.Warmth] = true;
         }
 
         public override void SetDefaults()
@@ -52,17 +58,12 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.AddBuff(116, 60); // Inferno
             player.AddBuff(124, 60); // Warmth
 
-            for (int i = 0; i < player.CountBuffs(); i++)
-            {
-                Main.buffNoTimeDisplay[i] = true;
-            }
-
             // 1. Decrement the cooldown timer each tick
                 if (novaCooldown > 0)
                 {
                     novaCooldown--;
                 }
-            
+
             // 2. Check the condition for triggering the nova
             //    - Player's health is below or equal to 30% of max health
             //    - The cooldown timer has reached 0 (or less)
@@ -90,6 +91,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 // 4. Reset the cooldown timer after spawning the nova
                 novaCooldown = 60; // 120 ticks = 2 seconds
             }
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Inflammable>();
         }
     }
 }

@@ -32,10 +32,6 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Grants immunity to Fire damage")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "...His hide turned the mightiest tame...")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

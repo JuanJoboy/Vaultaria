@@ -1,0 +1,2 @@
+make the player immune to alot of stuff, like darkness and stuff
+can only be crafted with ankh shield and smt else

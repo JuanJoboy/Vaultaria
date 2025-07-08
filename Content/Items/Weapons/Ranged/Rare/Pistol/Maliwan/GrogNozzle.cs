@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan;
-using Vaultaria.Content.Buffs;
+using Vaultaria.Content.Buffs.GunEffects;
 using System.Collections.Generic;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 {
@@ -78,7 +79,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+50% chance to apply Ichor"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+100% Chance to Apply Slag")
+            {
+                OverrideColor = new Color(142, 94, 235) // Purple
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Hand over the keys, Sugar...")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -89,11 +93,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         {
             if (!player.HasBuff(ModContent.BuffType<DrunkEffect>()))
             {
-                if(Main.rand.Next(0, 10) == 5)
+                if (Main.rand.Next(0, 10) == 5)
                 {
                     player.AddBuff(ModContent.BuffType<DrunkEffect>(), 300); // 0.1% chance to apply a drunk effect on yourself for 5 seconds
                 }
             }
+        }
+        
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Slag>();
         }
     }
 }

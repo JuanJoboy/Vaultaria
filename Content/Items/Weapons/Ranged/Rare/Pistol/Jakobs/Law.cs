@@ -97,7 +97,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.shootSpeed = 4f;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Item.UseSound = SoundID.Item11;
+                Item.UseSound = SoundID.Item1;
 
                 Item.useTime = 20;
                 Item.useAnimation = 20;

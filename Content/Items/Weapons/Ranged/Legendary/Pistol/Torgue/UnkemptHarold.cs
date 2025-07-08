@@ -79,9 +79,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            if (player.CountItem(ammo.type, ModContent.ItemType<PistolAmmo>()) >= 6)
+            if (player.CountItem(ammo.type, ModContent.ItemType<PistolAmmo>()) >= 3)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     player.ConsumeItem(ammo.type, false);
                 }
@@ -92,7 +92,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 6 ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 ammo per shot"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Deals bonus explosive damage")
             {
                 OverrideColor = new Color(196, 195, 6) // Yellow

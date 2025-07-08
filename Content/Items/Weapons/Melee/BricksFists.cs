@@ -55,12 +55,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             target.AddBuff(BuffID.Bleeding, 300);
         }
 
-        // This tells Terraria that this item has an alternate use mode (usually right-click)
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()

@@ -115,8 +115,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
             Projectile.NewProjectile(
                 Projectile.GetSource_FromThis(), // Source for the new projectile (this parent projectile)
                 Projectile.Center,
-                new Vector2(),
-                ProjectileID.Volcano,
+                new Vector2(0, -4),
+                ProjectileID.DD2ExplosiveTrapT1Explosion,
                 15,
                 Projectile.knockBack,
                 Projectile.owner

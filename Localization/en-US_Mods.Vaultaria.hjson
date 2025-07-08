@@ -101,4 +101,54 @@ Buffs: {
 		DisplayName: Drunk Effect
 		Description: Increases projectile count by 5
 	}
+
+	IncendiaryBuff: {
+		DisplayName: Incendiary Debuff
+		Description: Take Fire damage over time
+	}
+
+	ShockBuff: {
+		DisplayName: Shock Debuff
+		Description: Take Shock damage over time
+	}
+
+	CorrosiveBuff: {
+		DisplayName: Corrosive Buff
+		Description: Take Corrosive damage over time
+	}
+
+	ExplosiveBuff: {
+		DisplayName: Explosive Buff
+		Description: EXPLOSIONS!!!
+	}
+
+	SlagBuff: {
+		DisplayName: Slag Buff
+		Description: Take increased damage
+	}
+
+	DoubleEffect: {
+		DisplayName: Double Effect
+		Description: Mods.Vaultaria.Buffs.DoubleEffect.Description
+	}
+
+	TrickshotEffect: {
+		DisplayName: Trickshot Effect
+		Description: Mods.Vaultaria.Buffs.TrickshotEffect.Description
+	}
+}
+
+Prefixes: {
+	Inflammable.DisplayName: Inflammable
+	Incendiary.DisplayName: Incendiary
+	Shock.DisplayName: Shock
+	Grounded.DisplayName: Grounded
+	Alkaline.DisplayName: Alkaline
+	BlastProof.DisplayName: Blast Proof
+	Corrosive.DisplayName: Corrosive
+	Evolved.DisplayName: Evolved
+	Explosive.DisplayName: Explosive
+	Slag.DisplayName: Slag
+	DoublePenetrating.DisplayName: Double Penetrating
+	Trickshot.DisplayName: Trickshot
 }

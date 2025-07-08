@@ -7,6 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
 using System.Collections.Generic;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 {
@@ -86,6 +87,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Trickshot>();
         }
     }
 }
