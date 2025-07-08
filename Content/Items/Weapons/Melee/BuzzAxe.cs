@@ -81,10 +81,10 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.shootSpeed = 4f;
                 Item.shoot = ModContent.ProjectileType<BuzzAxeBombardier>();
 
-                Item.useTime = 20; // Delay between shots.
-                Item.useAnimation = 20; // How long shoot animation lasts in ticks.
-                Item.reuseDelay = 2; // How long the gun will be unable to shoot after useAnimation ends
-                Item.autoReuse = true; // Auto fire
+                Item.useTime = 20;
+                Item.useAnimation = 20;
+                Item.reuseDelay = 2;
+                Item.autoReuse = true;
                 Item.useTurn = true;
             }
 

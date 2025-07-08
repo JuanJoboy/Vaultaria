@@ -3,10 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
-    public class TheBee : ModItem
+    public class Order : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,16 +19,17 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Blue;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When at max health, non-melee attacks deals 40% bonus Amp Damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 30% health, melee attacks do 40% bonus damage"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "25% melee life-steal if Law is also equipped")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Float like a butterfly...")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Chung-gunk!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
@@ -35,16 +37,14 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 50;
-            player.statDefense += 4;
-            player.lifeRegen += 3;
+            player.statLifeMax2 += 25;
+            player.statDefense += 3;
+            player.lifeRegen += 1;
 
-            if (player.statLife == player.statLifeMax2)
+            if (player.statLife <= (player.statLifeMax2 * 0.3f))
             {
-                // Increases Ranged, Mage & Summoner damage by 40%
-                player.GetDamage(DamageClass.Ranged) += 0.4f;
-                player.GetDamage(DamageClass.Magic) += 0.4f;
-                player.GetDamage(DamageClass.Summon) += 0.4f;
+                // Increases Melee damage by 40%
+                player.GetDamage(DamageClass.Melee) += 0.4f;
             }
         }
     }

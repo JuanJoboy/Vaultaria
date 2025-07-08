@@ -63,6 +63,26 @@ Items: {
 		DisplayName: Bricks Fists
 		Tooltip: ""
 	}
+
+	Law: {
+		DisplayName: Law
+		Tooltip: ""
+	}
+
+	Order: {
+		DisplayName: Order
+		Tooltip: ""
+	}
+
+	HideOfTerramorphous: {
+		DisplayName: Hide Of Terramorphous
+		Tooltip: ""
+	}
+
+	FlameOfTheFirehawk: {
+		DisplayName: Flame Of The Firehawk
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -73,6 +93,7 @@ Projectiles: {
 	BuzzAxeBombardier.DisplayName: Buzz Axe Bombardier
 	BricksFists.DisplayName: Bricks Fists
 	BerserkerFists.DisplayName: Berserker Fists
+	FireNova.DisplayName: Fire Nova
 }
 
 Buffs: {
