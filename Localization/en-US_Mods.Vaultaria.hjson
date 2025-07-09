@@ -109,6 +109,8 @@ Projectiles: {
 	BricksFists.DisplayName: Bricks Fists
 	BerserkerFists.DisplayName: Berserker Fists
 	FireNova.DisplayName: Fire Nova
+	HomingSlagBall.DisplayName: Homing Slag Ball
+	ImpalerSpike.DisplayName: Impaler Spike
 }
 
 Buffs: {

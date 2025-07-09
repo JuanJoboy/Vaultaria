@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             player.statLifeMax2 += 50;
             player.statDefense += 4;
-            player.lifeRegen += 3;
+            player.lifeRegen += 2;
 
             if (player.statLife == player.statLifeMax2)
             {

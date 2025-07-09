@@ -28,8 +28,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 10;
-            Item.shoot = ModContent.ProjectileType<ShredifierBullet>();
-            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+            Item.shoot = ProjectileID.Bullet;
+            Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
@@ -37,8 +37,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 1;
-            Item.useAnimation = 1;
+            Item.useTime = 5;
+            Item.useAnimation = 5;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
 
@@ -58,23 +58,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(4f, 0f);
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectileDirect(
-            source,
-            position,
-            velocity,
-            ModContent.ProjectileType<ShredifierBullet>(),
-            damage,
-            knockback,
-            player.whoAmI,
-            1f,
-            0f
-            );
-
-            return false;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

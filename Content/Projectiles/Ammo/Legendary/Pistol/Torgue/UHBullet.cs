@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
 {

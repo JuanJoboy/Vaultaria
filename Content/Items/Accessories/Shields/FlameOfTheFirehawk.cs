@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Utilities;
 using Vaultaria.Content.Prefixes.Shields;
+using Vaultaria.Content.Buffs.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -34,7 +35,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Grants immunity to Fire damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Grants immunity to Incendiary damage")
             {
                 OverrideColor = new Color(231, 92, 22) // Orange
             });
@@ -57,12 +58,13 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.AddBuff(1, 60); // Obsidian Skin
             player.AddBuff(116, 60); // Inferno
             player.AddBuff(124, 60); // Warmth
+            player.buffImmune[ModContent.BuffType<IncendiaryBuff>()] = true;
 
             // 1. Decrement the cooldown timer each tick
-                if (novaCooldown > 0)
-                {
-                    novaCooldown--;
-                }
+            if (novaCooldown > 0)
+            {
+                novaCooldown--;
+            }
 
             // 2. Check the condition for triggering the nova
             //    - Player's health is below or equal to 30% of max health

@@ -16,7 +16,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Pink;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             player.statLifeMax2 += 200;
             player.statDefense += 6;
-            player.lifeRegen += 20;
+            player.lifeRegen += 40;
 
             // Ankh Shield
             player.buffImmune[BuffID.Bleeding] = true;
@@ -74,10 +74,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override bool AllowPrefix(int pre)
         {
-            return pre != ModContent.PrefixType<Inflammable>() ||
-                   pre != ModContent.PrefixType<Grounded>() ||
-                   pre != ModContent.PrefixType<Alkaline>() ||
-                   pre != ModContent.PrefixType<BlastProof>() ||
+            return pre != ModContent.PrefixType<Inflammable>() &&
+                   pre != ModContent.PrefixType<Grounded>() &&
+                   pre != ModContent.PrefixType<Alkaline>() &&
+                   pre != ModContent.PrefixType<BlastProof>() &&
                    pre != ModContent.PrefixType<Evolved>();;
         }
     }

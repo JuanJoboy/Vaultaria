@@ -8,6 +8,7 @@ using Vaultaria.Content.Prefixes.Weapons;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Terraria.Audio;
 using Terraria.ID;
+using Vaultaria.Content.Projectiles.Shields;
 
 namespace Vaultaria.Common.Players
 {
@@ -40,23 +41,103 @@ namespace Vaultaria.Common.Players
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
-            for (int i = 0; i < 8 + Player.extraAccessorySlots; i++)
+            int antagonist = ModContent.ItemType<Antagonist>();
+            int impaler = ModContent.ItemType<Impaler>();
+
+            if (IsWearing(antagonist))
             {
-                if (Player.armor[i].ModItem != null && Player.armor[i].ModItem.Type == ModContent.ItemType<Antagonist>())
+                if (Main.rand.Next(0, 2) == 1) // 50% Deflection chance
                 {
                     proj.velocity *= -1f; // Reverse direction
                     proj.owner = Player.whoAmI;
                     proj.friendly = true;
                     proj.hostile = false;
-                    proj.damage = (int)(hurtInfo.Damage * 8.8f);
+                    proj.damage = (int)(hurtInfo.Damage * 8.8f); // 880% Reflection damage
                     SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
                 }
+
+                Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
+                Vector2 spawnPos = Player.Center + direction * 5f;
+
+                Projectile.NewProjectile(
+                    proj.GetSource_OnHit(Player),
+                    spawnPos,
+                    direction * 12f,
+                    ModContent.ProjectileType<HomingSlagBall>(),
+                    1,
+                    0f,
+                    Player.whoAmI
+                );
+            }
+            
+            if (IsWearing(impaler))
+            {
+                Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
+                Vector2 spawnPos = Player.Center + direction * 5f;
+
+                Projectile.NewProjectile(
+                    proj.GetSource_OnHit(Player),
+                    spawnPos,
+                    direction * 12f,
+                    ModContent.ProjectileType<ImpalerSpike>(),
+                    (int)(hurtInfo.SourceDamage * 0.4f),
+                    0f,
+                    Player.whoAmI
+                );
             }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
-            
+            int antagonist = ModContent.ItemType<Antagonist>();
+            int impaler = ModContent.ItemType<Impaler>();
+
+            if (IsWearing(antagonist))
+            {
+                Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
+                Vector2 spawnPos = Player.Center + direction * 5f;
+
+                Projectile.NewProjectile(
+                    npc.GetSource_OnHit(Player),
+                    spawnPos,
+                    direction * 12f,
+                    ModContent.ProjectileType<HomingSlagBall>(),
+                    1,
+                    0f,
+                    Player.whoAmI
+                );
+            }
+
+            if (IsWearing(impaler))
+            {
+                npc.AddBuff(BuffID.Thorns, 60);
+                npc.life -= (int) (hurtInfo.SourceDamage * 0.35f);
+                npc.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);
+            }
+        }
+
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            int antagonist = ModContent.ItemType<Antagonist>();
+
+            if (IsWearing(antagonist))
+            {
+                modifiers.FinalDamage *= 0.5f;
+            }
+        }
+
+        private bool IsWearing(int shield)
+        {
+            // Ignore empty accessory slots and check if the player is wearing the shield
+            for (int i = 0; i < 8 + Player.extraAccessorySlots; i++)
+            {
+                if (Player.armor[i].ModItem != null && Player.armor[i].ModItem.Type == shield)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void DrunkShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
