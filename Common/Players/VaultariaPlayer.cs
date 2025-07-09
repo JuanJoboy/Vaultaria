@@ -5,6 +5,9 @@ using Terraria.DataStructures;
 using Vaultaria.Content.Buffs.GunEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Content.Items.Accessories.Shields;
+using Terraria.Audio;
+using Terraria.ID;
 
 namespace Vaultaria.Common.Players
 {
@@ -35,6 +38,27 @@ namespace Vaultaria.Common.Players
             return true;
         }
 
+        public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
+        {
+            for (int i = 0; i < 8 + Player.extraAccessorySlots; i++)
+            {
+                if (Player.armor[i].ModItem != null && Player.armor[i].ModItem.Type == ModContent.ItemType<Antagonist>())
+                {
+                    proj.velocity *= -1f; // Reverse direction
+                    proj.owner = Player.whoAmI;
+                    proj.friendly = true;
+                    proj.hostile = false;
+                    proj.damage = (int)(hurtInfo.Damage * 8.8f);
+                    SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
+                }
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+        {
+            
+        }
+
         private void DrunkShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int extraProjectilesToSpawn = 5; // We want 5 *additional* projectiles
@@ -46,8 +70,8 @@ namespace Vaultaria.Common.Players
             }
 
             // Get the base angle of the original projectile's velocity.
-                // This ensures the spread is oriented in the direction the player is aiming.
-                float baseAngle = velocity.ToRotation();
+            // This ensures the spread is oriented in the direction the player is aiming.
+            float baseAngle = velocity.ToRotation();
 
             // Calculate the angle increment for distributing the extra projectiles evenly.
             // We divide by (extraProjectilesToSpawn - 1) because there are N-1 gaps between N projectiles.

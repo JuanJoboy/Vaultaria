@@ -83,6 +83,21 @@ Items: {
 		DisplayName: Flame Of The Firehawk
 		Tooltip: ""
 	}
+
+	Antagonist: {
+		DisplayName: Antagonist
+		Tooltip: ""
+	}
+
+	Evolution: {
+		DisplayName: Evolution
+		Tooltip: ""
+	}
+
+	Impaler: {
+		DisplayName: Impaler
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

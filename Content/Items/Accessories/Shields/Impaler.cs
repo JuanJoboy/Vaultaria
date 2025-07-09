@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
-    public class TheBee : ModShield
+    public class Impaler : ModShield
     {
         public override void SetDefaults()
         {
@@ -18,11 +18,15 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When at max health, non-melee attacks deals 40% bonus Amp Damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Launches Corrosive homing spikes when damaged with a projectile")
             {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
+                OverrideColor = new Color(136, 235, 94) // Light Green
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Float like a butterfly...")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deals Corrosive Thorn Damage to melee attackers")
+            {
+                OverrideColor = new Color(136, 235, 94) // Light Green
+            });
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Vlad would be proud")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
@@ -30,17 +34,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 50;
-            player.statDefense += 4;
+            player.statLifeMax2 += 60;
+            player.statDefense += 5;
             player.lifeRegen += 3;
-
-            if (player.statLife == player.statLifeMax2)
-            {
-                // Increases Ranged, Mage & Summoner damage by 40%
-                player.GetDamage(DamageClass.Ranged) += 0.4f;
-                player.GetDamage(DamageClass.Magic) += 0.4f;
-                player.GetDamage(DamageClass.Summon) += 0.4f;
-            }
         }
     }
 }

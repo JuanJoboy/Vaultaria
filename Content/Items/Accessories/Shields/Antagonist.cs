@@ -6,24 +6,27 @@ using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
-    public class Order : ModShield
+    public class Antagonist : ModShield
     {
         public override void SetDefaults()
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 30% health, melee attacks do 40% bonus damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "25% melee life-steal if Law is also equipped")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deflects enemy bullets, sending them flying toward nearby enemies.")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Chung-gunk!")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Launches Slag homing balls at attackers")
+            {
+                OverrideColor = new Color(142, 94, 235) // Purple
+            });
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "I'm rubber, you're glue.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
@@ -31,15 +34,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 25;
-            player.statDefense += 3;
-            player.lifeRegen += 1;
-
-            if (player.statLife <= (player.statLifeMax2 * 0.3f))
-            {
-                // Increases Melee damage by 40%
-                player.GetDamage(DamageClass.Melee) += 0.4f;
-            }
+            player.statLifeMax2 += 60;
+            player.statDefense += 5;
+            player.lifeRegen += 3;
         }
     }
 }

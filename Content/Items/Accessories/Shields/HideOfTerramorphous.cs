@@ -7,14 +7,9 @@ using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
-    public class HideOfTerramorphous : ModItem
+    public class HideOfTerramorphous : ModShield
     {
         static int usage = 0;
-
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
 
         public override void SetDefaults()
         {
