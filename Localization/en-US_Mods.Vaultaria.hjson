@@ -98,6 +98,11 @@ Items: {
 		DisplayName: Impaler
 		Tooltip: ""
 	}
+
+	SabreTurret: {
+		DisplayName: Sabre Turret
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -111,6 +116,8 @@ Projectiles: {
 	FireNova.DisplayName: Fire Nova
 	HomingSlagBall.DisplayName: Homing Slag Ball
 	ImpalerSpike.DisplayName: Impaler Spike
+	Turret.DisplayName: Turret
+	HomingRocket.DisplayName: Homing Rocket
 }
 
 Buffs: {
