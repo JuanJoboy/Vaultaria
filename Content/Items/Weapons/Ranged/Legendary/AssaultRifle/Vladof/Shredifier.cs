@@ -4,8 +4,6 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
-using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof

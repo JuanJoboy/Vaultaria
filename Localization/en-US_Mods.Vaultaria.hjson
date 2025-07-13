@@ -143,6 +143,21 @@ Items: {
 		DisplayName: Infinity
 		Tooltip: ""
 	}
+
+	Hail: {
+		DisplayName: Hail
+		Tooltip: ""
+	}
+
+	SubmachineGunAmmo: {
+		DisplayName: Submachine Gun Ammo
+		Tooltip: ""
+	}
+
+	Florentine: {
+		DisplayName: Florentine
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -161,6 +176,8 @@ Projectiles: {
 	FastBallModule.DisplayName: Fast Ball Module
 	Breath.DisplayName: Breath
 	FireBeeSpray.DisplayName: Fire Bee Spray
+	HailBullet.DisplayName: Hail Bullet
+	FlorentineBullet.DisplayName: Florentine Bullet
 }
 
 Buffs: {

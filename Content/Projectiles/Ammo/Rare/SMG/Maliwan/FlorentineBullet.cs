@@ -5,10 +5,12 @@ using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
+namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
 {
-    public class GrogBullet : ModProjectile
+    public class FlorentineBullet : ElementalProjectile
     {
+        public float elementalMultiplier;
+
         public override void SetDefaults()
         {
             // Size
@@ -29,7 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 8;
+            Main.projFrames[Projectile.type] = 4;
         }
 
         public override void AI()
@@ -63,10 +65,24 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int heal = (int) (damageDone * 0.65f);
-            heal = (int)(heal / 0.075f);
-            Projectile.vampireHeal(heal, Projectile.Center, target);
-            target.AddBuff(ModContent.BuffType<SlagBuff>(), 300); // 100% Chance to slag
+            Player player = Main.player[Projectile.owner];
+
+            if (SetElementalChance(20f))
+            {
+                target.AddBuff(ModContent.BuffType<SlagBuff>(), 180);
+                target.AddBuff(ModContent.BuffType<ShockBuff>(), 180);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            Player player = Main.player[Projectile.owner];
+
+            if (SetElementalChance(20f))
+            {
+                target.AddBuff(ModContent.BuffType<SlagBuff>(), 180);
+                target.AddBuff(ModContent.BuffType<ShockBuff>(), 180);
+            }
         }
     }
 }

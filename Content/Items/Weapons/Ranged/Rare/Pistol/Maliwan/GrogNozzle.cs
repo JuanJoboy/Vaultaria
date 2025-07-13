@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 5;
+            Item.damage = 20;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -79,7 +79,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Grog has a 20% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+65% Lifesteal\nEvery 10 seconds the Grog has a 20% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+5 Projectiles\n\t-50% Fire Rate")
             {
                 OverrideColor = new Color(224, 224, 224) // Light Grey
