@@ -103,6 +103,46 @@ Items: {
 		DisplayName: Sabre Turret
 		Tooltip: ""
 	}
+
+	Fastball: {
+		DisplayName: Fastball
+		Tooltip: ""
+	}
+
+	MagicMissile: {
+		DisplayName: Magic Missile
+		Tooltip: ""
+	}
+
+	MagicMissileEpic: {
+		DisplayName: Magic Missile
+		Tooltip: ""
+	}
+
+	MagicMissileRare: {
+		DisplayName: Magic Missile
+		Tooltip: ""
+	}
+
+	BreathOfTerramorphous: {
+		DisplayName: Breath Of Terramorphous
+		Tooltip: ""
+	}
+
+	FireBee: {
+		DisplayName: Fire Bee
+		Tooltip: ""
+	}
+
+	Orc: {
+		DisplayName: Orc
+		Tooltip: ""
+	}
+
+	Infinity: {
+		DisplayName: Infinity
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -118,12 +158,15 @@ Projectiles: {
 	ImpalerSpike.DisplayName: Impaler Spike
 	Turret.DisplayName: Turret
 	HomingRocket.DisplayName: Homing Rocket
+	FastBallModule.DisplayName: Fast Ball Module
+	Breath.DisplayName: Breath
+	FireBeeSpray.DisplayName: Fire Bee Spray
 }
 
 Buffs: {
 	DrunkEffect: {
 		DisplayName: Drunk Effect
-		Description: Increases projectile count by 5
+		Description: Increases projectile count by 5 but decreases fire rate by 50%
 	}
 
 	IncendiaryBuff: {
@@ -151,14 +194,9 @@ Buffs: {
 		Description: Take increased damage
 	}
 
-	DoubleEffect: {
-		DisplayName: Double Effect
-		Description: Mods.Vaultaria.Buffs.DoubleEffect.Description
-	}
-
-	TrickshotEffect: {
-		DisplayName: Trickshot Effect
-		Description: Mods.Vaultaria.Buffs.TrickshotEffect.Description
+	OrcEffect: {
+		DisplayName: Orc Effect
+		Description: Increases projectile count, fire rate, damage & gives Trickshot
 	}
 }
 

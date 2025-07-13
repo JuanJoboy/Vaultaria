@@ -9,6 +9,7 @@ using Vaultaria.Content.Items.Accessories.Shields;
 using Terraria.Audio;
 using Terraria.ID;
 using Vaultaria.Content.Projectiles.Shields;
+using Vaultaria.Common.Globals.Prefixes.GunModifier;
 
 namespace Vaultaria.Common.Players
 {
@@ -24,6 +25,11 @@ namespace Vaultaria.Common.Players
                 DrunkShot(item, source, position, velocity, type, damage, knockback);
             }
 
+            if (Player.HasBuff(ModContent.BuffType<OrcEffect>()))
+            {
+                OrcShot(item, source, position, velocity, type, damage, knockback);
+            }
+
             if (item.prefix == ModContent.PrefixType<DoublePenetrating>())
             {
                 DoubleShot(item, source, position, velocity, type, damage, knockback);
@@ -37,6 +43,30 @@ namespace Vaultaria.Common.Players
             // and then the GrogNozzle's Shoot will spawn the 1 original GrogBullet.
             // This results in 1 (original) + 5 (clones) = 6 projectiles total when the buff is active.
             return true;
+        }
+
+        public override float UseSpeedMultiplier(Item item)
+        {
+            float multiplier = 1;
+
+            if (Player.HasBuff(ModContent.BuffType<OrcEffect>()))
+            {
+                multiplier *= 1.5f;
+            }
+            if (Player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+            {
+                multiplier *= 0.5f;
+            }
+
+            return multiplier;
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        {
+            if (Player.HasBuff(ModContent.BuffType<OrcEffect>()))
+            {
+                damage *= 1.2f;
+            }
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
@@ -69,7 +99,7 @@ namespace Vaultaria.Common.Players
                     Player.whoAmI
                 );
             }
-            
+
             if (IsWearing(impaler))
             {
                 Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
@@ -111,7 +141,7 @@ namespace Vaultaria.Common.Players
             if (IsWearing(impaler))
             {
                 npc.AddBuff(BuffID.Thorns, 60);
-                npc.life -= (int) (hurtInfo.SourceDamage * 0.35f);
+                npc.life -= (int)(hurtInfo.SourceDamage * 0.35f);
                 npc.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);
             }
         }
@@ -198,6 +228,28 @@ namespace Vaultaria.Common.Players
                 source,
                 position,
                 newVelocity, // Use the slightly perturbed velocity
+                type,
+                damage,
+                knockback,
+                Player.whoAmI,
+                1,
+                1
+            );
+        }
+
+        private void OrcShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Player player = Main.player[Player.whoAmI];
+            Item weapon = player.HeldItem;
+
+            float spread = MathHelper.ToRadians(5);
+            Vector2 newVelocity = velocity.RotatedByRandom(spread);
+
+            // 1 Extra projectile
+            Projectile.NewProjectile(
+                source,
+                position,
+                newVelocity,
                 type,
                 damage,
                 knockback,

@@ -4,15 +4,12 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
-using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan;
 using Vaultaria.Content.Buffs.GunEffects;
 using System.Collections.Generic;
-using Vaultaria.Content.Prefixes.Weapons;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
+namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 {
-    public class GrogNozzle : ModItem
+    public class Orc : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,23 +22,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
             Item.Size = new Vector2(60, 20);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Purple;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 4f;
-            Item.shoot = ModContent.ProjectileType<GrogBullet>();
-            Item.useAmmo = ModContent.ItemType<PistolAmmo>();
+            Item.shoot = AmmoID.Bullet;
+            Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 5;
+            Item.damage = 15;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 17;
-            Item.useAnimation = 17;
-            Item.reuseDelay = 2;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.reuseDelay = 1;
             Item.autoReuse = true;
 
             // Other properties
@@ -68,7 +65,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
             source,
             position,
             velocity,
-            ModContent.ProjectileType<GrogBullet>(),
+            type,
             damage,
             knockback,
             player.whoAmI
@@ -79,16 +76,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Grog has a 20% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+5 Projectiles\n\t-50% Fire Rate")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Orc has a 30% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+1 Projectile\n\t+20% Damage\n\t+50% Fire Rate\n\tProjectiles ricochet")
             {
                 OverrideColor = new Color(224, 224, 224) // Light Grey
             });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "+100% Chance to Apply Slag")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Hand over the keys, Sugar...")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Drops from ogre in old ones army"));
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Have I achieved worth yet?")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
@@ -96,18 +90,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override void HoldItem(Player player)
         {
-            if (!player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+            if (!player.HasBuff(ModContent.BuffType<OrcEffect>()))
             {
                 if (Main.rand.Next(0, 10) == 5)
                 {
-                    player.AddBuff(ModContent.BuffType<DrunkEffect>(), 600);
+                    player.AddBuff(ModContent.BuffType<OrcEffect>(), 600);
                 }
             }
-        }
-        
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<Slag>();
         }
     }
 }

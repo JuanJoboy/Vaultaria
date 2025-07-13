@@ -52,6 +52,7 @@ namespace Vaultaria.Content.Projectiles.Minions
         {
             // Gets the owner and ensures that only one turret can spawn
             Player owner = Main.player[Projectile.owner];
+            owner.maxTurrets = 2;
             owner.UpdateMaxTurrets();
 
             Projectile.velocity = Vector2.Zero; // Stay stationary
@@ -224,10 +225,10 @@ namespace Vaultaria.Content.Projectiles.Minions
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.velocity.Y = 0f;
-            Projectile.position.Y -= 16f;
+            Projectile.velocity.Y = 0f; // Stop falling
+            Projectile.position.Y -= 16f; // Raise it by 16 pixels
             touchedTheGround = true;
-            return false;
+            return false; // False will allow it to not despawn on tile collide since its a projectile
         }
     }
 }

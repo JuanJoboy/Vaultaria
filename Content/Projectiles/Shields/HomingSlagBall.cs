@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
+using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 
 namespace Vaultaria.Content.Projectiles.Shields
 {
@@ -29,6 +31,8 @@ namespace Vaultaria.Content.Projectiles.Shields
             Projectile.extraUpdates = 1;
 
             AIType = ProjectileID.ChlorophyteBullet; // Inherit Chlorophyte AI
+            Projectile.ai[0] = 0f;
+            Projectile.ai[1] = 0f;
         }
 
         public override void SetStaticDefaults()
@@ -54,6 +58,17 @@ namespace Vaultaria.Content.Projectiles.Shields
                     Projectile.frame = 0;
                 }
             }
+
+            int magicMissileEpic = ModContent.ItemType<MagicMissileEpic>();
+            int magicMissileRare = ModContent.ItemType<MagicMissileRare>();
+            if (IsItem(magicMissileEpic))
+            {
+                MagicShoot(3);
+            }
+            if (IsItem(magicMissileRare))
+            {
+                MagicShoot(0);
+            }
         }
 
         public override void OnKill(int timeLeft)
@@ -68,6 +83,63 @@ namespace Vaultaria.Content.Projectiles.Shields
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<SlagBuff>(), 300); // 100% Chance to slag
+        }
+
+        private bool IsItem(int item)
+        {
+            Player player = Main.player[Projectile.owner];
+            Item weapon = player.HeldItem;
+
+            if (weapon != null && weapon.type == item)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void MagicShoot(int numberOfClones)
+        {
+            if (Projectile.ai[2] == 1f) // Cant use the ai0 cause chlorophyte uses it
+            {
+                if (Projectile.timeLeft == 580)
+                {
+                    const float totalSpreadDegrees = 15f;
+                    float baseAngle = Projectile.velocity.ToRotation();
+                    float angleIncrement;
+
+                    if (numberOfClones == 1)
+                    {
+                        angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / numberOfClones);
+                    }
+                    else
+                    {
+                        angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
+                    }
+
+                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
+
+                    for (int i = 0; i <= numberOfClones; i++)
+                    {
+                        float newAngle = baseAngle + (i * angleIncrement);
+                        Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+
+                        Projectile.NewProjectile(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            newVelocity,
+                            Projectile.type,
+                            15,
+                            Projectile.knockBack,
+                            Projectile.owner,
+                            0f,
+                            0f
+                        );
+                    }
+
+                    Projectile.ai[2] = 0f;
+                }
+            }
         }
     }
 }

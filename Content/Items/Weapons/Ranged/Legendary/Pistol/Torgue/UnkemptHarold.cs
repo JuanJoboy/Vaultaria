@@ -63,15 +63,15 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Projectile.NewProjectileDirect(
-            source,
-            position,
-            velocity,
-            ModContent.ProjectileType<UHBullet>(),
-            damage,
-            knockback,
-            player.whoAmI,
-            1f, // Projectile.ai[0] = 1f; (This bullet is the cloner)
-            0f  // Projectile.ai[1] = 0f; (Optional, if you don't need ai[1] yet)
+                source,
+                position,
+                velocity,
+                ModContent.ProjectileType<UHBullet>(),
+                damage,
+                knockback,
+                player.whoAmI,
+                1f, // Projectile.ai[0] = 1f; (This bullet is the cloner)
+                0f  // Projectile.ai[1] = 0f; (Optional, if you don't need ai[1] yet)
             );
 
             return false; // Prevent vanilla from spawning the default ammo projectile

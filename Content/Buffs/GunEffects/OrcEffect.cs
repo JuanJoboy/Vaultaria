@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Buffs.GunEffects
 {
-    public class DrunkEffect : ModBuff
+    public class OrcEffect : ModBuff
     {
         public override void SetStaticDefaults()
         {
