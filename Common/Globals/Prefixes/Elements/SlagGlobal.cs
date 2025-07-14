@@ -20,7 +20,7 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
                         player.GetSource_OnHit(target),
                         target.Center,
                         Vector2.Zero,
-                        ProjectileID.CorruptSpray,
+                        ProjectileID.ShadowFlame,
                         0,
                         0f,
                         player.whoAmI
@@ -41,7 +41,7 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
                         player.GetSource_OnHit(target),
                         target.Center,
                         Vector2.Zero,
-                        ProjectileID.CorruptSpray,
+                        ProjectileID.ShadowFlame,
                         0,
                         0f,
                         player.whoAmI

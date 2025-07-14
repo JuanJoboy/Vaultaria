@@ -26,23 +26,14 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
             Player player = Main.player[projectile.owner];
             Item held = player.HeldItem;
 
-            if (held != null && held.prefix == ModContent.PrefixType<Shock>())
+            if (held.prefix != ModContent.PrefixType<Shock>()) // Allow double proccing. For example, a Shock Florentine will have 2 chances at shock damage. Otherwise if it natively does shock and doesn't have a shock prefix, only allow shock to proc once.
             {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
-                {
-                    // Deal extra shock damage
-                    Projectile.NewProjectile(
-                        player.GetSource_OnHit(target),
-                        target.Center,
-                        Vector2.Zero,
-                        ProjectileID.Electrosphere,
-                        (int)(damageDone * 0.4f),
-                        0f,
-                        player.whoAmI
-                    );
+                return;
+            }
 
-                    target.AddBuff(ModContent.BuffType<ShockBuff>(), 120);
-                }
+            if (ElementalProjectile.SetElementalChance(40f))
+            {
+                ElementalProjectile.SetShockOnNPC(target, hit, 0.4f, 120, player);
             }
         }
 

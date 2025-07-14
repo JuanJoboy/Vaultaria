@@ -3,13 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
+using System.Collections.Generic; // For Lists
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
 {
     public class FlorentineBullet : ElementalProjectile
     {
-        public float elementalMultiplier;
+        public float shockMultiplier;
+        public float slagMultiplier;
+        public int buffTime = 180;
 
         public override void SetDefaults()
         {
@@ -65,24 +67,29 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Player player = Main.player[Projectile.owner];
-
             if (SetElementalChance(20f))
             {
-                target.AddBuff(ModContent.BuffType<SlagBuff>(), 180);
-                target.AddBuff(ModContent.BuffType<ShockBuff>(), 180);
+                SetShockOnNPC(target, hit, shockMultiplier, buffTime);
+                SetSlagOnNPC(target, hit, slagMultiplier, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Player player = Main.player[Projectile.owner];
-
             if (SetElementalChance(20f))
             {
-                target.AddBuff(ModContent.BuffType<SlagBuff>(), 180);
-                target.AddBuff(ModContent.BuffType<ShockBuff>(), 180);
+                SetShockOnPlayer(target, info, shockMultiplier, buffTime);
+                SetSlagOnPlayer(target, info, slagMultiplier, buffTime);
             }
+        }
+
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Shock",
+                "Slag"
+            };
         }
     }
 }

@@ -1,13 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using Vaultaria.Content.Buffs.GunEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
-using System.Diagnostics.CodeAnalysis;
-using Vaultaria.Content.Prefixes.Weapons;
-using System.Configuration;
 using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
 
 public class SlagGlobalNPC : GlobalNPC
@@ -24,33 +19,11 @@ public class SlagGlobalNPC : GlobalNPC
 
     public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
     {
-        Player player = Main.player[projectile.owner];
-        int elementalDamage = 0;
-        float finalDamage = modifiers.FinalDamage.ApplyTo(projectile.damage);
-
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
         {
             npc.AddBuff(BuffID.Ichor, 300);
             modifiers.SourceDamage *= 1.3f;
             modifiers.Defense *= 0.7f;
-        }
-
-        if (npc.HasBuff(ModContent.BuffType<ShockBuff>()))
-        {
-            if (projectile.ModProjectile is FlorentineBullet florentineBullet)
-            {
-                ElementalProjectile.SetElementalDamage(finalDamage, florentineBullet.elementalMultiplier, out elementalDamage);
-            }
-
-            Projectile.NewProjectile(
-                player.GetSource_OnHit(npc),
-                npc.Center,
-                Vector2.Zero,
-                ProjectileID.Electrosphere,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
         }
     }
 

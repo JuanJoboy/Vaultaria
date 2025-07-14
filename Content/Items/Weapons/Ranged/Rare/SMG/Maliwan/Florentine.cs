@@ -74,7 +74,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 
             if (projectile.ModProjectile is FlorentineBullet bullet)
             {
-                bullet.elementalMultiplier = 0.4f;
+                bullet.shockMultiplier = 0.4f;
+                bullet.slagMultiplier = 0.2f;
             }
 
             return false;
@@ -82,7 +83,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Has a 20% chance to do 40% Slag & Shock damage"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Has a 20% chance to do 20% Slag & 40% Shock bonus damage"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Double trouble.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
