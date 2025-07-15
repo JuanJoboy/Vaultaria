@@ -2,12 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
 {
-    public class UHBullet : ModProjectile
+    public class UHBullet : ElementalProjectile
     {
+        public float explosiveMultiplier;
+        private float elementalChance = 100f;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int buffTime = 90;
+
         public override void SetDefaults()
         {
             // Size
@@ -101,6 +107,24 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
                     // Changing its state so it continues as a normal bullet:
                     Projectile.ai[0] = 0f; // Important! Prevents infinite cloning.
                 }
+            }
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 

@@ -1,0 +1,280 @@
+using Terraria;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic; // For Collections
+
+namespace Vaultaria.Common.Utilities
+{
+    public abstract class ElementalProjectile : ModProjectile
+    {
+        // ********************************************
+        // *------------- Helper Fields -------------*
+        // ********************************************
+        
+        private static readonly HashSet<int> elementalProjectile = new HashSet<int>
+        {
+            ElementalID.ShockProjectile,
+            ElementalID.SlagProjectile,
+            ElementalID.CorrosiveProjectile,
+            ElementalID.ExplosiveProjectile,
+            ElementalID.IncendiaryProjectile,
+            ElementalID.CryoProjectile,
+        };
+
+        // ********************************************
+        // *------------- Helper Methods -------------*
+        // ********************************************
+
+        /// <summary>
+        /// Determines if an elemental effect should proc based on a given chance.
+        /// <br/> To use chance, put in a float from 1 - 100. So if you put in 23.5, there would be a 23.5% elemental chance.
+        /// </summary>
+        /// <param name="chance"></param>
+        /// <returns>True if the elemental effect procs, and false otherwise.</returns>
+        public static bool SetElementalChance(float chance)
+        {
+            if (Main.rand.Next(1, 101) <= chance)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Calculates the integer elemental damage based on a base damage value and a multiplier.
+        /// <br/> baseDamage = The base damage value to be multiplied (e.g., the projectile's damage).
+        /// <br/> multiplier = The multiplier to apply to the base damage (e.g., 0.4 for 40% damage).
+        /// <br/> elementalDamage = The calculated elemental damage that's outputted as an integer.
+        /// </summary>
+        /// <param name="baseDamage"></param>
+        /// <param name="multiplier"></param>
+        /// <param name="elementalDamage"></param>
+        private static void SetElementalDamage(float baseDamage, float multiplier, out int elementalDamage)
+        {
+            elementalDamage = (int)(baseDamage * multiplier);
+        }
+
+        /// <summary>
+        /// Returns a list of elemental types natively supported by this projectile.
+        /// This helps avoid duplicate elemental procs from global effects.
+        /// </summary>
+        public virtual List<string> getElement()
+        {
+            return new List<string>(); // Default: no elements
+        }
+
+        /// <summary>
+        /// Performs an initial check for elemental projectile hits in GlobalProjectile hooks.
+        /// Returns true if the processing should stop (e.g., not from player, self-proccing projectile).
+        /// The out parameters allow the player and held item to be initialized too.
+        /// projectile = The projectile that hit.
+        /// projectileToStop = The ProjectileID of elemental projectiles that should not self-proc (e.g., ProjectileID.Electrosphere).
+        /// player = The player who owns the projectile (out parameter).
+        /// weapon = The player's currently held item (out parameter).
+        /// </summary>
+        /// <param name="projectile"></param>
+        /// <param name="projectileToStop"></param>
+        /// <param name="weapon"></param>
+        /// <param name="player"></param>
+        /// <returns>True if the processing should stop, false otherwise.</returns>
+        private static bool StopElementalClones(Projectile projectile, short projectileToStop, out Player player, out Item weapon)
+        {
+            player = Main.player[projectile.owner];
+            weapon = null;
+
+            // Skip if the projectile isn't owned by a valid player
+            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+            {
+                return true;
+            }
+
+            // Prevent recursive proc from projectile
+            if (projectile.type == projectileToStop)
+            {
+                return true;
+            }
+
+            // Goes through the HashSet and checks if any of them are present and returns true
+            if (elementalProjectile.Contains(projectile.type))
+            {
+                return true;
+            }
+
+            // If the projectile was summoned by a sentry, pet, NPC, or other source, skip
+            // projectile.friendly = false = allows friendly NPC's and players to do elemental damage
+            // projectile.hostile = true = doesn't allow hostile NPC's to do elemental damage
+            // projectile.trap = true = doesn't allow hostile traps to do elemental damage
+            if (!projectile.friendly || projectile.hostile || projectile.trap)
+            {
+                return true;
+            }
+
+            // If it's a minion/sentry/summon (not a held weapon), skip
+            if (projectile.minion || projectile.sentry)
+            {
+                return true;
+            }
+
+            // Only now, fetch the held item (to check prefix etc)
+            weapon = player.HeldItem;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks what prefix the item has, and if it equals the elementalPrefix parameter.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="elementalPrefix"></param>
+        /// <returns>True if the item's prefix equals the elementalPrefix</returns>
+        public static bool PrefixIs(Item item, int elementalPrefix)
+        {
+            if (item.prefix == elementalPrefix)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks that it's not a self-triggered clone and that the held item has the expected prefix.
+        /// </summary>
+        /// <param name="chance"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="player"></param>
+        /// <param name="weapon"></param>
+        /// <param name="elementalPrefix"></param>
+        /// <returns>True if the projectile is allowed to trigger its elemental effect.</returns>
+        public static bool AbleToProc(Projectile projectile, short elementalProjectile, out Player player, out Item weapon, int elementalPrefix)
+        {
+            // Returning false means that there are no unwanted clones
+            if (!StopElementalClones(projectile, elementalProjectile, out player, out weapon))
+            {
+                if (PrefixIs(weapon, elementalPrefix)) // Allow double proccing. For example, a Shock Florentine will have 2 chances at shock damage. Otherwise if it natively does shock and doesn't have a shock prefix, only allow shock to proc once.
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // ******************************************************
+        // *------------- Setter Elemental Methods -------------*
+        // ******************************************************
+
+        /// <summary>
+        /// On proc, spawns an elemental projectile (eg. Electrosphere) that deals elemental damage to an NPC.
+        /// <br/> target = The NPC that was hit.
+        /// <br/> hit = The NPC.HitInfo containing details about the hit, including source damage modifiers.
+        /// <br/> elementalMultiplier = The specific damage multiplier for this Shock effect.
+        /// <br/> player = The player shooting the elemental projectiles.
+        /// <br/> elementalProjectile = The new projectile that deals the elemental damage.
+        /// <br/> buffType = The additional base buff that's added on top.
+        /// <br/> buffTime = The amount of time the base buff will last for. It's calculated in ticks so 60 ticks is 1 second.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="hit"></param>
+        /// <param name="elementalMultiplier"></param>
+        /// <param name="player"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="buffType"></param>
+        /// <param name="buffTime"></param>
+        public static void SetElementOnNPC(NPC target, NPC.HitInfo hit, float elementalMultiplier, Player player, short elementalProjectile, int buffType, int buffTime)
+        {
+            int elementalDamage = 0;
+            float baseDamage = hit.SourceDamage;
+
+            SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                player.GetSource_OnHit(target),
+                target.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                player.whoAmI
+            );
+
+            target.AddBuff(buffType, buffTime);
+        }
+
+        /// <summary>
+        /// On proc, spawns an elemental projectile (eg. Electrosphere) that deals elemental damage to an NPC.
+        /// <br/> target = The Player that was hit.
+        /// <br/> info = The Player.HurtInfo containing details about the hit, including source damage modifiers.
+        /// <br/> elementalMultiplier = The specific damage multiplier for this Shock effect.
+        /// <br/> player = The player shooting the elemental projectiles.
+        /// <br/> elementalProjectile = The new projectile that deals the elemental damage.
+        /// <br/> buffType = The additional base buff that's added on top.
+        /// <br/> buffTime = The amount of time the base buff will last for. It's calculated in ticks so 60 ticks is 1 second.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="info"></param>
+        /// <param name="elementalMultiplier"></param>
+        /// <param name="player"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="buffType"></param>
+        /// <param name="buffTime"></param>
+        public static void SetElementOnPlayer(Player target, Player.HurtInfo info, float elementalMultiplier, Player player, short elementalProjectile, int buffType, int buffTime)
+        {
+            int elementalDamage = 0;
+            float baseDamage = info.SourceDamage;
+
+            SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                player.GetSource_OnHit(target),
+                target.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                player.whoAmI
+            );
+
+            target.AddBuff(buffType, buffTime);
+        }
+
+        /// <summary>
+        /// On proc, spawns an elemental projectile (eg. Electrosphere) that deals elemental damage to an NPC.
+        /// <br/> target = The Player that was hit.
+        /// <br/> info = The Player.HurtInfo containing details about the hit, including source damage modifiers.
+        /// <br/> elementalMultiplier = The specific damage multiplier for this Shock effect.
+        /// <br/> player = The player shooting the elemental projectiles.
+        /// <br/> elementalProjectile = The new projectile that deals the elemental damage.
+        /// <br/> buffType = The additional base buff that's added on top.
+        /// <br/> buffTime = The amount of time the base buff will last for. It's calculated in ticks so 60 ticks is 1 second.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="info"></param>
+        /// <param name="elementalMultiplier"></param>
+        /// <param name="player"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="buffType"></param>
+        /// <param name="buffTime"></param>
+        public static bool SetElementOnTile(Projectile projectile, float elementalMultiplier, Player player, short elementalProjectile)
+        {
+            int elementalDamage = 0;
+            float baseDamage = player.dpsDamage;
+
+            SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                projectile.GetSource_FromThis(),
+                projectile.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                player.whoAmI
+            );
+
+            projectile.Kill();
+            return false;
+        }
+    }
+}

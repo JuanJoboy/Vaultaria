@@ -3,12 +3,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Shields
 {
-    public class ImpalerSpike : ModProjectile
+    public class ImpalerSpike : ElementalProjectile
     {
+        public float corrosiveMultiplier;
+        private float elementalChance = 100f;
+        private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
+        private int corrosiveBuff = ElementalID.CorrosiveBuff;
+        private int buffTime = 180;
+
+
         public override void SetDefaults()
         {
             // Clone Chlorophytes homing
@@ -67,7 +74,20 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
+            }
         }
     }
 }

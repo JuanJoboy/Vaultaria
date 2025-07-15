@@ -64,7 +64,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectileDirect(
+            Projectile projectile = Projectile.NewProjectileDirect(
             source,
             position,
             velocity,
@@ -73,6 +73,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
             knockback,
             player.whoAmI
             );
+
+            if (projectile.ModProjectile is GrogBullet bullet)
+            {
+                bullet.slagMultiplier = 0.2f;
+            }
 
             return false;
         }

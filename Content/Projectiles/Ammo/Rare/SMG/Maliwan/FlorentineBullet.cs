@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic; // For Lists
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
 {
@@ -11,7 +10,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
     {
         public float shockMultiplier;
         public float slagMultiplier;
-        public int buffTime = 180;
+        private float elementalChance = 20f;
+        private short shockProjectile = ElementalID.ShockProjectile;
+        private short slagProjectile = ElementalID.SlagProjectile;
+        private int shockBuff = ElementalID.ShockBuff;
+        private int slagBuff = ElementalID.SlagBuff;
+        private int buffTime = 180;
 
         public override void SetDefaults()
         {
@@ -67,19 +71,21 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (SetElementalChance(20f))
+            if (SetElementalChance(elementalChance))
             {
-                SetShockOnNPC(target, hit, shockMultiplier, buffTime);
-                SetSlagOnNPC(target, hit, slagMultiplier, buffTime);
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (SetElementalChance(20f))
+            if (SetElementalChance(elementalChance))
             {
-                SetShockOnPlayer(target, info, shockMultiplier, buffTime);
-                SetSlagOnPlayer(target, info, slagMultiplier, buffTime);
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
         }
 

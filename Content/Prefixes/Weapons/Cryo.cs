@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Vaultaria.Content.Prefixes.Weapons
 {
-    public class Shock : ModPrefix
+    public class Cryo : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
@@ -35,9 +35,9 @@ namespace Vaultaria.Content.Prefixes.Weapons
         
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "Shock", "40% Chance to deal 40% bonus Shock damage\nSuccessful hits create stationary Electrosphere rings for 5 seconds that deal an additional bonus 40% of your damage")
+            yield return new TooltipLine(Mod, "Cryo", "40% Chance to deal 40% bonus Cryo damage")
             {
-                OverrideColor = new Color(46, 153, 228) // Blue
+                OverrideColor = new Color(131, 235, 228) // Light Blue
             };
         }
 	}

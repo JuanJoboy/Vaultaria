@@ -1,53 +1,36 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Vaultaria.Content.Prefixes.Weapons;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Common.Globals.Prefixes.Elements
 {
     public class SlagGlobal : GlobalItem
     {
+        private static float elementalChance = 40;
+        private static float elementalMultiplier = 0.4f;
+        private static int elementalPrefix = ElementalID.SlagPrefix;
+        private static short elementalProjectile = ElementalID.SlagProjectile;
+        private static int elementalBuff = ElementalID.SlagBuff;
+        private static int elementalBuffTime = 120;
+
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (item.prefix == ModContent.PrefixType<Slag>())
+            if (ElementalProjectile.PrefixIs(item, elementalPrefix))
             {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
+                if (ElementalProjectile.SetElementalChance(elementalChance))
                 {
-                    Projectile.NewProjectile(
-                        player.GetSource_OnHit(target),
-                        target.Center,
-                        Vector2.Zero,
-                        ProjectileID.ShadowFlame,
-                        0,
-                        0f,
-                        player.whoAmI
-                    );
-
-                    target.AddBuff(ModContent.BuffType<SlagBuff>(), 300);
+                    ElementalProjectile.SetElementOnNPC(target, hit, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
                 }
             }
         }
 
         public override void OnHitPvp(Item item, Player player, Player target, Player.HurtInfo hurtInfo)
         {
-            if (item.prefix == ModContent.PrefixType<Slag>())
+            if (ElementalProjectile.PrefixIs(item, elementalPrefix))
             {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
+                if (ElementalProjectile.SetElementalChance(elementalChance))
                 {
-                    Projectile.NewProjectile(
-                        player.GetSource_OnHit(target),
-                        target.Center,
-                        Vector2.Zero,
-                        ProjectileID.ShadowFlame,
-                        0,
-                        0f,
-                        player.whoAmI
-                    );
-
-                    target.AddBuff(ModContent.BuffType<SlagBuff>(), 300);
+                    ElementalProjectile.SetElementOnPlayer(target, hurtInfo, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
                 }
             }
         }

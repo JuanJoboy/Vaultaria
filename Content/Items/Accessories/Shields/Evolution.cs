@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Prefixes.Shields;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -58,6 +59,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.buffImmune[ModContent.BuffType<CorrosiveBuff>()] = true;
             player.buffImmune[ModContent.BuffType<ExplosiveBuff>()] = true;
             player.buffImmune[ModContent.BuffType<SlagBuff>()] = true;
+            player.buffImmune[ModContent.BuffType<CryoBuff>()] = true;
 
             // What I want to add
             player.buffImmune[BuffID.Blackout] = true;
@@ -78,7 +80,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                    pre != ModContent.PrefixType<Grounded>() &&
                    pre != ModContent.PrefixType<Alkaline>() &&
                    pre != ModContent.PrefixType<BlastProof>() &&
-                   pre != ModContent.PrefixType<Evolved>();;
+                   pre != ModContent.PrefixType<Evolved>() &&
+                   pre != ModContent.PrefixType<Thermo>();
         }
     }
 }

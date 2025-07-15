@@ -3,14 +3,20 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Shields
 {
-    public class HomingSlagBall : ModProjectile
+    public class HomingSlagBall : ElementalProjectile
     {
+        public float slagMultiplier;
+        private float elementalChance = 100f;
+        private short slagProjectile = ElementalID.SlagProjectile;
+        private int slagBuff = ElementalID.SlagBuff;
+        private int buffTime = 180;
+
         public override void SetDefaults()
         {
             // Clone Chlorophytes homing
@@ -82,7 +88,31 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<SlagBuff>(), 300); // 100% Chance to slag
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, slagMultiplier, player, slagProjectile);
+            }
+
+            return false;
         }
 
         private bool IsItem(int item)

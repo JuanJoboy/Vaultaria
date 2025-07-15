@@ -5,11 +5,18 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Melee
 {
-    public class BuzzAxeBombardier : ModProjectile
+    public class BuzzAxeBombardier : ElementalProjectile
     {
+        private float elementalChance = 100f;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int buffTime = 180;
+
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
@@ -57,11 +64,33 @@ namespace Vaultaria.Content.Projectiles.Melee
             Projectile.velocity.Y += 0.06f;
         }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, 0.3f, player, explosiveProjectile, explosiveBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, 0.3f, player, explosiveProjectile, explosiveBuff, buffTime);
+            }
+        }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            // On hitting a tile, the projectile should typically explode (like a grenade)
-            Projectile.Kill(); // Immediately kill the projectile to trigger OnKill
-            return false; // Prevent default tile collision behavior (like bouncing)
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, 0.3f, player, explosiveProjectile);
+            }
+
+            return false;
         }
 
         public override void OnKill(int timeLeft)

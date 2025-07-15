@@ -8,7 +8,7 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
 using System.Collections.Generic;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
+namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 {
     public class Florentine : ModItem
     {

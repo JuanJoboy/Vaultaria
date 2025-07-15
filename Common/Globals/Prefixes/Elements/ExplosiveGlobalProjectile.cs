@@ -1,120 +1,52 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Vaultaria.Content.Prefixes.Weapons;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Terraria;
+using Terraria.ModLoader;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Common.Globals.Prefixes.Elements
 {
     public class ExplosiveGlobalProjectile : GlobalProjectile
     {
+        private static float elementalChance = 40;
+        private static float elementalMultiplier = 0.4f;
+        private static int elementalPrefix = ElementalID.ExplosivePrefix;
+        private static short elementalProjectile = ElementalID.ExplosiveProjectile;
+        private static int elementalBuff = ElementalID.ExplosiveBuff;
+        private static int elementalBuffTime = 120;
+
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            // Make sure the projectile came from a player
-            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, out Item weapon, elementalPrefix))
             {
-                return;
-            }
-            if (projectile.type == ProjectileID.DD2ExplosiveTrapT2Explosion)
-            {
-                return;
-            }
-
-            // Check the player's currently held item
-            Player player = Main.player[projectile.owner];
-            Item held = player.HeldItem;
-
-            if (held != null && held.prefix == ModContent.PrefixType<Explosive>())
-            {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
+                if (ElementalProjectile.SetElementalChance(elementalChance))
                 {
-                    Projectile.NewProjectile(
-                        player.GetSource_OnHit(target),
-                        target.Center,
-                        new Vector2(0, -4),
+                    ElementalProjectile.SetElementOnNPC(target, hit, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
+                }
+            }
+        }
 
-                        ProjectileID.DD2ExplosiveTrapT2Explosion,
-                        (int)(damageDone * 0.4f),
-                        0f,
-                        player.whoAmI
-                    );
-
-                    target.AddBuff(ModContent.BuffType<ExplosiveBuff>(), 60);
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
+        {
+            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, out Item weapon, elementalPrefix))
+            {
+                if (ElementalProjectile.SetElementalChance(elementalChance))
+                {
+                    ElementalProjectile.SetElementOnPlayer(target, info, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
                 }
             }
         }
 
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
-            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, out Item weapon, elementalPrefix))
             {
-                return true;
-            }
-            if (projectile.type == ProjectileID.DD2ExplosiveTrapT2Explosion)
-            {
-                return true;
-            }
-
-            Player player = Main.player[projectile.owner];
-            Item held = player.HeldItem;
-
-            if (held != null && held.prefix == ModContent.PrefixType<Explosive>())
-            {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
+                if (ElementalProjectile.SetElementalChance(elementalChance))
                 {
-                    Projectile.NewProjectile(
-                        projectile.GetSource_FromThis(),
-                        projectile.Center,
-                        Vector2.Zero,
-                        ProjectileID.DD2ExplosiveTrapT2Explosion,
-                        (int)(player.dpsDamage * 0.4f),
-                        0f,
-                        player.whoAmI
-                    );
-
-                    projectile.Kill();
-                    return false;
+                    ElementalProjectile.SetElementOnTile(projectile, elementalMultiplier, player, elementalProjectile);
                 }
             }
 
             return true;
-        }
-
-        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
-        {
-            // Make sure the projectile came from a player
-            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
-            {
-                return;
-            }
-            if (projectile.type == ProjectileID.DD2ExplosiveTrapT2Explosion)
-            {
-                return;
-            }
-
-            // Check the player's currently held item
-            Player player = Main.player[projectile.owner];
-            Item held = player.HeldItem;
-
-            if (held != null && held.prefix == ModContent.PrefixType<Explosive>())
-            {
-                if (Main.rand.Next(0, 5) <= 1) // 40% Chance
-                {
-                    Projectile.NewProjectile(
-                        player.GetSource_OnHit(target),
-                        target.Center,
-                        Vector2.Zero,
-                        ProjectileID.DD2ExplosiveTrapT2Explosion,
-                        (int)(info.SourceDamage * 0.4f),
-                        0f,
-                        player.whoAmI
-                    );
-
-                    target.AddBuff(ModContent.BuffType<ExplosiveBuff>(), 60);
-                }
-            }
         }
     }
 }

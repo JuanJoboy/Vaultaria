@@ -94,10 +94,5 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 novaCooldown = 60; // 120 ticks = 2 seconds
             }
         }
-
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<Inflammable>();
-        }
     }
 }

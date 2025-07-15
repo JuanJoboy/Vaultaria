@@ -1,1 +1,0 @@
-some elemental attacks, like the florentines bullets dont proc the shock damage on their own, they simply apply a debuff to the enemy, and then subsequent shots from any attack will spawn the shock rings

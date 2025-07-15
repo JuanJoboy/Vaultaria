@@ -4,11 +4,18 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 {
-    public class GrogBullet : ModProjectile
+    public class GrogBullet : ElementalProjectile
     {
+        public float slagMultiplier;
+        private float elementalChance = 100f;
+        private short slagProjectile = ElementalID.SlagProjectile;
+        private int slagBuff = ElementalID.SlagBuff;
+        private int buffTime = 300;
+
         public override void SetDefaults()
         {
             // Size
@@ -60,13 +67,31 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
                 Dust.NewDustPerfect(Projectile.Center, DustID.PureSpray).noGravity = true;
             }
         }
-
+        
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int heal = (int) (damageDone * 0.65f);
-            heal = (int)(heal / 0.075f);
+            int heal = (int)(damageDone * 0.65f);
+            heal = (int) (heal / 0.075f);
             Projectile.vampireHeal(heal, Projectile.Center, target);
-            target.AddBuff(ModContent.BuffType<SlagBuff>(), 300); // 100% Chance to slag
+            
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            int heal = (int)(info.SourceDamage * 0.65f);
+            heal = (int) (heal / 0.075f);
+            Projectile.vampireHeal(heal, Projectile.Center, target);
+            
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
         }
     }
 }

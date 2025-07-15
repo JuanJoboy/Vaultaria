@@ -215,6 +215,11 @@ Buffs: {
 		DisplayName: Orc Effect
 		Description: Increases projectile count, fire rate, damage & gives Trickshot
 	}
+
+	CryoBuff: {
+		DisplayName: Cryo Buff
+		Description: Mods.Vaultaria.Buffs.CryoBuff.Description
+	}
 }
 
 Prefixes: {
@@ -230,4 +235,6 @@ Prefixes: {
 	Slag.DisplayName: Slag
 	DoublePenetrating.DisplayName: Double Penetrating
 	Trickshot.DisplayName: Trickshot
+	Cryo.DisplayName: Cryo
+	Thermo.DisplayName: Thermo
 }
