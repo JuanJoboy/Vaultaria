@@ -6,11 +6,18 @@ using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 {
-    public class Breath : ModProjectile
+    public class Breath : ElementalProjectile
     {
+        public float incendiaryMultiplier;
+        private float elementalChance = 100f;
+        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        private int buffTime = 300;
+
         public override void SetDefaults()
         {
             // Size
@@ -56,20 +63,31 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Shoot();
+
             Projectile.velocity.X *= 0.0f;
             return false;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Shoot();
-            target.AddBuff(ModContent.BuffType<IncendiaryBuff>(), 300);
+            RepeatedlyShoot();
+
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+            }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Shoot();
-            target.AddBuff(ModContent.BuffType<IncendiaryBuff>(), 300);
+            RepeatedlyShoot();
+
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+            }
         }
 
         public override void OnKill(int timeLeft)
@@ -95,6 +113,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
                 Projectile.damage,
                 Projectile.knockBack
             );
+        }
+
+        private void RepeatedlyShoot()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Shoot();
+            }
         }
     }
 }

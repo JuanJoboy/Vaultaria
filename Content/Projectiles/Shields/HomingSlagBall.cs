@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
+using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Shields
@@ -170,6 +171,14 @@ namespace Vaultaria.Content.Projectiles.Shields
                     Projectile.ai[2] = 0f;
                 }
             }
+        }
+
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Slag"
+            };
         }
     }
 }

@@ -76,7 +76,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies\n2 Sentries can be summoned"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots:"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip3", "    \tChlorophyte bullets rapidly")
             {

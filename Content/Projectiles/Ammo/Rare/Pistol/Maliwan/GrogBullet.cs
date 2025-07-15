@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
@@ -67,13 +68,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
                 Dust.NewDustPerfect(Projectile.Center, DustID.PureSpray).noGravity = true;
             }
         }
-        
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int heal = (int)(damageDone * 0.65f);
-            heal = (int) (heal / 0.075f);
-            Projectile.vampireHeal(heal, Projectile.Center, target);
-            
+            Healing.HealOnNPCHit(target, damageDone, 0.65f, Projectile);
+
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
@@ -83,15 +82,21 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            int heal = (int)(info.SourceDamage * 0.65f);
-            heal = (int) (heal / 0.075f);
-            Projectile.vampireHeal(heal, Projectile.Center, target);
-            
+            Healing.HealOnPlayerHit(target, info.SourceDamage, 0.65f, Projectile);
+
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
+        }
+        
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Slag"
+            };
         }
     }
 }

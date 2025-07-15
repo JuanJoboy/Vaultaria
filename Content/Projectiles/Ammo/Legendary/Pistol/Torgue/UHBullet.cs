@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
@@ -146,6 +147,14 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
                 Projectile.knockBack,
                 Projectile.owner
             );
+        }
+        
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Explosive"
+            };
         }
     }
 }

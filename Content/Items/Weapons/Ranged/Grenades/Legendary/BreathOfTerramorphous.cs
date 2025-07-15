@@ -29,7 +29,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.knockBack = 2.3f;
-            Item.damage = 20;
+            Item.damage = 50;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -69,7 +69,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Creates Fire explosions on impact for 5 seconds")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Is highly effective on the floor"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Creates Fire explosions on impact for 5 seconds")
             {
                 OverrideColor = new Color(231, 92, 22) // Orange
             });

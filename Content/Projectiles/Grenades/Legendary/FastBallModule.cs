@@ -6,11 +6,19 @@ using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 {
-    public class FastBallModule : ModProjectile
+    public class FastBallModule : ElementalProjectile
     {
+        public float explosiveMultiplier = 1f;
+        private float elementalChance = 100f;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int buffTime = 180;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
@@ -58,9 +66,32 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             Projectile.velocity.Y += 0.04f;
         }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+            }
+        }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.Kill();
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+            }
+
             return false;
         }
 
@@ -73,26 +104,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
             }
-
-            Projectile.NewProjectile(
-                Projectile.GetSource_FromThis(),
-                Projectile.Center,
-                Vector2.Zero,
-                ProjectileID.DD2ExplosiveTrapT2Explosion,
-                Projectile.damage,
-                Projectile.knockBack,
-                Projectile.owner
-            );
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override List<string> getElement()
         {
-            target.AddBuff(ModContent.BuffType<ExplosiveBuff>(), 45);
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            target.AddBuff(ModContent.BuffType<ExplosiveBuff>(), 45);
+            return new List<string>
+            {
+                "Explosive"
+            };
         }
     }
 }

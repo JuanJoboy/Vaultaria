@@ -5,12 +5,14 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
+using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Melee
 {
     public class BuzzAxeBombardier : ElementalProjectile
     {
+        public float explosiveMultiplier = 0.3f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -69,7 +71,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, 0.3f, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
@@ -78,7 +80,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, 0.3f, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
@@ -87,7 +89,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, 0.3f, player, explosiveProjectile);
+                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
             }
 
             return false;
@@ -116,6 +118,14 @@ namespace Vaultaria.Content.Projectiles.Melee
                 Projectile.knockBack,
                 Projectile.owner
             );
+        }
+
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Explosive"
+            };
         }
     }
 }

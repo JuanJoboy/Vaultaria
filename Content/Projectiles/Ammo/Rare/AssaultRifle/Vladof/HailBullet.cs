@@ -3,7 +3,9 @@ using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
 {
@@ -35,9 +37,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int heal = (int) (damageDone * 0.03f);
-            heal = (int) (heal / 0.075f);
-            Projectile.vampireHeal(heal, Projectile.Center, target);
+            Healing.HealOnNPCHit(target, damageDone, 0.03f, Projectile);
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            Healing.HealOnPlayerHit(target, info.SourceDamage, 0.03f, Projectile);
         }
     }
 }

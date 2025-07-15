@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System;
 using Vaultaria.Common.Utilities;
 
@@ -88,6 +89,14 @@ namespace Vaultaria.Content.Projectiles.Shields
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
             }
+        }
+
+        public override List<string> getElement()
+        {
+            return new List<string>
+            {
+                "Corrosive"
+            };
         }
     }
 }
