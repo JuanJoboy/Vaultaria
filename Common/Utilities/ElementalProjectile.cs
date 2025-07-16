@@ -1,7 +1,10 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic; // For Collections
+using Vaultaria.Content.Prefixes.Weapons;
+using System.Collections.Generic;
+using Vaultaria.Common.Globals.Prefixes.Elements;
+using Terraria.DataStructures; // For Collections
 
 namespace Vaultaria.Common.Utilities
 {
@@ -59,7 +62,7 @@ namespace Vaultaria.Common.Utilities
         /// Returns a list of elemental types natively supported by this projectile.
         /// This helps avoid duplicate elemental procs from global effects.
         /// </summary>
-        public virtual List<string> getElement()
+        public virtual List<string> GetElement()
         {
             return new List<string>(); // Default: no elements
         }
@@ -68,10 +71,10 @@ namespace Vaultaria.Common.Utilities
         /// Performs an initial check for elemental projectile hits in GlobalProjectile hooks.
         /// Returns true if the processing should stop (e.g., not from player, self-proccing projectile).
         /// The out parameters allow the player and held item to be initialized too.
-        /// projectile = The projectile that hit.
-        /// projectileToStop = The ProjectileID of elemental projectiles that should not self-proc (e.g., ProjectileID.Electrosphere).
-        /// player = The player who owns the projectile (out parameter).
-        /// weapon = The player's currently held item (out parameter).
+        /// <br/> projectile = The projectile that hit.
+        /// <br/> projectileToStop = The ProjectileID of elemental projectiles that should not self-proc (e.g., ProjectileID.Electrosphere).
+        /// <br/> player = The player who owns the projectile (out parameter).
+        /// <br/> weapon = The player's currently held item (out parameter).
         /// </summary>
         /// <param name="projectile"></param>
         /// <param name="projectileToStop"></param>
@@ -122,6 +125,41 @@ namespace Vaultaria.Common.Utilities
             return false;
         }
 
+        public static short WhatElementDoICreate(int prefix)
+        {
+            if (prefix == ElementalID.ShockPrefix)
+            {
+                return ElementalID.ShockProjectile;
+            }
+            if (prefix == ElementalID.IncendiaryPrefix)
+            {
+                return ElementalID.IncendiaryProjectile;
+            }
+            if (prefix == ElementalID.CorrosivePrefix)
+            {
+                return ElementalID.CorrosiveProjectile;
+            }
+            if (prefix == ElementalID.SlagPrefix)
+            {
+                return ElementalID.SlagProjectile;
+            }
+            if (prefix == ElementalID.ExplosivePrefix)
+            {
+                return ElementalID.ExplosiveProjectile;
+            }
+            else
+            {
+                return ElementalID.CryoProjectile;
+            }
+        }
+
+        public static void ElementalPrefixCorrector(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int prefix)
+        {
+            int projectileIndex = Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
+            Projectile projectile = Main.projectile[projectileIndex];
+            projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID = prefix;
+        }
+
         /// <summary>
         /// Checks what prefix the item has, and if it equals the elementalPrefix parameter.
         /// </summary>
@@ -149,15 +187,22 @@ namespace Vaultaria.Common.Utilities
         /// <returns>True if the projectile is allowed to trigger its elemental effect.</returns>
         public static bool AbleToProc(Projectile projectile, short elementalProjectile, out Player player, out Item weapon, int elementalPrefix)
         {
-            // Returning false means that there are no unwanted clones
+            // First, perform general checks to determine if processing for elemental effects should stop.
+            // This includes checks for invalid owners, recursive procs, existing elemental types, etc.
             if (!StopElementalClones(projectile, elementalProjectile, out player, out weapon))
             {
-                if (PrefixIs(weapon, elementalPrefix)) // Allow double proccing. For example, a Shock Florentine will have 2 chances at shock damage. Otherwise if it natively does shock and doesn't have a shock prefix, only allow shock to proc once.
+                // If the projectile is a vanilla bullet or a modded bullet, access the 'firedWeaponPrefixID' stored on its attached ElementalGlobalProjectile instance. This makes the system compatible with any projectile type.
+                int prefixID = projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID;
+
+                // Now, compare the 'snapped' prefixID (from the weapon that fired it) with the 'elementalPrefix' that this particular elemental proc check is for.
+                // If they match, it means this projectile (with its specific originating prefix) is allowed to trigger the associated elemental effect.
+                if (prefixID == elementalPrefix)
                 {
                     return true;
                 }
             }
 
+            // If any of the 'StopElementalClones' conditions were met, or if the prefix didn't match, prevent the elemental effect from proccing.
             return false;
         }
 

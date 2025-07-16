@@ -5,10 +5,12 @@ using Microsoft.Xna.Framework;
 using System;
 using Vaultaria.Content.Projectiles.Shields;
 using Terraria.DataStructures;
+using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 
 namespace Vaultaria.Content.Projectiles.Minions
 {
-    public class Turret : ModProjectile
+    public class Turret : ElementalProjectile
     {
         private float yPosition;
         private bool touchedTheGround = false;

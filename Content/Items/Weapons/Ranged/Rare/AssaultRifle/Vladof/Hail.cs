@@ -7,6 +7,8 @@ using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof;
+using Vaultaria.Common.Utilities;
+using Vaultaria.Common.Globals.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 {
@@ -45,6 +47,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
             Item.UseSound = SoundID.Item11;
+        }
+        
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int prefix = Item.prefix;
+            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
+
+            return false;
         }
 
         public override void AddRecipes()

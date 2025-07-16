@@ -7,6 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Projectiles.Minions;
 using System.Collections.Generic;
 using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 {

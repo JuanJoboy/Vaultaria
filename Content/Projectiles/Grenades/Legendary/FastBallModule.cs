@@ -106,7 +106,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             }
         }
 
-        public override List<string> getElement()
+        public override List<string> GetElement()
         {
             return new List<string>
             {

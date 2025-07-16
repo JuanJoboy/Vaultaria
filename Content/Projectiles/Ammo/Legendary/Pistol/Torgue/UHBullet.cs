@@ -149,7 +149,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
             );
         }
         
-        public override List<string> getElement()
+        public override List<string> GetElement()
         {
             return new List<string>
             {

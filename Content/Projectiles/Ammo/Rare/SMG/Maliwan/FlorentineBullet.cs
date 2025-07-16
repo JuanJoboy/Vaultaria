@@ -89,7 +89,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
             }
         }
 
-        public override List<string> getElement()
+        public override List<string> GetElement()
         {
             return new List<string>
             {

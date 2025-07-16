@@ -120,7 +120,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             );
         }
 
-        public override List<string> getElement()
+        public override List<string> GetElement()
         {
             return new List<string>
             {
