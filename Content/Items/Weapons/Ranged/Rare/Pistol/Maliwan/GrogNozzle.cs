@@ -9,6 +9,7 @@ using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan;
 using Vaultaria.Content.Buffs.GunEffects;
 using System.Collections.Generic;
 using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 {
@@ -64,6 +65,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            int prefix = Item.prefix;
+            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
+
             Projectile projectile = Projectile.NewProjectileDirect(
             source,
             position,

@@ -11,11 +11,11 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
         private static int elementalPrefix = ElementalID.CryoPrefix;
         private static short elementalProjectile = ElementalID.CryoProjectile;
         private static int elementalBuff = ElementalID.CryoBuff;
-        private static int elementalBuffTime = 120;
+        private static int elementalBuffTime = 180;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, out Item weapon, elementalPrefix))
+            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, elementalPrefix))
             {
                 if (ElementalProjectile.SetElementalChance(elementalChance))
                 {
@@ -26,7 +26,7 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
-            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, out Item weapon, elementalPrefix))
+            if (ElementalProjectile.AbleToProc(projectile, elementalProjectile, out Player player, elementalPrefix))
             {
                 if (ElementalProjectile.SetElementalChance(elementalChance))
                 {

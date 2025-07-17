@@ -39,6 +39,8 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             player.noKnockback = true;
             player.AddBuff(BuffID.Ironskin, 60);
+            player.buffImmune[BuffID.Weak] = true;
+            player.buffImmune[BuffID.BrokenArmor] = true;
             player.buffImmune[ModContent.BuffType<ExplosiveBuff>()] = true;
         }
 

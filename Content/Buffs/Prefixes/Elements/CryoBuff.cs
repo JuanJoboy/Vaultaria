@@ -19,14 +19,37 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
         // For PvE
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.lifeRegen -= 30; // 30 Damage cause (30 / 120 npc.lifeRegen ticks) * 120 buff time ticks = 30
+            npc.AddBuff(BuffID.Frozen, 120);
+            npc.AddBuff(BuffID.Frostburn2, 120);
+
+            // Set velocity to zero to freeze the NPC
+            npc.velocity.X = 0;
+            npc.velocity.Y = 0;
+
+            npc.netUpdate = true; // Ensures the frozen state is synced in multiplayer
+
             Dust.NewDust(npc.position, npc.width, npc.height, DustID.IceTorch, 0f, 0f, 0, default(Color), 1.3f);
         }
 
         // For PvP
         public override void Update(Player player, ref int buffIndex)
         {
-            player.lifeRegen -= 30;
+            player.AddBuff(BuffID.Frozen, 120);
+            player.AddBuff(BuffID.Frostburn2, 120);
+
+            // Set velocity to zero to freeze the player
+            player.velocity.X = 0;
+            player.velocity.Y = 0;
+
+            // Prevent player movement
+            player.controlLeft = false;
+            player.controlRight = false;
+            player.controlUp = false;
+            player.controlDown = false;
+            player.controlJump = false;
+            player.controlHook = false;
+            player.controlUseItem = false; // Prevent attacking while frozen
+
             Dust.NewDust(player.position, player.width, player.height, DustID.IceTorch, 0f, 0f, 0, default(Color), 1.3f);
         }
     }

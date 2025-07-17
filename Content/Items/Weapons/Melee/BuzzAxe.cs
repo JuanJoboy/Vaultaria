@@ -6,6 +6,7 @@ using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Projectiles.Melee;
 using Terraria.DataStructures;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Melee
 {
@@ -93,6 +94,9 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            int prefix = Item.prefix;
+            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
+            
             if (player.altFunctionUse == 2)
             {
                 return true;

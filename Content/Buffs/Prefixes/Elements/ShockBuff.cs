@@ -19,6 +19,8 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
         // For PvE
         public override void Update(NPC npc, ref int buffIndex)
         {
+            npc.AddBuff(BuffID.Electrified, 120);
+
             npc.lifeRegen -= 30; // 30 Damage cause (30 / 120 npc.lifeRegen ticks) * 120 buff time ticks = 30
             Dust.NewDust(npc.position, npc.width, npc.height, DustID.Electric, 0f, 0f, 0, default(Color), 1.3f);
         }
@@ -26,6 +28,8 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
         // For PvP
         public override void Update(Player player, ref int buffIndex)
         {
+            player.AddBuff(BuffID.Electrified, 120);
+
             player.lifeRegen -= 30;
             Dust.NewDust(player.position, player.width, player.height, DustID.Electric, 0f, 0f, 0, default(Color), 1.3f);
         }

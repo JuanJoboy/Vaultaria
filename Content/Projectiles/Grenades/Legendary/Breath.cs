@@ -4,8 +4,6 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Microsoft.Build.Evaluation;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Grenades.Legendary

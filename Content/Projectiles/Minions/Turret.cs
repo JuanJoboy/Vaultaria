@@ -6,7 +6,6 @@ using System;
 using Vaultaria.Content.Projectiles.Shields;
 using Terraria.DataStructures;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 
 namespace Vaultaria.Content.Projectiles.Minions
 {

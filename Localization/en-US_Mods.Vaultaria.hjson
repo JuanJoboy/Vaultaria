@@ -218,7 +218,7 @@ Buffs: {
 
 	CryoBuff: {
 		DisplayName: Cryo Buff
-		Description: Mods.Vaultaria.Buffs.CryoBuff.Description
+		Description: Take Cryo damage over time
 	}
 }
 

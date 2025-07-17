@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Prefixes.Weapons;
 using System.Collections.Generic;
 using Vaultaria.Common.Globals.Prefixes.Elements;
 using Terraria.DataStructures;
@@ -13,7 +12,7 @@ namespace Vaultaria.Common.Utilities
         // ********************************************
         // *------------- Helper Fields -------------*
         // ********************************************
-        
+
         private static readonly HashSet<int> elementalProjectile = new HashSet<int>
         {
             ElementalID.ShockProjectile,
@@ -32,6 +31,36 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ExplosivePrefix,
             ElementalID.IncendiaryPrefix,
             ElementalID.CryoPrefix,
+        };
+
+        public static readonly HashSet<int> elementalBuff = new HashSet<int>
+        {
+            ElementalID.ShockBuff,
+            ElementalID.SlagBuff,
+            ElementalID.CorrosiveBuff,
+            ElementalID.ExplosiveBuff,
+            ElementalID.IncendiaryBuff,
+            ElementalID.CryoBuff,
+        };
+
+        public static readonly Dictionary<int, short> prefixToProjectile = new Dictionary<int, short>
+        {
+            {ElementalID.ShockPrefix, ElementalID.ShockProjectile},
+            {ElementalID.SlagPrefix, ElementalID.SlagProjectile},
+            {ElementalID.CorrosivePrefix, ElementalID.CorrosiveProjectile},
+            {ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile},
+            {ElementalID.IncendiaryPrefix, ElementalID.IncendiaryProjectile},
+            {ElementalID.CryoPrefix, ElementalID.CryoProjectile}
+        };
+
+        public static readonly Dictionary<int, int> ProjectileToBuff = new Dictionary<int, int>
+        {
+            {ElementalID.ShockProjectile, ElementalID.ShockBuff},
+            {ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff},
+            {ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff},
+            {ElementalID.SlagProjectile, ElementalID.SlagBuff},
+            {ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff},
+            {ElementalID.CryoProjectile, ElementalID.CryoBuff}
         };
 
         // ********************************************
@@ -80,21 +109,18 @@ namespace Vaultaria.Common.Utilities
         /// <summary>
         /// Performs an initial check for elemental projectile hits in GlobalProjectile hooks.
         /// Returns true if the processing should stop (e.g., not from player, self-proccing projectile).
-        /// The out parameters allow the player and held item to be initialized too.
+        /// The out parameter allows the player to be initialized too.
         /// <br/> projectile = The projectile that hit.
         /// <br/> projectileToStop = The ProjectileID of elemental projectiles that should not self-proc (e.g., ProjectileID.Electrosphere).
         /// <br/> player = The player who owns the projectile (out parameter).
-        /// <br/> weapon = The player's currently held item (out parameter).
         /// </summary>
         /// <param name="projectile"></param>
         /// <param name="projectileToStop"></param>
-        /// <param name="weapon"></param>
         /// <param name="player"></param>
         /// <returns>True if the processing should stop, false otherwise.</returns>
-        private static bool StopElementalClones(Projectile projectile, short projectileToStop, out Player player, out Item weapon)
+        private static bool StopElementalClones(Projectile projectile, short projectileToStop, out Player player)
         {
             player = Main.player[projectile.owner];
-            weapon = null;
 
             // Skip if the projectile isn't owned by a valid player
             if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
@@ -123,78 +149,57 @@ namespace Vaultaria.Common.Utilities
                 return true;
             }
 
-            // If it's a minion/sentry/summon (not a held weapon), skip
+            // // If it's a minion/sentry/summon (not a held weapon), skip
             // if (projectile.minion || projectile.sentry)
             // {
             //     return true;
             // }
 
-            // Only now, fetch the held item (to check prefix etc)
-            weapon = player.HeldItem;
-
             return false;
         }
 
+        /// <summary>
+        /// Maps an elemental prefix ID to its corresponding elemental projectile ID.
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns>The corresponding elemental projectile ID, or 0 if no match is found.</returns>
         public static short WhatElementDoICreate(int prefix)
         {
-            if (prefix == ElementalID.ShockPrefix)
+            // Use TryGetValue for safe lookup. It avoids errors if the key isn't found.
+            if (prefixToProjectile.TryGetValue(prefix, out short projectileType))
             {
-                return ElementalID.ShockProjectile;
+                return projectileType;
             }
-            if (prefix == ElementalID.IncendiaryPrefix)
-            {
-                return ElementalID.IncendiaryProjectile;
-            }
-            if (prefix == ElementalID.CorrosivePrefix)
-            {
-                return ElementalID.CorrosiveProjectile;
-            }
-            if (prefix == ElementalID.SlagPrefix)
-            {
-                return ElementalID.SlagProjectile;
-            }
-            if (prefix == ElementalID.ExplosivePrefix)
-            {
-                return ElementalID.ExplosiveProjectile;
-            }
-            if (prefix == ElementalID.CryoPrefix)
-            {
-                return ElementalID.CryoProjectile;
-            }
-            
+
             return 0;
         }
 
+        /// <summary>
+        /// Maps an elemental projectile ID to its corresponding elemental buff ID.
+        /// </summary>
+        /// <param name="elementalProjectile"></param>
+        /// <returns>The corresponding buff ID, or 0 if no match is found.</returns>
         public static int WhatBuffDoICreate(int elementalProjectile)
         {
-            if (elementalProjectile == ElementalID.ShockProjectile)
+            if (ProjectileToBuff.TryGetValue(elementalProjectile, out int buffType))
             {
-                return ElementalID.ShockBuff;
+                return buffType;
             }
-            if (elementalProjectile == ElementalID.IncendiaryProjectile)
-            {
-                return ElementalID.IncendiaryBuff;
-            }
-            if (elementalProjectile == ElementalID.CorrosiveProjectile)
-            {
-                return ElementalID.CorrosiveBuff;
-            }
-            if (elementalProjectile == ElementalID.SlagProjectile)
-            {
-                return ElementalID.SlagBuff;
-            }
-            if (elementalProjectile == ElementalID.ExplosiveProjectile)
-            {
-                return ElementalID.ExplosiveBuff;
-            }
-            if (elementalProjectile == ElementalID.CryoProjectile)
-            {
-                return ElementalID.CryoBuff;
-            }
-            
+
             return 0;
         }
 
+        /// <summary>
+        /// Takes the parameters of an item's Shoot() method along with it's prefix (Item.prefix) to snapshot what element the item is truly meant to be. This ensures that the element isn't being checked by what's currently being held, as that can lead to unwanted element swapping.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="source"></param>
+        /// <param name="position"></param>
+        /// <param name="velocity"></param>
+        /// <param name="type"></param>
+        /// <param name="damage"></param>
+        /// <param name="knockback"></param>
+        /// <param name="prefix"></param>
         public static void ElementalPrefixCorrector(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int prefix)
         {
             int projectileIndex = Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
@@ -224,14 +229,13 @@ namespace Vaultaria.Common.Utilities
         /// <param name="chance"></param>
         /// <param name="elementalProjectile"></param>
         /// <param name="player"></param>
-        /// <param name="weapon"></param>
         /// <param name="elementalPrefix"></param>
         /// <returns>True if the projectile is allowed to trigger its elemental effect.</returns>
-        public static bool AbleToProc(Projectile projectile, short elementalProjectile, out Player player, out Item weapon, int elementalPrefix)
+        public static bool AbleToProc(Projectile projectile, short elementalProjectile, out Player player, int elementalPrefix)
         {
             // First, perform general checks to determine if processing for elemental effects should stop.
             // This includes checks for invalid owners, recursive procs, existing elemental types, etc.
-            if (!StopElementalClones(projectile, elementalProjectile, out player, out weapon))
+            if (!StopElementalClones(projectile, elementalProjectile, out player))
             {
                 // If the projectile is a vanilla bullet or a modded bullet, access the 'firedWeaponPrefixID' stored on its attached ElementalGlobalProjectile instance. This makes the system compatible with any projectile type.
                 int prefixID = projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID;
@@ -286,7 +290,18 @@ namespace Vaultaria.Common.Utilities
                 player.whoAmI
             );
 
-            target.AddBuff(buffType, buffTime);
+            // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
+            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            {
+                if (SetElementalChance(20))
+                {
+                    target.AddBuff(buffType, buffTime);
+                }
+            }
+            else
+            {
+                target.AddBuff(buffType, buffTime);
+            }
         }
 
         /// <summary>
@@ -323,7 +338,17 @@ namespace Vaultaria.Common.Utilities
                 player.whoAmI
             );
 
-            target.AddBuff(buffType, buffTime);
+            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            {
+                if (SetElementalChance(20))
+                {
+                    target.AddBuff(buffType, buffTime);
+                }
+            }
+            else
+            {
+                target.AddBuff(buffType, buffTime);
+            }
         }
 
         /// <summary>

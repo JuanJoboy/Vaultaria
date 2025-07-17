@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 

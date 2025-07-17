@@ -12,12 +12,6 @@ namespace Vaultaria.Content.Prefixes.Shields
         // Change your category this way, defaults to PrefixCategory.Custom. Affects which items can get this prefix.
         public override PrefixCategory Category => PrefixCategory.Accessory;
 
-        public override void SetStaticDefaults()
-        {
-            Main.buffNoTimeDisplay[BuffID.ObsidianSkin] = true;
-            Main.buffNoTimeDisplay[BuffID.Warmth] = true;
-        }
-
         public override float RollChance(Item item)
         {
             return 2f;

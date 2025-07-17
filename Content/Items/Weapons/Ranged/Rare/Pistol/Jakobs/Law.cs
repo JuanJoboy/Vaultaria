@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Accessories.Shields;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 {
@@ -111,16 +112,29 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            int prefix = Item.prefix;
+            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
+
             return !isInMeleeMode; // Only shoot if not in melee mode
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (player.altFunctionUse == 2)
-            {
-                target.AddBuff(BuffID.Bleeding, 300);
-            }
+            HasOrderOn(player, damageDone);
+        }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "De Da.")
+            {
+                OverrideColor = new Color(198, 4, 4) // Red
+            });
+        }
+
+        private void HasOrderOn(Player player, int damageDone)
+        {
             bool hasOrderEquipped = false;
 
             for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
@@ -138,16 +152,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 player.statLife += heal;
                 player.HealEffect(heal);
             }
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "De Da.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }
