@@ -37,12 +37,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Healing.HealOnNPCHit(target, damageDone, 0.03f, Projectile);
+            Utilities.HealOnNPCHit(target, damageDone, 0.25f, Projectile);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Healing.HealOnPlayerHit(target, info.SourceDamage, 0.03f, Projectile);
+            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.25f, Projectile);
         }
     }
 }

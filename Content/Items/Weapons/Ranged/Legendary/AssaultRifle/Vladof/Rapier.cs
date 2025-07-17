@@ -4,13 +4,12 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
-using Vaultaria.Content.Items.Accessories.Shields;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 {
-    public class Law : ModItem
+    public class Rapier : ModItem
     {
         private bool isInMeleeMode = false;
 
@@ -23,50 +22,32 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1f;
+            Item.scale = 1.3f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 15;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.knockBack = 2.3f;
-            Item.damage = 35;
-            Item.crit = 6;
+            Item.knockBack = 1f;
+            Item.damage = 15;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
             Item.useTurn = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 10);
             Item.UseSound = SoundID.Item11;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(9)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(4f, 0f);
-        }
-
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
         }
 
         public override bool CanUseItem(Player player)
@@ -85,7 +66,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
                 Item.useTime = 10;
                 Item.useAnimation = 10;
-                Item.damage = 50;
+                Item.damage = 400;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
                 Item.useTurn = true;
@@ -101,10 +82,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.useAmmo = AmmoID.Bullet;
                 Item.UseSound = SoundID.Item1;
 
-                Item.useTime = 3;
-                Item.useAnimation = 3;
+                Item.useTime = 15;
+                Item.useAnimation = 15;
                 Item.reuseDelay = 1;
-                Item.autoReuse = false;
+                Item.autoReuse = true;
                 Item.useTurn = true;
             }
 
@@ -118,41 +99,36 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
             return !isInMeleeMode; // Only shoot if not in melee mode
         }
-
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        public override void AddRecipes()
         {
-            HasOrderOn(player, damageDone);
+            CreateRecipe()
+                .AddIngredient<Eridium>(9)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+        }
+
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(4f, 0f);
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+200% Melee Damage"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "De Da.")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "As I end the refrain, thrust home.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
-        }
-
-        private void HasOrderOn(Player player, int damageDone)
-        {
-            bool hasOrderEquipped = false;
-
-            for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
+            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Porcelain Fist!")
             {
-                if (player.armor[i].type == ModContent.ItemType<Order>())
-                {
-                    hasOrderEquipped = true;
-                    break;
-                }
-            }
-
-            if (hasOrderEquipped)
-            {
-                int heal = (int) (damageDone * 0.25f);
-                player.statLife += heal;
-                player.HealEffect(heal);
-            }
+                OverrideColor = new Color(0, 249, 199) // Cyan
+            });
         }
     }
 }

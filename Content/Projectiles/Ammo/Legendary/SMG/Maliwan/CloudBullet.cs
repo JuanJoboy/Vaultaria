@@ -4,17 +4,14 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
+namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 {
-    public class FlorentineBullet : ElementalProjectile
+    public class CloudBullet : ElementalProjectile
     {
-        public float shockMultiplier;
-        public float slagMultiplier;
-        private float elementalChance = 20f;
-        private short shockProjectile = ElementalID.ShockProjectile;
-        private short slagProjectile = ElementalID.SlagProjectile;
-        private int shockBuff = ElementalID.ShockBuff;
-        private int slagBuff = ElementalID.SlagBuff;
+        public float corrosiveMultiplier = 3f;
+        private float elementalChance = 100f;
+        private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
+        private int corrosiveBuff = ElementalID.CorrosiveBuff;
         private int buffTime = 180;
 
         public override void SetDefaults()
@@ -65,7 +62,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.PureSpray).noGravity = true;
+                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = true;
             }
         }
 
@@ -74,8 +71,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
-                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+                SetElementOnNPC(target, hit, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
             }
         }
 
@@ -84,8 +80,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
-                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+                SetElementOnPlayer(target, info, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
             }
         }
 
@@ -93,8 +88,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
         {
             return new List<string>
             {
-                "Shock",
-                "Slag"
+                "Corrosive"
             };
         }
     }

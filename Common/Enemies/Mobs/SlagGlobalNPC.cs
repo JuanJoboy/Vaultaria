@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
-using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
 
 public class SlagGlobalNPC : GlobalNPC
 {

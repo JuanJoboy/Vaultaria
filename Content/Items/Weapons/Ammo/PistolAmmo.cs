@@ -2,9 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue;
-using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
-using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {

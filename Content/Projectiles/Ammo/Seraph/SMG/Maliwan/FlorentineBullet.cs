@@ -1,21 +1,21 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
-using System.Collections.Generic;
+using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
+namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
 {
-    public class GrogBullet : ElementalProjectile
+    public class FlorentineBullet : ElementalProjectile
     {
+        public float shockMultiplier;
         public float slagMultiplier;
-        private float elementalChance = 100f;
+        private float elementalChance = 20f;
+        private short shockProjectile = ElementalID.ShockProjectile;
         private short slagProjectile = ElementalID.SlagProjectile;
+        private int shockBuff = ElementalID.ShockBuff;
         private int slagBuff = ElementalID.SlagBuff;
-        private int buffTime = 300;
+        private int buffTime = 180;
 
         public override void SetDefaults()
         {
@@ -37,7 +37,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 8;
+            Main.projFrames[Projectile.type] = 4;
         }
 
         public override void AI()
@@ -71,30 +71,29 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 0.65f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
                 SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.65f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
                 SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
         }
-        
+
         public override List<string> GetElement()
         {
             return new List<string>
             {
+                "Shock",
                 "Slag"
             };
         }

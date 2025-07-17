@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
+using Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 

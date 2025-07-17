@@ -10,6 +10,8 @@ using Terraria.Audio;
 using Terraria.ID;
 using Vaultaria.Content.Projectiles.Shields;
 using Vaultaria.Common.Globals.Prefixes.GunModifier;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof;
+using Terraria.WorldBuilding;
 
 namespace Vaultaria.Common.Players
 {
@@ -156,6 +158,11 @@ namespace Vaultaria.Common.Players
             }
         }
 
+        public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            RapierCurse(npc, ref modifiers);
+        }
+
         private bool IsWearing(int shield)
         {
             // Ignore empty accessory slots and check if the player is wearing the shield
@@ -257,6 +264,14 @@ namespace Vaultaria.Common.Players
                 1,
                 1
             );
+        }
+
+        private void RapierCurse(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            if (Player.HeldItem.type == ModContent.ItemType<Rapier>())
+            {
+                modifiers.SourceDamage *= 3f; // If holding the rapier, take 3x more damage
+            }
         }
     }
 }

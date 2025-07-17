@@ -158,6 +158,66 @@ Items: {
 		DisplayName: Florentine
 		Tooltip: ""
 	}
+
+	CloudKill: {
+		DisplayName: Cloud Kill
+		Tooltip: ""
+	}
+
+	LightShow: {
+		DisplayName: Light Show
+		Tooltip: ""
+	}
+
+	Maggie: {
+		DisplayName: Maggie
+		Tooltip: ""
+	}
+
+	Rapier: {
+		DisplayName: Rapier
+		Tooltip: ""
+	}
+
+	Ogre: {
+		DisplayName: Ogre
+		Tooltip: ""
+	}
+
+	Butcher: {
+		DisplayName: Butcher
+		Tooltip: ""
+	}
+
+	HeartBreaker: {
+		DisplayName: Heart Breaker
+		Tooltip: ""
+	}
+
+	ShotgunAmmo: {
+		DisplayName: Shotgun Ammo
+		Tooltip: ""
+	}
+
+	RocketAmmo: {
+		DisplayName: Rocket Ammo
+		Tooltip: ""
+	}
+
+	LauncherAmmo: {
+		DisplayName: Launcher Ammo
+		Tooltip: ""
+	}
+
+	WorldBurn: {
+		DisplayName: World Burn
+		Tooltip: ""
+	}
+
+	Nukem: {
+		DisplayName: Nukem
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -178,6 +238,11 @@ Projectiles: {
 	FireBeeSpray.DisplayName: Fire Bee Spray
 	HailBullet.DisplayName: Hail Bullet
 	FlorentineBullet.DisplayName: Florentine Bullet
+	CloudBullet.DisplayName: Cloud Bullet
+	OgreBullet.DisplayName: Ogre Bullet
+	HeartBreakerBullet.DisplayName: Heart Breaker Bullet
+	WorldBurnRocket.DisplayName: World Burn Rocket
+	NukemRocket.DisplayName: Nukem Rocket
 }
 
 Buffs: {

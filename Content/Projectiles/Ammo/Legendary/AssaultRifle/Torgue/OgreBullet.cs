@@ -1,21 +1,18 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
-using System.Collections.Generic;
+using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
+namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue
 {
-    public class GrogBullet : ElementalProjectile
+    public class OgreBullet : ElementalProjectile
     {
-        public float slagMultiplier;
+        public float explosiveMultiplier = 0.7f;
         private float elementalChance = 100f;
-        private short slagProjectile = ElementalID.SlagProjectile;
-        private int slagBuff = ElementalID.SlagBuff;
-        private int buffTime = 300;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int buffTime = 180;
 
         public override void SetDefaults()
         {
@@ -37,7 +34,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 8;
+            Main.projFrames[Projectile.type] = 4;
         }
 
         public override void AI()
@@ -46,7 +43,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
             Projectile.rotation = Projectile.velocity.ToRotation();
 
             // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
+            int frameSpeed = 8; // How fast you want it to animate (lower = faster)
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= frameSpeed)
             {
@@ -65,37 +62,44 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.PureSpray).noGravity = true;
+                Dust.NewDustPerfect(Projectile.Center, DustID.YellowTorch).noGravity = true;
             }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 0.65f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.65f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
-        
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+            }
+
+            return false;
+        }
+
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Slag"
+                "Explosive"
             };
         }
     }
