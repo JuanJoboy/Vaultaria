@@ -96,11 +96,19 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 OverrideColor = new Color(198, 4, 4) // Red
             });
         }
-        
+
         public override bool AllowPrefix(int pre)
         {
+            for (int i = 0; i < ElementalProjectile.elementalPrefix.Count; i++)
+            {
+                if (ElementalProjectile.elementalPrefix.Contains(pre))
+                {
+                    return false;
+                }
+            }
+
             return pre != ModContent.PrefixType<Trickshot>() &&
-                   pre != ModContent.PrefixType<DoublePenetrating>();
+                       pre != ModContent.PrefixType<DoublePenetrating>();
         }
     }
 }

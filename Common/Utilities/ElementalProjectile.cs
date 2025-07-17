@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Prefixes.Weapons;
 using System.Collections.Generic;
 using Vaultaria.Common.Globals.Prefixes.Elements;
-using Terraria.DataStructures; // For Collections
+using Terraria.DataStructures;
 
 namespace Vaultaria.Common.Utilities
 {
@@ -22,6 +22,16 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ExplosiveProjectile,
             ElementalID.IncendiaryProjectile,
             ElementalID.CryoProjectile,
+        };
+
+        public static readonly HashSet<int> elementalPrefix = new HashSet<int>
+        {
+            ElementalID.ShockPrefix,
+            ElementalID.SlagPrefix,
+            ElementalID.CorrosivePrefix,
+            ElementalID.ExplosivePrefix,
+            ElementalID.IncendiaryPrefix,
+            ElementalID.CryoPrefix,
         };
 
         // ********************************************
@@ -114,10 +124,10 @@ namespace Vaultaria.Common.Utilities
             }
 
             // If it's a minion/sentry/summon (not a held weapon), skip
-            if (projectile.minion || projectile.sentry)
-            {
-                return true;
-            }
+            // if (projectile.minion || projectile.sentry)
+            // {
+            //     return true;
+            // }
 
             // Only now, fetch the held item (to check prefix etc)
             weapon = player.HeldItem;
@@ -147,10 +157,42 @@ namespace Vaultaria.Common.Utilities
             {
                 return ElementalID.ExplosiveProjectile;
             }
-            else
+            if (prefix == ElementalID.CryoPrefix)
             {
                 return ElementalID.CryoProjectile;
             }
+            
+            return 0;
+        }
+
+        public static int WhatBuffDoICreate(int elementalProjectile)
+        {
+            if (elementalProjectile == ElementalID.ShockProjectile)
+            {
+                return ElementalID.ShockBuff;
+            }
+            if (elementalProjectile == ElementalID.IncendiaryProjectile)
+            {
+                return ElementalID.IncendiaryBuff;
+            }
+            if (elementalProjectile == ElementalID.CorrosiveProjectile)
+            {
+                return ElementalID.CorrosiveBuff;
+            }
+            if (elementalProjectile == ElementalID.SlagProjectile)
+            {
+                return ElementalID.SlagBuff;
+            }
+            if (elementalProjectile == ElementalID.ExplosiveProjectile)
+            {
+                return ElementalID.ExplosiveBuff;
+            }
+            if (elementalProjectile == ElementalID.CryoProjectile)
+            {
+                return ElementalID.CryoBuff;
+            }
+            
+            return 0;
         }
 
         public static void ElementalPrefixCorrector(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int prefix)
