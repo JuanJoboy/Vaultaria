@@ -9,7 +9,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 {
     public class HideOfTerramorphous : ModShield
     {
-        static int usage = 0;
+        int usage = 0;
 
         public override void SetDefaults()
         {

@@ -6,12 +6,14 @@ using Vaultaria.Content.Buffs.GunEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Prefixes.Weapons;
 using Vaultaria.Content.Items.Accessories.Shields;
+using Vaultaria.Content.Items.Accessories.Relics;
 using Terraria.Audio;
 using Terraria.ID;
 using Vaultaria.Content.Projectiles.Shields;
 using Vaultaria.Common.Globals.Prefixes.GunModifier;
-using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Terraria.WorldBuilding;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Common.Players
 {
@@ -75,6 +77,7 @@ namespace Vaultaria.Common.Players
         {
             int antagonist = ModContent.ItemType<Antagonist>();
             int impaler = ModContent.ItemType<Impaler>();
+            int asteroidBelt = ModContent.ItemType<AsteroidBelt>();
 
             if (IsWearing(antagonist))
             {
@@ -88,34 +91,17 @@ namespace Vaultaria.Common.Players
                     SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
                 }
 
-                Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
-                Vector2 spawnPos = Player.Center + direction * 5f;
-
-                Projectile.NewProjectile(
-                    proj.GetSource_OnHit(Player),
-                    spawnPos,
-                    direction * 12f,
-                    ModContent.ProjectileType<HomingSlagBall>(),
-                    1,
-                    0f,
-                    Player.whoAmI
-                );
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<HomingSlagBall>(), 0.1f, 2);
             }
 
             if (IsWearing(impaler))
             {
-                Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
-                Vector2 spawnPos = Player.Center + direction * 5f;
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<ImpalerSpike>(), 0.4f, 2);
+            }
 
-                Projectile.NewProjectile(
-                    proj.GetSource_OnHit(Player),
-                    spawnPos,
-                    direction * 12f,
-                    ModContent.ProjectileType<ImpalerSpike>(),
-                    (int)(hurtInfo.SourceDamage * 0.4f),
-                    0f,
-                    Player.whoAmI
-                );
+            if (IsWearing(asteroidBelt))
+            {
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 2f, 2);
             }
         }
 
@@ -123,21 +109,11 @@ namespace Vaultaria.Common.Players
         {
             int antagonist = ModContent.ItemType<Antagonist>();
             int impaler = ModContent.ItemType<Impaler>();
+            int asteroidBelt = ModContent.ItemType<AsteroidBelt>();
 
             if (IsWearing(antagonist))
             {
-                Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
-                Vector2 spawnPos = Player.Center + direction * 5f;
-
-                Projectile.NewProjectile(
-                    npc.GetSource_OnHit(Player),
-                    spawnPos,
-                    direction * 12f,
-                    ModContent.ProjectileType<HomingSlagBall>(),
-                    1,
-                    0f,
-                    Player.whoAmI
-                );
+                HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<HomingSlagBall>(), 0.2f, 1);
             }
 
             if (IsWearing(impaler))
@@ -145,6 +121,11 @@ namespace Vaultaria.Common.Players
                 npc.AddBuff(BuffID.Thorns, 60);
                 npc.life -= (int)(hurtInfo.SourceDamage * 0.35f);
                 npc.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);
+            }
+
+            if (IsWearing(asteroidBelt))
+            {
+                HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<Meteor>(), 2f, 2);
             }
         }
 
@@ -161,6 +142,19 @@ namespace Vaultaria.Common.Players
         public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
             RapierCurse(npc, ref modifiers);
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            int ottoIdol = ModContent.ItemType<OttoIdol>();
+
+            if (IsWearing(ottoIdol))
+            {
+                if (target.life <= 0)
+                {
+                    Player.Heal((int) (Player.statLifeMax2 * 0.1f)); // Heals for 10% of health
+                }
+            }
         }
 
         private bool IsWearing(int shield)
@@ -263,6 +257,38 @@ namespace Vaultaria.Common.Players
                 Player.whoAmI,
                 1,
                 1
+            );
+        }
+
+        private void HomingCauseProjectile(Projectile proj, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
+        {
+            Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
+            Vector2 spawnPos = Player.Center + direction * 5f;
+
+            Projectile.NewProjectile(
+                proj.GetSource_OnHit(Player),
+                spawnPos,
+                direction * 12f,
+                homer,
+                (int)(hurtInfo.SourceDamage * damage),
+                0f,
+                Player.whoAmI
+            );
+        }
+
+        private void HomingCauseHit(NPC npc, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
+        {
+            Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
+            Vector2 spawnPos = Player.Center + direction * 5f;
+
+            Projectile.NewProjectile(
+                npc.GetSource_OnHit(Player),
+                spawnPos,
+                direction * 12f,
+                homer,
+                (int)(hurtInfo.SourceDamage * damage),
+                0f,
+                Player.whoAmI
             );
         }
 

@@ -7,7 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
+namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 {
     public class Rapier : ModItem
     {

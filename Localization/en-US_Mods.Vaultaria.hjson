@@ -218,6 +218,31 @@ Items: {
 		DisplayName: Nukem
 		Tooltip: ""
 	}
+
+	AsteroidBelt: {
+		DisplayName: Asteroid Belt
+		Tooltip: ""
+	}
+
+	StopGap: {
+		DisplayName: Stop Gap
+		Tooltip: ""
+	}
+
+	SuperSoldier: {
+		DisplayName: Super Soldier
+		Tooltip: ""
+	}
+
+	OttoIdol: {
+		DisplayName: Otto Idol
+		Tooltip: ""
+	}
+
+	DeathRattle: {
+		DisplayName: Death Rattle
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -243,6 +268,7 @@ Projectiles: {
 	HeartBreakerBullet.DisplayName: Heart Breaker Bullet
 	WorldBurnRocket.DisplayName: World Burn Rocket
 	NukemRocket.DisplayName: Nukem Rocket
+	Meteor.DisplayName: Meteor
 }
 
 Buffs: {
