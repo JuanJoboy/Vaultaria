@@ -225,7 +225,7 @@ Items: {
 	}
 
 	StopGap: {
-		DisplayName: Stop Gap
+		DisplayName: Stop-Gap
 		Tooltip: ""
 	}
 
@@ -241,6 +241,51 @@ Items: {
 
 	DeathRattle: {
 		DisplayName: Death Rattle
+		Tooltip: ""
+	}
+
+	LuckCannon: {
+		DisplayName: Luck Cannon
+		Tooltip: ""
+	}
+
+	SniperAmmo: {
+		DisplayName: Sniper Ammo
+		Tooltip: ""
+	}
+
+	Lyuda: {
+		DisplayName: Lyuda
+		Tooltip: ""
+	}
+
+	LeadStorm: {
+		DisplayName: Lead Storm
+		Tooltip: ""
+	}
+
+	Sawbar: {
+		DisplayName: Sawbar
+		Tooltip: ""
+	}
+
+	Norfleet: {
+		DisplayName: Norfleet
+		Tooltip: ""
+	}
+
+	Hive: {
+		DisplayName: Hive
+		Tooltip: ""
+	}
+
+	StarterShield: {
+		DisplayName: Starter Shield
+		Tooltip: ""
+	}
+
+	BasicRepeater: {
+		DisplayName: Basic Repeater
 		Tooltip: ""
 	}
 }
@@ -269,6 +314,12 @@ Projectiles: {
 	WorldBurnRocket.DisplayName: World Burn Rocket
 	NukemRocket.DisplayName: Nukem Rocket
 	Meteor.DisplayName: Meteor
+	LuckCannonBullet.DisplayName: Luck Cannon Bullet
+	LyudaBullet.DisplayName: Lyuda Bullet
+	LeadStormBullet.DisplayName: Lead Storm Bullet
+	SawbarBullet.DisplayName: Sawbar Bullet
+	NorfleetRocket.DisplayName: Norfleet Rocket
+	HiveRocket.DisplayName: Hive Rocket
 }
 
 Buffs: {
@@ -304,12 +355,17 @@ Buffs: {
 
 	OrcEffect: {
 		DisplayName: Orc Effect
-		Description: Increases projectile count, fire rate, damage & gives Trickshot
+		Description: Increases projectile count, fire rate, damage & makes your projectiles Trickshot
 	}
 
 	CryoBuff: {
 		DisplayName: Cryo Buff
 		Description: Take Cryo damage over time
+	}
+
+	DeathEffect: {
+		DisplayName: Death Effect
+		Description: The next hits against you restores you to full health
 	}
 }
 

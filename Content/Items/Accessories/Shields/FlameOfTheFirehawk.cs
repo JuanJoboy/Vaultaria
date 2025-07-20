@@ -10,11 +10,11 @@ using Vaultaria.Content.Buffs.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
-    public class FlameOfTheFirehawk : ModItem
+    public class FlameOfTheFirehawk : ModShield
     {
         // Static fields for cooldown and tracking health state across ticks.
         // Static means these values are shared across all instances of this item, which is appropriate for player-specific effects.
-        private int novaCooldown = 0; // Cooldown in ticks
+        private static int novaCooldown = 0; // Cooldown in ticks
 
         public override void SetStaticDefaults()
         {

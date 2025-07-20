@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Vaultaria.Content.Buffs.AccessoryEffects;
 using Vaultaria.Content.Buffs.GunEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Prefixes.Weapons;
@@ -57,9 +58,15 @@ namespace Vaultaria.Common.Players
             {
                 multiplier *= 1.5f;
             }
+
             if (Player.HasBuff(ModContent.BuffType<DrunkEffect>()))
             {
                 multiplier *= 0.5f;
+            }
+
+            if (Player.HasBuff(ModContent.BuffType<DeathEffect>()))
+            {
+                multiplier *= 1.3f;
             }
 
             return multiplier;
@@ -70,6 +77,11 @@ namespace Vaultaria.Common.Players
             if (Player.HasBuff(ModContent.BuffType<OrcEffect>()))
             {
                 damage *= 1.2f;
+            }
+
+            if (Player.HasBuff(ModContent.BuffType<DeathEffect>()))
+            {
+                damage *= 1.3f;
             }
         }
 

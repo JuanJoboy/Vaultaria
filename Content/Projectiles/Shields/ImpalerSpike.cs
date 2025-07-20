@@ -39,11 +39,6 @@ namespace Vaultaria.Content.Projectiles.Shields
             AIType = ProjectileID.ChlorophyteBullet; // Inherit Chlorophyte AI
         }
 
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 8;
-        }
-
         public override void PostAI()
         {
             base.PostAI();

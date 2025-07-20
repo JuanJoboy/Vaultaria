@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -61,7 +62,7 @@ namespace Vaultaria.Common.Utilities
             // Calculate the base rotation of the velocity vector
             float baseRotation = velocity.ToRotation();
 
-            for (int i = 0; i <= numberOfAdditionalBullets; i++)
+            for (int i = 0; i < numberOfAdditionalBullets; i++)
             {
                 // Calculate the individual bullet's angle
                 // This distributes the bullets symmetrically around the original velocity direction

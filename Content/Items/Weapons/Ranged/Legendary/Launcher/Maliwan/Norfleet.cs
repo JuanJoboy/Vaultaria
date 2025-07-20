@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 {
-    public class Ogre : ModItem
+    public class Norfleet : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -24,23 +24,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.3f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Master;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
-            Item.shoot = ModContent.ProjectileType<OgreBullet>();
-            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+            Item.shootSpeed = 5;
+            Item.shoot = ModContent.ProjectileType<NorfleetRocket>();
+            Item.useAmmo = ModContent.ItemType<LauncherAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 80;
-            Item.crit = 6;
+            Item.damage = 1000;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 9;
-            Item.useAnimation = 9;
-            Item.reuseDelay = 0;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties
@@ -53,7 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
 
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 2, 5);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 2, 35);
 
             return false;
         }
@@ -68,13 +68,31 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 0f);
+            return new Vector2(4f, 0f);
+        }
+
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            for (int i = 0; i < 25; i++)
+            {
+                player.ConsumeItem(ammo.type, false);
+            }
+
+            return true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
 
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Ogres chew their food.")
+            if (damageLine != null)
+            {
+                Player player = Main.LocalPlayer;
+                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
+                damageLine.Text = finalDamage + " x 3 ranged damage";
+            }
+
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Blows up everything!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

@@ -47,8 +47,14 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
                 player.GetAttackSpeed(DamageClass.Ranged) *= 0.50f;
                 player.moveSpeed *= 1.25f;
+                player.ammoCost75 = true; // This gives a 25% chance not to consume ammo
+            }
 
-                player.ammoCost75 = true; // This gives 25% chance not to consume ammo
+            if (player.statLife != player.statLifeMax2)
+            {
+                player.GetAttackSpeed(DamageClass.Ranged) /= 0.50f;
+                player.moveSpeed /= 1.25f;
+                player.ammoCost75 = false; // This gives a 25% chance not to consume ammo
             }
         }
     }

@@ -4,20 +4,20 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
+namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 {
-    public class HeartBreakerBullet : ElementalProjectile
+    public class NorfleetRocket : ElementalProjectile
     {
-        public float incendiaryMultiplier = 0.4f;
-        private float elementalChance = 40;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
-        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        public float shockMultiplier = 3f;
+        private float elementalChance = 100f;
+        private short shockProjectile = ElementalID.ShockProjectile;
+        private int shockBuff = ElementalID.ShockBuff;
         private int buffTime = 180;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(10, 10);
+            Projectile.Size = new Vector2(20, 20);
 
             // Damage
             Projectile.friendly = true;
@@ -40,7 +40,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
         public override void AI()
         {
             base.AI();
-            Utilities.FrameRotator(3, Projectile); 
+            Utilities.FrameRotator(6, Projectile);
         }
 
         public override void OnKill(int timeLeft)
@@ -48,37 +48,44 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Torch).noGravity = false;
+                Dust.NewDustPerfect(Projectile.Center, DustID.Electric).noGravity = false;
             }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 0.2f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.2f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+                SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
             }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, shockMultiplier, player, shockProjectile);
+            }
+
+            return false;
         }
 
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Incendiary"
+                "Shock"
             };
         }
     }
