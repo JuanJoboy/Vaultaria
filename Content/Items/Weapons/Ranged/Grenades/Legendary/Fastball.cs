@@ -58,15 +58,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         {
             return true;
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(9)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
+        
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Has a slight downward arc when thrown and deals high explosive damage on impact")

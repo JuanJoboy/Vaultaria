@@ -59,7 +59,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(50)
+                .AddIngredient(ItemID.HallowedBar, 25)
+                .AddIngredient(ItemID.Revolver, 1)
+                .AddIngredient(ItemID.Shotgun, 1)
+                .AddIngredient(ItemID.SoulofSight, 25)
+                .AddIngredient(ItemID.IllegalGunParts, 5)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -21,7 +22,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 10% health, become invulnerable, & gain the following increases while health is full:\n\t+50% Fire Rate\n\t+25% Move Speed\n\t+25% No Ammo Consumption Chance"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 10% health, become invulnerable, & gain the following increases while health is full:\n\t+50% Fire Rate\n\t+25% Move Speed\n\t+25% No Ammo Consumption Chance\nMust have full health before immunity can be used again"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Roland, out.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -56,6 +57,19 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 player.moveSpeed /= 1.25f;
                 player.ammoCost75 = false; // This gives a 25% chance not to consume ammo
             }
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(40)
+                .AddIngredient(ItemID.ChlorophyteBar, 40)
+                .AddIngredient(ItemID.Ectoplasm, 40)
+                .AddIngredient<StopGap>(1)
+                .AddIngredient(ItemID.SwiftnessPotion, 25)
+                .AddIngredient(ItemID.AmmoBox, 1)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
         }
     }
 }

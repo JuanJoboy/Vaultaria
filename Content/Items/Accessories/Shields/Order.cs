@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -40,6 +41,16 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 // Increases Melee damage by 40%
                 player.GetDamage(DamageClass.Melee) += 0.4f;
             }
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(20)
+                .AddIngredient(ItemID.PlatinumBar, 8)
+                .AddIngredient(ItemID.HealingPotion, 75)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
         }
     }
 }

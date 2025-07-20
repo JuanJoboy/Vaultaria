@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.3f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Expert;
 
             // Gun properties
             Item.noMelee = true;
@@ -55,15 +55,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 
             return false;
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(9)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
+        
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(4f, 0f);

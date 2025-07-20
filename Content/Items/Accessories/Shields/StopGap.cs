@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -44,6 +45,17 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             {
                 usage = 0;
             }
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(40)
+                .AddIngredient(ItemID.HallowedBar, 40)
+                .AddIngredient(ItemID.SoulofLight, 40)
+                .AddIngredient(ItemID.CrossNecklace, 1)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
         }
     }
 }

@@ -28,9 +28,24 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
 
             Item.createTile = ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>();
             Item.placeStyle = 0;
-            
+
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.IronBar, 5)
+                .AddIngredient(ItemID.LifeCrystal, 2)
+                .AddTile(ItemID.WorkBench)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.LeadBar, 5)
+                .AddIngredient(ItemID.LifeCrystal, 2)
+                .AddTile(ItemID.WorkBench)
+                .Register();
         }
     }
 }

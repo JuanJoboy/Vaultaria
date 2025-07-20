@@ -65,8 +65,11 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
-                .AddTile(TileID.Anvils)
+                .AddIngredient<Eridium>(75)
+                .AddIngredient(ItemID.FragmentStardust, 50)
+                .AddIngredient(ItemID.LunarBar, 25)
+                .AddIngredient(ItemID.MoonlordTurretStaff, 1)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }
 

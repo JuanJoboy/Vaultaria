@@ -51,7 +51,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(50)
+                .AddIngredient(ItemID.SniperRifle, 1)
+                .AddIngredient(ItemID.Ectoplasm, 25)
+                .AddIngredient(ItemID.IllegalGunParts, 3)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

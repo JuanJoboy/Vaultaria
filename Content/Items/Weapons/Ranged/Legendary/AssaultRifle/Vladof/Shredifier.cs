@@ -57,7 +57,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(50)
+                .AddIngredient(ItemID.ChlorophyteBar, 25)
+                .AddIngredient(ItemID.ChainGun, 1)
+                .AddIngredient(ItemID.SoulofNight, 25)
+                .AddIngredient(ItemID.IllegalGunParts, 5)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

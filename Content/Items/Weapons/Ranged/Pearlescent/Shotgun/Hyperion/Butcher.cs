@@ -69,7 +69,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(75)
+                .AddIngredient(ItemID.FragmentVortex, 50)
+                .AddIngredient(ItemID.LunarBar, 25)
+                .AddIngredient(ItemID.TacticalShotgun, 1)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

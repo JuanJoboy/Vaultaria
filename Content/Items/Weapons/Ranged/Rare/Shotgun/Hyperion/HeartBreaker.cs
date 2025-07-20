@@ -61,7 +61,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(30)
+                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddIngredient(ItemID.Boomstick, 1)
+                .AddIngredient(ItemID.HealingPotion, 50)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

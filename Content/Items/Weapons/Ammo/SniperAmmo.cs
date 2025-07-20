@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             // Item Config
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
-            Item.value = Item.buyPrice(copper: 15);
+            Item.value = Item.buyPrice(silver: 30);
             Item.rare = ItemRarityID.Gray;
         }
     }

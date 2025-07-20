@@ -1,3 +1,13 @@
 Add action skills and skill trees for different classes and add class mods for them
 Add a quick change vending machine station where the player can customize their appearance and craft wanted posters that when consumed turn you into that class
 Give players these posters when they make a character too
+
+Add FFYL where the screen turns red and the player has 10 seconds to kill something or get revived otherwise they die
+
+1. Add sources for every item - Tick
+2. Fix item features and scale them
+3. Fix item sprites
+4. Make the mod description
+5. Tell people to use Quite Enough Recipes mod, as it says where drops come from and how to craft items
+6. Publish
+7. Make a Discord?

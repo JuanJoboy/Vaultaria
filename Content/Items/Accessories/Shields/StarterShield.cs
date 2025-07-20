@@ -31,5 +31,13 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statDefense += 2;
             player.lifeRegen += 1;
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.IronBar, 5)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
+        }
     }
 }

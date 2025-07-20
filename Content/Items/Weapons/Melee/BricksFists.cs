@@ -62,7 +62,16 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(3)
+                .AddIngredient(ItemID.CopperBar, 3)
+                .AddIngredient(ItemID.Cactus, 50)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient<Eridium>(3)
+                .AddIngredient(ItemID.TinBar, 3)
+                .AddIngredient(ItemID.Cactus, 50)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

@@ -79,14 +79,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
             return false; // Don't spawn the underlying chlorophyte bullet
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(9)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws out 4 Slag balls that home in on an enemy and explode on impact")

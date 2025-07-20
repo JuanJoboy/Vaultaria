@@ -99,10 +99,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
             return !isInMeleeMode; // Only shoot if not in melee mode
         }
+        
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(75)
+                .AddIngredient(ItemID.FragmentSolar, 50)
+                .AddIngredient(ItemID.LunarBar, 25)
+                .AddIngredient(ItemID.Ectoplasm, 25)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

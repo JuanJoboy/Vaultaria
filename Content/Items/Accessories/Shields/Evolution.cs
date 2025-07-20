@@ -69,8 +69,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
+                .AddIngredient(ItemID.LunarBar, 60)
                 .AddIngredient(ItemID.AnkhShield, 1)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
                 .Register();
         }
 

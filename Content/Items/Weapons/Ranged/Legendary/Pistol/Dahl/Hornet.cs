@@ -4,15 +4,14 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
-using Vaultaria.Content.Items.Weapons.Ammo;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Common.Globals.Prefixes.Elements;
-using Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit;
+using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 {
-    public class Sawbar : ModItem
+    public class Hornet : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,27 +24,27 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.3f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Cyan;
+            Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 9f;
-            Item.shoot = ModContent.ProjectileType<SawbarBullet>();
-            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+            Item.shootSpeed = 6f;
+            Item.shoot = ModContent.ProjectileType<HornetBullet>();
+            Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 65;
-            Item.crit = 10;
+            Item.damage = 16;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 10;
-            Item.useAnimation = 10;
-            Item.reuseDelay = 2;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 16;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 2);
             Item.UseSound = SoundID.Item11;
         }
 
@@ -58,26 +57,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
         {
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-            
-            Projectile projectile = Projectile.NewProjectileDirect(
-                source,
-                position,
-                velocity,
-                ModContent.ProjectileType<SawbarBullet>(),
-                damage,
-                knockback,
-                player.whoAmI,
-                1f,
-                0f
-            );
 
             return false;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Shoots bullets that create Fiery explosions"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Suppressing fires!")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Fear the swarm!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

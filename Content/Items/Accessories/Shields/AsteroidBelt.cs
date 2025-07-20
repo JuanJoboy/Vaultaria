@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Materials;
+using Terraria.GameContent.Biomes.CaveHouse;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -30,6 +32,25 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statLifeMax2 += 40;
             player.statDefense += 3;
             player.lifeRegen += 2;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(30)
+                .AddIngredient(ItemID.PlatinumBar, 8)
+                .AddIngredient(ItemID.MeteoriteBar, 8)
+                .AddIngredient(ItemID.SoulofMight, 20)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient<Eridium>(30)
+                .AddIngredient(ItemID.GoldBar, 8)
+                .AddIngredient(ItemID.MeteoriteBar, 8)
+                .AddIngredient(ItemID.SoulofMight, 20)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
         }
     }
 }

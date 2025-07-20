@@ -110,7 +110,18 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Eridium>(9)
+                .AddIngredient<Eridium>(5)
+                .AddIngredient(ItemID.SilverBroadsword, 1)
+                .AddIngredient(ItemID.SharpeningStation, 1)
+                .AddIngredient(ItemID.Dynamite, 100)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient<Eridium>(5)
+                .AddIngredient(ItemID.TungstenBroadsword, 1)
+                .AddIngredient(ItemID.SharpeningStation, 1)
+                .AddIngredient(ItemID.Dynamite, 100)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

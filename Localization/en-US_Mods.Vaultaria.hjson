@@ -288,6 +288,16 @@ Items: {
 		DisplayName: Basic Repeater
 		Tooltip: ""
 	}
+
+	Hornet: {
+		DisplayName: Hornet
+		Tooltip: ""
+	}
+
+	Zim: {
+		DisplayName: Zim
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -320,6 +330,8 @@ Projectiles: {
 	SawbarBullet.DisplayName: Sawbar Bullet
 	NorfleetRocket.DisplayName: Norfleet Rocket
 	HiveRocket.DisplayName: Hive Rocket
+	HornetBullet.DisplayName: Hornet Bullet
+	ZimBullet.DisplayName: Zim Bullet
 }
 
 Buffs: {
