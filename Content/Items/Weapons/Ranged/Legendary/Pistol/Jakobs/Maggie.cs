@@ -36,8 +36,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 2;
-            Item.useAnimation = 2;
+            Item.useTime = 5;
+            Item.useAnimation = 5;
             Item.reuseDelay = 0;
             Item.autoReuse = false;
 

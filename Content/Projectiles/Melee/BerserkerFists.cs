@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Build.Evaluation;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Melee
 {
@@ -41,20 +42,7 @@ namespace Vaultaria.Content.Projectiles.Melee
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            int frameSpeed = 8;
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(8, Projectile);
         }
     }
 }

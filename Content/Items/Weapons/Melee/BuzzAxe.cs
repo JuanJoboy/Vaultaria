@@ -48,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(7, -7);
+            return new Vector2(-14, -7);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
