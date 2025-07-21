@@ -27,8 +27,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Combat properties
             Item.useStyle = ItemUseStyleID.Rapier;
             Item.knockBack = 2.3f;
-            Item.damage = 25;
-            Item.crit = 10;
+            Item.damage = 20;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Melee;
 
             Item.useTime = 6;
@@ -42,7 +42,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.shootSpeed = 8;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Green;
         }
 
@@ -79,7 +79,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws a flurry of fists"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "SLAB... Did you... Did you just jump of the BUZZARD'S NEST?! GOD DAMN YOU MAKE ME PROUD!")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "SLAB... Did you... Did you just jump of the BUZZARD'S NEST?!\nGOD DAMN YOU MAKE ME PROUD!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Grenades.Legendary;
@@ -33,8 +32,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
             Item.useTurn = true;
@@ -42,10 +41,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.shoot = ModContent.ProjectileType<Breath>();
             Item.consumable = true;
             Item.ammo = Item.type;
-            Item.shootSpeed = 8;
+            Item.shootSpeed = 12;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 4);
+            Item.value = Item.buyPrice(silver: 50);
             Item.UseSound = SoundID.NPCHit4;
         }
 

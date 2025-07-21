@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.6f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 80;
+            Item.damage = 40;
             Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
@@ -42,7 +42,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             Item.autoReuse = false;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 2);
             Item.UseSound = SoundID.Item11;
         }
 
@@ -71,7 +71,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

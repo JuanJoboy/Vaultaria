@@ -12,11 +12,11 @@ namespace Vaultaria.Content.Projectiles.Melee
 {
     public class BuzzAxeBombardier : ElementalProjectile
     {
-        public float explosiveMultiplier = 0.3f;
+        public float explosiveMultiplier = 1f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int buffTime = 180;
+        private int buffTime = 90;
 
 
         public override void SetStaticDefaults()
@@ -28,42 +28,27 @@ namespace Vaultaria.Content.Projectiles.Melee
         {
             // Size
             Projectile.Size = new Vector2(8, 8);
-            Projectile.scale = 1.6f;
+            Projectile.scale = 2.1f;
 
             // Damage
-            Projectile.damage = 36;
-            Projectile.CritChance = 10;
+            Projectile.damage = 25;
+            Projectile.CritChance = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.penetrate = 2;
             Projectile.aiStyle = 0;
 
             // Bullet Config
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
         }
 
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
+            Utilities.FrameRotator(6, Projectile);
 
-            int frameSpeed = 12;
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
-
-            Projectile.velocity.Y += 0.06f;
+            Projectile.velocity.Y += 0.15f;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -98,26 +83,14 @@ namespace Vaultaria.Content.Projectiles.Melee
         public override void OnKill(int timeLeft)
         {
             // Create an explosion effect when the projectile dies
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.position); // Explosion sound
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
             // Create dust particles for the explosion
             for (int i = 0; i < 20; i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 1f);
             }
-
-            // Create a damaging explosion (similar to a grenade's explosion)
-            // This spawns an invisible projectile that immediately deals explosion damage in an area.
-            Projectile.NewProjectile(
-                Projectile.GetSource_FromThis(),
-                Projectile.Center,
-                Vector2.Zero, // No velocity for the explosion projectile itself
-                ProjectileID.Volcano, // Use a vanilla explosion projectile type
-                Projectile.damage, // Use the damage of this projectile for the explosion
-                Projectile.knockBack,
-                Projectile.owner
-            );
         }
 
         public override List<string> GetElement()

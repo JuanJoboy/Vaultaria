@@ -3,12 +3,13 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
 {
     public class LuckCannonBullet : ElementalProjectile
     {
-        public float explosiveMultiplier = 3f;
+        public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -40,6 +41,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
 
         public override void OnKill(int timeLeft)
         {
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {

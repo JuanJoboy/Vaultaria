@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.6f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 16;
+            Item.damage = 8;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -63,6 +63,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires a burst of Corrosive bullets")
+            {
+                OverrideColor = new Color(136, 235, 94) // Light Green
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Fear the swarm!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

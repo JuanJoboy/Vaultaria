@@ -8,7 +8,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl
 {
     public class HornetBullet : ElementalProjectile
     {
-        public float corrosiveMultiplier = 0.2f;
+        public float corrosiveMultiplier = 0.4f;
         private float elementalChance = 30;
         private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
         private int corrosiveBuff = ElementalID.CorrosiveBuff;

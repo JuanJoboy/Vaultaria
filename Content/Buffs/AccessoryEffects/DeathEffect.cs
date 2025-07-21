@@ -14,7 +14,7 @@ namespace Vaultaria.Content.Buffs.AccessoryEffects
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.statLife <= (player.statLifeMax2 * 0.5f))
+            if (player.statLife <= (player.statLifeMax2 * 0.2f))
             {
                 player.statLife = player.statLifeMax2 * 100;
             }

@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.6f;
             Item.useStyle = ItemUseStyleID.Shoot; // Use style for guns
             Item.rare = ItemRarityID.Yellow;
 
@@ -44,13 +44,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
             Item.autoReuse = true; // Auto fire
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item11; // Gun use sound
+            Item.value = Item.buyPrice(gold: 1);
+            Item.UseSound = SoundID.Item11;
         }
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -72,7 +72,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
             if (projectile.ModProjectile is UHBullet bullet)
             {
-                bullet.explosiveMultiplier = 0.2f;
+                bullet.explosiveMultiplier = 1f;
             }
 
             return false; // Prevent vanilla from spawning the default ammo projectile
@@ -90,10 +90,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 ammo per shot"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Deals bonus explosive damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 Pistol Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires multiple Explosive rounds")
             {
-                OverrideColor = new Color(196, 195, 6) // Yellow
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
             });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Did I fire six shots, or only five? Three? Seven. Whatever.")
             {

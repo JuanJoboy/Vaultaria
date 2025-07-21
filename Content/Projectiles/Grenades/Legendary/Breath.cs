@@ -10,7 +10,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 {
     public class Breath : ElementalProjectile
     {
-        public float incendiaryMultiplier;
+        public float incendiaryMultiplier = 0.3f;
         private float elementalChance = 100f;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
@@ -34,28 +34,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             Projectile.timeLeft = 300;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
         }
 
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
+            Utilities.FrameRotator(3, Projectile);
 
-            int frameSpeed = 3;
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
-
-            Projectile.velocity.Y += 0.04f;
+            Projectile.velocity.Y += 0.185f;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

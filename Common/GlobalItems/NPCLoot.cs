@@ -51,129 +51,154 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.KingSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hornet>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 1, 3));
             }
 
             if (npc == NPCID.EyeofCthulhu)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Law>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
 
             if (npc == NPCID.EaterofWorldsHead || npc == NPCID.BrainofCthulhu)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
 
             if (npc == NPCID.QueenBee)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FlameOfTheFirehawk>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
         
             if (npc == NPCID.Deerclops)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnkemptHarold>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
 
             if (npc == NPCID.SkeletronHead)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hail>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.WallofFlesh)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impaler>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impaler>(), 3, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 10, 15));
             }
 
             if (npc == NPCID.QueenSlimeBoss)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 15, 18));
             }
 
             if (npc == NPCID.TheDestroyer)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadStorm>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadStorm>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 18, 25));
             }
 
             if (npc == NPCID.Retinazer || npc == NPCID.Spazmatism)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 5, 200, 600));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 18, 25));
             }
 
             if (npc == NPCID.SkeletronPrime)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheBee>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheBee>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 18, 25));
             }
 
             if (npc == NPCID.PirateShip || npc == NPCID.PirateCaptain)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Nukem>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Nukem>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.Everscream)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Zim>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Zim>(), 25, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 5));
             }
 
             if (npc == NPCID.IceQueen)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hive>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hive>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.Pumpking)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WorldBurn>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WorldBurn>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.MourningWood)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Sawbar>(), 100, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Sawbar>(), 25, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 5));
             }
 
             if (npc == NPCID.DD2DarkMageT3)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileRare>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileEpic>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileRare>(), 5, 300, 600));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileEpic>(), 10, 400, 700));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 5));
             }
 
             if (npc == NPCID.DD2OgreT3)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Orc>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ogre>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Orc>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ogre>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 5));
             }
 
             if (npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 4, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GrogNozzle>(), 2, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 4, 200, 250));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GrogNozzle>(), 3, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.Plantera)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fibber>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 20, 30));
             }
 
             if (npc == NPCID.Golem)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LuckCannon>(), 25, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LuckCannon>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 10, 15));
             }
     
             if (npc == NPCID.DukeFishron)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DeathRattle>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 20, 30));
             }
 
             if (npc == NPCID.HallowBoss)
             {
                 npcLoot.Add(ItemDropRule.ByCondition(new Conditions.EmpressOfLightIsGenuinelyEnraged(), ModContent.ItemType<Norfleet>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 20, 30));
             }
 
             if (npc == NPCID.CultistBoss)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Antagonist>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Antagonist>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 30, 35));
             }
 
             if (npc == NPCID.MoonLordCore)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 25, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 25, 40));
             }
         }
 

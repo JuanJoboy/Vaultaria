@@ -3,16 +3,17 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
 {
     public class NukemRocket : ElementalProjectile
     {
-        public float explosiveMultiplier = 3f;
+        public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int buffTime = 180;
+        private int buffTime = 30;
 
         public override void SetDefaults()
         {
@@ -29,7 +30,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
         }
 
         public override void AI()
@@ -40,10 +40,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
 
         public override void OnKill(int timeLeft)
         {
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = true;
+                Dust.NewDustPerfect(Projectile.Center, DustID.YellowTorch).noGravity = true;
             }
         }
 

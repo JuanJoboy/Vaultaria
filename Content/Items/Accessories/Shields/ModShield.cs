@@ -26,4 +26,17 @@ public abstract class ModShield : ModItem
 
         return true;
     }
+
+    public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+    {
+        for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
+        {
+            if (player.armor[i].ModItem is ModShield)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Placeables.VendingMachines
 {
@@ -59,6 +60,15 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
                 .AddIngredient(ItemID.WoodenArrow, 100)
                 .AddTile(ItemID.WorkBench)
                 .Register();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Used to craft one of a kind weaponry"));
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "No refunds.")
+            {
+                OverrideColor = new Color(198, 4, 4) // Red
+            });
         }
     }
 }

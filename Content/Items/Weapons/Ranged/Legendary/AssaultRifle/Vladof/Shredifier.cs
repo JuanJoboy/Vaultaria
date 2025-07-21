@@ -20,20 +20,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 18;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 100;
-            Item.crit = 6;
+            Item.damage = 45;
+            Item.crit = 21;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 5;
@@ -42,8 +42,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item11;
+            Item.value = Item.buyPrice(gold: 4);
+            Item.UseSound = SoundID.Item41;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -68,7 +68,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-30, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

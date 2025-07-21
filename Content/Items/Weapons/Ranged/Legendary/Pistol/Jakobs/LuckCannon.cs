@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs;
@@ -22,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.6f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -34,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 120;
+            Item.damage = 70;
             Item.crit = 26;
             Item.DamageType = DamageClass.Ranged;
 
@@ -44,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             Item.autoReuse = false;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 4);
             Item.UseSound = SoundID.Item11;
         }
 
@@ -58,12 +57,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires Explosive rounds")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Better lucky than good!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

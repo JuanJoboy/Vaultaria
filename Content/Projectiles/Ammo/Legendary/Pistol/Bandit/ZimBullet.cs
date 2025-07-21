@@ -8,7 +8,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Bandit
 {
     public class ZimBullet : ElementalProjectile
     {
-        public float cryoMultiplier = 0.3f;
+        public float cryoMultiplier = 1f;
         private float elementalChance = 100;
         private short cryoProjectile = ElementalID.CryoProjectile;
         private int cryoBuff = ElementalID.CryoBuff;

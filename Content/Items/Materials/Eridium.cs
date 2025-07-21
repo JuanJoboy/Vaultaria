@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Materials
 {
@@ -18,8 +17,16 @@ namespace Vaultaria.Content.Items.Materials
         {
             Item.Size = new Vector2(22, 24);
             Item.maxStack = Item.CommonMaxStack;
-            Item.buyPrice(gold: 2, silver: 50);
-            Item.rare = ItemRarityID.Blue;
+            Item.buyPrice(copper: 50);
+            Item.rare = ItemRarityID.Purple;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "An alien material used to turn ordinary items into legendary gear")
+            {
+                OverrideColor = new Color(142, 94, 235) // Purple
+            });
         }
     }
 }

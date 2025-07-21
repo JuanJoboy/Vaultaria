@@ -40,21 +40,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(4, Projectile);
         }
 
         public override void OnKill(int timeLeft)
@@ -84,6 +70,17 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             }
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, corrosiveMultiplier, player, corrosiveProjectile);
+            }
+
+            return false;
+        }
+        
         public override List<string> GetElement()
         {
             return new List<string>

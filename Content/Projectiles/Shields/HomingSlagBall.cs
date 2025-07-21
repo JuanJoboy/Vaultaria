@@ -35,7 +35,6 @@ namespace Vaultaria.Content.Projectiles.Shields
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
 
             AIType = ProjectileID.ChlorophyteBullet; // Inherit Chlorophyte AI
             Projectile.ai[0] = 0f;
@@ -50,21 +49,7 @@ namespace Vaultaria.Content.Projectiles.Shields
         public override void PostAI()
         {
             base.PostAI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(4, Projectile);
 
             int magicMissileEpic = ModContent.ItemType<MagicMissileEpic>();
             int magicMissileRare = ModContent.ItemType<MagicMissileRare>();

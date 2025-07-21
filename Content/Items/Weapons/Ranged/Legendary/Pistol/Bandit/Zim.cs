@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
@@ -22,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.6f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -34,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 35;
+            Item.damage = 25;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -44,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 1);
             Item.UseSound = SoundID.Item11;
         }
 
@@ -58,12 +57,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Guaranteed Cryo")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Guaranteed Cryo")
             {
                 OverrideColor = new Color(131, 235, 228) // Light Blue
             });

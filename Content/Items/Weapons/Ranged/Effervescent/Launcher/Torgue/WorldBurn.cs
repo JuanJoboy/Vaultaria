@@ -22,13 +22,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Expert;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 5;
+            Item.shootSpeed = 10;
             Item.shoot = ModContent.ProjectileType<WorldBurnRocket>();
             Item.useAmmo = ModContent.ItemType<LauncherAmmo>();
 
@@ -44,8 +44,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item11;
+            Item.value = Item.buyPrice(gold: 5);
+            Item.UseSound = SoundID.Item14;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -55,14 +55,25 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 
             return false;
         }
+
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            for (int i = 0; i < 19; i++)
+            {
+                player.ConsumeItem(ammo.type, false);
+            }
+
+            return true;
+        }
         
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-80f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Shoots a more powerful Fiery nuke\nConsumes 20 Launcher Ammo per shot"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "War does not compute.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

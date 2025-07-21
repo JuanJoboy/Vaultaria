@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Shields;
@@ -29,12 +28,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.damage = 60;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
             Item.useTurn = true;
@@ -45,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
             Item.shootSpeed = 4;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 4);
+            Item.value = Item.buyPrice(silver: 15);
             Item.UseSound = SoundID.Item23;
         }
 

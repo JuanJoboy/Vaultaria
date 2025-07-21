@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 {
@@ -45,6 +46,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 
         public override void OnKill(int timeLeft)
         {
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {

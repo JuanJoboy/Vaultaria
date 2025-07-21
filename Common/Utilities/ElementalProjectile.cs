@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Common.Globals.Prefixes.Elements;
 using Terraria.DataStructures;
+using System;
 
 namespace Vaultaria.Common.Utilities
 {
@@ -371,7 +372,7 @@ namespace Vaultaria.Common.Utilities
         public static bool SetElementOnTile(Projectile projectile, float elementalMultiplier, Player player, short elementalProjectile)
         {
             int elementalDamage = 0;
-            float baseDamage = player.dpsDamage;
+            float baseDamage = projectile.damage;
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
