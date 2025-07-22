@@ -6,6 +6,7 @@ using System;
 using Vaultaria.Content.Projectiles.Shields;
 using Terraria.DataStructures;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Minions
 {
@@ -47,6 +48,8 @@ namespace Vaultaria.Content.Projectiles.Minions
                 2f,
                 Projectile.owner
             );
+
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
         }
 
         public override void AI()

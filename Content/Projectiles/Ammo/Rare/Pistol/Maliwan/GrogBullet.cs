@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
@@ -43,21 +42,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(4, Projectile);
         }
 
         public override void OnKill(int timeLeft)

@@ -14,13 +14,17 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(silver: 90);
             Item.rare = ItemRarityID.Blue;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Launch homing Explosive Meteors when damaged"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+2 Defense"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Launch homing Explosive Meteors when damaged")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Straight from the bug homeworld.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -29,9 +33,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 40;
-            player.statDefense += 3;
-            player.lifeRegen += 2;
+            player.statLifeMax2 += 20;
+            player.statDefense += 2;
         }
 
         public override void AddRecipes()

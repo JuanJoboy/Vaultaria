@@ -16,13 +16,13 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 30);
             Item.rare = ItemRarityID.Pink;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Regenerates health rapidly"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+50 HP\n+6 Defense\nRegenerates health rapidly"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Grants immunity to all the elements and most debuffs")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
@@ -35,9 +35,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 200;
+            player.statLifeMax2 += 50;
             player.statDefense += 6;
-            player.lifeRegen += 40;
+            player.lifeRegen += 5;
 
             // Ankh Shield
             player.buffImmune[BuffID.Bleeding] = true;

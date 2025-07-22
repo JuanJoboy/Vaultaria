@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 30 seconds, for 5 seconds, if you are under 20% health, take damage to regain full health and the following bonuses:\n+30% Gun Damage\n+30% Fire Rate"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+40 HP\n+5 Defense\nEvery 30 seconds, for 10 seconds, if you are under 20% health, take damage to regain full health and the following bonuses:\n\t+30% Gun Damage\n\t+30% Fire Rate"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "I always hated you the most.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -33,7 +33,6 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         {
             player.statLifeMax2 += 40;
             player.statDefense += 5;
-            player.lifeRegen += 3;
 
             if (cooldown > 0 && usage == 1)
             {
@@ -48,7 +47,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
             if (usage == 0)
             {
-                player.AddBuff(ModContent.BuffType<DeathEffect>(), 300);
+                player.AddBuff(ModContent.BuffType<DeathEffect>(), 600);
                 cooldown = 60 * 35;
                 usage = 1;
             }

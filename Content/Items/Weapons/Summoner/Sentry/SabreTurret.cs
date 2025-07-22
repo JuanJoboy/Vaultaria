@@ -39,7 +39,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.mana = 10;
 
             // Other properties
-            Item.value = 10000;
+            Item.sellPrice(gold: 20);
             Item.UseSound = SoundID.Item44;
 
             Item.noMelee = true;
@@ -111,7 +111,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             }
 
             return pre != ModContent.PrefixType<Trickshot>() &&
-                       pre != ModContent.PrefixType<DoublePenetrating>();
+                   pre != ModContent.PrefixType<DoublePenetrating>();
         }
     }
 }

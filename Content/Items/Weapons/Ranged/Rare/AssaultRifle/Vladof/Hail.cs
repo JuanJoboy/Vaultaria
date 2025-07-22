@@ -3,12 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Common.Globals.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 {
@@ -23,29 +21,29 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 13;
             Item.shoot = ModContent.ProjectileType<HailBullet>();
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 75;
-            Item.crit = 6;
+            Item.damage = 15;
+            Item.crit = 20;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 5;
-            Item.useAnimation = 5;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(silver: 50);
             Item.UseSound = SoundID.Item11;
         }
         
@@ -59,12 +57,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-15f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+3% Lifesteal"));
+            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses Assault Rifle Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% Lifesteal per bullet")
+            {
+                OverrideColor = new Color(245, 201, 239) // Pink
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "What play thing can you offer me today?")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

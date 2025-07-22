@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+50% Deflection Chance\n+880% Deflected Bullet Damage\n+50% Damage Reduction"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+60 HP\n+5 Defense\n+50% Deflection Chance\n+880% Deflected Bullet Damage\n+50% Damage Reduction"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Deflects enemy bullets, sending them flying toward nearby enemies.")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
@@ -37,7 +37,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             player.statLifeMax2 += 60;
             player.statDefense += 5;
-            player.lifeRegen += 3;
+            player.lifeRegen += 2;
         }
     }
 }

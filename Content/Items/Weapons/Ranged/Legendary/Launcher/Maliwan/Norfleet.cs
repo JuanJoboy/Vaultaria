@@ -83,7 +83,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
                 damageLine.Text = finalDamage + " x 3 ranged damage";
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Shoots 3 elemental orbs that deal massive damage\nConsumes 25 Launcher Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 25 Launcher Ammo per shot"));
+
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots 3 elemental orbs that deal massive damage")
+            {
+                OverrideColor = new Color(168, 69, 95) // Master
+            });
 
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Blows up everything!")
             {

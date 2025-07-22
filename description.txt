@@ -1,1 +1,6 @@
-Modify this file with a description of your mod.
+[i/s1:35] - Crafting Stations
+2 new crafting Stations; 1 for crafting weapons, 1 for crafting shields
+
+[i/s1:1929] - 
+
+[i/s1:35] 

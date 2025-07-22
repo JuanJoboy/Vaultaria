@@ -78,7 +78,10 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws a flurry of fists"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws a flurry of fists")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "SLAB... Did you... Did you just jump of the BUZZARD'S NEST?!\nGOD DAMN YOU MAKE ME PROUD!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

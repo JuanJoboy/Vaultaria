@@ -12,17 +12,18 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 3);
             Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Launches Corrosive homing spikes when damaged with a projectile")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25 HP\n+3 Defense"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Launches Corrosive homing spikes when damaged with a projectile")
             {
                 OverrideColor = new Color(136, 235, 94) // Light Green
             });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deals Corrosive Thorn Damage to melee attackers")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals Corrosive Thorn Damage to melee attackers")
             {
                 OverrideColor = new Color(136, 235, 94) // Light Green
             });
@@ -34,9 +35,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 60;
-            player.statDefense += 5;
-            player.lifeRegen += 3;
+            player.statLifeMax2 += 25;
+            player.statDefense += 3;
         }
     }
 }

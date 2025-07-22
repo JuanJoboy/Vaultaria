@@ -15,15 +15,22 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(platinum: 1);
             Item.rare = ItemRarityID.Master;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 65% health, melee attacks do 80% bonus damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Deals 100% bonus thorn damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Releases a Fire Nova blast that deals 100 damage when health dips under 30%")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+150 HP\n+10 Defense\nRegenerates health rapidly"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When under 65% health, melee attacks do 80% bonus damage")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
+            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals 100% bonus thorn damage")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
+            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Releases a Fire Nova blast that deals 100 damage when health dips under 30%")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
@@ -37,7 +44,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             player.statLifeMax2 += 150;
             player.statDefense += 10;
-            player.lifeRegen += 4;
+            player.lifeRegen += 10;
 
             // Melee
             if (player.statLife <= (player.statLifeMax2 * 0.65f))

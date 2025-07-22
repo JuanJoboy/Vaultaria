@@ -113,7 +113,7 @@ namespace Vaultaria.Common.Players
 
             if (IsWearing(asteroidBelt))
             {
-                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 2f, 2);
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.2f, 2);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Vaultaria.Common.Players
 
             if (IsWearing(asteroidBelt))
             {
-                HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<Meteor>(), 2f, 2);
+                HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.2f, 2);
             }
         }
 

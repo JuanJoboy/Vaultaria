@@ -21,7 +21,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 10% health, become immune to all damage for 5 seconds\nMust have full health before immunity can be used again"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+30 HP\n+3 Defense\nRegenerates health"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When under 10% health, become immune to all damage for 5 seconds\nMust have full health before immunity can be used again")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "The process is called 'living'")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -30,7 +34,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 40;
+            player.statLifeMax2 += 30;
             player.statDefense += 3;
             player.lifeRegen += 2;
 

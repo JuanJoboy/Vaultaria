@@ -10,12 +10,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
     {
         public float shockMultiplier;
         public float slagMultiplier;
-        private float elementalChance = 20f;
+        private float elementalChance = 40f;
         private short shockProjectile = ElementalID.ShockProjectile;
         private short slagProjectile = ElementalID.SlagProjectile;
         private int shockBuff = ElementalID.ShockBuff;
         private int slagBuff = ElementalID.SlagBuff;
-        private int buffTime = 180;
+        private int buffTime = 90;
 
         public override void SetDefaults()
         {
@@ -43,21 +43,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(4, Projectile);
         }
 
         public override void OnKill(int timeLeft)

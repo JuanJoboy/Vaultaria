@@ -73,7 +73,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires a nuke\nConsumes 20 Launcher Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 20 Launcher Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires a nuke")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Name dropper.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

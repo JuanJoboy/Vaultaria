@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Audio;
-using Terraria.Utilities;
 using Vaultaria.Content.Prefixes.Shields;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 
@@ -29,17 +28,18 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Grants immunity to Incendiary damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+4 Defense"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Grants immunity to Incendiary damage")
             {
                 OverrideColor = new Color(231, 92, 22) // Orange
             });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Continually releases Fire Nova blasts that deals 75 damage when under 30% health")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Continually releases Fire Nova blasts that deals 40 damage when under 30% health")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
@@ -51,9 +51,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 40;
+            player.statLifeMax2 += 20;
             player.statDefense += 4;
-            player.lifeRegen += 2;
 
             player.AddBuff(1, 60); // Obsidian Skin
             player.AddBuff(116, 60); // Inferno
@@ -72,7 +71,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             if (player.statLife <= (player.statLifeMax2 * 0.3f) && novaCooldown <= 0)
             {
                 // 3. If conditions are met, spawn the nova
-                int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(100);
+                int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(50);
                 float novaKnockback = 5f;
                 int novaType = ProjectileID.DD2ExplosiveTrapT3Explosion; // Using vanilla explosion projectile
 
@@ -93,6 +92,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 // 4. Reset the cooldown timer after spawning the nova
                 novaCooldown = 60; // 120 ticks = 2 seconds
             }
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Inflammable>();
         }
     }
 }

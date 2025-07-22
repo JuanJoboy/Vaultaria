@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Accessories.Shields;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
@@ -23,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1f;
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -36,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2.3f;
-            Item.damage = 35;
+            Item.damage = 18;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -53,7 +52,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-8f, 0f);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -67,6 +66,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             {
                 isInMeleeMode = true;
 
+                Item.damage = 18;
+                Item.crit = 6;
                 Item.DamageType = DamageClass.Melee;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = false;
@@ -77,7 +78,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
                 Item.useTime = 10;
                 Item.useAnimation = 10;
-                Item.damage = 50;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
                 Item.useTurn = true;
@@ -86,6 +86,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             {
                 isInMeleeMode = false;
 
+                Item.damage = 18;
+                Item.crit = 6;
+                Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 4f;
@@ -118,8 +121,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped")
+            {
+                OverrideColor = new Color(245, 201, 239) // Pink   
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "De Da.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

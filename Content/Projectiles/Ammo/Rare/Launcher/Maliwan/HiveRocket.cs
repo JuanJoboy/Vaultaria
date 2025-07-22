@@ -11,7 +11,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
 {
     public class HiveRocket : ElementalProjectile
     {
-        public float corrosiveMultiplier = 1f;
+        public float corrosiveMultiplier = 2f;
         private float elementalChance = 100f;
         private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
         private int corrosiveBuff = ElementalID.CorrosiveBuff;

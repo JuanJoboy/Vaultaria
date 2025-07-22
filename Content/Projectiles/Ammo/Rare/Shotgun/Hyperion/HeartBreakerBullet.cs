@@ -8,11 +8,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 {
     public class HeartBreakerBullet : ElementalProjectile
     {
-        public float incendiaryMultiplier = 0.4f;
-        private float elementalChance = 40;
+        public float incendiaryMultiplier = 0.5f;
+        private float elementalChance = 5;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
-        private int buffTime = 180;
+        private int buffTime = 45;
 
         public override void SetDefaults()
         {
@@ -54,7 +54,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 0.2f, Projectile);
+            Utilities.HealOnNPCHit(target, damageDone, 2f, Projectile);
 
             if (SetElementalChance(elementalChance))
             {
@@ -65,7 +65,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.2f, Projectile);
+            Utilities.HealOnPlayerHit(target, info.SourceDamage, 2f, Projectile);
 
             if (SetElementalChance(elementalChance))
             {

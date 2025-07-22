@@ -12,13 +12,14 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 3);
             Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When at max health, non-melee attacks deals 40% bonus Amp Damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25 HP\n+4 Defense\nRegenerates health"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When at max health, non-melee attacks deals 40% bonus Amp Damage")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
@@ -30,7 +31,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 50;
+            player.statLifeMax2 += 25;
             player.statDefense += 4;
             player.lifeRegen += 2;
 

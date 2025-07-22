@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Buffs.GunEffects;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
@@ -21,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1f;
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Purple;
 
@@ -33,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 15;
+            Item.damage = 20;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -49,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(6f, 0f);
+            return new Vector2(-15f, 0f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -72,12 +71,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Orc has a 30% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Orc has a 10% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+1 Projectile\n\t+20% Damage\n\t+50% Fire Rate\n\tProjectiles ricochet")
             {
                 OverrideColor = new Color(224, 224, 224) // Light Grey
             });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Drops from ogre in old ones army"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Have I achieved worth yet?")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
@@ -88,9 +86,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
         {
             if (!player.HasBuff(ModContent.BuffType<OrcEffect>()))
             {
-                if (Main.rand.Next(0, 10) == 5)
+                if (Utilities.Randomizer(10))
                 {
-                    player.AddBuff(ModContent.BuffType<OrcEffect>(), 600);
+                    player.AddBuff(ModContent.BuffType<DrunkEffect>(), 600);   
                 }
             }
         }

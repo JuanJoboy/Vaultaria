@@ -3,12 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Common.Globals.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
 {
@@ -23,20 +21,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.65f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 9f;
+            Item.shootSpeed = 10f;
             Item.shoot = ModContent.ProjectileType<LeadStormBullet>();
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 65;
-            Item.crit = 26;
+            Item.damage = 45;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 6;
@@ -51,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-20f, 0f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -66,7 +64,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires heavily arching bullets that split into 3 after a split second"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires 3 arching bullets\nUses Assault Rifle Ammo"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "What a glorious feeling!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

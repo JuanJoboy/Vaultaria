@@ -82,7 +82,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             {
                 Player player = Main.LocalPlayer;
                 int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 6 ranged damage";
+                damageLine.Text = finalDamage + " x 7 ranged damage";
             }
 
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires as fast as you can pull the trigger"));

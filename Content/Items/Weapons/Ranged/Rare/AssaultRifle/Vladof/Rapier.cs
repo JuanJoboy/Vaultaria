@@ -22,25 +22,25 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 1.3f;
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 15;
+            Item.shootSpeed = 12;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 1f;
-            Item.damage = 15;
+            Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
             Item.useTurn = true;
@@ -66,7 +66,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
                 Item.useTime = 10;
                 Item.useAnimation = 10;
-                Item.damage = 400;
+                Item.damage = 220;
+                Item.crit = 0;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
                 Item.useTurn = true;
@@ -75,6 +76,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             {
                 isInMeleeMode = false;
 
+                Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 4f;
@@ -82,6 +84,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.useAmmo = AmmoID.Bullet;
                 Item.UseSound = SoundID.Item1;
 
+                Item.damage = 30;
+                Item.crit = 0;
                 Item.useTime = 15;
                 Item.useAnimation = 15;
                 Item.reuseDelay = 1;
@@ -113,7 +117,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(-15f, 0f);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -129,7 +133,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
-            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Porcelain Fist!")
+            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Porcelain Fist!\n(Take 3x more damage)")
             {
                 OverrideColor = new Color(0, 249, 199) // Cyan
             });

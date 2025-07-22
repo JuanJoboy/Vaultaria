@@ -6,8 +6,9 @@ Add FFYL where the screen turns red and the player has 10 seconds to kill someth
 
 1. Add sources for every item - Tick
 2. Fix item sprites - Tick
-3. Fix item features and scale them to their progression and fix held-item-vector
-make sure every item says what it does and says "uses Pistol Ammo" and if it says the element, make it colored
+3. Fix item features and scale them to their progression and fix held-item-vector - Tick
+3. make sure every item says what it does and says "uses Pistol Ammo" and if it says the element, make it colored - Tick
+Make everything have good sound effects
 4. Make the mod description & tell people to use Quite Enough Recipes mod, as it says where drops come from and how to craft items. Recipe Viewer is also good cause it shows a recipe tree. Is intended for Master mode or Expert mode
 5. Publish
 6. Make a Discord?

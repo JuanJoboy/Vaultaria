@@ -73,7 +73,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Shoots a more powerful Fiery nuke\nConsumes 20 Launcher Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 20 Launcher Ammo per shot"));
+
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a more powerful Fiery nuke")
+            {
+                OverrideColor = new Color(231, 92, 22) // Orange
+            });
+            
             tooltips.Add(new TooltipLine(Mod, "Red Text", "War does not compute.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

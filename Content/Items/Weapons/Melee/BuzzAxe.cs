@@ -128,7 +128,10 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Right-Click to throw an explosive buzz axe"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Right-Click to throw an explosive buzz axe")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "I'M THE CONDUCTOR OF THE POOP TRAIN!!!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
