@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item96;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

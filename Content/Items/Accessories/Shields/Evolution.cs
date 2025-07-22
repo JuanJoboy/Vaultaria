@@ -69,8 +69,12 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
-                .AddIngredient(ItemID.LunarBar, 60)
                 .AddIngredient(ItemID.AnkhShield, 1)
+                .AddIngredient(ItemID.LunarBar, 50)
+                .AddIngredient(ItemID.FragmentSolar, 25)
+                .AddIngredient(ItemID.FragmentVortex, 25)
+                .AddIngredient(ItemID.FragmentStardust, 25)
+                .AddIngredient(ItemID.FragmentNebula, 25)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
                 .Register();
         }

@@ -45,7 +45,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Item.UseSound = SoundID.Item23;
         }
 
         public override Vector2? HoldoutOffset()
@@ -63,7 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         {
 
             if (player.altFunctionUse == 2) // Shoot
-            {                
+            {
                 isInMeleeMode = false;
 
                 Item.DamageType = DamageClass.Ranged;
@@ -77,6 +76,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.reuseDelay = 2;
                 Item.autoReuse = true;
                 Item.useTurn = true;
+                Item.UseSound = SoundID.Item23;
             }
             else // Melee
             {
@@ -94,6 +94,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
                 Item.useTurn = true;
+                Item.UseSound = SoundID.Item23;
             }
 
             return base.CanUseItem(player);

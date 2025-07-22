@@ -18,7 +18,7 @@ public abstract class ModRelic : ModItem
                 continue;
             }
 
-            if (player.armor[i].ModItem is ModRelic)
+            if (player.armor[i].ModItem?.GetType() == this.GetType())
             {
                 return false;
             }
@@ -29,14 +29,6 @@ public abstract class ModRelic : ModItem
 
     public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
     {
-        for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
-        {
-            if (player.armor[i].ModItem is ModRelic)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return !(equippedItem.ModItem is ModRelic && incomingItem.ModItem is ModRelic);
     }
 }

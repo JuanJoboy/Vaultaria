@@ -78,7 +78,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "+50% Love"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip3", "+3000% Damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Firing Increases Accuracy\nOn tile collision, the initial projectile splits into 10 projectiles"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Firing Increases Accuracy"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip5", "On tile collision, the initial Projectile splits into 10 Projectiles")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Would I lie to you?")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

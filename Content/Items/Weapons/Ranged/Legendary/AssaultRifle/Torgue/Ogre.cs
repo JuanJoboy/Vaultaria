@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Item.UseSound = SoundID.Item14;
+            Item.UseSound = SoundID.Item11;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -74,7 +74,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
                 damageLine.Text = finalDamage + " x 3 ranged damage";
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Rapidly fires 3 explosive bullets")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Assault Rifle Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly fires 3 explosive bullets")
             {
                 OverrideColor = new Color(228, 227, 105) // Light Yellow
             });

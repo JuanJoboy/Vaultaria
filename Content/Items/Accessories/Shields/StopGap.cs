@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -40,6 +41,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
             if (player.statLife <= player.statLifeMax2 * 0.1 && usage == 0)
             {
+                SoundEngine.PlaySound(SoundID.Item176);
                 player.immune = true;
                 player.immuneTime = 300;
                 usage = 1;

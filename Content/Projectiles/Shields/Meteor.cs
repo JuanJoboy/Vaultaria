@@ -7,6 +7,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Shields
 {
@@ -55,6 +56,8 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnKill(int timeLeft)
         {
+            SoundEngine.PlaySound(SoundID.Item89);
+
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
