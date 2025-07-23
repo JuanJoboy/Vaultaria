@@ -12,3 +12,5 @@ Make everything have good sound effects
 4. Make the mod description & tell people to use Quite Enough Recipes mod, as it says where drops come from and how to craft items. Recipe Viewer is also good cause it shows a recipe tree. Is intended for Master mode or Expert mode
 5. Publish
 6. Make a Discord?
+
+Reskin the guide to be claptrap and have him tell you what to do / how to play this mod. or just make a new npc.
