@@ -43,13 +43,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(copper: 60);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item31;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.IronBar, 5)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.LeadBar, 5)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

@@ -44,6 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Other properties
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Green;
+            Item.UseSound = SoundID.NPCHit16; 
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

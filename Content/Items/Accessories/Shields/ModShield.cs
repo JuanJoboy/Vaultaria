@@ -18,7 +18,7 @@ public abstract class ModShield : ModItem
                 continue; // Without this, you can't replace a shield, you have to manually take the active one out before replacing it
             }
 
-            if (player.armor[i].ModItem is ModShield)
+            if (player.armor[i].ModItem?.GetType() == this.GetType())
             {
                 return false;
             }
@@ -29,14 +29,6 @@ public abstract class ModShield : ModItem
 
     public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
     {
-        for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
-        {
-            if (player.armor[i].ModItem is ModShield)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return !(equippedItem.ModItem is ModShield && incomingItem.ModItem is ModShield);
     }
 }

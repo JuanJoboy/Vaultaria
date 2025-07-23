@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Shields
 {
@@ -61,6 +62,8 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnKill(int timeLeft)
         {
+            SoundEngine.PlaySound(SoundID.Item126);
+
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {

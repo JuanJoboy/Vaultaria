@@ -377,7 +377,7 @@ Buffs: {
 
 	DeathEffect: {
 		DisplayName: Death Effect
-		Description: The next hits against you restores you to full health
+		Description: If under 20% health, the next hits against you restore you to full health
 	}
 }
 

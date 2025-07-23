@@ -42,16 +42,14 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             CreateRecipe()
                 .AddIngredient<Eridium>(30)
                 .AddIngredient(ItemID.PlatinumBar, 8)
-                .AddIngredient(ItemID.MeteoriteBar, 8)
-                .AddIngredient(ItemID.SoulofMight, 20)
+                .AddIngredient(ItemID.MeteoriteBar, 16)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
                 .Register();
 
             CreateRecipe()
                 .AddIngredient<Eridium>(30)
                 .AddIngredient(ItemID.GoldBar, 8)
-                .AddIngredient(ItemID.MeteoriteBar, 8)
-                .AddIngredient(ItemID.SoulofMight, 20)
+                .AddIngredient(ItemID.MeteoriteBar, 16)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
                 .Register();
         }

@@ -37,6 +37,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 .AddIngredient(ItemID.IronBar, 5)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
                 .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.LeadBar, 5)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
+                .Register();
         }
     }
 }

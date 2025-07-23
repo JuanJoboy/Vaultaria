@@ -53,6 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             CreateRecipe()
                 .AddIngredient<Eridium>(50)
                 .AddIngredient(ItemID.SniperRifle, 1)
+                .AddIngredient(ItemID.SoulofFright, 25)
                 .AddIngredient(ItemID.Ectoplasm, 25)
                 .AddIngredient(ItemID.IllegalGunParts, 3)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
@@ -86,7 +87,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Initial Projectile splits into 3 Projectiles\nUses Sniper Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Sniper Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Initial Projectile splits into 3 Projectiles")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
+            });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Man killer.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

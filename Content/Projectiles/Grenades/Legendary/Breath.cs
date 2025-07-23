@@ -78,7 +78,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
         {
             Shoot();
 
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Item20, Projectile.position);
 
             for (int i = 0; i < 20; i++)
             {

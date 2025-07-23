@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.shootSpeed = 0f;
                 Item.shoot = ProjectileID.None;
                 Item.useAmmo = AmmoID.None;
-                Item.UseSound = SoundID.Item23;
+                Item.UseSound = SoundID.Item1;
 
                 Item.useTime = 10;
                 Item.useAnimation = 10;
@@ -82,7 +82,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.shootSpeed = 4f;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Item.UseSound = SoundID.Item1;
+                Item.UseSound = SoundID.Item11;
 
                 Item.damage = 30;
                 Item.crit = 0;
