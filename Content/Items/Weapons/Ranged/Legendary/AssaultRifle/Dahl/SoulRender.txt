@@ -1,0 +1,7 @@
+Each Soulrender shot has a 12.5% Chance to send out 2 homing purple skulls at the nearest enemy.
+Each Skull explodes on impact, dealing [element] Splash Damage that is 8x Base Damage.
+
+Firing Modes:
+The Soulrender can swap between either [Full-Auto & 3-Round Burst], [Full-Auto & Semi-Auto] or [3-Round Burst & Semi-Auto].
+
+Picture a soul. Now REND that thing!

@@ -27,7 +27,6 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan;
-using Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;

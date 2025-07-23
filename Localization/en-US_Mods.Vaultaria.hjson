@@ -1,16 +1,16 @@
 Tiles: {
-	ZedVendingMachine.MapEntry: Zed Vending Machine
-	MarcusVendingMachine.MapEntry: Marcus Vending Machine
+	ZedVendingMachine.MapEntry: Zed's Vending Machine
+	MarcusVendingMachine.MapEntry: Marcus's Vending Machine
 }
 
 Items: {
 	MarcusVendingMachine: {
-		DisplayName: Marcus Vending Machine
+		DisplayName: Marcus's Vending Machine
 		Tooltip: ""
 	}
 
 	ZedVendingMachine: {
-		DisplayName: Zed Vending Machine
+		DisplayName: Zed's Vending Machine
 		Tooltip: ""
 	}
 
@@ -150,7 +150,7 @@ Items: {
 	}
 
 	SubmachineGunAmmo: {
-		DisplayName: Submachine Gun Ammo
+		DisplayName: SMG Ammo
 		Tooltip: ""
 	}
 
@@ -302,7 +302,7 @@ Items: {
 
 Projectiles: {
 	ShredifierBullet.DisplayName: Shredifier Bullet
-	UHBullet.DisplayName: U H Bullet
+	UHBullet.DisplayName: UH Bullet
 	FibberBullet.DisplayName: Fibber Bullet
 	GrogBullet.DisplayName: Grog Bullet
 	BuzzAxeBombardier.DisplayName: Buzz Axe Bombardier

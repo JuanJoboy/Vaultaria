@@ -1,19 +1,22 @@
 -- INTRODUCTION --
 
-Greetings Minion, it is I, your Master CL4P-TP. You've been a good minion to me all these years but I think it's time for you to finally venture of on your own. And I've found the perfect planet for you to start your solo journey, the land of Terraria. They say the planet is ravaged by spirits and that some lunatic cult members are trying to awaken an old god. Sounds familiar... anyways Minion, get out there and show those psychos what a badass Vault Hunter trained by the mighty CL4P-TP can do. 
+Greetings Minion, it is I, your glorious Master CL4P-TP. You've been a loyal squire for far too long, and I think it's finally time for you to set out on an adventure of your own. And guess what? I've found the perfect planet for you: Terraria.
+Word on the ECHOnet is that it's crawling with weird monsters and some lunatic cult members trying to wake up an ancient god. Sound familiar? Yeah, I thought so. Anyways, get out there and show those psychos what a badass Vault Hunter trained by yours truly can do.
 
 -- MOD INFORMATION --
 
-This mod is a simple Borderlands mod that I decided to make because I am a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 56 new items in this mod (with more on the way) as well as new prefixes to give your items. Some prefixes may not be great on some weapons and in general I'm open to any feedback you guys may have.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 56 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
-The mod is designed to be played in Expert or Master mode because that's what I scaled the weapons for; and every item was designed with progression in mind. So every boss drops something, and items can be crafted during various stages of the game.
+This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
+
+And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and chaos. Feedback, bug reports, and wild weapon ideas are always welcome!
 
 [i/s1:4] -- WEAPONS --
 
 [i/s1:2177] - 6 Ammo Types
 [i/s1:168] - 4 Grenades
-[i/s1:1297] - 1 Melee
-[i/s1:1513] - 3 Melee & Gun fusions
+[i/s1:1297] - 1 Melee Weapon
+[i/s1:1513] - 3 Melee-Gun fusions
 [i/s1:1929] - 25 Guns
 [i/s1:1572] - 1 Sentry
 
@@ -24,25 +27,44 @@ The mod is designed to be played in Expert or Master mode because that's what I 
 
 [i/s1:35] -- CRAFTING STATIONS --
 
-2 new crafting Stations; 1 for crafting weapons, and 1 for crafting shields
+2 New Crafting Stations:
+    * 1 for Weapons
+    * 1 for Shields
 
 [i/s1:23] -- MATERIALS --
 
-Eridium is used in most recipes and is a guaranteed drop from every boss, with later stage bosses dropping more Eridium
+Eridium:
+    * Dropped by every boss
+    * Higher-tier bosses drop more
+    * Used in most crafting recipes
 
 -- CONSIDERATIONS --
 
 Q: What mods are compatible?
-A: Any mod should work fine as no changes are being made to mobs, bosses or world generation.
+A: Any mod should work fine, as no changes are being made to mobs, bosses or world generation.
 
 Q: Are you associated with Terralands: Project Vaulthalla?
-A: No, I am not associated with them, that is a separate Borderlands mod that does its own thing. Although both our mods can be run at the same time, I designed this mod to be standalone.
+A: Nope, while we are both Borderlands mods, Vaultaria is a totally separate experience and is designed to stand on its own.
 
 Q: What mods do you recommend?
-A: I heavily recommend that you play with Quite Enough Recipes, as it allows you to see how every item can be obtained. It shows item recipes and if an enemy drops an item, it'll show the drop sources as well as the drop rates. Recipe Viewer is also good as you can see the full recipe tree of an item.
+A: Quite Enough Recipes - For full recipe and drop info
+   Recipe Viewer - Great for seeing full crafting trees
+   Any content mod you enjoy (Calamity, Fargo's, etc.)
+   (The links for Quite Enough Recipes and Recipe Viewer are at the bottom)
 
 Q: Where can I submit feedback?
-A: As of now, there is no Discord so the comment section on the steam page would be the best place.
+A: The steam workshop page would be the best place.
 
-Q: Who worked on this mod?
-A: I'm the sole developer.
+Q: Why do the sprites look like that?
+A: Since I'm the only dev on this project, and I'm not great with pixel art, I decided to use those sprites. They're functional and let me show off the vision I have for this mod.
+
+-- FINAL WORD --
+
+That's all for now Minion. I'll be watching from Sanctuary III (and laughing at your failures).
+Now get out there and cause some mayhem, Vault Hunter...
+
+- CL4P-TP
+
+
+Quite Enough Recipes - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+Recipe Viewer - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes

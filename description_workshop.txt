@@ -1,1 +1,66 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+[h3] INTRODUCTION [/h3]
+Greetings Minion, it is I, your glorious Master [b] CL4P-TP [/b]. You've been a loyal squire for far too long, and I think it's finally time for you to set out on an adventure of your own. And guess what? I've found the perfect planet for you: [b] Terraria [/b].
+Word on the ECHOnet is that it's crawling with weird monsters and some lunatic cult members trying to wake up an ancient god. Sound familiar? Yeah, I thought so. Anyways, get out there and show those psychos what a badass Vault Hunter [i] trained by yours truly [/i] can do.
+
+[h3] MOD INFORMATION [/h3]
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 56 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+
+This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
+
+And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and chaos. Feedback, bug reports, and wild weapon ideas are always welcome!
+
+[h3] WEAPONS [/h3]
+[list][*]6 Ammo Types
+[*]4 Grenades
+[*]1 Melee Weapon
+[*]3 Melee-Gun fusions
+[*]25 Guns
+[*]1 Sentry
+[/list]
+
+[h3] ACCESSORIES [/h3]
+[list][*]11 Shields
+[*]2 Relics
+[/list]
+
+[h3] CRAFTING STATIONS [/h3]
+2 New Crafting Stations:
+[list][*]1 for Weapons
+    [*]1 for Shields
+[/list]
+
+[h3] MATERIALS [/h3]
+Eridium:
+[list][*]Dropped by every boss
+    [*]Higher-tier bosses drop more
+    [*]Used in most crafting recipes
+[/list]
+
+[h3] CONSIDERATIONS [/h3]
+[b] Q: What mods are compatible? [/b]
+A: Any mod should work fine, as no changes are being made to mobs, bosses or world generation.
+
+[b] Q: Are you associated with Terralands: Project Vaulthalla? [/b]
+A: Nope, while we are both Borderlands mods, Vaultaria is a totally separate experience and is designed to stand on its own.
+
+[b] Q: What mods do you recommend? [/b]
+A: Quite Enough Recipes - For full recipe and drop info
+   Recipe Viewer - Great for seeing full crafting trees
+   Any content mod you enjoy (Calamity, Fargo's, etc.)
+   (The links for Quite Enough Recipes and Recipe Viewer are at the bottom)
+
+[b] Q: Where can I submit feedback? [/b]
+A: The steam workshop page would be the best place.
+
+[b] Q: Why do the sprites look like that? [/b]
+A: Since I'm the only dev on this project, and I'm not great with pixel art, I decided to use those sprites. They're functional and let me show off the vision I have for this mod.
+
+[h3] FINAL WORD [/h3]
+That's all for now Minion. I'll be watching from Sanctuary III (and laughing at your failures).
+Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/b][/i][/u]
+
+[b] - CL4P-TP 👋 [/b]
+
+
+Quite Enough Recipes - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+Recipe Viewer - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
