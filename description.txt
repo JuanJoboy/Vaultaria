@@ -5,7 +5,7 @@ Word on the ECHOnet is that it's crawling with weird monsters and some lunatic c
 
 -- MOD INFORMATION --
 
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 56 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 57 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
 This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
 
@@ -23,7 +23,7 @@ And this is just the beginning - I plan to keep expanding with more weapons, mec
 [i/s1:54] -- ACCESSORIES -- 
 
 [i/s1:156] - 11 Shields
-[i/s1:891] - 2 Relics
+[i/s1:891] - 3 Relics
 
 [i/s1:35] -- CRAFTING STATIONS --
 
@@ -50,7 +50,6 @@ Q: What mods do you recommend?
 A: Quite Enough Recipes - For full recipe and drop info
    Recipe Viewer - Great for seeing full crafting trees
    Any content mod you enjoy (Calamity, Fargo's, etc.)
-   (The links for Quite Enough Recipes and Recipe Viewer are at the bottom)
 
 Q: Where can I submit feedback?
 A: The steam workshop page would be the best place.
@@ -64,7 +63,3 @@ That's all for now Minion. I'll be watching from Sanctuary III (and laughing at 
 Now get out there and cause some mayhem, Vault Hunter...
 
 - CL4P-TP
-
-
-Quite Enough Recipes - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
-Recipe Viewer - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes

@@ -3,7 +3,7 @@ Greetings Minion, it is I, your glorious Master [b] CL4P-TP [/b]. You've been a 
 Word on the ECHOnet is that it's crawling with weird monsters and some lunatic cult members trying to wake up an ancient god. Sound familiar? Yeah, I thought so. Anyways, get out there and show those psychos what a badass Vault Hunter [i] trained by yours truly [/i] can do.
 
 [h3] MOD INFORMATION [/h3]
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 56 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 57 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
 This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
 
@@ -20,7 +20,7 @@ And this is just the beginning - I plan to keep expanding with more weapons, mec
 
 [h3] ACCESSORIES [/h3]
 [list][*]11 Shields
-[*]2 Relics
+[*]3 Relics
 [/list]
 
 [h3] CRAFTING STATIONS [/h3]
@@ -62,5 +62,6 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/b][/i][/u]
 [b] - CL4P-TP 👋 [/b]
 
 
-Quite Enough Recipes - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
-Recipe Viewer - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+[h3] RECOMMENDED QOL MODS [/h3]
+[b] Quite Enough Recipes [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+[b] Recipe Viewer [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes

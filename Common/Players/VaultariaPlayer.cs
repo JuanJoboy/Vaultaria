@@ -159,12 +159,21 @@ namespace Vaultaria.Common.Players
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             int ottoIdol = ModContent.ItemType<OttoIdol>();
+            int planetoid = ModContent.ItemType<CommanderPlanetoid>();
 
             if (IsWearing(ottoIdol))
             {
                 if (target.life <= 0)
                 {
-                    Player.Heal((int) (Player.statLifeMax2 * 0.1f)); // Heals for 10% of health
+                    Player.Heal((int)(Player.statLifeMax2 * 0.1f)); // Heals for 10% of health
+                }
+            }
+
+            if (IsWearing(planetoid))
+            {
+                if (hit.DamageType == DamageClass.Melee) // Allow only on melee hits
+                {
+                    ElementRandomizer(target, hit, damageDone);
                 }
             }
         }
@@ -309,6 +318,31 @@ namespace Vaultaria.Common.Players
             if (Player.HeldItem.type == ModContent.ItemType<Rapier>())
             {
                 modifiers.SourceDamage *= 3f; // If holding the rapier, take 3x more damage
+            }
+        }
+
+        private void ElementRandomizer(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            switch (Main.rand.Next(1, 7))
+            {
+                case 1:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 60);
+                    break;
+                case 2:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.ShockProjectile, ElementalID.ShockBuff, 60);
+                    break;
+                case 3:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, 60);
+                    break;
+                case 4:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.SlagProjectile, ElementalID.SlagBuff, 60);
+                    break;
+                case 5:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.CryoProjectile, ElementalID.CryoBuff, 60);
+                    break;
+                case 6:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
+                    break;
             }
         }
     }

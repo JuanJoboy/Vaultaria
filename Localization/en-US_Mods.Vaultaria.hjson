@@ -298,6 +298,11 @@ Items: {
 		DisplayName: Zim
 		Tooltip: ""
 	}
+
+	CommanderPlanetoid: {
+		DisplayName: Commander Planetoid
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
