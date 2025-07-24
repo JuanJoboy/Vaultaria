@@ -49,6 +49,7 @@ A: Nope, while we are both Borderlands mods, Vaultaria is a totally separate exp
 Q: What mods do you recommend?
 A: Quite Enough Recipes - For full recipe and drop info
    Recipe Viewer - Great for seeing full crafting trees
+   Loot Beams - Adds the Borderlands loot beam effect
    Any content mod you enjoy (Calamity, Fargo's, etc.)
 
 Q: Where can I submit feedback?

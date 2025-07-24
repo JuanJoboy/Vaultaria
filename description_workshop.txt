@@ -46,8 +46,9 @@ A: Nope, while we are both Borderlands mods, Vaultaria is a totally separate exp
 [b] Q: What mods do you recommend? [/b]
 A: Quite Enough Recipes - For full recipe and drop info
    Recipe Viewer - Great for seeing full crafting trees
+   Loot Beams - Adds the Borderlands loot beam effect
    Any content mod you enjoy (Calamity, Fargo's, etc.)
-   (The links for Quite Enough Recipes and Recipe Viewer are at the bottom)
+   (The recommended mods are linked at the bottom)
 
 [b] Q: Where can I submit feedback? [/b]
 A: The steam workshop page would be the best place.
@@ -65,3 +66,4 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/b][/i][/u]
 [h3] RECOMMENDED QOL MODS [/h3]
 [b] Quite Enough Recipes [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
 [b] Recipe Viewer [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+[b] Loot Beams [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=2847872897&searchtext=loot+beam

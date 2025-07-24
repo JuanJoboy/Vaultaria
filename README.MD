@@ -59,8 +59,9 @@ Eridium:
 **Q: What mods do you recommend?**
 <br>A: Quite Enough Recipes - For full recipe and drop info
 <br>Recipe Viewer - Great for seeing full crafting trees
+<br>Loot Beams - Adds the Borderlands loot beam effect
 <br>Any content mod you enjoy (Calamity, Fargo's, etc.)
-<br>(The links for Quite Enough Recipes and Recipe Viewer are at the bottom)
+<br>(The recommended mods are linked at the bottom)
 
 **Q: Where can I submit feedback?**
 <br>A: The steam workshop page would be the best place.
@@ -81,3 +82,4 @@ Now get out there and cause some mayhem, ***Vault Hunter...***
 
 **Quite Enough Recipes** - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
 <br> **Recipe Viewer** - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
+<br> **Loot Beams** - https://steamcommunity.com/sharedfiles/filedetails/?id=2847872897&searchtext=loot+beam

@@ -173,7 +173,7 @@ namespace Vaultaria.Common.Players
             {
                 if (hit.DamageType == DamageClass.Melee) // Allow only on melee hits
                 {
-                    ElementRandomizer(target, hit, damageDone);
+                    ElementRandomizer(target, hit);
                 }
             }
         }
@@ -321,7 +321,7 @@ namespace Vaultaria.Common.Players
             }
         }
 
-        private void ElementRandomizer(NPC target, NPC.HitInfo hit, int damageDone)
+        private void ElementRandomizer(NPC target, NPC.HitInfo hit)
         {
             switch (Main.rand.Next(1, 7))
             {
