@@ -34,7 +34,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof
         public override void AI()
         {
             base.AI();
-
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
     }

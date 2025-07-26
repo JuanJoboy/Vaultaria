@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using rail;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -34,13 +35,16 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statLifeMax2 += 25;
             player.statDefense += 4;
             player.lifeRegen += 2;
+        }
 
-            if (player.statLife == player.statLifeMax2)
+        public override void UpdateEquip(Player player)
+        {
+            if (player.statLife >= player.statLifeMax2 - 10)
             {
                 // Increases Ranged, Mage & Summoner damage by 40%
-                player.GetDamage(DamageClass.Ranged) += 0.4f;
-                player.GetDamage(DamageClass.Magic) += 0.4f;
-                player.GetDamage(DamageClass.Summon) += 0.4f;
+                player.GetDamage(DamageClass.Ranged) *= 1.4f;
+                player.GetDamage(DamageClass.Magic) *= 1.4f;
+                player.GetDamage(DamageClass.Summon) *= 1.4f;
             }
         }
     }

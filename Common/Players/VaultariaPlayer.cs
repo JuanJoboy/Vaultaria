@@ -69,6 +69,11 @@ namespace Vaultaria.Common.Players
                 multiplier *= 1.3f;
             }
 
+            if (IsWearing(ModContent.ItemType<SuperSoldier>()) && Player.statLife == Player.statLifeMax2)
+            {
+                multiplier *= 1.5f;
+            }
+
             return multiplier;
         }
 

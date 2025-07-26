@@ -31,6 +31,8 @@ namespace Vaultaria.Content.Projectiles.Minions
             Projectile.penetrate = -1;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Summon;
+            Projectile.damage = 75;
 
             // Sprite
             Projectile.spriteDirection = 1;
@@ -39,7 +41,7 @@ namespace Vaultaria.Content.Projectiles.Minions
         // Nuke
         public override void OnSpawn(IEntitySource source)
         {
-            Projectile.NewProjectile(
+            Projectile proj = Projectile.NewProjectileDirect(
                 Projectile.GetSource_FromThis(),
                 Projectile.Center,
                 Vector2.Zero,
@@ -49,14 +51,16 @@ namespace Vaultaria.Content.Projectiles.Minions
                 Projectile.owner
             );
 
-            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
+            proj.DamageType = DamageClass.Summon;
+
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
         }
 
         public override void AI()
         {
             // Gets the owner and ensures that only one turret can spawn
             Player owner = Main.player[Projectile.owner];
-            owner.maxTurrets = 2;
+            owner.maxTurrets ++;
             owner.UpdateMaxTurrets();
 
             Projectile.velocity = Vector2.Zero; // Stay stationary
@@ -67,54 +71,59 @@ namespace Vaultaria.Content.Projectiles.Minions
             }
 
             NPC target = FindTarget();
+            int summonDamage = (int)(Projectile.originalDamage * owner.GetDamage(DamageClass.Summon).Multiplicative);
 
-            if (EnemyFoundToShoot(target))
+            if (EnemyFoundToShoot(target, 0, 6f))
             {
                 // Calculates a normalized direction to the target and scales it to a bullet speed of 8
                 Vector2 direction = target.Center - Projectile.Center;
                 direction.Normalize();
                 direction *= 8f;
 
-                Projectile.NewProjectile(
+                Projectile proj = Projectile.NewProjectileDirect(
                     Projectile.GetSource_FromThis(),
                     Projectile.Center,
                     direction,
                     ProjectileID.ChlorophyteBullet,
-                    40,
+                    summonDamage,
                     2f,
                     Projectile.owner
                 );
+
+                proj.DamageType = DamageClass.Summon;
 
                 // Reset fire timer
                 Projectile.ai[0] = 0f;
             }
 
-            if (EnemyFoundToExplode(target))
+            if (EnemyFoundToShoot(target, 1, 120f))
             {
                 Vector2 direction = target.Center - Projectile.Center;
                 direction.Normalize();
                 direction *= 8f;
 
-                Projectile.NewProjectile(
+                Projectile proj = Projectile.NewProjectileDirect(
                     Projectile.GetSource_FromThis(),
                     Projectile.Center,
                     direction,
                     ProjectileID.ClusterRocketI,
-                    100,
+                    summonDamage * 2,
                     0f,
                     Projectile.owner
                 );
+                
+                proj.DamageType = DamageClass.Summon;
 
                 Projectile.ai[1] = 0f;
             }
 
-            if (EnemyFoundToSlag(target))
+            if (EnemyFoundToShoot(target, 2, 60f))
             {
                 Vector2 direction = target.Center - Projectile.Center;
                 direction.Normalize();
                 direction *= 8f;
 
-                Projectile.NewProjectile(
+                Projectile proj = Projectile.NewProjectileDirect(
                     Projectile.GetSource_FromThis(),
                     Projectile.Center,
                     direction,
@@ -123,6 +132,8 @@ namespace Vaultaria.Content.Projectiles.Minions
                     2f,
                     Projectile.owner
                 );
+                
+                proj.DamageType = DamageClass.Summon;
 
                 Projectile.ai[2] = 0f;
             }
@@ -156,11 +167,11 @@ namespace Vaultaria.Content.Projectiles.Minions
             return false;
         }
 
-        private bool EnemyFoundToShoot(NPC target)
+        private bool EnemyFoundToShoot(NPC target, int index, float ticks)
         {
             // Fire timer stored in ai[0]
-            Projectile.ai[0]++;
-            if (Projectile.ai[0] >= 6f) // Fire every 6 ticks (~0.1 sec)
+            Projectile.ai[index]++;
+            if (Projectile.ai[index] >= ticks) // Fire every 6 ticks (~0.1 sec)
             {
                 if (target != null)
                 {
@@ -172,52 +183,6 @@ namespace Vaultaria.Content.Projectiles.Minions
                     else
                     {
                         Projectile.spriteDirection = -1; // Face left
-                    }
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private bool EnemyFoundToExplode(NPC target)
-        {
-            Projectile.ai[1]++;
-            if (Projectile.ai[1] >= 120f)
-            {
-                if (target != null)
-                {
-                    if (target.Center.X > Projectile.Center.X)
-                    {
-                        Projectile.spriteDirection = 1;
-                    }
-                    else
-                    {
-                        Projectile.spriteDirection = -1;
-                    }
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private bool EnemyFoundToSlag(NPC target)
-        {
-            Projectile.ai[2]++;
-            if (Projectile.ai[2] >= 60f)
-            {
-                if (target != null)
-                {
-                    if (target.Center.X > Projectile.Center.X)
-                    {
-                        Projectile.spriteDirection = 1;
-                    }
-                    else
-                    {
-                        Projectile.spriteDirection = -1;
                     }
 
                     return true;

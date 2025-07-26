@@ -52,6 +52,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.buffImmune[BuffID.Weak] = true;
             player.buffImmune[BuffID.Chilled] = true;
             player.buffImmune[BuffID.Stoned] = true;
+            player.noKnockback = true;
 
             // Elemental Immunities
             player.buffImmune[ModContent.BuffType<IncendiaryBuff>()] = true;

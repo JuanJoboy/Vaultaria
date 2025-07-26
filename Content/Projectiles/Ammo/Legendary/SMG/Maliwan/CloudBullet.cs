@@ -48,7 +48,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = true;
+                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = false;
             }
         }
 

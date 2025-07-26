@@ -46,13 +46,6 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statDefense += 10;
             player.lifeRegen += 10;
 
-            // Melee
-            if (player.statLife <= (player.statLifeMax2 * 0.65f))
-            {
-                // Increases Melee damage by 80%
-                player.GetDamage(DamageClass.Melee) += 0.8f;
-            }
-
             // Spike
             player.thorns = 1f; // 100% thorn damage
 
@@ -80,6 +73,16 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             if (player.statLife > (player.statLifeMax2 * 0.3f))
             {
                 usage = 1;
+            }
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            // Melee
+            if (player.statLife <= (player.statLifeMax2 * 0.65f))
+            {
+                // Increases Melee damage by 80%
+                player.GetDamage(DamageClass.Melee) += 0.8f;
             }
         }
     }

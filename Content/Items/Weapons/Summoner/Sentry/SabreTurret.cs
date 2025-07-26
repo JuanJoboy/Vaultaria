@@ -40,7 +40,6 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
             // Other properties
             Item.sellPrice(gold: 20);
-            Item.UseSound = SoundID.Item44;
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;

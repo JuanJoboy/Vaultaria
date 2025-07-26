@@ -38,7 +38,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             player.statLifeMax2 += 15;
             player.statDefense += 2;
+        }
 
+        public override void UpdateEquip(Player player)
+        {
             if (player.statLife <= (player.statLifeMax2 * 0.3f))
             {
                 // Increases Melee damage by 40%

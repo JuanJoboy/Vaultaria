@@ -110,7 +110,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion
 
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 
-            SoundEngine.PlaySound(SoundID.Item41, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Item50, Projectile.position);
 
             return false;
         }

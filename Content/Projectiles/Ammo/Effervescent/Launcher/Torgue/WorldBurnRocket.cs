@@ -30,7 +30,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             Projectile.aiStyle = 1;
 
             // Bullet Config
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 36000;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
         }
@@ -77,8 +77,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;

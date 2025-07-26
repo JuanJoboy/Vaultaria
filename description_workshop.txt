@@ -58,7 +58,7 @@ A: Since I'm the only dev on this project, and I'm not great with pixel art, I d
 
 [h3] FINAL WORD [/h3]
 That's all for now Minion. I'll be watching from Sanctuary III (and laughing at your failures).
-Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/b][/i][/u]
+Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/u][/i][/b]
 
 [b] - CL4P-TP 👋 [/b]
 

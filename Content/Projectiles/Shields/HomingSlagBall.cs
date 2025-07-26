@@ -66,7 +66,7 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item115);
+            SoundEngine.PlaySound(SoundID.Item154, Projectile.position);
 
             int numDust = 20;
             for (int i = 0; i < numDust; i++)

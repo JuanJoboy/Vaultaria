@@ -102,7 +102,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         {
             if (!player.HasBuff(ModContent.BuffType<DrunkEffect>()))
             {
-                if (Main.rand.Next(1, 700) == 500)
+                if (Main.rand.Next(1, 2000) == 1750)
                 {
                     player.AddBuff(ModContent.BuffType<DrunkEffect>(), 600);   
                 }

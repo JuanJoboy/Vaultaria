@@ -62,12 +62,12 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item126);
+            SoundEngine.PlaySound(SoundID.Item126, Projectile.position);
 
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.PureSpray).noGravity = true;
+                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = false;
             }
         }
 

@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
 
             // Other properties
             Item.value = Item.buyPrice(silver: 15);
-            Item.UseSound = SoundID.NPCHit15;
+            Item.UseSound = SoundID.Item169;
         }
 
         public override Vector2? HoldoutOffset()

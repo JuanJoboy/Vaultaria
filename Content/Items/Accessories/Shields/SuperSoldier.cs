@@ -51,17 +51,29 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             if (player.statLife == player.statLifeMax2)
             {
                 usage = 0;
+            }
+        }
 
-                player.GetAttackSpeed(DamageClass.Ranged) *= 0.50f;
+        // Doesn't seem to work when life == lif2, so I did life >= life - 10
+        // I use all ammo variables because otherwise the effect isn't very visible.
+        public override void UpdateEquip(Player player)
+        {
+            if (player.statLife >= player.statLifeMax2 - 10)
+            {
                 player.moveSpeed *= 1.25f;
-                player.ammoCost75 = true; // This gives a 25% chance not to consume ammo
+                player.ammoBox = true;
+                player.ammoCost75 = true;
+                player.ammoCost80 = true;
+                player.ammoPotion = true;
             }
 
-            if (player.statLife != player.statLifeMax2)
+            if (player.statLife <= player.statLifeMax2 - 11)
             {
-                player.GetAttackSpeed(DamageClass.Ranged) /= 0.50f;
                 player.moveSpeed /= 1.25f;
-                player.ammoCost75 = false; // This gives a 25% chance not to consume ammo
+                player.ammoBox = false;
+                player.ammoCost75 = false;
+                player.ammoCost80 = false;
+                player.ammoPotion = false;
             }
         }
 
