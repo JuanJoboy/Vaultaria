@@ -60,7 +60,7 @@ Items: {
 	}
 
 	BricksFists: {
-		DisplayName: Brick's Fists
+		DisplayName: Brick's Berserker Fists
 		Tooltip: ""
 	}
 
@@ -100,7 +100,7 @@ Items: {
 	}
 
 	SabreTurret: {
-		DisplayName: Sabre Turret
+		DisplayName: Axton's Sabre Turret
 		Tooltip: ""
 	}
 

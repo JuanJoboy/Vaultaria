@@ -121,7 +121,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Uses any normal bullet type as ammo\nRight-Click to do a melee attack"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped")
             {
                 OverrideColor = new Color(245, 201, 239) // Pink   

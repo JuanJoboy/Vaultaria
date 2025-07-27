@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.reuseDelay = 2;
             Item.knockBack = 2.3f;
             Item.autoReuse = true;
-            Item.mana = 10;
+            Item.mana = 20;
 
             // Other properties
             Item.sellPrice(gold: 20);

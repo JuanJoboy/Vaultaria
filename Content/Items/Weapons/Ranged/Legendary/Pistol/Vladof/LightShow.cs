@@ -85,6 +85,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
                 damageLine.Text = finalDamage + " x 4 ranged damage";
             }
 
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Give me some light, away!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

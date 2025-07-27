@@ -74,7 +74,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Fires a basic 3 burst round"));
+            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses any normal bullet type as ammo\nFires a basic 3 burst round"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Wait a minute - you're not dead!\nYES! Now I can get off this glacier!\nClaptrap, your metaphorical ship has finally come in!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

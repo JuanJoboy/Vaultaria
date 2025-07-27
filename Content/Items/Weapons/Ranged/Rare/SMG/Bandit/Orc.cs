@@ -71,7 +71,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Every 10 seconds the Orc has a 10% chance to Buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nHolding the Orc has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+1 Projectile\n\t+20% Damage\n\t+50% Fire Rate\n\tProjectiles ricochet")
             {
                 OverrideColor = new Color(224, 224, 224) // Light Grey

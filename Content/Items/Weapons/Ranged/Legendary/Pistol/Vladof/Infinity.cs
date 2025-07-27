@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.damage = 35;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -79,7 +79,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes no ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nConsumes no ammo"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "It's closer than you think! (no it isn't)")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

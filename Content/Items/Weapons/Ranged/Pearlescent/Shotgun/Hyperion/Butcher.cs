@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 110;
+            Item.damage = 80;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -93,7 +93,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
                 damageLine.Text = finalDamage + " x 5 ranged damage";
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "85% chance to not consume ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n85% chance to not consume ammo"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Fresh meat!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

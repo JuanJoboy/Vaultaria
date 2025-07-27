@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25 HP\n+4 Defense\nRegenerates health"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When at max health, non-melee attacks deals 40% bonus Amp Damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When at max health, non-melee attacks deals 25% bonus Amp Damage")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
@@ -41,10 +41,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             if (player.statLife >= player.statLifeMax2 - 10)
             {
-                // Increases Ranged, Mage & Summoner damage by 40%
-                player.GetDamage(DamageClass.Ranged) *= 1.4f;
-                player.GetDamage(DamageClass.Magic) *= 1.4f;
-                player.GetDamage(DamageClass.Summon) *= 1.4f;
+                // Increases Ranged, Mage & Summoner damage by 25%
+                player.GetDamage(DamageClass.Ranged) *= 1.25f;
+                player.GetDamage(DamageClass.Magic) *= 1.25f;
+                player.GetDamage(DamageClass.Summon) *= 1.25f;
             }
         }
     }

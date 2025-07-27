@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 1000;
+            Item.damage = 500;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

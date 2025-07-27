@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.damage = 25;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

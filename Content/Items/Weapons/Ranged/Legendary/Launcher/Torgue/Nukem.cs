@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 200;
+            Item.damage = 150;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

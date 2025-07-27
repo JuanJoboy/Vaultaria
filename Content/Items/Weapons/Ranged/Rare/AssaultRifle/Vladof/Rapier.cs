@@ -127,7 +127,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+200% Melee Damage"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n+200% Melee Damage"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "As I end the refrain, thrust home.")
             {

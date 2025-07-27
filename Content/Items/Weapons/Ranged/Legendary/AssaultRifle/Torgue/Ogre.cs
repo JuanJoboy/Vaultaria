@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue;
@@ -34,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.damage = 37;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

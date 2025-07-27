@@ -55,7 +55,6 @@ namespace Vaultaria.Common.Utilities
         /// <param name="degreeSpread"></param>
         public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread)
         {
-
             // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
             float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
 

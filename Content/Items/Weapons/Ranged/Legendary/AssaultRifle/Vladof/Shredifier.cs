@@ -73,7 +73,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+100% Fire rate"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n+100% Fire rate"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Speed kills.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
