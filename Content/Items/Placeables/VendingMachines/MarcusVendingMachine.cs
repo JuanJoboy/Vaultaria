@@ -52,13 +52,11 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
             CreateRecipe()
                 .AddIngredient(ItemID.IronBar, 5)
                 .AddIngredient(ItemID.WoodenArrow, 100)
-                .AddTile(ItemID.WorkBench)
                 .Register();
 
             CreateRecipe()
                 .AddIngredient(ItemID.LeadBar, 5)
                 .AddIngredient(ItemID.WoodenArrow, 100)
-                .AddTile(ItemID.WorkBench)
                 .Register();
         }
 
