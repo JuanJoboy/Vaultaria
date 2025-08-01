@@ -303,6 +303,11 @@ Items: {
 		DisplayName: Commander Planetoid
 		Tooltip: ""
 	}
+
+	Badaboom: {
+		DisplayName: Badaboom
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -337,6 +342,7 @@ Projectiles: {
 	HiveRocket.DisplayName: Hive Rocket
 	HornetBullet.DisplayName: Hornet Bullet
 	ZimBullet.DisplayName: Zim Bullet
+	BadaboomRocket.DisplayName: Badaboom Rocket
 }
 
 Buffs: {

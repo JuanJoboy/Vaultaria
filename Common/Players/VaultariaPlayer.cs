@@ -15,6 +15,7 @@ using Vaultaria.Common.Globals.Prefixes.GunModifier;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Terraria.WorldBuilding;
 using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
 
 namespace Vaultaria.Common.Players
 {
