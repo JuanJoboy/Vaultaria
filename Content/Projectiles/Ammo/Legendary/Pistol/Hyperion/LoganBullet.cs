@@ -3,17 +3,22 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.ModLoader;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion;
 using Terraria.Audio;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
+namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion
 {
-    public class NorfleetRocket : ElementalProjectile
+    public class LoganBullet : ElementalProjectile
     {
-        public float shockMultiplier = 3f;
-        private float elementalChance = 100f;
-        private short shockProjectile = ElementalID.ShockProjectile;
-        private int shockBuff = ElementalID.ShockBuff;
-        private int buffTime = 180;
+        public float explosiveMultiplier = 0.35f;
+        public float incendiaryMultiplier = 0.25f;
+        private float elementalChance = 40f;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        private int buffTime = 120;
 
         public override void SetDefaults()
         {
@@ -30,29 +35,24 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
-        }
-
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 4;
+            Projectile.extraUpdates = 0;
         }
 
         public override void AI()
         {
             base.AI();
-            Utilities.FrameRotator(6, Projectile);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item94, Projectile.position);
-
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Electric).noGravity = false;
+                Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch).noGravity = false;
             }
+
+            Utilities.RocketJump(Projectile, ModContent.ItemType<LogansGun>(), 0.5f, 2f);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -60,7 +60,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -71,18 +72,16 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
                 if (SetElementalChance(elementalChance))
                 {
                     Player player = Main.player[Projectile.owner];
-                    SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                    SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                    SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
                 }
             }
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (SetElementalChance(elementalChance))
-            {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, shockMultiplier, player, shockProjectile);
-            }
+            Projectile.hostile = true;
+            Projectile.timeLeft = 2;
 
             return false;
         }
@@ -91,7 +90,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
         {
             return new List<string>
             {
-                "Shock"
+                "explosive",
+                "incendiary"
             };
         }
     }

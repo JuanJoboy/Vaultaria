@@ -3,15 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
+using Vaultaria.Content.Items.Materials;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 {
-    public class Nukem : ModItem
+    public class LogansGun : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -22,30 +22,30 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
+            Item.scale = 0.75f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 10;
-            Item.shoot = ModContent.ProjectileType<NukemRocket>();
-            Item.useAmmo = ModContent.ItemType<LauncherAmmo>();
+            Item.shoot = ModContent.ProjectileType<LoganBullet>();
+            Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 150;
+            Item.damage = 18;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 3;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 0;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 3);
-            Item.UseSound = SoundID.Item14;
+            Item.value = Item.buyPrice(gold: 1);
+            Item.UseSound = SoundID.Item11;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -56,29 +56,31 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
             return false;
         }
 
-        public override bool CanConsumeAmmo(Item ammo, Player player)
+        public override void AddRecipes()
         {
-            for (int i = 0; i < 19; i++)
-            {
-                player.ConsumeItem(ammo.type, false);
-            }
-
-            return true;
-        }
+            CreateRecipe()
+                .AddIngredient<Eridium>(35)
+                .AddIngredient(ItemID.SpaceGun, 1)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
+                .AddIngredient(ItemID.Grenade, 60)
+                .AddIngredient(ItemID.HellstoneBar, 8)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+        }   
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-78f, 0f);
+            return new Vector2(-5f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 20 Launcher Ammo per shot"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires a nuke")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots Explosive-Fire Rockets")
             {
                 OverrideColor = new Color(228, 227, 105) // Light Yellow
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Name dropper.")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Gun, Gunner!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

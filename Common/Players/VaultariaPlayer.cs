@@ -16,11 +16,15 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Terraria.WorldBuilding;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
+using System.Collections;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
 
 namespace Vaultaria.Common.Players
 {
     public class VaultariaPlayer : ModPlayer
     {
+        bool absorbed = false;
+
         // This hook is called whenever the player attempts to shoot a projectile.
         // It's ideal for adding extra projectiles based on player state (like buffs).
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -96,6 +100,8 @@ namespace Vaultaria.Common.Players
             int antagonist = ModContent.ItemType<Antagonist>();
             int impaler = ModContent.ItemType<Impaler>();
             int asteroidBelt = ModContent.ItemType<AsteroidBelt>();
+            int sham = ModContent.ItemType<Sham>();
+            int aequitas = ModContent.ItemType<Aequitas>();
 
             if (IsWearing(antagonist))
             {
@@ -120,6 +126,16 @@ namespace Vaultaria.Common.Players
             if (IsWearing(asteroidBelt))
             {
                 HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.3f, 2);
+            }
+
+            if (IsWearing(sham))
+            {
+                absorbed = Utilities.Utilities.AbsorbedAmmo(proj, hurtInfo, 94f);
+            }
+
+            if (IsWearing(aequitas))
+            {
+                absorbed = Utilities.Utilities.AbsorbedAmmo(proj, hurtInfo, 50f);
             }
         }
 
@@ -154,6 +170,13 @@ namespace Vaultaria.Common.Players
             if (IsWearing(antagonist))
             {
                 modifiers.FinalDamage *= 0.5f;
+            }
+
+            // For absorb shields
+            if (absorbed == true)
+            {
+                modifiers.FinalDamage *= 0.05f;
+                absorbed = false;
             }
         }
 

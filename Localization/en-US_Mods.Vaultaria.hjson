@@ -308,6 +308,31 @@ Items: {
 		DisplayName: Badaboom
 		Tooltip: ""
 	}
+
+	BasicGrenade: {
+		Tooltip: ""
+		DisplayName: Basic Grenade
+	}
+
+	Sham: {
+		Tooltip: ""
+		DisplayName: Sham
+	}
+
+	LogansGun: {
+		DisplayName: Logans Gun
+		Tooltip: ""
+	}
+
+	RocketJumper: {
+		DisplayName: Rocket Jumper
+		Tooltip: ""
+	}
+
+	Aequitas: {
+		DisplayName: Aequitas
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -343,6 +368,9 @@ Projectiles: {
 	HornetBullet.DisplayName: Hornet Bullet
 	ZimBullet.DisplayName: Zim Bullet
 	BadaboomRocket.DisplayName: Badaboom Rocket
+	LoganBullet.DisplayName: Logan Bullet
+	BasicModule.DisplayName: Basic Module
+	RocketJumperRocket.DisplayName: Rocket Jumper Rocket
 }
 
 Buffs: {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 {
@@ -21,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.9f;
+            Item.scale = 0.65f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -33,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             // Combat properties
             Item.knockBack = 3.8f;
-            Item.damage = 30;
+            Item.damage = 40;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -56,7 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             return false;
         }
-        
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-90f, 0f);
@@ -85,10 +86,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 15 Launcher Ammo per shot"));
 
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Multi-kill.")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Multi-kill.\nYoooo, the skip dude.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
+        }
+        
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Trickshot>() &&
+                   pre != ModContent.PrefixType<DoublePenetrating>();
         }
     }
 }

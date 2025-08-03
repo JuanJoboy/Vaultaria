@@ -1,0 +1,2 @@
+ProjectileID = MartianTurretBolt
+Has a chance to do shock damage natively, make it drop from either goblin invasion or make it an upgrade of the Space Gun

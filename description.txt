@@ -5,24 +5,24 @@ Word on the ECHOnet is that it's crawling with weird monsters and some lunatic c
 
 -- MOD INFORMATION --
 
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 57 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 62 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
 This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
 
-And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and chaos. Feedback, bug reports, and wild weapon ideas are always welcome!
+And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and mayhem. Feedback, bug reports, and wild weapon ideas are always welcome!
 
 [i/s1:4] -- WEAPONS --
 
 [i/s1:2177] - 6 Ammo Types
-[i/s1:168] - 4 Grenades
+[i/s1:168] - 5 Grenades
 [i/s1:1297] - 1 Melee Weapon
 [i/s1:1513] - 3 Melee-Gun fusions
-[i/s1:1929] - 25 Guns
+[i/s1:1929] - 27 Guns
 [i/s1:1572] - 1 Sentry
 
 [i/s1:54] -- ACCESSORIES -- 
 
-[i/s1:156] - 11 Shields
+[i/s1:156] - 13 Shields
 [i/s1:891] - 3 Relics
 
 [i/s1:35] -- CRAFTING STATIONS --

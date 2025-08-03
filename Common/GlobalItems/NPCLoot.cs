@@ -14,6 +14,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit;
@@ -59,6 +60,12 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
 
+            if (npc == NPCID.TheGroom || npc == NPCID.TheBride || npc == NPCID.BloodZombie || npc == NPCID.Drippler)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BasicGrenade>(), 20, 30, 60));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 2, 5));
+            }
+
             if (npc == NPCID.EaterofWorldsHead || npc == NPCID.BrainofCthulhu)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 5, 1, 1));
@@ -89,6 +96,12 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 10, 15));
             }
 
+            if (npc == NPCID.GoblinShark || npc == NPCID.BloodEelHead || npc == NPCID.BloodNautilus || npc == NPCID.BloodSquid)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Badaboom>(), 12, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
+            }
+
             if (npc == NPCID.QueenSlimeBoss)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
@@ -111,6 +124,12 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheBee>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 18, 25));
+            }
+
+            if (npc == NPCID.Mothron)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Sham>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
             if (npc == NPCID.PirateShip || npc == NPCID.PirateCaptain)

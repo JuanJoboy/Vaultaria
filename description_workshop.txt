@@ -3,23 +3,23 @@ Greetings Minion, it is I, your glorious Master [b] CL4P-TP [/b]. You've been a 
 Word on the ECHOnet is that it's crawling with weird monsters and some lunatic cult members trying to wake up an ancient god. Sound familiar? Yeah, I thought so. Anyways, get out there and show those psychos what a badass Vault Hunter [i] trained by yours truly [/i] can do.
 
 [h3] MOD INFORMATION [/h3]
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 57 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 62 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
 This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
 
-And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and chaos. Feedback, bug reports, and wild weapon ideas are always welcome!
+And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and mayhem. Feedback, bug reports, and wild weapon ideas are always welcome!
 
 [h3] WEAPONS [/h3]
 [list][*]6 Ammo Types
-[*]4 Grenades
+[*]5 Grenades
 [*]1 Melee Weapon
 [*]3 Melee-Gun fusions
-[*]25 Guns
+[*]27 Guns
 [*]1 Sentry
 [/list]
 
 [h3] ACCESSORIES [/h3]
-[list][*]11 Shields
+[list][*]13 Shields
 [*]3 Relics
 [/list]
 
@@ -67,3 +67,12 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/u][/i][/b]
 [b] Quite Enough Recipes [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
 [b] Recipe Viewer [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
 [b] Loot Beams [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=2847872897&searchtext=loot+beam
+
+
+[b] [v0.3.0] - Rocket Jumping Update [/b]
+[list][*]Added a Basic Grenade, Badaboom, Logan's Gun, Aequitas, and Sham
+    [*]Basic Grenade allows you to grenade-jump
+    [*]The Badaboom allows you to rocket-jump
+    [*]Logan's Gun can be used on any absorb shield to regen Launcher Ammo
+    [*]The Aequitas and The Sham are 2 new absorb shields
+[/list]

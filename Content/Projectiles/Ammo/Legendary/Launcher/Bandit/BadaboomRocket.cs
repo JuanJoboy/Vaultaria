@@ -24,6 +24,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
 
             // Damage
             Projectile.friendly = true;
+            Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.aiStyle = 0;
 
@@ -49,28 +50,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
                 Dust.NewDustPerfect(Projectile.Center, DustID.YellowTorch).noGravity = true;
             }
 
-            // Rocket Jump Logic
-            Player player = Main.player[Projectile.owner];
-            if (player.HasItemInAnyInventory(ModContent.ItemType<Badaboom>()) && player.Distance(Projectile.Center) <= 100) // Within explosion radius
-            {
-                if (player.Center.X > Projectile.Center.X)
-                {
-                    player.velocity.X += 7.5f;
-                }
-                else
-                {
-                    player.velocity.X -= 7.5f;
-                }
-
-                if (player.Center.Y > Projectile.Center.Y)
-                {
-                    player.velocity.Y = +15f;
-                }
-                else
-                {
-                    player.velocity.Y = -15f;
-                }
-            }
+            Utilities.RocketJump(Projectile, ModContent.ItemType<Badaboom>(), 4.5f, 16f);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -84,10 +64,13 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (SetElementalChance(elementalChance))
+            if (Projectile.owner != target.whoAmI)
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                if (SetElementalChance(elementalChance))
+                {
+                    Player player = Main.player[Projectile.owner];
+                    SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                }
             }
         }
 

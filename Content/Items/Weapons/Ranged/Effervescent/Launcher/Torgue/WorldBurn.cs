@@ -68,7 +68,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
         
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-80f, 0f);
+            return new Vector2(-85f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

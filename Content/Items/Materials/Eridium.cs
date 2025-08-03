@@ -17,7 +17,7 @@ namespace Vaultaria.Content.Items.Materials
         {
             Item.Size = new Vector2(22, 24);
             Item.maxStack = Item.CommonMaxStack;
-            Item.buyPrice(copper: 50);
+            Item.value = Item.buyPrice(silver: 50);
             Item.rare = ItemRarityID.Purple;
         }
 

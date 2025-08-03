@@ -1,33 +1,36 @@
 using Terraria;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic; // For Lists
-using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System;
+using Microsoft.Build.Evaluation;
+using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
+namespace Vaultaria.Content.Projectiles.Grenades.Rare
 {
-    public class WorldBurnRocket : ElementalProjectile
+    public class BasicModule : ElementalProjectile
     {
-        public float explosiveMultiplier = 2f;
-        public float incendiaryMultiplier = 2f;
+        public float explosiveMultiplier = 0.15f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int incendiaryBuff = ElementalID.IncendiaryBuff;
         private int buffTime = 90;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(8, 8);
+            Projectile.scale = 1.4f;
 
             // Damage
+            Projectile.damage = 1;
+            Projectile.CritChance = 1;
             Projectile.friendly = true;
-            Projectile.hostile = false;
             Projectile.penetrate = 1;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = 0;
 
             // Bullet Config
             Projectile.timeLeft = 36000;
@@ -39,17 +42,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
         {
             base.AI();
             Projectile.rotation = Projectile.velocity.ToRotation();
-        }
 
-        public override void OnKill(int timeLeft)
-        {
-            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
-            
-            int numDust = 20;
-            for (int i = 0; i < numDust; i++)
-            {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Torch).noGravity = true;
-            }
+            Projectile.velocity.Y += 0.175f;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -57,21 +51,16 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (Projectile.owner != target.whoAmI)
+            if (SetElementalChance(elementalChance))
             {
-                if (SetElementalChance(elementalChance))
-                {
-                    Player player = Main.player[Projectile.owner];
-                    SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
-                    SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-                }
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
@@ -81,17 +70,28 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
-                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+
+            for (int i = 0; i < 20; i++)
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
+            }
+
+            Utilities.RocketJump(Projectile, ModContent.ItemType<BasicGrenade>(), 4.5f, 12f);
         }
 
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Incendiary",
                 "Explosive"
             };
         }

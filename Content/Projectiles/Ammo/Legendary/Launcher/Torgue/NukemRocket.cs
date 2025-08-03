@@ -60,10 +60,13 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (SetElementalChance(elementalChance))
+            if (Projectile.owner != target.whoAmI)
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                if (SetElementalChance(elementalChance))
+                {
+                    Player player = Main.player[Projectile.owner];
+                    SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                }
             }
         }
 
