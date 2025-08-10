@@ -9,8 +9,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
 {
     public class WorldBurnRocket : ElementalProjectile
     {
-        public float explosiveMultiplier = 2f;
-        public float incendiaryMultiplier = 2f;
+        public float explosiveMultiplier = 1.75f;
+        public float incendiaryMultiplier = 1.75f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;

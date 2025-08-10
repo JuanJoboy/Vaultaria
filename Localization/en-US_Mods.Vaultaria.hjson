@@ -435,4 +435,8 @@ Prefixes: {
 	Trickshot.DisplayName: Trickshot
 	Cryo.DisplayName: Cryo
 	Thermo.DisplayName: Thermo
+	MagicDP.DisplayName: Double Penetrating
+	MagicTrickshot.DisplayName: Trickshot
+	RangerDP.DisplayName: Double Penetrating
+	RangerTrickshot.DisplayName: Trickshot
 }

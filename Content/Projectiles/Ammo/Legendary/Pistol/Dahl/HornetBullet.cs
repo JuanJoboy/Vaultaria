@@ -40,11 +40,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl
 
         public override void OnKill(int timeLeft)
         {
-            int numDust = 20;
-            for (int i = 0; i < numDust; i++)
-            {
-                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = false;
-            }
+            Utilities.DustMaker(2, Projectile, DustID.JungleSpore, false);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

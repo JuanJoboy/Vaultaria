@@ -11,6 +11,12 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
     {
         public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
         {
+            // Only apply to players, never NPCs
+            if (player.whoAmI < 0 || player.whoAmI >= Main.maxPlayers)
+            {
+                return base.CanConsumeAmmo(weapon, ammo, player);
+            }
+
             // First, let vanilla decide if ammo can be consumed normally.
             // If vanilla says no (e.g., no ammo in inventory), we should also say no.
             if (!base.CanConsumeAmmo(weapon, ammo, player))
@@ -19,7 +25,7 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
             }
 
             // Check if the weapon being used has the DoublePenetrating prefix.
-            if (weapon.prefix == ModContent.PrefixType<DoublePenetrating>())
+            if (weapon.prefix == ModContent.PrefixType<RangerDP>())
             {
                 if (weapon.type == ModContent.ItemType<UnkemptHarold>())
                 {

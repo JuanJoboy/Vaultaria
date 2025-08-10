@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -52,6 +52,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
 
             Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 5);
+            Projectile.NewProjectile(source, position - new Vector2(0, -5), velocity, type, damage, knockback, player.whoAmI);
 
             return false;
         }
@@ -71,7 +72,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-13f, 3f);
+            return new Vector2(-20f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -18,14 +18,14 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
             // Damage
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.penetrate = 2;
+            Projectile.penetrate = 1;
             Projectile.aiStyle = 1;
 
             // Bullet Config
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
+            Projectile.extraUpdates = 2;
         }
 
         public override void AI()

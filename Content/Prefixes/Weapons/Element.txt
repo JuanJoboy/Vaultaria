@@ -1,4 +1,1 @@
 Maybe do a 4 scale tier list, and make the chance and damage increase, use random borderlands prefixes. lowest tier is 10% chance for 20% damage, highest is 40% chance to do 40% damage
-
-Also fix prefixes only working while the weapon is being held, they should be passive and work in the background. Especially on Axtons Turret, an elemental prefix only works if the item is held.
-Also since its a global projectile, enemies also get the buff on them, this is Especially bad with trickshot as enemies bullets will keep bouncing if im holding a trickshot item.

@@ -204,6 +204,25 @@ namespace Vaultaria.Common.Utilities
         }
 
         /// <summary>
+        /// Iterates through a loop from 0 to the amountOfDust, and creates that much dust
+        /// <br/> amountOfDust = The amount of dust you want.
+        /// <br/> projectile = The current projectile, so just pass in Projectile.
+        /// <br/> dustID = The desired dust type (DustID.JungleSpore).
+        /// <br/> gravityOff = Put false for gravity and true for gravity on the dust.
+        /// </summary>
+        /// <param name="amountOfDust"></param>
+        /// <param name="projectile"></param>
+        /// <param name="dustID"></param>
+        /// <param name="gravityOff"></param>
+        public static void DustMaker(int amountOfDust, Projectile projectile, short dustID, bool gravityOff)
+        {
+            for (int i = 0; i < amountOfDust; i++)
+            {
+                Dust.NewDustPerfect(projectile.Center, dustID).noGravity = gravityOff;
+            }
+        }
+
+        /// <summary>
         /// Allows for items to give the player the ability to rocket jump. This method is mainly used for projectiles
         /// <br/> projectile = The current projectile, so just pass in Projectile.
         /// <br/> item = The item, not the projectile, that you want to have rocket jumping capabilities.

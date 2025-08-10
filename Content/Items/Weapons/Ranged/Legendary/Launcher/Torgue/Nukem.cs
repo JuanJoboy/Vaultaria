@@ -40,12 +40,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
 
             Item.useTime = 30;
             Item.useAnimation = 30;
-            Item.reuseDelay = 3;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Item.UseSound = SoundID.Item14;
+            Item.UseSound = SoundID.Item62;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -68,7 +68,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-78f, 0f);
+            return new Vector2(-70f, 4f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.65f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             // Other properties
             Item.value = Item.buyPrice(gold: 4);
-            Item.UseSound = SoundID.Item67;
+            Item.UseSound = SoundID.Item66;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -60,7 +60,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-90f, 0f);
+            return new Vector2(-70f, 0f);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
@@ -94,8 +94,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
         
         public override bool AllowPrefix(int pre)
         {
-            return pre != ModContent.PrefixType<Trickshot>() &&
-                   pre != ModContent.PrefixType<DoublePenetrating>();
+            return pre != ModContent.PrefixType<RangerTrickshot>() &&
+                   pre != ModContent.PrefixType<RangerDP>();
         }
     }
 }

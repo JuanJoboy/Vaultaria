@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 7f;
             Item.shoot = AmmoID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
@@ -36,8 +36,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 8;
+            Item.useAnimation = 8;
             Item.reuseDelay = 1;
             Item.autoReuse = true;
 

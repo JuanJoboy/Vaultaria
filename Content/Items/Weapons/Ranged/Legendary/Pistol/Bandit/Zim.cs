@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 25;
+            Item.damage = 29;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -57,7 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-5f, 0f);
+            return new Vector2(-2f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

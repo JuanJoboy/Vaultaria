@@ -34,8 +34,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 35;
-            Item.crit = 36;
+            Item.damage = 25;
+            Item.crit = 11;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 10;
@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item41;
         }
 
         public override void AddRecipes()

@@ -9,11 +9,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 {
     public class NorfleetRocket : ElementalProjectile
     {
-        public float shockMultiplier = 3f;
+        public float shockMultiplier = 1.3f;
         private float elementalChance = 100f;
         private short shockProjectile = ElementalID.ShockProjectile;
         private int shockBuff = ElementalID.ShockBuff;
-        private int buffTime = 180;
+        private int buffTime = 90;
 
         public override void SetDefaults()
         {

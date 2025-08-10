@@ -35,19 +35,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 1f;
-            Item.damage = 30;
+            Item.damage = 40;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 12;
-            Item.useAnimation = 12;
+            Item.useTime = 8;
+            Item.useAnimation = 8;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
             Item.useTurn = true;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item40;
         }
 
         public override bool CanUseItem(Player player)
@@ -79,16 +79,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
-                Item.shootSpeed = 4f;
+                Item.shootSpeed = 12;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Item.UseSound = SoundID.Item11;
+                Item.UseSound = SoundID.Item40;
 
-                Item.damage = 30;
+                Item.damage = 40;
                 Item.crit = 0;
-                Item.useTime = 15;
-                Item.useAnimation = 15;
-                Item.reuseDelay = 1;
+                Item.useTime = 8;
+                Item.useAnimation = 8;
+                Item.reuseDelay = 0;
                 Item.autoReuse = true;
                 Item.useTurn = true;
             }

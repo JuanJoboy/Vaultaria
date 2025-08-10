@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
         private float elementalChance = 5;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
-        private int buffTime = 45;
+        private int buffTime = 0;
 
         public override void SetDefaults()
         {
@@ -32,11 +32,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
             Projectile.extraUpdates = 1;
         }
 
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 4;
-        }
-
         public override void AI()
         {
             base.AI();
@@ -54,7 +49,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 2f, Projectile);
+            Utilities.HealOnNPCHit(target, damageDone, 0.5f, Projectile);
 
             if (SetElementalChance(elementalChance))
             {
@@ -65,7 +60,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 2f, Projectile);
+            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.5f, Projectile);
 
             if (SetElementalChance(elementalChance))
             {

@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -33,18 +33,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 48;
+            Item.damage = 55;
             Item.crit = 26;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 5;
-            Item.useAnimation = 5;
-            Item.reuseDelay = 0;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
+            Item.reuseDelay = 10;
             Item.autoReuse = false;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 4);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item41;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

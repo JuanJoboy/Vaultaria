@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
 {
@@ -105,6 +106,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
             }
 
             return false;
+        }
+
+        public override void OnKill(int timeLeft) // What happens on Projectile death
+        {
+            SoundEngine.PlaySound(SoundID.Item88, Projectile.position);
         }
         
         public override List<string> GetElement()

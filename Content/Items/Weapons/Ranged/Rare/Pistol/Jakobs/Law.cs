@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -35,19 +35,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2.3f;
-            Item.damage = 18;
-            Item.crit = 6;
+            Item.damage = 8;
+            Item.crit = 4;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 0;
+            Item.reuseDelay = 10;
             Item.autoReuse = true;
             Item.useTurn = true;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = SoundID.Item41;
         }
 
         public override Vector2? HoldoutOffset()
@@ -67,7 +67,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 isInMeleeMode = true;
 
                 Item.damage = 18;
-                Item.crit = 6;
+                Item.crit = 4;
                 Item.DamageType = DamageClass.Melee;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = false;
@@ -86,19 +86,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             {
                 isInMeleeMode = false;
 
-                Item.damage = 18;
-                Item.crit = 6;
+                Item.damage = 8;
+                Item.crit = 4;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 4f;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Item.UseSound = SoundID.Item11;
+                Item.UseSound = SoundID.Item41;
 
-                Item.useTime = 3;
-                Item.useAnimation = 3;
-                Item.reuseDelay = 1;
+                Item.useTime = 12;
+                Item.useAnimation = 12;
+                Item.reuseDelay = 10;
                 Item.autoReuse = false;
                 Item.useTurn = true;
             }

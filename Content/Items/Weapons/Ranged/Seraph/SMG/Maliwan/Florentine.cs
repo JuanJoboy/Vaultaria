@@ -33,12 +33,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 35;
-            Item.crit = 6;
+            Item.damage = 25;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 13;
+            Item.useAnimation = 13;
             Item.reuseDelay = 1;
             Item.autoReuse = true;
 
@@ -69,7 +69,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 
             if (projectile.ModProjectile is FlorentineBullet bullet)
             {
-                bullet.shockMultiplier = 0.4f;
+                bullet.shockMultiplier = 0.2f;
                 bullet.slagMultiplier = 0.2f;
             }
 

@@ -20,25 +20,25 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 6f;
+            Item.shootSpeed = 4f;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 8;
+            Item.damage = 5;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 10;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 16;
+            Item.useTime = 4;
+            Item.useAnimation = 12;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties

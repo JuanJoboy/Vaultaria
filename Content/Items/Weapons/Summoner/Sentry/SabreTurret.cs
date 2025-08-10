@@ -109,8 +109,8 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 }
             }
 
-            return pre != ModContent.PrefixType<Trickshot>() &&
-                   pre != ModContent.PrefixType<DoublePenetrating>();
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>();
         }
     }
 }

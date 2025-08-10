@@ -22,24 +22,24 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 6f;
+            Item.shootSpeed = 10f;
             Item.shoot = ModContent.ProjectileType<HornetBullet>();
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 8;
+            Item.damage = 17;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 10;
-            Item.useAnimation = 30;
+            Item.useTime = 4;
+            Item.useAnimation = 12;
             Item.reuseDelay = 16;
             Item.autoReuse = true;
 
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-8f, 0f);
+            return new Vector2(0f, 5f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -8,11 +8,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 {
     public class CloudBullet : ElementalProjectile
     {
-        public float corrosiveMultiplier = 3f;
+        public float corrosiveMultiplier = 1.8f;
         private float elementalChance = 100f;
         private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
         private int corrosiveBuff = ElementalID.CorrosiveBuff;
-        private int buffTime = 180;
+        private int buffTime = 60;
 
         public override void SetDefaults()
         {

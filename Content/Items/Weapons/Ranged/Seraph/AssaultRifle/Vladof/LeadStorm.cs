@@ -33,8 +33,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 35;
-            Item.crit = 16;
+            Item.damage = 27;
+            Item.crit = 20;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 6;

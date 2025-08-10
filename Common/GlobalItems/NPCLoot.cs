@@ -66,10 +66,20 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 2, 5));
             }
 
-            if (npc == NPCID.EaterofWorldsHead || npc == NPCID.BrainofCthulhu)
+            if (npc == NPCID.BrainofCthulhu)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 5, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
+            }
+
+            if (npc == NPCID.EaterofWorldsHead || npc == NPCID.EaterofWorldsBody || npc == NPCID.EaterofWorldsTail)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 300, 1, 1));
+
+                if (npc == NPCID.EaterofWorldsHead)
+                {
+                    npcLoot.Add(ItemDropRule.Common(eridium, 1, 1, 2));
+                }
             }
 
             if (npc == NPCID.QueenBee)

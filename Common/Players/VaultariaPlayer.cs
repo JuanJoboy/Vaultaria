@@ -40,7 +40,7 @@ namespace Vaultaria.Common.Players
                 OrcShot(item, source, position, velocity, type, damage, knockback);
             }
 
-            if (item.prefix == ModContent.PrefixType<DoublePenetrating>())
+            if (item.prefix == ModContent.PrefixType<MagicDP>() || item.prefix == ModContent.PrefixType<RangerDP>())
             {
                 DoubleShot(item, source, position, velocity, type, damage, knockback);
             }
@@ -226,7 +226,7 @@ namespace Vaultaria.Common.Players
             int extraProjectilesToSpawn = 5; // We want 5 *additional* projectiles
             float totalSpreadAngle = MathHelper.ToRadians(20); // A small, subtle spread for the "drunk" effect (20 degrees)
 
-            if (item.prefix == ModContent.PrefixType<DoublePenetrating>())
+            if (item.prefix == ModContent.PrefixType<MagicDP>() || item.prefix == ModContent.PrefixType<RangerDP>())
             {
                 extraProjectilesToSpawn *= 2;
             }

@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.75f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -70,7 +70,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-5f, 0f);
+            return new Vector2(0f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

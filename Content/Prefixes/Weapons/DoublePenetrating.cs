@@ -7,8 +7,6 @@ namespace Vaultaria.Content.Prefixes.Weapons
 {
     public class DoublePenetrating : ModPrefix
     {
-        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
-
         public override float RollChance(Item item)
         {
             return 2f;

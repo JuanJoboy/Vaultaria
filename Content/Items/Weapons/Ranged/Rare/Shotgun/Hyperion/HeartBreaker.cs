@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item99;
+            Item.UseSound = SoundID.Item36;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 45;
+            Item.damage = 50;
             Item.crit = 21;
             Item.DamageType = DamageClass.Ranged;
 
@@ -50,6 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         {
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
+            Projectile.NewProjectile(source, position - new Vector2(0, -7), velocity, type, damage, knockback, player.whoAmI);
 
             return false;
         }
@@ -68,11 +69,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30, 0f);
+            return new Vector2(-20f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
+
+            if (damageLine != null)
+            {
+                Player player = Main.LocalPlayer;
+                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
+                damageLine.Text = finalDamage + " x 2 ranged damage";
+            }
+
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n+100% Fire rate"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Speed kills.")
             {

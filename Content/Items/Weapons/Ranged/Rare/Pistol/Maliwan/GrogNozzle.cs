@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 15;
+            Item.damage = 7;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

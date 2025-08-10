@@ -19,10 +19,21 @@ namespace Vaultaria.Common.Globals.Prefixes.GunModifier
                 return true; // Let vanilla handle collision if not player-owned
             }
 
+            if (!projectile.friendly || projectile.hostile || projectile.trap)
+            {
+                return true;
+            }
+
+            // If it's a minion/sentry/summon (not a held weapon), skip
+            if (projectile.minion || projectile.sentry)
+            {
+                return true;
+            }
+
             Player player = Main.player[projectile.owner];
             Item weapon = player.HeldItem;
 
-            bool isAffectedByTrickshot = weapon != null && weapon.prefix == ModContent.PrefixType<Trickshot>();
+            bool isAffectedByTrickshot = weapon != null && (weapon.prefix == ModContent.PrefixType<MagicTrickshot>() || weapon.prefix == ModContent.PrefixType<RangerTrickshot>());
             bool isAffectedByOrcEffect = player.HasBuff(ModContent.BuffType<OrcEffect>());
 
             if (isAffectedByTrickshot || isAffectedByOrcEffect)

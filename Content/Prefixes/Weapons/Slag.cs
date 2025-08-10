@@ -35,8 +35,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "Slag1", "40% Chance to Slag");
-            yield return new TooltipLine(Mod, "Slag2", "Slagged enemies take 30% more damage and have 30% reduced defense for 5 seconds")
+            yield return new TooltipLine(Mod, "Slag1", "40% Chance to Slag\nSlagged enemies take 30% more damage and have 30% reduced defense for 5 seconds")
             {
                 OverrideColor = new Color(142, 94, 235) // Purple
             };

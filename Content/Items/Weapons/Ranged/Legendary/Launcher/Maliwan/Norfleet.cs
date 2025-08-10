@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.9f;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Master;
 
@@ -33,18 +33,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 500;
+            Item.damage = 200;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 45;
+            Item.useAnimation = 45;
             Item.reuseDelay = 60;
             Item.autoReuse = true;
 
             // Other properties
             Item.value = Item.buyPrice(platinum: 1);
-            Item.UseSound = SoundID.Item67;
+            Item.UseSound = SoundID.Item84;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -59,7 +59,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
         
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-70f, 0f);
+            return new Vector2(-60f, 2f);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

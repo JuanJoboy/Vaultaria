@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -32,13 +32,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 26;
-            Item.crit = 16;
+            Item.damage = 17;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 5;
-            Item.useAnimation = 5;
-            Item.reuseDelay = 0;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
+            Item.reuseDelay = 10;
             Item.autoReuse = false;
 
             // Other properties

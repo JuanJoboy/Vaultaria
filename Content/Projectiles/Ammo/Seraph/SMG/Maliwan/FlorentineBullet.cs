@@ -10,12 +10,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
     {
         public float shockMultiplier;
         public float slagMultiplier;
-        private float elementalChance = 40f;
+        private float elementalChance = 20;
         private short shockProjectile = ElementalID.ShockProjectile;
         private short slagProjectile = ElementalID.SlagProjectile;
         private int shockBuff = ElementalID.ShockBuff;
         private int slagBuff = ElementalID.SlagBuff;
-        private int buffTime = 90;
+        private int buffTime = 45;
 
         public override void SetDefaults()
         {
