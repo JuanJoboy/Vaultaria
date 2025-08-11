@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
         
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "Incendiary", "40% Chance to deal 40% bonus Fire damage")
+            yield return new TooltipLine(Mod, "Incendiary", "20% Chance to deal 20% bonus Fire damage")
             {
                 OverrideColor = new Color(231, 92, 22) // Orange
             };

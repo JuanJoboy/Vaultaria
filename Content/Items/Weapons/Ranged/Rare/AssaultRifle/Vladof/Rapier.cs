@@ -11,8 +11,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 {
     public class Rapier : ModItem
     {
-        private bool isInMeleeMode = false;
-
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -22,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -43,7 +41,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             Item.useAnimation = 8;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
-            Item.useTurn = true;
+            Item.useTurn = false;
+
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
@@ -54,8 +53,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         {
             if (player.altFunctionUse == 2) // Right-click melee
             {
-                isInMeleeMode = true;
-
                 Item.DamageType = DamageClass.Melee;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = false;
@@ -70,12 +67,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.crit = 0;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
             }
             else // Left-click ranged
             {
-                isInMeleeMode = false;
-
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
@@ -90,7 +86,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.useAnimation = 8;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
             }
 
             return base.CanUseItem(player);
@@ -101,7 +98,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
 
-            return !isInMeleeMode; // Only shoot if not in melee mode
+            return false;
         }
         
         public override void AddRecipes()
@@ -117,7 +114,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 5f);
+            return new Vector2(-10f, 5f);
         }
 
         public override bool AltFunctionUse(Player player)

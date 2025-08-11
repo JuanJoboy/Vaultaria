@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
 
@@ -81,7 +81,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
             tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Has a 40% chance to do 20% Slag & 40% Shock bonus damage")
             {
-                OverrideColor = new Color(63, 71, 212)
+                OverrideColor = new Color(96, 128, 224)
             });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Double trouble.")
             {

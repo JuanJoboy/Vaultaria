@@ -40,7 +40,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.reuseDelay = 16;
+            Item.reuseDelay = 50;
             Item.autoReuse = true;
 
             // Other properties
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(0f, 5f);
+            return new Vector2(5f, 0f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

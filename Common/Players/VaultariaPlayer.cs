@@ -55,6 +55,27 @@ namespace Vaultaria.Common.Players
             return true;
         }
 
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Check if the projectile that just hit is one of my elemental projectiles
+            // If it is, do nothing. This prevents the recursive spawning loop
+            if (ElementalProjectile.elementalProjectile.Contains(proj.type))
+            {
+                return;
+            }
+
+            float elementalChance = 20f;
+            float multiplier = 0.2f;
+            int elementalBuffTime = 60;
+
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ShockPrefix, ElementalID.ShockProjectile, ElementalID.ShockBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.IncendiaryPrefix, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CorrosivePrefix, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.SlagPrefix, ElementalID.SlagProjectile, ElementalID.SlagBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CryoPrefix, ElementalID.CryoProjectile, ElementalID.CryoBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, elementalBuffTime);
+        }
+
         public override float UseSpeedMultiplier(Item item)
         {
             float multiplier = 1;
@@ -127,16 +148,6 @@ namespace Vaultaria.Common.Players
             {
                 HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.3f, 2);
             }
-
-            if (IsWearing(sham))
-            {
-                absorbed = Utilities.Utilities.AbsorbedAmmo(proj, hurtInfo, 94f);
-            }
-
-            if (IsWearing(aequitas))
-            {
-                absorbed = Utilities.Utilities.AbsorbedAmmo(proj, hurtInfo, 50f);
-            }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
@@ -171,12 +182,20 @@ namespace Vaultaria.Common.Players
             {
                 modifiers.FinalDamage *= 0.5f;
             }
+        }
 
-            // For absorb shields
-            if (absorbed == true)
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            int aequitas = ModContent.ItemType<Aequitas>();
+            int sham = ModContent.ItemType<Sham>();
+
+            if (IsWearing(sham))
             {
-                modifiers.FinalDamage *= 0.05f;
-                absorbed = false;
+                Utilities.Utilities.AbsorbedAmmo(proj, ref modifiers, 94f);
+            }
+            if (IsWearing(aequitas))
+            {
+                Utilities.Utilities.AbsorbedAmmo(proj, ref modifiers, 50f);
             }
         }
 

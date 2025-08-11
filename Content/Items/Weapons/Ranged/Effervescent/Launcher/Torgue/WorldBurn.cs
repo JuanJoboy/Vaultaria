@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Expert;
 
@@ -68,7 +68,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
         
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-70f, 0f);
+            return new Vector2(-60f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

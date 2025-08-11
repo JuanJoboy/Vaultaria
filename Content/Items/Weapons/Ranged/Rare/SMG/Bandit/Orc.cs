@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Purple;
 

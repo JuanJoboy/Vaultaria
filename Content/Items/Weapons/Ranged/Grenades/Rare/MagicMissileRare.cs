@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
             Item.useAnimation = 30;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
-            Item.useTurn = true;
+            Item.useTurn = false;
 
             Item.shoot = ModContent.ProjectileType<HomingSlagBall>();
             Item.consumable = true;

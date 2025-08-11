@@ -14,7 +14,7 @@ namespace Vaultaria.Common.Utilities
         // *------------- Helper Fields -------------*
         // ********************************************
 
-        private static readonly HashSet<int> elementalProjectile = new HashSet<int>
+        public static readonly HashSet<int> elementalProjectile = new HashSet<int>
         {
             ElementalID.ShockProjectile,
             ElementalID.SlagProjectile,
@@ -388,6 +388,42 @@ namespace Vaultaria.Common.Utilities
 
             projectile.Kill();
             return false;
+        }
+
+        /// <summary>
+        /// This method is needed to fill in the gaps. Non-Vaultarian items that are projectile-based don't work with the ElementalGlobal files, so this method allows them to work. It does pretty much the same thing as the standard chain used in those files, but it's just cut down a tiny bit. It checks the prefix, gets the snapshot, sees if its the correct prefix, then sets the element.
+        /// <br/> projectile = the projectile being shot.
+        /// <br/> player = The player that shoots the projectile.
+        /// <br/> target = The NPC that was hit.
+        /// <br/> hit = The NPC.HitInfo containing details about the hit, including source damage modifiers.
+        /// <br/> elementalChance = The chance for the element to spawn.
+        /// <br/> elementalMultiplier = The specific damage multiplier.
+        /// <br/> elementalPrefix = The desired prefix to spawn the element.
+        /// <br/> elementalProjectile = The new projectile that deals the elemental damage.
+        /// <br/> elementalBuff = The additional base buff that's added on top.
+        /// <br/> elementalBuffTime = The amount of time the base buff will last for. It's calculated in ticks so 60 ticks is 1 second.
+        /// </summary>
+        /// <param name="projectile"></param>
+        /// <param name="player"></param>
+        /// <param name="target"></param>
+        /// <param name="hit"></param>
+        /// <param name="elementalChance"></param>
+        /// <param name="elementalMultiplier"></param>
+        /// <param name="elementalPrefix"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="elementalBuff"></param>
+        /// <param name="elementalBuffTime"></param>
+        public static void HandleElementalProjOnNPC(Projectile projectile, Player player, NPC target, NPC.HitInfo hit, float elementalChance, float elementalMultiplier, int elementalPrefix, short elementalProjectile, int elementalBuff, int elementalBuffTime)
+        {
+            int prefixID = projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID;
+
+            if (prefixID == elementalPrefix)
+            {
+                if (SetElementalChance(elementalChance))
+                {
+                    SetElementOnNPC(target, hit, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
+                }
+            }
         }
     }
 }

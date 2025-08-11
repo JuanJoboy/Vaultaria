@@ -325,7 +325,7 @@ namespace Vaultaria.Common.Utilities
             return 0;
         }
 
-        public static bool AbsorbedAmmo(Projectile proj, Player.HurtInfo hurtInfo, float chance)
+        public static void AbsorbedAmmo(Projectile proj, ref Player.HurtModifiers modifiers, float chance)
         {
             int amountToGet = 5;
 
@@ -333,12 +333,10 @@ namespace Vaultaria.Common.Utilities
             {
                 int projectileItem = AmmoIs(proj);
 
+                modifiers.FinalDamage *= 0.05f;
+
                 Main.LocalPlayer.QuickSpawnItem(proj.GetSource_DropAsItem(), projectileItem, amountToGet);
-
-                return true;
             }
-
-            return false;
         }
     }
 }

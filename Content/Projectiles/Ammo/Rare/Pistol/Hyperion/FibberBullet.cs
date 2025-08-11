@@ -24,7 +24,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
 
             // Turn off immunity frames so that every projectile can hit
             Projectile.usesLocalNPCImmunity = true;

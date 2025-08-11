@@ -38,7 +38,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
 
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.reuseDelay = 20;
+            Item.reuseDelay = 60;
             Item.autoReuse = true;
 
             // Other properties

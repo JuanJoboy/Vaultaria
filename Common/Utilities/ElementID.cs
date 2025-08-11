@@ -23,7 +23,7 @@ namespace Vaultaria.Common.Utilities
 
         // Corrosive Element
         public static readonly int CorrosivePrefix = ModContent.PrefixType<Corrosive>();
-        public static readonly short CorrosiveProjectile = ProjectileID.SporeCloud;
+        public static readonly short CorrosiveProjectile = ProjectileID.SporeGas3;
         public static readonly int CorrosiveBuff = ModContent.BuffType<CorrosiveBuff>();
 
         // Incendiary Element

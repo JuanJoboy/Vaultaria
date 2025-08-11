@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
         
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "Shock", "40% Chance to deal 40% bonus Shock damage\nSuccessful hits create stationary Electrosphere rings for 5 seconds that deal an additional bonus 40% of your damage")
+            yield return new TooltipLine(Mod, "Shock", "20% Chance to deal 20% bonus Shock damage")
             {
                 OverrideColor = new Color(46, 153, 228) // Blue
             };

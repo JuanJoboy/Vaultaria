@@ -7,12 +7,12 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
 {
     public class ExplosiveGlobalProjectile : GlobalProjectile
     {
-        private static float elementalChance = 40;
-        private static float elementalMultiplier = 0.4f;
+        private static float elementalChance = 20;
+        private static float elementalMultiplier = 0.2f;
+        private static int elementalBuffTime = 60;
         private static int elementalPrefix = ElementalID.ExplosivePrefix;
         private static short elementalProjectile = ElementalID.ExplosiveProjectile;
         private static int elementalBuff = ElementalID.ExplosiveBuff;
-        private static int elementalBuffTime = 120;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {

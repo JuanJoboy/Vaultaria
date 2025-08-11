@@ -10,9 +10,7 @@ public class SlagGlobalNPC : GlobalNPC
     {
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
         {
-            npc.AddBuff(BuffID.Ichor, 300);
-            modifiers.SourceDamage *= 1.3f;
-            modifiers.Defense *= 0.7f;
+            modifiers.SourceDamage *= 1.1f;
         }
     }
 
@@ -20,9 +18,7 @@ public class SlagGlobalNPC : GlobalNPC
     {
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
         {
-            npc.AddBuff(BuffID.Ichor, 300);
-            modifiers.SourceDamage *= 1.3f;
-            modifiers.Defense *= 0.7f;
+            modifiers.SourceDamage *= 1.1f;
         }
     }
 

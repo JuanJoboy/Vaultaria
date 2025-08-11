@@ -12,8 +12,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 {
     public class BuzzAxe : ModItem
     {
-        private bool isInMeleeMode = false;
-
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -37,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.useAnimation = 20;
             Item.reuseDelay = 2;
             Item.autoReuse = true;
-            Item.useTurn = true;
+            Item.useTurn = false;
 
             // BuzzAxe Bombardier
             Item.shoot = ModContent.ProjectileType<BuzzAxeBombardier>();
@@ -63,8 +61,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
             if (player.altFunctionUse == 2) // Shoot
             {
-                isInMeleeMode = false;
-
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
@@ -75,13 +71,12 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.useAnimation = 20;
                 Item.reuseDelay = 2;
                 Item.autoReuse = true;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
                 Item.UseSound = SoundID.Item23;
             }
             else // Melee
             {
-                isInMeleeMode = true;
-
                 Item.DamageType = DamageClass.Melee;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = false;
@@ -93,7 +88,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.useAnimation = 20;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
                 Item.UseSound = SoundID.Item23;
             }
 
@@ -104,8 +100,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         {
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-            
-            return !isInMeleeMode; // Only shoot if not in melee mode
+
+            return false;
         }
 
         public override void AddRecipes()

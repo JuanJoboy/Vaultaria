@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.useAnimation = 22;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
-            Item.useTurn = true;
+            Item.useTurn = false;
 
             Item.shoot = ModContent.ProjectileType<FastBallModule>();
             Item.consumable = true;

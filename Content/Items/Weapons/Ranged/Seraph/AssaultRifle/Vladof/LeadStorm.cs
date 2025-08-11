@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.65f;
+            Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
 
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 5f);
+            return new Vector2(-7f, 5f);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -69,10 +69,6 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/u][/i][/b]
 [b] Loot Beams [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=2847872897&searchtext=loot+beam
 
 
-[h3] KNOWN BUGS [/h3]
-[list][*]Excluding melee weapons, elemental prefixes don't work on non-Vaultarian items.
-[/list]
-
 [b] [v0.3.0] - Rocket Jumping Update [/b]
 [list][*]Added a Basic Grenade, Badaboom, Logan's Gun, Aequitas, and Sham
     [*]Basic Grenade allows you to grenade-jump

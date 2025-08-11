@@ -57,7 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-60f, 2f);
+            return new Vector2(-60f, 5f);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

@@ -13,10 +13,13 @@ namespace Vaultaria.Content.Projectiles.Melee
     public class BuzzAxeBombardier : ElementalProjectile
     {
         public float explosiveMultiplier = 1f;
+        public float incendiaryMultiplier = 0.25f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
-        private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int buffTime = 90;
+        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        private int explosiveBuff = ElementalID.IncendiaryBuff;
+        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        private int buffTime = 60;
 
 
         public override void SetStaticDefaults()
@@ -57,6 +60,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -66,6 +70,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -75,6 +80,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;
@@ -97,7 +103,8 @@ namespace Vaultaria.Content.Projectiles.Melee
         {
             return new List<string>
             {
-                "Explosive"
+                "Explosive",
+                "Incendiary"
             };
         }
     }

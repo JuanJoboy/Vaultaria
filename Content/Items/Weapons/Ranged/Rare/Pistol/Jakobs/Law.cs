@@ -11,8 +11,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 {
     public class Law : ModItem
     {
-        private bool isInMeleeMode = false;
-
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -43,7 +41,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             Item.useAnimation = 20;
             Item.reuseDelay = 10;
             Item.autoReuse = true;
-            Item.useTurn = true;
+            Item.useTurn = false;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
@@ -52,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-8f, 0f);
+            return new Vector2(5f, 0f);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -64,8 +62,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         {
             if (player.altFunctionUse == 2) // Right-click melee
             {
-                isInMeleeMode = true;
-
                 Item.damage = 18;
                 Item.crit = 4;
                 Item.DamageType = DamageClass.Melee;
@@ -80,12 +76,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.useAnimation = 10;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
             }
             else // Left-click ranged
             {
-                isInMeleeMode = false;
-
                 Item.damage = 8;
                 Item.crit = 4;
                 Item.DamageType = DamageClass.Ranged;
@@ -100,7 +95,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.useAnimation = 12;
                 Item.reuseDelay = 10;
                 Item.autoReuse = false;
-                Item.useTurn = true;
+                Item.useTurn = false;
+
             }
 
             return base.CanUseItem(player);
@@ -111,7 +107,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             int prefix = Item.prefix;
             ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
 
-            return !isInMeleeMode; // Only shoot if not in melee mode
+            return false;
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
