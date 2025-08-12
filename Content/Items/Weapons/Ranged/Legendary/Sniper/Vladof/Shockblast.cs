@@ -100,13 +100,29 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             return new Vector2(-15f, 0f);
         }
 
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                player.ConsumeItem(ammo.type, false);
+            }
+
+            return true;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Sniper Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Right-click to shoot fast shock e-tech rounds\nLeft-click to shoot more powerful shock rounds")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 Sniper Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-click to shoot fast shock e-tech rounds\nLeft-click to shoot more powerful shock rounds")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
+
+            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals Explosive-Shock damage")
+            {
+                OverrideColor = new Color(46, 153, 228) // Blue
+            });
+
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Blast them to smithereens!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
