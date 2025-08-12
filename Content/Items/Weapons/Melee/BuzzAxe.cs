@@ -27,7 +27,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Combat properties
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 2.3f;
-            Item.damage = 25;
+            Item.damage = 18;
             Item.crit = 0;
             Item.DamageType = DamageClass.Melee;
 
@@ -94,14 +94,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             }
 
             return base.CanUseItem(player);
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            return false;
         }
 
         public override void AddRecipes()

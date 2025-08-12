@@ -51,17 +51,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
         {
             return new Vector2(-7f, 5f);
         }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 2, 5);
-
-            return false;
-        }
-
+        
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires 3 arching bullets\nUses Assault Rifle Ammo"));

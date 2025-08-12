@@ -92,7 +92,7 @@ namespace Vaultaria.Common.Players
 
             if (Player.HasBuff(ModContent.BuffType<DeathEffect>()))
             {
-                multiplier *= 1.3f;
+                multiplier *= 1.2f;
             }
 
             if (IsWearing(ModContent.ItemType<SuperSoldier>()) && Player.statLife == Player.statLifeMax2)
@@ -112,7 +112,7 @@ namespace Vaultaria.Common.Players
 
             if (Player.HasBuff(ModContent.BuffType<DeathEffect>()))
             {
-                damage *= 1.3f;
+                damage *= 1.2f;
             }
         }
 

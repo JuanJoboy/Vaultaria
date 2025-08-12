@@ -46,16 +46,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
             Item.UseSound = SoundID.Item38;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 4, 5);
-
-            return false;
-        }
-
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
             if (Utilities.Randomizer(85f))

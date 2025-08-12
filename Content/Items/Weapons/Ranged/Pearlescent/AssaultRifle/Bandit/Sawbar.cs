@@ -52,26 +52,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
             return new Vector2(-15f, 0f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-            
-            Projectile projectile = Projectile.NewProjectileDirect(
-                source,
-                position,
-                velocity,
-                ModContent.ProjectileType<SawbarBullet>(),
-                damage,
-                knockback,
-                player.whoAmI,
-                1f,
-                0f
-            );
-
-            return false;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Assault Rifle Ammo"));

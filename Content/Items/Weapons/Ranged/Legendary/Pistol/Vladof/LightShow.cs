@@ -46,17 +46,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             Item.UseSound = SoundID.Item41;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 5);
-            Projectile.NewProjectile(source, position - new Vector2(0, -5), velocity, type, damage, knockback, player.whoAmI);
-
-            return false;
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()

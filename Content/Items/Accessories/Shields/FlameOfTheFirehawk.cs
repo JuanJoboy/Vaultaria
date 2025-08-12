@@ -55,7 +55,6 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statDefense += 4;
 
             player.AddBuff(1, 60); // Obsidian Skin
-            player.AddBuff(116, 60); // Inferno
             player.AddBuff(124, 60); // Warmth
             player.buffImmune[ModContent.BuffType<IncendiaryBuff>()] = true;
 
@@ -70,6 +69,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             //    - The cooldown timer has reached 0 (or less)
             if (player.statLife <= (player.statLifeMax2 * 0.3f) && novaCooldown <= 0)
             {
+                player.AddBuff(116, 60); // Inferno
                 // 3. If conditions are met, spawn the nova
                 int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(50);
                 float novaKnockback = 5f;

@@ -22,6 +22,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan;
@@ -174,7 +175,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.MartianSaucer)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CommanderPlanetoid>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Shockblast>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));
             }
 
@@ -231,6 +232,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.MoonLordCore)
             {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CommanderPlanetoid>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 20, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 25, 40));
             }

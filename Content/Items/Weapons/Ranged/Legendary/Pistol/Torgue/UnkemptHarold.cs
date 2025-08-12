@@ -53,31 +53,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
             return new Vector2(0f, 0f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-            
-            Projectile projectile = Projectile.NewProjectileDirect(
-                source,
-                position,
-                velocity,
-                ModContent.ProjectileType<UHBullet>(),
-                damage,
-                knockback,
-                player.whoAmI,
-                1f, // Projectile.ai[0] = 1f; (This bullet is the cloner)
-                0f  // Projectile.ai[1] = 0f; (Optional, if you don't need ai[1] yet)
-            );
-
-            if (projectile.ModProjectile is UHBullet bullet)
-            {
-                bullet.explosiveMultiplier = 1f;
-            }
-
-            return false; // Prevent vanilla from spawning the default ammo projectile
-        }
-
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
             for (int i = 0; i < 2; i++)

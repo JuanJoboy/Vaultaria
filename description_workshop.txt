@@ -3,7 +3,7 @@ Greetings Minion, it is I, your glorious Master [b] CL4P-TP [/b]. You've been a 
 Word on the ECHOnet is that it's crawling with weird monsters and some lunatic cult members trying to wake up an ancient god. Sound familiar? Yeah, I thought so. Anyways, get out there and show those psychos what a badass Vault Hunter [i] trained by yours truly [/i] can do.
 
 [h3] MOD INFORMATION [/h3]
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 62 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently [b] 63 new items [/b] in this mod (with more on the way) plus [b] new prefixes [/b] to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
 This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
 
@@ -14,7 +14,7 @@ And this is just the beginning - I plan to keep expanding with more weapons, mec
 [*]5 Grenades
 [*]1 Melee Weapon
 [*]3 Melee-Gun fusions
-[*]27 Guns
+[*]28 Guns
 [*]1 Sentry
 [/list]
 
@@ -50,11 +50,11 @@ A: Quite Enough Recipes - For full recipe and drop info
    Any content mod you enjoy (Calamity, Fargo's, etc.)
    (The recommended mods are linked at the bottom)
 
+[b] Q: Will you ever add modded Borderlands content? [/b]
+A: Yep, so far this mod has gotten approval to use any item from Exodus. In fact 1 weapon is already available, the Shockblast.
+
 [b] Q: Where can I submit feedback? [/b]
 A: The steam workshop page would be the best place.
-
-[b] Q: Why do the sprites look like that? [/b]
-A: Since I'm the only dev on this project, and I'm not great with pixel art, I decided to use those sprites. They're functional and let me show off the vision I have for this mod.
 
 [h3] FINAL WORD [/h3]
 That's all for now Minion. I'll be watching from Sanctuary III (and laughing at your failures).
@@ -62,6 +62,11 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/u][/i][/b]
 
 [b] - CL4P-TP 👋 [/b]
 
+
+[h3] CREDITS [/h3]
+[list][*]Doctor Zeus - Creator and Developer
+    [*]president larson - Spriter for every item
+[/list]
 
 [h3] RECOMMENDED QOL MODS [/h3]
 [b] Quite Enough Recipes [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes

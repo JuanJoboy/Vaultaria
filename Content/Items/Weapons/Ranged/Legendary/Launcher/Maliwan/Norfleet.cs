@@ -46,16 +46,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
             Item.value = Item.buyPrice(platinum: 1);
             Item.UseSound = SoundID.Item84;
         }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 2, 35);
-
-            return false;
-        }
         
         public override Vector2? HoldoutOffset()
         {

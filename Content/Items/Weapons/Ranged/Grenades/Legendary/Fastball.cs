@@ -52,11 +52,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         {
             return new Vector2(-14, -7);
         }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            return true;
-        }
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

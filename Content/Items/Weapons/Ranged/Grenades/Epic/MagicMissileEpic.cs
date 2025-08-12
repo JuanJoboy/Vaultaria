@@ -53,31 +53,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
             return new Vector2(-14, -7);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int projectileIndex = Projectile.NewProjectile(
-                source,
-                position,
-                velocity,
-                ModContent.ProjectileType<HomingSlagBall>(),
-                damage,
-                knockback,
-                player.whoAmI,
-                0f,
-                0f,
-                1f
-            );
-
-            Projectile projectile = Main.projectile[projectileIndex];
-
-            if (projectile.ModProjectile is HomingSlagBall grenade)
-            {
-                grenade.slagMultiplier = 0.4f;
-            }
-
-            return false; // Don't spawn the underlying chlorophyte bullet
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws out 4 Slag balls that home in on an enemy and explode on impact")

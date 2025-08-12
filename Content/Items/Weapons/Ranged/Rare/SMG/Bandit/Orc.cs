@@ -51,24 +51,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
             return new Vector2(-15f, 0f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Projectile.NewProjectileDirect(
-            source,
-            position,
-            velocity,
-            type,
-            damage,
-            knockback,
-            player.whoAmI
-            );
-
-            return false;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nHolding the Orc has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:"));

@@ -64,14 +64,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
             return new Vector2(-8f, 0f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            return false;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses any normal bullet type as ammo\nFires a basic 3 burst round"));

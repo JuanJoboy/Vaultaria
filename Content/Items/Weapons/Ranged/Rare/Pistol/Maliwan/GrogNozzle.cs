@@ -54,29 +54,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
             return new Vector2(2f, 0f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            Projectile projectile = Projectile.NewProjectileDirect(
-            source,
-            position,
-            velocity,
-            ModContent.ProjectileType<GrogBullet>(),
-            damage,
-            knockback,
-            player.whoAmI
-            );
-
-            if (projectile.ModProjectile is GrogBullet bullet)
-            {
-                bullet.slagMultiplier = 0.2f;
-            }
-
-            return false;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo\nHolding the Grog Nozzle has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:"));

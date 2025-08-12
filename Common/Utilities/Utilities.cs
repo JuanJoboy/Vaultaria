@@ -338,5 +338,15 @@ namespace Vaultaria.Common.Utilities
                 Main.LocalPlayer.QuickSpawnItem(proj.GetSource_DropAsItem(), projectileItem, amountToGet);
             }
         }
+
+        public static bool ItemIs(int itemType, int heldItem)
+        {
+            if (itemType == heldItem)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

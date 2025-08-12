@@ -47,19 +47,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             Item.UseSound = SoundID.Item31;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            // 1. Get the current prefix of the weapon firing the projectile.
-            // This is the "snapshot" of the weapon's elemental type at the moment of firing.
-            int prefix = Item.prefix;
-
-            // 2. Call a helper method to create the projectile and attach the snapped prefix.
-            // This method handles the creation of the projectile and ensures its ModProjectile (or GlobalProjectile) receives the 'prefix' value that was snapped in the previous step.
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            return false;
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()

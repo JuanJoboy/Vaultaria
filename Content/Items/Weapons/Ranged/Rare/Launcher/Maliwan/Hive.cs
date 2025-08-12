@@ -46,15 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan
             Item.value = Item.buyPrice(gold: 10);
             Item.UseSound = SoundID.Item14;
         }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int prefix = Item.prefix;
-            ElementalProjectile.ElementalPrefixCorrector(player, source, position, velocity, type, damage, knockback, prefix);
-
-            return false;
-        }
-
+        
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-60f, 5f);

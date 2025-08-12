@@ -333,6 +333,11 @@ Items: {
 		DisplayName: Aequitas
 		Tooltip: ""
 	}
+
+	Shockblast: {
+		DisplayName: Shockblast
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -371,6 +376,7 @@ Projectiles: {
 	LoganBullet.DisplayName: Logan Bullet
 	BasicModule.DisplayName: Basic Module
 	RocketJumperRocket.DisplayName: Rocket Jumper Rocket
+	ShockblastBullet.DisplayName: Shockblast Bullet
 }
 
 Buffs: {

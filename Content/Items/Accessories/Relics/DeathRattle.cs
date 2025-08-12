@@ -11,7 +11,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
     public class DeathRattle : ModRelic
     {
         private int cooldown = 60 * 35;
-        private int usage = 1;
+        public int usage = 1;
 
         public override void SetDefaults()
         {
@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+40 HP\n+5 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, if you are under 20% health, take damage to regain full health and the following bonuses:\n\t+30% Gun Damage\n\t+30% Fire Rate")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, get the following bonuses:\n\t+20% Gun Damage\n\t+20% Fire Rate\nAnd if you are under 20% health, take damage to regain full health")
             {
                 OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
