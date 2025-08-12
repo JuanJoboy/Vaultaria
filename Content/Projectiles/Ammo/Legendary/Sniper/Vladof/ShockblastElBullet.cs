@@ -7,21 +7,18 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
 {
-    public class ShockblastBullet : ElementalProjectile
+    public class ShockblastElBullet : ElementalProjectile
     {
-        public float shockMultiplier = 1f;
-        public float explosiveMultiplier = 0.5f;
-        private float elementalChance = 50f;
+        public float shockMultiplier = 0.1f;
+        private float elementalChance = 30f;
         private short shockProjectile = ElementalID.ShockProjectile;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int shockBuff = ElementalID.ShockBuff;
-        private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(80, 8);
 
             // Damage
             Projectile.friendly = true;
@@ -47,7 +44,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
-                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
@@ -57,27 +53,14 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
-                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (SetElementalChance(elementalChance))
-            {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
-            }
-
-            return false;
         }
         
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Shock",
-                "Explosive"
+                "Shock"
             };
         }
     }

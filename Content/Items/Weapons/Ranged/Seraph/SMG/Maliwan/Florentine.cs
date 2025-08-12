@@ -47,6 +47,27 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
             Item.UseSound = SoundID.Item176;
         }
 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Projectile projectile = Projectile.NewProjectileDirect(
+                source,
+                position,
+                velocity,
+                ModContent.ProjectileType<FlorentineBullet>(),
+                damage,
+                knockback,
+                player.whoAmI
+            );
+
+            if (projectile.ModProjectile is FlorentineBullet bullet)
+            {
+                bullet.shockMultiplier = 0.2f;
+                bullet.slagMultiplier = 0.2f;
+            }
+
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-20f, 5f);

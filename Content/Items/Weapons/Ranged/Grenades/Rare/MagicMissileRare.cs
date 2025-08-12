@@ -48,6 +48,31 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
             Item.UseSound = SoundID.Item169;
         }
 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int projectileIndex = Projectile.NewProjectile(
+                source,
+                position,
+                velocity,
+                ModContent.ProjectileType<HomingSlagBall>(),
+                damage,
+                knockback,
+                player.whoAmI,
+                0f,
+                0f,
+                1f
+            );
+
+            Projectile projectile = Main.projectile[projectileIndex];
+
+            if (projectile.ModProjectile is HomingSlagBall grenade)
+            {
+                grenade.slagMultiplier = 0.2f;
+            }
+
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-14, -7);

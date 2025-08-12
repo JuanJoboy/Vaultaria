@@ -29,7 +29,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 60f;
-            Item.shoot = ModContent.ProjectileType<ShockblastBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
@@ -61,9 +60,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 60f;
-                Item.shoot = ModContent.ProjectileType<ShockblastBullet>();
+                Item.shoot = ModContent.ProjectileType<ShockblastExBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
-                Item.UseSound = SoundID.Item75;
+                Item.UseSound = SoundID.Item92;
 
                 Item.damage = 200;
                 Item.crit = 0;
@@ -79,7 +78,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 60f;
-                Item.shoot = ModContent.ProjectileType<ShockblastBullet>();
+                Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
                 Item.UseSound = SoundID.Item75;
 
@@ -113,14 +112,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 Sniper Ammo per shot"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-click to shoot fast shock e-tech rounds\nLeft-click to shoot more powerful shock rounds")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals Explosive-Shock damage")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Left-click to shoot fast Shock e-tech rounds")
             {
                 OverrideColor = new Color(46, 153, 228) // Blue
+            });
+            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Right-click to shoot more powerful Explosive-Shock rounds")
+            {
+                OverrideColor = new Color(245, 252, 175) // Light Yellow
             });
 
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Blast them to smithereens!")

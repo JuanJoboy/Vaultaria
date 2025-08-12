@@ -48,6 +48,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
             Item.UseSound = SoundID.Item66;
         }
 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 15);
+
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-45f, 3f);
@@ -71,7 +78,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
             {
                 Player player = Main.LocalPlayer;
                 int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 5 ranged damage";
+                damageLine.Text = finalDamage + " x 6 ranged damage";
             }
 
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 15 Launcher Ammo per shot"));
@@ -84,8 +91,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
         
         public override bool AllowPrefix(int pre)
         {
-            return pre != ModContent.PrefixType<RangerTrickshot>() &&
-                   pre != ModContent.PrefixType<RangerDP>();
+            return pre != ModContent.PrefixType<RangerTrickshot>();
         }
     }
 }

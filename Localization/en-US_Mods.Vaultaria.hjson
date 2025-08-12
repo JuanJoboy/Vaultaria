@@ -377,6 +377,8 @@ Projectiles: {
 	BasicModule.DisplayName: Basic Module
 	RocketJumperRocket.DisplayName: Rocket Jumper Rocket
 	ShockblastBullet.DisplayName: Shockblast Bullet
+	ShockblastElBullet.DisplayName: Shockblast El Bullet
+	ShockblastExBullet.DisplayName: Shockblast Ex Bullet
 }
 
 Buffs: {

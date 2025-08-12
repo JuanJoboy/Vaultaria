@@ -91,7 +91,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
                             Projectile.Center,               // Spawn at the center of the parent bullet
                             newVelocity,                     // The newly calculated velocity for spread
                             Projectile.type,                 // Same projectile type as this one
-                            20,                               // Each bullet does 20 damage
+                            25,                               // Each bullet does 25 damage
                             Projectile.knockBack,            // Same knockback as this one
                             Projectile.owner,                // Same owner as this one
                             0f,                              // ai[0] = 0f: This clone is NOT a parent; it won't clone further

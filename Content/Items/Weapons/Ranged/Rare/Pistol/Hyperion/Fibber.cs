@@ -48,6 +48,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             Item.UseSound = SoundID.Item11;
         }
 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Projectile.NewProjectileDirect(
+                source,
+                position,
+                velocity,
+                ModContent.ProjectileType<FibberBullet>(),
+                damage,
+                knockback,
+                player.whoAmI,
+                1f,
+                1f
+            );        
+                
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(2f, 0f);

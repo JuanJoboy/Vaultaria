@@ -56,7 +56,7 @@ namespace Vaultaria.Content.Projectiles.Shields
             int magicMissileRare = ModContent.ItemType<MagicMissileRare>();
             if (IsItem(magicMissileEpic))
             {
-                MagicShoot(3);
+                MagicShoot(2);
             }
             if (IsItem(magicMissileRare))
             {
