@@ -173,7 +173,7 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 5));
             }
 
-            if (npc == NPCID.MartianSaucer)
+            if (npc == NPCID.MartianSaucerCore)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Shockblast>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 6, 10));

@@ -102,14 +102,6 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override bool AllowPrefix(int pre)
         {
-            for (int i = 0; i < ElementalProjectile.elementalPrefix.Count; i++)
-            {
-                if (ElementalProjectile.elementalPrefix.Contains(pre))
-                {
-                    return false;
-                }
-            }
-
             return pre != ModContent.PrefixType<MagicTrickshot>() &&
                    pre != ModContent.PrefixType<MagicDP>();
         }

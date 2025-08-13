@@ -41,17 +41,46 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
 
                 if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
                 {
-                    OrcShot(itemSource.Item, itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    OrcShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
                 }
 
                 if (itemSource.Item.prefix == ModContent.PrefixType<MagicDP>() || itemSource.Item.prefix == ModContent.PrefixType<RangerDP>())
                 {
-                    DoubleShot(itemSource.Item, itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    DoubleShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                }
+            }
+
+            if (source is EntitySource_Parent parent)
+            {
+                Projectile minion = parent.Entity as Projectile;
+
+                if (minion != null && (minion.minion || minion.sentry))
+                {
+                    Player player = Main.player[minion.owner];
+
+                    int minionPrefix = player.HeldItem.prefix;
+
+                    projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID = minionPrefix;
+
+                    if (player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+                    {
+                        DrunkShot(player.HeldItem, source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    }
+
+                    if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
+                    {
+                        OrcShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    }
+
+                    if (minionPrefix == ModContent.PrefixType<MagicDP>() || minionPrefix == ModContent.PrefixType<RangerDP>())
+                    {
+                        DoubleShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    }
                 }
             }
         }
 
-        private void DrunkShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
+        private void DrunkShot(Item item, IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
         {
             int extraProjectilesToSpawn = 5; // We want 5 *additional* projectiles
             float totalSpreadAngle = MathHelper.ToRadians(20); // A small, subtle spread for the "drunk" effect (20 degrees)
@@ -100,40 +129,20 @@ namespace Vaultaria.Common.Globals.Prefixes.Elements
             }
         }
 
-        private void DoubleShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
+        private void DoubleShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
         {
             float spread = MathHelper.ToRadians(5);
             Vector2 newVelocity = velocity.RotatedByRandom(spread);
 
-            Projectile.NewProjectile(
-                source,
-                position,
-                newVelocity,
-                type,
-                damage,
-                knockback,
-                player.whoAmI,
-                1f,
-                1f
-            );
+            Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
         }
 
-        private void OrcShot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
+        private void OrcShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
         {
             float spread = MathHelper.ToRadians(5);
             Vector2 newVelocity = velocity.RotatedByRandom(spread);
 
-            Projectile.NewProjectile(
-                source,
-                position,
-                newVelocity,
-                type,
-                damage,
-                knockback,
-                player.whoAmI,
-                1f,
-                1f
-            );
+            Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
         }
     }
 }

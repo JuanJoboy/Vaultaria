@@ -341,44 +341,43 @@ Items: {
 }
 
 Projectiles: {
-	ShredifierBullet.DisplayName: Shredifier Bullet
-	UHBullet.DisplayName: UH Bullet
-	FibberBullet.DisplayName: Fibber Bullet
-	GrogBullet.DisplayName: Grog Bullet
+	ShredifierBullet.DisplayName: Shredifier
+	UHBullet.DisplayName: Unkempt Harold
+	FibberBullet.DisplayName: Fibber
+	GrogBullet.DisplayName: Grog
 	BuzzAxeBombardier.DisplayName: Buzz Axe Bombardier
 	BricksFists.DisplayName: Bricks Fists
 	BerserkerFists.DisplayName: Berserker Fists
 	FireNova.DisplayName: Fire Nova
 	HomingSlagBall.DisplayName: Homing Slag Ball
 	ImpalerSpike.DisplayName: Impaler Spike
-	Turret.DisplayName: Turret
+	Turret.DisplayName: Sabre Turret
 	HomingRocket.DisplayName: Homing Rocket
-	FastBallModule.DisplayName: Fast Ball Module
-	Breath.DisplayName: Breath
-	FireBeeSpray.DisplayName: Fire Bee Spray
-	HailBullet.DisplayName: Hail Bullet
-	FlorentineBullet.DisplayName: Florentine Bullet
-	CloudBullet.DisplayName: Cloud Bullet
-	OgreBullet.DisplayName: Ogre Bullet
-	HeartBreakerBullet.DisplayName: Heart Breaker Bullet
-	WorldBurnRocket.DisplayName: World Burn Rocket
-	NukemRocket.DisplayName: Nukem Rocket
+	FastBallModule.DisplayName: FastBall
+	Breath.DisplayName: Breath Of Terramorphous
+	FireBeeSpray.DisplayName: Fire Bee
+	HailBullet.DisplayName: Hail
+	FlorentineBullet.DisplayName: Florentine
+	CloudBullet.DisplayName: Cloud
+	OgreBullet.DisplayName: Ogre
+	HeartBreakerBullet.DisplayName: Heart Breaker
+	WorldBurnRocket.DisplayName: World Burn
+	NukemRocket.DisplayName: Nukem
 	Meteor.DisplayName: Meteor
-	LuckCannonBullet.DisplayName: Luck Cannon Bullet
-	LyudaBullet.DisplayName: Lyuda Bullet
-	LeadStormBullet.DisplayName: Lead Storm Bullet
-	SawbarBullet.DisplayName: Sawbar Bullet
-	NorfleetRocket.DisplayName: Norfleet Rocket
-	HiveRocket.DisplayName: Hive Rocket
-	HornetBullet.DisplayName: Hornet Bullet
-	ZimBullet.DisplayName: Zim Bullet
-	BadaboomRocket.DisplayName: Badaboom Rocket
-	LoganBullet.DisplayName: Logan Bullet
-	BasicModule.DisplayName: Basic Module
-	RocketJumperRocket.DisplayName: Rocket Jumper Rocket
-	ShockblastBullet.DisplayName: Shockblast Bullet
-	ShockblastElBullet.DisplayName: Shockblast El Bullet
-	ShockblastExBullet.DisplayName: Shockblast Ex Bullet
+	LuckCannonBullet.DisplayName: Luck Cannon
+	LyudaBullet.DisplayName: Lyuda
+	LeadStormBullet.DisplayName: Lead Storm
+	SawbarBullet.DisplayName: Sawbar
+	NorfleetRocket.DisplayName: Norfleet
+	HiveRocket.DisplayName: Hive
+	HornetBullet.DisplayName: Hornet
+	ZimBullet.DisplayName: Zim
+	BadaboomRocket.DisplayName: Badaboom
+	LoganBullet.DisplayName: Logan's Gun
+	BasicModule.DisplayName: Basic Grenade
+	ShockblastBullet.DisplayName: Shockblast
+	ShockblastElBullet.DisplayName: Shockblast
+	ShockblastExBullet.DisplayName: Shockblast
 }
 
 Buffs: {
