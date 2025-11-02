@@ -11,7 +11,6 @@ using Vaultaria.Content.Items.Accessories.Relics;
 using Terraria.Audio;
 using Terraria.ID;
 using Vaultaria.Content.Projectiles.Shields;
-using Vaultaria.Common.Globals.Prefixes.GunModifier;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Terraria.WorldBuilding;
 using Vaultaria.Common.Utilities;

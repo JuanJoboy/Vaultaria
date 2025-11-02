@@ -28,7 +28,7 @@ namespace Vaultaria.Common.Utilities
 
         // Incendiary Element
         public static readonly int IncendiaryPrefix = ModContent.PrefixType<Incendiary>();
-        public static readonly short IncendiaryProjectile = ProjectileID.SolarWhipSwordExplosion;
+        public static readonly short IncendiaryProjectile = ProjectileID.MolotovFire;
         public static readonly int IncendiaryBuff = ModContent.BuffType<IncendiaryBuff>();
 
         // Explosive Element

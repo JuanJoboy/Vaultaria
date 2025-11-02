@@ -73,6 +73,13 @@ Now get out there and cause some mayhem, [b][i][u] Vault Hunter... [/u][/i][/b]
 [b] Recipe Viewer [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=3451139077&searchtext=quite+enough+recipes
 [b] Loot Beams [/b] - https://steamcommunity.com/sharedfiles/filedetails/?id=2847872897&searchtext=loot+beam
 
+[b] [v0.4.0] - Re-Sprite & Balance Update [/b]
+[list][*]Fixed Prefixes
+    [*]Fixed item balancing for every item
+    [*]Retextured every sprite
+    [*]Fixed Major Bugs
+    [*]Added the Shockblast from the Exodus Mod
+[/list]
 
 [b] [v0.3.0] - Rocket Jumping Update [/b]
 [list][*]Added a Basic Grenade, Badaboom, Logan's Gun, Aequitas, and Sham

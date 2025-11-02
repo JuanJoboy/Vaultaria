@@ -31,13 +31,12 @@ namespace Vaultaria.Content.Prefixes.Weapons
             valueMult *= 1.3f;
         }
 
-        // public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
-        // {
-        //     yield return new TooltipLine(Mod, "Double", "Doubles projectile count")
-        //     {
-        //         OverrideColor = new Color(228, 227, 105) // Light Yellow
-        //     };
-        //     yield return new TooltipLine(Mod, "Double", "Consumes 2x the amount of ammo");
-        // }
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "Double", "2x projectile count")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            };
+        }
 	}
 }

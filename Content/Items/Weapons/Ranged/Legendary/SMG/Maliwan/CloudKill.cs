@@ -27,19 +27,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 18;
             Item.shoot = ModContent.ProjectileType<CloudBullet>();
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 5;
+            Item.damage = 17;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.reuseDelay = 14;
+            Item.useTime = 13;
+            Item.useAnimation = 13;
+            Item.reuseDelay = 0;
             Item.autoReuse = true;
 
             // Other properties

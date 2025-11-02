@@ -7,7 +7,7 @@ using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.GunEffects;
 using Vaultaria.Content.Prefixes.Weapons;
 
-namespace Vaultaria.Common.Globals.Prefixes.Elements
+namespace Vaultaria.Common.Globals
 {
     public class ElementalGlobalProjectile : GlobalProjectile
     {

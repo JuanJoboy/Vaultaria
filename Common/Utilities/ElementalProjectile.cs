@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Vaultaria.Common.Globals.Prefixes.Elements;
+using Vaultaria.Common.Globals;
 using Terraria.DataStructures;
 using System;
 
@@ -108,74 +108,6 @@ namespace Vaultaria.Common.Utilities
         }
 
         /// <summary>
-        /// Performs an initial check for elemental projectile hits in GlobalProjectile hooks.
-        /// Returns true if the processing should stop (e.g., not from player, self-proccing projectile).
-        /// The out parameter allows the player to be initialized too.
-        /// <br/> projectile = The projectile that hit.
-        /// <br/> projectileToStop = The ProjectileID of elemental projectiles that should not self-proc (e.g., ProjectileID.Electrosphere).
-        /// <br/> player = The player who owns the projectile (out parameter).
-        /// </summary>
-        /// <param name="projectile"></param>
-        /// <param name="projectileToStop"></param>
-        /// <param name="player"></param>
-        /// <returns>True if the processing should stop, false otherwise.</returns>
-        private static bool StopElementalClones(Projectile projectile, short projectileToStop, out Player player)
-        {
-            player = Main.player[projectile.owner];
-
-            // Skip if the projectile isn't owned by a valid player
-            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
-            {
-                return true;
-            }
-
-            // Prevent recursive proc from projectile
-            if (projectile.type == projectileToStop)
-            {
-                return true;
-            }
-
-            // Goes through the HashSet and checks if any of them are present and returns true
-            if (elementalProjectile.Contains(projectile.type))
-            {
-                return true;
-            }
-
-            // If the projectile was summoned by a sentry, pet, NPC, or other source, skip
-            // projectile.friendly = false = allows friendly NPC's and players to do elemental damage
-            // projectile.hostile = true = doesn't allow hostile NPC's to do elemental damage
-            // projectile.trap = true = doesn't allow hostile traps to do elemental damage
-            if (!projectile.friendly || projectile.hostile || projectile.trap)
-            {
-                return true;
-            }
-
-            // // If it's a minion/sentry/summon (not a held weapon), skip
-            // if (projectile.minion || projectile.sentry)
-            // {
-            //     return true;
-            // }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Maps an elemental prefix ID to its corresponding elemental projectile ID.
-        /// </summary>
-        /// <param name="prefix"></param>
-        /// <returns>The corresponding elemental projectile ID, or 0 if no match is found.</returns>
-        public static short WhatElementDoICreate(int prefix)
-        {
-            // Use TryGetValue for safe lookup. It avoids errors if the key isn't found.
-            if (prefixToProjectile.TryGetValue(prefix, out short projectileType))
-            {
-                return projectileType;
-            }
-
-            return 0;
-        }
-
-        /// <summary>
         /// Maps an elemental projectile ID to its corresponding elemental buff ID.
         /// </summary>
         /// <param name="elementalProjectile"></param>
@@ -188,69 +120,6 @@ namespace Vaultaria.Common.Utilities
             }
 
             return 0;
-        }
-
-        /// <summary>
-        /// Takes the parameters of an item's Shoot() method along with it's prefix (Item.prefix) to snapshot what element the item is truly meant to be. This ensures that the element isn't being checked by what's currently being held, as that can lead to unwanted element swapping.
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="source"></param>
-        /// <param name="position"></param>
-        /// <param name="velocity"></param>
-        /// <param name="type"></param>
-        /// <param name="damage"></param>
-        /// <param name="knockback"></param>
-        /// <param name="prefix"></param>
-        public static void ElementalPrefixCorrector(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int prefix)
-        {
-            int projectileIndex = Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
-            Projectile projectile = Main.projectile[projectileIndex];
-            projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID = prefix;
-        }
-
-        /// <summary>
-        /// Checks what prefix the item has, and if it equals the elementalPrefix parameter.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="elementalPrefix"></param>
-        /// <returns>True if the item's prefix equals the elementalPrefix</returns>
-        public static bool PrefixIs(Item item, int elementalPrefix)
-        {
-            if (item.prefix == elementalPrefix)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Checks that it's not a self-triggered clone and that the held item has the expected prefix.
-        /// </summary>
-        /// <param name="chance"></param>
-        /// <param name="elementalProjectile"></param>
-        /// <param name="player"></param>
-        /// <param name="elementalPrefix"></param>
-        /// <returns>True if the projectile is allowed to trigger its elemental effect.</returns>
-        public static bool AbleToProc(Projectile projectile, short elementalProjectile, out Player player, int elementalPrefix)
-        {
-            // First, perform general checks to determine if processing for elemental effects should stop.
-            // This includes checks for invalid owners, recursive procs, existing elemental types, etc.
-            if (!StopElementalClones(projectile, elementalProjectile, out player))
-            {
-                // If the projectile is a vanilla bullet or a modded bullet, access the 'firedWeaponPrefixID' stored on its attached ElementalGlobalProjectile instance. This makes the system compatible with any projectile type.
-                int prefixID = projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID;
-
-                // Now, compare the 'snapped' prefixID (from the weapon that fired it) with the 'elementalPrefix' that this particular elemental proc check is for.
-                // If they match, it means this projectile (with its specific originating prefix) is allowed to trigger the associated elemental effect.
-                if (prefixID == elementalPrefix)
-                {
-                    return true;
-                }
-            }
-
-            // If any of the 'StopElementalClones' conditions were met, or if the prefix didn't match, prevent the elemental effect from proccing.
-            return false;
         }
 
         // ******************************************************

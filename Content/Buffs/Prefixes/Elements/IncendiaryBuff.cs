@@ -22,7 +22,6 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
             npc.AddBuff(BuffID.OnFire3, 120);
             npc.AddBuff(BuffID.Burning, 120);
 
-            npc.lifeRegen -= 30; // 30 Damage cause (30 / 120 npc.lifeRegen ticks) * 120 buff time ticks = 30
             Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, 0f, 0f, 0, default(Color), 2f);
         }
 
@@ -32,7 +31,6 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
             player.AddBuff(BuffID.OnFire3, 120);
             player.AddBuff(BuffID.Burning, 120);
 
-            player.lifeRegen -= 30;
             Dust.NewDust(player.position, player.width, player.height, DustID.Torch, 0f, 0f, 0, default(Color), 2f);
         }
     }

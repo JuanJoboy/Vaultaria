@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof
             Projectile.penetrate = 1;
             Projectile.aiStyle = 1;
 
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 36000;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;

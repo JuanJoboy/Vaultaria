@@ -1,0 +1,1 @@
+Cycles through a variety of different buffs every 10 seconds

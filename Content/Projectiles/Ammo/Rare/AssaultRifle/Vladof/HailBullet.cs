@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
             Projectile.aiStyle = 1;
 
             // Bullet Config
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 36000;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 2;

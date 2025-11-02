@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Common.Globals.Prefixes.Elements;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 {

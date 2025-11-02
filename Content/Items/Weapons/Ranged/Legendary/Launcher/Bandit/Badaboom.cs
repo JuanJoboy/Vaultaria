@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             // Combat properties
             Item.knockBack = 3.8f;
-            Item.damage = 40;
+            Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 24; i++)
             {
                 player.ConsumeItem(ammo.type, false);
             }
@@ -81,7 +81,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
                 damageLine.Text = finalDamage + " x 6 ranged damage";
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 15 Launcher Ammo per shot"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 25 Launcher Ammo per shot"));
 
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Multi-kill.\nYoooo, the skip dude.")
             {
