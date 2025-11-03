@@ -33,7 +33,7 @@ namespace Vaultaria.Common.Utilities
             ElementalID.IncendiaryPrefix,
             ElementalID.CryoPrefix,
         };
-
+        
         public static readonly HashSet<int> elementalBuff = new HashSet<int>
         {
             ElementalID.ShockBuff,

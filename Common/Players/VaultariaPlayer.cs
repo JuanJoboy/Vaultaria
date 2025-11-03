@@ -17,11 +17,14 @@ using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
 using System.Collections;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
+using Vaultaria.Content.Items.Accessories.Attunements;
 
 namespace Vaultaria.Common.Players
 {
     public class VaultariaPlayer : ModPlayer
     {
+        public NPC.HitInfo globalNpcHitInfo;
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             // Check if the projectile that just hit is one of my elemental projectiles
@@ -173,8 +176,12 @@ namespace Vaultaria.Common.Players
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
+            globalNpcHitInfo = hit;
+
             int ottoIdol = ModContent.ItemType<OttoIdol>();
             int planetoid = ModContent.ItemType<CommanderPlanetoid>();
+
+            int blightTiger = ModContent.ItemType<BlightTiger>();
 
             if (IsWearing(ottoIdol))
             {
@@ -192,7 +199,50 @@ namespace Vaultaria.Common.Players
                 }
             }
         }
+        
+        public override void OnHitAnything(float x, float y, Entity victim)
+        {
+            base.OnHitAnything(x, y, victim);
 
+            float multiplier = 0.5f;
+            int buffTime = 60;
+
+            int blightTiger = ModContent.ItemType<BlightTiger>();
+            int coldHearted = ModContent.ItemType<ColdHearted>();
+            int corruptedSpirit = ModContent.ItemType<CorruptedSpirit>();
+            int mindBlown = ModContent.ItemType<MindBlown>();
+            int shockra = ModContent.ItemType<Shockra>();
+            int soulFire = ModContent.ItemType<SoulFire>();
+
+            if (victim is NPC npcVictim)
+            {
+                if (IsWearing(blightTiger))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
+                }
+                if (IsWearing(coldHearted))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.CryoProjectile, ElementalID.CryoBuff, buffTime);
+                }
+                if (IsWearing(corruptedSpirit))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
+                }
+                if (IsWearing(mindBlown))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
+                }
+                if (IsWearing(shockra))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.ShockProjectile, ElementalID.ShockBuff, buffTime);
+                }
+                if (IsWearing(soulFire))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
+                }
+            }
+        }
+        
         private bool IsWearing(int shield)
         {
             // Ignore empty accessory slots and check if the player is wearing the shield
