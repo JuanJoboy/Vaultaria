@@ -44,6 +44,7 @@ namespace Vaultaria.Common.Players
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.SlagPrefix, ElementalID.SlagProjectile, ElementalID.SlagBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CryoPrefix, ElementalID.CryoProjectile, ElementalID.CryoBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.RadiationPrefix, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, elementalBuffTime);
         }
 
         public override float UseSpeedMultiplier(Item item)
@@ -181,8 +182,6 @@ namespace Vaultaria.Common.Players
             int ottoIdol = ModContent.ItemType<OttoIdol>();
             int planetoid = ModContent.ItemType<CommanderPlanetoid>();
 
-            int blightTiger = ModContent.ItemType<BlightTiger>();
-
             if (IsWearing(ottoIdol))
             {
                 if (target.life <= 0)
@@ -213,6 +212,7 @@ namespace Vaultaria.Common.Players
             int mindBlown = ModContent.ItemType<MindBlown>();
             int shockra = ModContent.ItemType<Shockra>();
             int soulFire = ModContent.ItemType<SoulFire>();
+            int nuclearArms = ModContent.ItemType<NuclearArms>();
 
             if (victim is NPC npcVictim)
             {
@@ -239,6 +239,10 @@ namespace Vaultaria.Common.Players
                 if (IsWearing(soulFire))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
+                }
+                if (IsWearing(nuclearArms))
+                {
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
                 }
             }
         }
@@ -318,6 +322,9 @@ namespace Vaultaria.Common.Players
                     break;
                 case 6:
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
+                    break;
+                case 7:
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 60);
                     break;
             }
         }

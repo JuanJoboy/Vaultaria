@@ -368,6 +368,11 @@ Items: {
 		DisplayName: Soul Fire
 		Tooltip: ""
 	}
+
+	NuclearArms: {
+		Tooltip: ""
+		DisplayName: Nuclear Arms
+	}
 }
 
 Projectiles: {
@@ -455,6 +460,11 @@ Buffs: {
 		DisplayName: Death Effect
 		Description: If under 20% health, the next hits against you restore you to full health
 	}
+
+	RadiationBuff: {
+		Description: Mods.Vaultaria.Buffs.RadiationBuff.Description
+		DisplayName: Radiation Buff
+	}
 }
 
 Prefixes: {
@@ -476,4 +486,5 @@ Prefixes: {
 	MagicTrickshot.DisplayName: Trickshot
 	RangerDP.DisplayName: Double Penetrating
 	RangerTrickshot.DisplayName: Trickshot
+	Radiation.DisplayName: Radiation
 }

@@ -22,6 +22,8 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ExplosiveProjectile,
             ElementalID.IncendiaryProjectile,
             ElementalID.CryoProjectile,
+            ElementalID.RadiationProjectile,
+            ElementalID.RadiationExplosion,
         };
 
         public static readonly HashSet<int> elementalPrefix = new HashSet<int>
@@ -32,6 +34,7 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ExplosivePrefix,
             ElementalID.IncendiaryPrefix,
             ElementalID.CryoPrefix,
+            ElementalID.RadiationPrefix,
         };
         
         public static readonly HashSet<int> elementalBuff = new HashSet<int>
@@ -42,6 +45,7 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ExplosiveBuff,
             ElementalID.IncendiaryBuff,
             ElementalID.CryoBuff,
+            ElementalID.RadiationBuff,
         };
 
         public static readonly Dictionary<int, short> prefixToProjectile = new Dictionary<int, short>
@@ -51,7 +55,8 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.CorrosivePrefix, ElementalID.CorrosiveProjectile},
             {ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile},
             {ElementalID.IncendiaryPrefix, ElementalID.IncendiaryProjectile},
-            {ElementalID.CryoPrefix, ElementalID.CryoProjectile}
+            {ElementalID.CryoPrefix, ElementalID.CryoProjectile},
+            {ElementalID.RadiationPrefix, ElementalID.RadiationProjectile}
         };
 
         public static readonly Dictionary<int, int> ProjectileToBuff = new Dictionary<int, int>
@@ -61,7 +66,8 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff},
             {ElementalID.SlagProjectile, ElementalID.SlagBuff},
             {ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff},
-            {ElementalID.CryoProjectile, ElementalID.CryoBuff}
+            {ElementalID.CryoProjectile, ElementalID.CryoBuff},
+            {ElementalID.RadiationProjectile, ElementalID.RadiationBuff}
         };
 
         // ********************************************
@@ -293,6 +299,41 @@ namespace Vaultaria.Common.Utilities
                     SetElementOnNPC(target, hit, elementalMultiplier, player, elementalProjectile, elementalBuff, elementalBuffTime);
                 }
             }
+        }
+
+        /// <summary>
+        /// Spawns Radiation on the NPC that was targeted
+        /// <br/> target = The NPC that was hit.
+        /// <br/> hit = The NPC.HitInfo containing details about the hit, including source damage modifiers.
+        /// <br/> elementalMultiplier = The specific damage multiplier for the Radiation effect.
+        /// <br/> elementalProjectile = The new projectile that deals the elemental damage.
+        /// <br/> buffType = The additional base buff that's added on top.
+        /// <br/> buffTime = The amount of time the base buff will last for. It's calculated in ticks so 60 ticks is 1 second.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="hit"></param>
+        /// <param name="elementalMultiplier"></param>
+        /// <param name="elementalProjectile"></param>
+        /// <param name="buffType"></param>
+        /// <param name="buffTime"></param>
+        public static void SetRadiation(NPC target, NPC.HitInfo hit, float elementalMultiplier, short elementalProjectile, int buffType, int buffTime)
+        {
+            int elementalDamage = 0;
+            float baseDamage = hit.SourceDamage;
+
+            SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                target.GetSource_OnHit(target),
+                target.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                target.whoAmI
+            );
+
+            target.AddBuff(buffType, buffTime);
         }
     }
 }

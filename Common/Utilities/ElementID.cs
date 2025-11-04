@@ -40,5 +40,11 @@ namespace Vaultaria.Common.Utilities
         public static readonly int CryoPrefix = ModContent.PrefixType<Cryo>();
         public static readonly short CryoProjectile = ProjectileID.FrostBlastFriendly;
         public static readonly int CryoBuff = ModContent.BuffType<CryoBuff>();
+
+        // Radiation Element
+        public static readonly int RadiationPrefix = ModContent.PrefixType<Radiation>();
+        public static readonly short RadiationProjectile = ProjectileID.GoldenShowerFriendly; // Projectile
+        public static readonly short RadiationExplosion = ProjectileID.DD2BetsyFlameBreath; // Explosion
+        public static readonly int RadiationBuff = ModContent.BuffType<RadiationBuff>();
     }
 }

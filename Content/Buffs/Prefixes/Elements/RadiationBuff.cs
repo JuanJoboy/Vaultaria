@@ -21,6 +21,7 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
         {
             npc.AddBuff(BuffID.Ichor, 120);
             npc.AddBuff(BuffID.CursedInferno, 120);
+            npc.AddBuff(BuffID.Bleeding, 120);
 
             Dust.NewDust(npc.position, npc.width, npc.height, DustID.Ichor, 0f, 0f, 0, default(Color), 1f);
         }
@@ -30,6 +31,7 @@ namespace Vaultaria.Content.Buffs.Prefixes.Elements
         {
             player.AddBuff(BuffID.Ichor, 120);
             player.AddBuff(BuffID.CursedInferno, 120);
+            player.AddBuff(BuffID.Bleeding, 120);
 
             Dust.NewDust(player.position, player.width, player.height, DustID.Ichor, 0f, 0f, 0, default(Color), 1f);
         }
