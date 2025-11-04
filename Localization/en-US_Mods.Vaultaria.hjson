@@ -373,6 +373,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Nuclear Arms
 	}
+
+	Prototype2599: {
+		DisplayName: Prototype 2599
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -413,6 +418,7 @@ Projectiles: {
 	ShockblastBullet.DisplayName: Shockblast
 	ShockblastElBullet.DisplayName: Shockblast
 	ShockblastExBullet.DisplayName: Shockblast
+	Prototype2599Bullet.DisplayName: Prototype2599
 }
 
 Buffs: {
@@ -487,4 +493,7 @@ Prefixes: {
 	RangerDP.DisplayName: Double Penetrating
 	RangerTrickshot.DisplayName: Trickshot
 	Radiation.DisplayName: Radiation
+	MagicMasher.DisplayName: Masher
+	Masher.DisplayName: Masher
+	RangerMasher.DisplayName: Masher
 }

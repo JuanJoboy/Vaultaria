@@ -23,7 +23,6 @@ namespace Vaultaria.Common.Utilities
             ElementalID.IncendiaryProjectile,
             ElementalID.CryoProjectile,
             ElementalID.RadiationProjectile,
-            ElementalID.RadiationExplosion,
         };
 
         public static readonly HashSet<int> elementalPrefix = new HashSet<int>
@@ -329,8 +328,7 @@ namespace Vaultaria.Common.Utilities
                 Vector2.Zero,
                 elementalProjectile,
                 elementalDamage,
-                0f,
-                target.whoAmI
+                0f
             );
 
             target.AddBuff(buffType, buffTime);

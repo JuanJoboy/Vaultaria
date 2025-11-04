@@ -140,10 +140,11 @@ namespace Vaultaria.Common.Globals
         private void MultiShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player, int amountOfShots)
         {
             float spread = MathHelper.ToRadians(5);
-            Vector2 newVelocity = velocity.RotatedByRandom(spread);
 
             for(int i = 0; i < amountOfShots; i++)
             {
+                Vector2 newVelocity = velocity.RotatedByRandom(spread);
+
                 Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
             }
         }

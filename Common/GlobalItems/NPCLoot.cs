@@ -43,10 +43,7 @@ namespace Vaultaria.Common.GlobalItems
             int npc = mob.type;
             int eridium = ModContent.ItemType<Eridium>();
 
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                DropAmmo(npcLoot);
-            }
+            DropMiscItems(npcLoot);
 
             //********************************** NPC's **********************************//
             if (npc == NPCID.GiantTortoise || npc == NPCID.IceTortoise || npc == NPCID.Derpling)
@@ -249,14 +246,18 @@ namespace Vaultaria.Common.GlobalItems
             base.ModifyGlobalLoot(globalLoot);
         }
 
-        private void DropAmmo(Terraria.ModLoader.NPCLoot npcLoot)
+        private void DropMiscItems(Terraria.ModLoader.NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PistolAmmo>(), 3, 25, 50));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SubmachineGunAmmo>(), 4, 25, 50));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AssaultRifleAmmo>(), 5, 25, 50));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShotgunAmmo>(), 5, 25, 50));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperAmmo>(), 6, 10, 30));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LauncherAmmo>(), 10, 5, 25));
+            // Ammo
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PistolAmmo>(), 20, 1, 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SubmachineGunAmmo>(), 20, 1, 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AssaultRifleAmmo>(), 25, 1, 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShotgunAmmo>(), 25, 1, 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperAmmo>(), 30, 1, 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LauncherAmmo>(), 30, 1, 10));
+
+            // Eridium
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eridium>(), 100, 1, 2));
         }
     }
 }

@@ -43,8 +43,7 @@ namespace Vaultaria.Common.Utilities
 
         // Radiation Element
         public static readonly int RadiationPrefix = ModContent.PrefixType<Radiation>();
-        public static readonly short RadiationProjectile = ProjectileID.GoldenShowerFriendly; // Projectile
-        public static readonly short RadiationExplosion = ProjectileID.DD2BetsyFlameBreath; // Explosion
+        public static readonly short RadiationProjectile = ProjectileID.GoldenShowerFriendly;
         public static readonly int RadiationBuff = ModContent.BuffType<RadiationBuff>();
     }
 }
