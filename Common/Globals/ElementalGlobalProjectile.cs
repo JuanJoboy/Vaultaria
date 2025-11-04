@@ -46,7 +46,11 @@ namespace Vaultaria.Common.Globals
 
                 if (itemSource.Item.prefix == ModContent.PrefixType<MagicDP>() || itemSource.Item.prefix == ModContent.PrefixType<RangerDP>())
                 {
-                    DoubleShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
+                }
+                if (itemSource.Item.prefix == ModContent.PrefixType<MagicMasher>() || itemSource.Item.prefix == ModContent.PrefixType<RangerMasher>())
+                {
+                    MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
                 }
             }
 
@@ -74,7 +78,11 @@ namespace Vaultaria.Common.Globals
 
                     if (minionPrefix == ModContent.PrefixType<MagicDP>() || minionPrefix == ModContent.PrefixType<RangerDP>())
                     {
-                        DoubleShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                        MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
+                    }
+                    if (minionPrefix == ModContent.PrefixType<MagicMasher>() || minionPrefix == ModContent.PrefixType<RangerMasher>())
+                    {
+                        MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
                     }
                 }
             }
@@ -129,12 +137,15 @@ namespace Vaultaria.Common.Globals
             }
         }
 
-        private void DoubleShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)
+        private void MultiShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player, int amountOfShots)
         {
             float spread = MathHelper.ToRadians(5);
             Vector2 newVelocity = velocity.RotatedByRandom(spread);
 
-            Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
+            for(int i = 0; i < amountOfShots; i++)
+            {
+                Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
+            }
         }
 
         private void OrcShot(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, Player player)

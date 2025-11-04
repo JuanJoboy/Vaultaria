@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary;
@@ -41,6 +42,11 @@ namespace Vaultaria.Common.GlobalItems
         {
             int npc = mob.type;
             int eridium = ModContent.ItemType<Eridium>();
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                DropAmmo(npcLoot);
+            }
 
             //********************************** NPC's **********************************//
             if (npc == NPCID.GiantTortoise || npc == NPCID.IceTortoise || npc == NPCID.Derpling)
@@ -88,7 +94,7 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FlameOfTheFirehawk>(), 5, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
-        
+
             if (npc == NPCID.Deerclops)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnkemptHarold>(), 10, 1, 1));
@@ -211,7 +217,7 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LuckCannon>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 10, 15));
             }
-    
+
             if (npc == NPCID.DukeFishron)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DeathRattle>(), 10, 1, 1));
@@ -241,6 +247,16 @@ namespace Vaultaria.Common.GlobalItems
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             base.ModifyGlobalLoot(globalLoot);
+        }
+
+        private void DropAmmo(Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PistolAmmo>(), 3, 25, 50));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SubmachineGunAmmo>(), 4, 25, 50));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AssaultRifleAmmo>(), 5, 25, 50));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShotgunAmmo>(), 5, 25, 50));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperAmmo>(), 6, 10, 30));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LauncherAmmo>(), 10, 5, 25));
         }
     }
 }
