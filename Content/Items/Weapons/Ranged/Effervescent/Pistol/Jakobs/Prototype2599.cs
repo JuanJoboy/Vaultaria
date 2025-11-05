@@ -161,7 +161,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
                 }
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nFires as fast as you can pull the trigger... but not too fast"));
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo\nFires as fast as you can pull the trigger... but not too fast"));
             tooltips.Add(new TooltipLine(Mod, "Red Text", "An ode to Maxine")
             {
                 OverrideColor = new Color(198, 4, 4) // Red

@@ -96,7 +96,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.reuseDelay = 10;
                 Item.autoReuse = false;
                 Item.useTurn = false;
-
             }
 
             return base.CanUseItem(player);

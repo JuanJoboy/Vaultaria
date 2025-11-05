@@ -18,6 +18,7 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
 using System.Collections;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
 using Vaultaria.Content.Items.Accessories.Attunements;
+using Vaultaria.Content.Buffs.PotionEffects;
 
 namespace Vaultaria.Common.Players
 {

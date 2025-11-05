@@ -378,6 +378,21 @@ Items: {
 		DisplayName: Prototype 2599
 		Tooltip: ""
 	}
+
+	FacePuncher: {
+		Tooltip: ""
+		DisplayName: Face Puncher
+	}
+
+	ZerosSword: {
+		Tooltip: ""
+		DisplayName: Zeros Sword
+	}
+
+	Deception: {
+		Tooltip: ""
+		DisplayName: Deception
+	}
 }
 
 Projectiles: {
@@ -470,6 +485,11 @@ Buffs: {
 	RadiationBuff: {
 		Description: Mods.Vaultaria.Buffs.RadiationBuff.Description
 		DisplayName: Radiation Buff
+	}
+
+	DeceptionBuff: {
+		Description: Mods.Vaultaria.Buffs.DeceptionBuff.Description
+		DisplayName: Deception Buff
 	}
 }
 

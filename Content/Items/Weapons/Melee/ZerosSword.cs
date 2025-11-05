@@ -1,0 +1,116 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using Vaultaria.Content.Items.Materials;
+using Terraria.DataStructures;
+using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Buffs.PotionEffects;
+
+namespace Vaultaria.Content.Items.Weapons.Melee
+{
+    public class ZerosSword : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 1;
+        }
+
+        public override void SetDefaults()
+        {
+            // Visual properties
+            Item.Size = new Vector2(60, 20);
+
+            // Combat properties
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 2.3f;
+            Item.damage = 200;
+            Item.crit = 6;
+            Item.DamageType = DamageClass.Melee;
+
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 30;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+
+            // Other properties
+            Item.value = Item.buyPrice(copper: 20);
+            Item.rare = ItemRarityID.Master;
+            Item.UseSound = SoundID.NPCHit16;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            {
+                Dash(player);
+            }
+
+            return base.UseItem(player);
+        }
+
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPC(player, target, hit, damageDone);
+
+            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            {
+                if (target.life <= 2)
+                {
+                    player.AddBuff(ModContent.BuffType<DeceptionBuff>(), 600);
+                }
+            }
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(75)
+                .AddIngredient(ItemID.FragmentSolar, 50)
+                .AddIngredient(ItemID.LunarBar, 25)
+                .AddIngredient(ItemID.Tabi, 1)
+                .AddIngredient(ItemID.Muramasa, 1)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "0")
+            {
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "How hilarious\nYou just set off my trap card\nYour death approaches.")
+            {
+                OverrideColor = new Color(198, 4, 4) // Red
+            });
+        }
+
+        private void Dash(Player player)
+        {
+            float range = 500f;
+            NPC closest = null;
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
+                {
+                    float dist = Vector2.Distance(player.Center, npc.Center);
+                    if (dist < range) // Checks if the NPC is closer than any previously checked NPC and if there's a clear line of sight
+                    {
+                        closest = npc;
+                        range = dist;
+                    }
+                }
+            }
+
+            if(closest != null)
+            {
+                player.Center = closest.Center;
+            }
+        }
+    }
+}
