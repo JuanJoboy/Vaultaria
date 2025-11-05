@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using System;
 using Vaultaria.Content.Items.Materials;
 using Terraria.DataStructures;
 using System.Collections.Generic;
@@ -31,14 +32,13 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
             Item.useTime = 30;
             Item.useAnimation = 30;
-            Item.reuseDelay = 30;
-            Item.autoReuse = true;
+            Item.autoReuse = false;
             Item.useTurn = true;
 
             // Other properties
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
-            Item.UseSound = SoundID.NPCHit16;
+            Item.UseSound = SoundID.Item1;
         }
 
         public override bool? UseItem(Player player)
@@ -59,7 +59,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             {
                 if (target.life <= 2)
                 {
-                    player.AddBuff(ModContent.BuffType<DeceptionBuff>(), 600);
+                    player.AddBuff(ModContent.BuffType<DeceptionBuff>(), 300);
                 }
             }
         }
@@ -102,14 +102,28 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                     if (dist < range) // Checks if the NPC is closer than any previously checked NPC and if there's a clear line of sight
                     {
                         closest = npc;
-                        range = dist;
                     }
                 }
             }
 
             if(closest != null)
             {
-                player.Center = closest.Center;
+                // Calculate the absolute difference in Y positions.
+                float yDifference = Math.Abs(player.position.Y - closest.position.Y);
+
+                // If the player is within the acceptable vertical range (TOLERANCE)
+                if (yDifference <= 50)
+                {
+                    // Only move the player's X position to the NPC's X position
+                    player.position.X = closest.position.X + 30;
+                }
+                else
+                {
+                    player.Center = closest.Center;
+                }
+
+                player.immune = true; // Just to stabilize the player
+                player.immuneTime = 5;
             }
         }
     }

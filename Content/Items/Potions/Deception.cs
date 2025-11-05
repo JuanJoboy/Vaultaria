@@ -33,6 +33,7 @@ namespace Vaultaria.Content.Items.Potions
             Item.autoReuse = true;
             Item.useTurn = true;
 
+            // Item.potion = true;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<DeceptionBuff>();
             Item.buffTime = 360;
@@ -40,6 +41,13 @@ namespace Vaultaria.Content.Items.Potions
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
             Item.UseSound = SoundID.Item3;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            player.PlayerFrame();
+
+            return base.UseItem(player);
         }
 
         public override void AddRecipes()

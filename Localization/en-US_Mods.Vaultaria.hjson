@@ -488,7 +488,7 @@ Buffs: {
 	}
 
 	DeceptionBuff: {
-		Description: Mods.Vaultaria.Buffs.DeceptionBuff.Description
+		Description: And I disappear / A ghost amidst the combat / Preparing to strike.
 		DisplayName: Deception Buff
 	}
 }
