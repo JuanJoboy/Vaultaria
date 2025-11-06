@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 35);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 35, 3, 9);
 
             return false;
         }

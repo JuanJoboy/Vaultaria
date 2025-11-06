@@ -4,15 +4,15 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
+namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 {
-    public class Prototype2599Bullet : ElementalProjectile
+    public class HellfireBullet : ElementalProjectile
     {
-        public float radiationMultiplier = 0.5f;
-        private float elementalChance = 50;
-        private short radiationProjectile = ElementalID.RadiationProjectile;
-        private int radiationBuff = ElementalID.RadiationBuff;
-        private int buffTime = 90;
+        public float incendiaryMultiplier = 2f;
+        private float elementalChance = 100f;
+        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        private int buffTime = 60;
 
         public override void SetDefaults()
         {
@@ -23,22 +23,33 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 1;
+            Projectile.aiStyle = 0;
 
             // Bullet Config
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.extraUpdates = 1;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 4;
         }
 
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
+            Utilities.FrameRotator(4, Projectile);
         }
 
         public override void OnKill(int timeLeft)
         {
-            Utilities.DustMaker(2, Projectile, DustID.Ichor, false);
+            int numDust = 20;
+            for (int i = 0; i < numDust; i++)
+            {
+                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = false;
+            }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -46,7 +57,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, radiationMultiplier, player, radiationProjectile, radiationBuff, buffTime);
+                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -55,7 +66,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, radiationMultiplier, player, radiationProjectile, radiationBuff, buffTime);
+                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -64,17 +75,17 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, radiationMultiplier, player, radiationProjectile);
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;
         }
-
+        
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Radiation"
+                "Incendiary"
             };
         }
     }

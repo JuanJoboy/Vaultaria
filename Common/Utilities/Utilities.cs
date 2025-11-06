@@ -133,7 +133,7 @@ namespace Vaultaria.Common.Utilities
         }
 
         /// <summary>
-        /// Takes the parameters of an item's Shoot() method along with how much the new clones should spread and how many clones should appear.
+        /// Takes the parameters of an item's Shoot() method along with how much the new clones should spread and how many clones should appear. Min and Max should be from 1 to 11
         /// </summary>
         /// <param name="player"></param>
         /// <param name="source"></param>
@@ -144,16 +144,31 @@ namespace Vaultaria.Common.Utilities
         /// <param name="knockback"></param>
         /// <param name="numberOfAdditionalBullets"></param>
         /// <param name="degreeSpread"></param>
-        public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread)
+        public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread, int min, int max)
         {
-            // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
-            float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
-
-            // Calculate the base rotation of the velocity vector
-            float baseRotation = velocity.ToRotation();
-
             for (int i = 0; i < numberOfAdditionalBullets; i++)
             {
+                degreeSpread = Main.rand.Next(min, max) switch
+                {
+                    1 => -45, // If 1 is returned then degreeSpread =- 5
+                    2 => -34,
+                    3 => -23,
+                    4 => -12,
+                    5 => -1,
+                    6 => +1,
+                    7 => +12,
+                    8 => +23,
+                    9 => +34,
+                    10 => +45,
+                    _ => degreeSpread, // Default
+                };
+
+                // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
+                float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
+
+                // Calculate the base rotation of the velocity vector
+                float baseRotation = velocity.ToRotation();
+
                 // Calculate the individual bullet's angle
                 // This distributes the bullets symmetrically around the original velocity direction
                 float bulletAngle = baseRotation + MathHelper.Lerp(-spreadAngle / 2, spreadAngle / 2, (float)i / (numberOfAdditionalBullets - 1));
@@ -347,6 +362,67 @@ namespace Vaultaria.Common.Utilities
             }
 
             return false;
+        }
+
+        public static void MoveToTarget(Entity movingEntity, Entity target, float moveSpeed, float accelerationRate)
+        {
+            // Set Distance to Player
+            float distanceToTarget = Vector2.Distance(movingEntity.Center, target.Center);
+
+            // Set Move Speeds
+            float movementSpeed = moveSpeed / distanceToTarget;
+
+            float targetVelocityX = (target.Center.X - movingEntity.Center.X) * movementSpeed;
+            float targetVelocityY = (target.Center.Y - movingEntity.Center.Y) * movementSpeed;
+
+            // Apply Acceleration
+            if(movingEntity.velocity.X < targetVelocityX)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.X += accelerationRate;
+
+                // Further increase velocity
+                if(movingEntity.velocity.X < 0f && targetVelocityX > 0f)
+                {
+                    movingEntity.velocity.X += accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.X > targetVelocityX)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.X -= accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.X > 0f && targetVelocityX < 0f)
+                {
+                    movingEntity.velocity.X -= accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.Y < targetVelocityY)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.Y += accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.Y < 0f && targetVelocityY > 0f)
+                {
+                    movingEntity.velocity.Y += accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.Y > targetVelocityY)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.Y -= accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.Y > 0f && targetVelocityY < 0f)
+                {
+                    movingEntity.velocity.Y -= accelerationRate;
+                }
+            }
         }
     }
 }

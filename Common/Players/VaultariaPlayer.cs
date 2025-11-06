@@ -95,6 +95,7 @@ namespace Vaultaria.Common.Players
             int asteroidBelt = ModContent.ItemType<AsteroidBelt>();
             int sham = ModContent.ItemType<Sham>();
             int aequitas = ModContent.ItemType<Aequitas>();
+            int aspis = ModContent.ItemType<AthenasAspis>();
 
             if (IsWearing(antagonist))
             {
@@ -120,6 +121,11 @@ namespace Vaultaria.Common.Players
             {
                 HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.3f, 2);
             }
+
+            if (IsWearing(aspis))
+            {
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.3f, 2);
+            }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
@@ -127,6 +133,7 @@ namespace Vaultaria.Common.Players
             int antagonist = ModContent.ItemType<Antagonist>();
             int impaler = ModContent.ItemType<Impaler>();
             int asteroidBelt = ModContent.ItemType<AsteroidBelt>();
+            int aspis = ModContent.ItemType<AthenasAspis>();
 
             if (IsWearing(antagonist))
             {
@@ -143,6 +150,12 @@ namespace Vaultaria.Common.Players
             if (IsWearing(asteroidBelt))
             {
                 HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<Meteor>(), 0.3f, 2);
+            }
+
+            if (IsWearing(aspis))
+            {
+                HomingCauseHit(npc, hurtInfo, ModContent.ProjectileType<AspisShield>(), 0.3f, 2);
+                hurtInfo.SourceDamage = (int) (hurtInfo.SourceDamage * 0.75f);
             }
         }
 

@@ -393,6 +393,21 @@ Items: {
 		Tooltip: ""
 		DisplayName: Deception
 	}
+
+	AthenasAspis: {
+		DisplayName: Athenas Aspis
+		Tooltip: ""
+	}
+
+	Hellfire: {
+		Tooltip: ""
+		DisplayName: Hellfire
+	}
+
+	Deliverance: {
+		Tooltip: ""
+		DisplayName: Deliverance
+	}
 }
 
 Projectiles: {
@@ -434,6 +449,9 @@ Projectiles: {
 	ShockblastElBullet.DisplayName: Shockblast
 	ShockblastExBullet.DisplayName: Shockblast
 	Prototype2599Bullet.DisplayName: Prototype2599
+	AspisShield.DisplayName: Aspis Shield
+	HellfireBullet.DisplayName: Hellfire Bullet
+	HomingDeliverance.DisplayName: Homing Deliverance
 }
 
 Buffs: {

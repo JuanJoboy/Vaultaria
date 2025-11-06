@@ -22,9 +22,9 @@ namespace Vaultaria.Content.Prefixes.Weapons
         // Damage Multiplier, Knockback Multiplier, Use Time Multiplier, Scale Multiplier (Size), Shoot Speed Multiplier, Mana Multiplier (Mana cost), Crit Bonus.
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            damageMult *= 0.2f;
-            knockbackMult *= 0.3f;
-            shootSpeedMult *= 0.5f;
+            damageMult *= 0.6f;
+            knockbackMult *= 0.4f;
+            shootSpeedMult *= 0.9f;
         }
 
         // Modify the cost of items with this modifier with this function.

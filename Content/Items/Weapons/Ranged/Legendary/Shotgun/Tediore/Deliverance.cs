@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 {
-    public class Prototype2599 : ModItem
+    public class Deliverance : ModItem
     {
         private bool altFireMode = false;
 
@@ -26,23 +26,22 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
             Item.Size = new Vector2(60, 20);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Master;
+            Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 10;
-            Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
-            Item.useAmmo = ModContent.ItemType<PistolAmmo>();
+            Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 60;
+            Item.damage = 15;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 45;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 35;
             Item.autoReuse = true;
 
             // Other properties
@@ -57,38 +56,41 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            for (int i = 0; i < 2; i++)
+            if (altFireMode == true)
             {
-                player.ConsumeItem(ammo.type, false);
+                for (int i = 0; i < 29; i++)
+                {
+                    player.ConsumeItem(ammo.type, false);
+                }
             }
-
+            
             return true;
         }
 
         public override bool CanUseItem(Player player)
         {
 
-            if (player.altFunctionUse == 2) // Burst Fire (alt)
+            if (player.altFunctionUse == 2) // Throw
             {
                 altFireMode = true;
 
-                Item.damage = 15;
-                Item.crit = 1;
+                Item.damage = 0;
+                Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
-                Item.useStyle = ItemUseStyleID.Shoot;
+                Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
                 Item.shootSpeed = 10f;
-                Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
+                Item.shoot = ModContent.ProjectileType<HomingDeliverance>();
 
-                Item.useTime = 12;
-                Item.useAnimation = 36;
-                Item.reuseDelay = 30;
+                Item.useTime = 15;
+                Item.useAnimation = 15;
+                Item.reuseDelay = 15;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
                 Item.UseSound = SoundID.Item31;
             }
-            else // Quad Shot (normal)
+            else // Shoot
             {
                 altFireMode = false;
 
@@ -98,7 +100,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 10f;
-                Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
+                Item.shoot = ProjectileID.Bullet;
 
                 Item.useTime = 30;
                 Item.useAnimation = 30;
@@ -114,19 +116,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(Utilities.Randomizer(25f))
-            {
-                Utilities.CloneShots(player, source, position, velocity * 2f, type, damage, knockback, 2, 10, 4, 8);
-            }
-
             if (altFireMode == false)
             {
-                Utilities.CloneShots(player, source, position, velocity * 2f, type, damage, knockback, 4, 5, 4, 8);
+                Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 4, 5, 2, 10);
+            }
+            else
+            {
+                int homingProjectileType = ModContent.ProjectileType<HomingDeliverance>();
 
+                Projectile.NewProjectile(source, position, velocity, homingProjectileType, damage, knockback, player.whoAmI);
+                
                 return false;
             }
-
-            return true;
+            
+            return false;
         }
 
         public override void AddRecipes()
@@ -144,31 +147,24 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(2f, -5f);
+            return new Vector2(2f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
 
-            if(altFireMode == false)
+            if (damageLine != null)
             {
-                if (damageLine != null)
-                {
-                    Player player = Main.LocalPlayer;
-                    int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                    damageLine.Text = finalDamage + " x 4 ranged damage";
-                }
+                Player player = Main.LocalPlayer;
+                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
+                damageLine.Text = finalDamage + " x 8 ranged damage";
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo\nFires as fast as you can pull the trigger... but not too fast"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "An ode to Maxine")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Kiki got a shotgun!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
-            });
-            tooltips.Add(new TooltipLine(Mod, "Cyan Text", "Developer Item")
-            {
-                OverrideColor = new Color(129, 247, 247) // Cyan
             });
         }
     }
