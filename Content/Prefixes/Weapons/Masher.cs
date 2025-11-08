@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Systems;
 
 namespace Vaultaria.Content.Prefixes.Weapons
 {
@@ -9,14 +10,26 @@ namespace Vaultaria.Content.Prefixes.Weapons
     {
         public override float RollChance(Item item)
         {
-            return 2f;
+            if (BossDownedSystem.skeletron == false)
+            {
+                return 0;
+            }
+
+            return 0; // Masher doesn't work right now so im blocking it permanently for the time being
+            // return 2f;
         }
 
         // Determines if it can roll at all.
         // Use this to control if a prefix can be rolled or not.
         public override bool CanRoll(Item item)
         {
-            return true;
+            if (BossDownedSystem.skeletron == false)
+            {
+                return false;
+            }
+
+            return false; // Masher doesn't work right now so im blocking it permanently for the time being
+            // return true;
         }
 
         // Damage Multiplier, Knockback Multiplier, Use Time Multiplier, Scale Multiplier (Size), Shoot Speed Multiplier, Mana Multiplier (Mana cost), Crit Bonus.

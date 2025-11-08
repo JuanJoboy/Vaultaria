@@ -141,7 +141,7 @@ namespace Vaultaria.Common.Globals
         {
             float spread = MathHelper.ToRadians(5);
 
-            for(int i = 0; i < amountOfShots; i++)
+            for (int i = 0; i < amountOfShots; i++)
             {
                 Vector2 newVelocity = velocity.RotatedByRandom(spread);
 

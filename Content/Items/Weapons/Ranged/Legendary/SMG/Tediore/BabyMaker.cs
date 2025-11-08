@@ -9,7 +9,7 @@ using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
+namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 {
     public class BabyMaker : ModItem
     {

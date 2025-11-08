@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
 using Vaultaria.Common.Utilities;
+using Microsoft.Xna.Framework.Graphics;
 
 public class RadiationGlobalNPC : GlobalNPC
 {
@@ -25,10 +26,10 @@ public class RadiationGlobalNPC : GlobalNPC
         {
             NPC npc = Main.npc[i];
             float dist = Vector2.Distance(explodingNPC.Center, npc.Center); // Measures the distance from the exploding npc to other npc's
-            
+
             if (!npc.townNPC) // Filters to only hostile targets
             {
-                if(dist < 200)
+                if (dist < 200)
                 {
                     ElementalProjectile.SetRadiation(npc, hit, 0.2f, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240); // Set radiation again on nearby npc's
                 }

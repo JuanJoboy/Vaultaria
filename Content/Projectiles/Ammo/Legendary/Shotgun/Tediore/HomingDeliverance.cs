@@ -7,17 +7,14 @@ using System;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
 {
     public class HomingDeliverance : ElementalProjectile
     {
         public float explosiveMultiplier = 1f;
-        private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
-        private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int buffTime = 180;
-
 
         public override void SetDefaults()
         {
@@ -31,9 +28,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             Projectile.damage = 0;
 
             // Bullet Config
-            Projectile.timeLeft = 3600;
+            Projectile.timeLeft = 900;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+        }
+
+        public override bool PreAI()
+        {
+            if(Deliverance.thrown == true)
+            {
+                ThrowGun();
+            }
+            return base.PreAI();
         }
 
         public override void AI()
@@ -42,7 +48,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
 
             if(target != null)
             {
-                Utilities.MoveToTarget(Projectile, target, 8f, 0.2f);
+                float distance = Vector2.Distance(Projectile.Center, target.Center);
+                if (distance > 60)
+                {
+                    Utilities.MoveToPosition(Projectile, target.Center - new Vector2(60, 60), 5f, 0.2f);
+                }
+
+                Projectile.rotation = Projectile.velocity.ToRotation();
+                
+                if (Projectile.velocity.X < 0f)
+                {
+                    Projectile.rotation += MathHelper.Pi;
+                }
             }
 
             if (EnemyFoundToShoot(target))
@@ -119,6 +136,22 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             return false;
         }
 
+        private void ThrowGun()
+        {
+            Vector2 mouse = Main.MouseWorld;
+            Player player = Main.player[Main.myPlayer];
+
+            // Face target
+            if (mouse.X > player.Center.X)
+            {
+                Projectile.spriteDirection = 1; // Face right
+            }
+            else
+            {
+                Projectile.spriteDirection = -1; // Face left
+            }
+        }
+
         public override void OnKill(int timeLeft)
         {
             // Create an explosion effect when the projectile dies
@@ -130,6 +163,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1f);
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 1f);
             }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Explode();
+            return base.OnTileCollide(oldVelocity);
+        }
+
+        private void Explode()
+        {
+            Projectile.damage = 250;
+            SetElementOnTile(Projectile, explosiveMultiplier, Main.player[Main.myPlayer], explosiveProjectile);
         }
 
         public override List<string> GetElement()

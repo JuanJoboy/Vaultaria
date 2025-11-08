@@ -408,6 +408,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Deliverance
 	}
+
+	BabyMaker: {
+		Tooltip: ""
+		DisplayName: Baby Maker
+	}
 }
 
 Projectiles: {
@@ -452,6 +457,7 @@ Projectiles: {
 	AspisShield.DisplayName: Aspis Shield
 	HellfireBullet.DisplayName: Hellfire Bullet
 	HomingDeliverance.DisplayName: Homing Deliverance
+	BabyMakerGrenade.DisplayName: Baby Maker Grenade
 }
 
 Buffs: {

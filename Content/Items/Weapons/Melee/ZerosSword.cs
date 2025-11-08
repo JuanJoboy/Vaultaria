@@ -29,6 +29,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.damage = 200;
             Item.crit = 6;
             Item.DamageType = DamageClass.Melee;
+            Item.scale = 1.25f;
 
             Item.useTime = 30;
             Item.useAnimation = 30;
@@ -41,16 +42,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.UseSound = SoundID.Item15;
         }
 
-        public override bool? UseItem(Player player)
-        {
-            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
-            {
-                Dash(player);
-            }
-
-            return base.UseItem(player);
-        }
-
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitNPC(player, target, hit, damageDone);
@@ -61,6 +52,26 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 {
                     player.AddBuff(ModContent.BuffType<DeceptionBuff>(), 300);
                 }
+            }
+        }
+
+        public override void HoldItem(Player player)
+        {
+            base.HoldItem(player);
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
+                {
+                    if (player.Hitbox.Intersects(npc.Hitbox) && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+                    {
+                        player.velocity *= 0.8f;
+                    }
+                }
+
+                player.immune = true; // Just to stabilize the player
+                player.immuneTime = 5;
             }
         }
 
@@ -88,7 +99,23 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             });
         }
 
-        private void Dash(Player player)
+        public override bool? CanHitNPC(Player player, NPC target)
+        {
+            Rectangle mouse = new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 20, 20);
+
+            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            {
+                if (Main.mouseLeft && target.Hitbox.Intersects(mouse))
+                {
+                    Utilities.MoveToPosition(player, Main.MouseWorld, 20, 3f);
+                }
+            }
+
+            return true;
+        }
+
+        // Teleports the player to the closest npc
+        private void Dash1(Player player)
         {
             float range = 500f;
             NPC closest = null;
@@ -106,7 +133,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 }
             }
 
-            if(closest != null)
+            if (closest != null)
             {
                 // Calculate the absolute difference in Y positions.
                 float yDifference = Math.Abs(player.position.Y - closest.position.Y);

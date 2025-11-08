@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Systems;
 
 namespace Vaultaria.Content.Prefixes.Weapons
 {
@@ -9,6 +10,11 @@ namespace Vaultaria.Content.Prefixes.Weapons
     {
         public override float RollChance(Item item)
         {
+            if (BossDownedSystem.deerClops == false)
+            {
+                return 0;
+            }
+
             return 2f;
         }
 
@@ -16,6 +22,11 @@ namespace Vaultaria.Content.Prefixes.Weapons
         // Use this to control if a prefix can be rolled or not.
         public override bool CanRoll(Item item)
         {
+            if (BossDownedSystem.deerClops == false)
+            {
+                return false;
+            }
+            
             return true;
         }
 

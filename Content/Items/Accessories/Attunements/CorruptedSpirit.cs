@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Accessories.Attunements
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Adds 50% Slag damage to all attacks")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Adds 20% Slag damage to all attacks")
             {
                 OverrideColor = new Color(142, 94, 235) // Purple
             });

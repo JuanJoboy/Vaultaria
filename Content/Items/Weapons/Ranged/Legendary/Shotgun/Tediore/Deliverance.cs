@@ -14,6 +14,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
     public class Deliverance : ModItem
     {
         private bool altFireMode = false;
+        public static bool thrown = false;
 
         public override void SetStaticDefaults()
         {
@@ -79,7 +80,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
-                Item.shootSpeed = 10f;
+                Item.shootSpeed = 5f;
                 Item.shoot = ModContent.ProjectileType<HomingDeliverance>();
 
                 Item.useTime = 15;
@@ -88,7 +89,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Item.UseSound = SoundID.Item31;
+                Item.UseSound = SoundID.Item39;
+                thrown = true;
             }
             else // Shoot
             {
@@ -147,7 +149,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(2f, 0f);
+            {
+                return new Vector2(-10f, 0f);
+            }
+            
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

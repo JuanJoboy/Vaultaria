@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit;
@@ -376,13 +377,13 @@ namespace Vaultaria.Common.Utilities
             float targetVelocityY = (target.Center.Y - movingEntity.Center.Y) * movementSpeed;
 
             // Apply Acceleration
-            if(movingEntity.velocity.X < targetVelocityX)
+            if (movingEntity.velocity.X < targetVelocityX)
             {
                 // Increase Velocity by Acceleration
                 movingEntity.velocity.X += accelerationRate;
 
                 // Further increase velocity
-                if(movingEntity.velocity.X < 0f && targetVelocityX > 0f)
+                if (movingEntity.velocity.X < 0f && targetVelocityX > 0f)
                 {
                     movingEntity.velocity.X += accelerationRate;
                 }
@@ -421,6 +422,86 @@ namespace Vaultaria.Common.Utilities
                 if (movingEntity.velocity.Y > 0f && targetVelocityY < 0f)
                 {
                     movingEntity.velocity.Y -= accelerationRate;
+                }
+            }
+        }
+
+        public static void MoveToPosition(Entity movingEntity, Vector2 position, float moveSpeed, float accelerationRate)
+        {
+            // Set Distance to Player
+            float distanceToTarget = Vector2.Distance(movingEntity.Center, position);
+
+            // Set Move Speeds
+            float movementSpeed = moveSpeed / distanceToTarget;
+
+            float targetVelocityX = (position.X - movingEntity.Center.X) * movementSpeed;
+            float targetVelocityY = (position.Y - movingEntity.Center.Y) * movementSpeed;
+
+            // Apply Acceleration
+            if (movingEntity.velocity.X < targetVelocityX)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.X += accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.X < 0f && targetVelocityX > 0f)
+                {
+                    movingEntity.velocity.X += accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.X > targetVelocityX)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.X -= accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.X > 0f && targetVelocityX < 0f)
+                {
+                    movingEntity.velocity.X -= accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.Y < targetVelocityY)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.Y += accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.Y < 0f && targetVelocityY > 0f)
+                {
+                    movingEntity.velocity.Y += accelerationRate;
+                }
+            }
+
+            if (movingEntity.velocity.Y > targetVelocityY)
+            {
+                // Increase Velocity by Acceleration
+                movingEntity.velocity.Y -= accelerationRate;
+
+                // Further increase velocity
+                if (movingEntity.velocity.Y > 0f && targetVelocityY < 0f)
+                {
+                    movingEntity.velocity.Y -= accelerationRate;
+                }
+            }
+        }
+        
+        public static void AssignColor(NPC npc, ref Color drawColor, Color colorToAssign, bool condition = true)
+        {
+            // Check if the name contains "Slime" (case-insensitive for robustness)
+            bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase);
+
+            // --- Apply color logic based on buff and slime status ---
+            if (condition == true)
+            {
+                npc.color = colorToAssign;
+            }
+            else
+            {
+                if (!isSlime)
+                {
+                    npc.color = drawColor;
                 }
             }
         }

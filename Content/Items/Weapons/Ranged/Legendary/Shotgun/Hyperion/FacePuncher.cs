@@ -48,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Hyperion
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 5, 1, 11);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 5, 3, 8);
 
             return false;
         }
