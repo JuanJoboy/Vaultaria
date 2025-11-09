@@ -413,6 +413,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Baby Maker
 	}
+
+	PhaselockSpell: {
+		Tooltip: ""
+		DisplayName: Phaselock Spell
+	}
 }
 
 Projectiles: {
@@ -458,6 +463,7 @@ Projectiles: {
 	HellfireBullet.DisplayName: Hellfire Bullet
 	HomingDeliverance.DisplayName: Homing Deliverance
 	BabyMakerGrenade.DisplayName: Baby Maker Grenade
+	PhaselockBubble.DisplayName: Phaselock Bubble
 }
 
 Buffs: {
@@ -514,6 +520,16 @@ Buffs: {
 	DeceptionBuff: {
 		Description: And I disappear / A ghost amidst the combat / Preparing to strike.
 		DisplayName: Deception Buff
+	}
+
+	Phaselocked: {
+		Description: Mods.Vaultaria.Buffs.Phaselocked.Description
+		DisplayName: Phaselocked
+	}
+
+	Phaselocking: {
+		DisplayName: Phaselocking
+		Description: Mods.Vaultaria.Buffs.Phaselocking.Description
 	}
 }
 

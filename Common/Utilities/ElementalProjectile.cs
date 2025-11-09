@@ -179,6 +179,36 @@ namespace Vaultaria.Common.Utilities
             }
         }
 
+        public static void SetElementOnNPC(NPC target, float elementalMultiplier, Player player, short elementalProjectile, int buffType, int buffTime)
+        {
+            int elementalDamage = 0;
+
+            SetElementalDamage(1, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                player.GetSource_OnHit(target),
+                target.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                player.whoAmI
+            );
+
+            // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
+            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            {
+                if (SetElementalChance(20))
+                {
+                    target.AddBuff(buffType, buffTime);
+                }
+            }
+            else
+            {
+                target.AddBuff(buffType, buffTime);
+            }
+        }
+
         /// <summary>
         /// On proc, spawns an elemental projectile (eg. Electrosphere) that deals elemental damage to an NPC.
         /// <br/> target = The Player that was hit.
@@ -202,6 +232,35 @@ namespace Vaultaria.Common.Utilities
             float baseDamage = info.SourceDamage;
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
+
+            Projectile.NewProjectile(
+                player.GetSource_OnHit(target),
+                target.Center,
+                Vector2.Zero,
+                elementalProjectile,
+                elementalDamage,
+                0f,
+                player.whoAmI
+            );
+
+            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            {
+                if (SetElementalChance(20))
+                {
+                    target.AddBuff(buffType, buffTime);
+                }
+            }
+            else
+            {
+                target.AddBuff(buffType, buffTime);
+            }
+        }
+
+        public static void SetElementOnPlayer(Player target, float elementalMultiplier, Player player, short elementalProjectile, int buffType, int buffTime)
+        {
+            int elementalDamage = 0;
+
+            SetElementalDamage(1, elementalMultiplier, out elementalDamage);
 
             Projectile.NewProjectile(
                 player.GetSource_OnHit(target),
@@ -332,6 +391,31 @@ namespace Vaultaria.Common.Utilities
             );
 
             target.AddBuff(buffType, buffTime);
+        }
+
+        public static void SetElements(Entity player, Entity target)
+        {
+            if (player is Player myPlayer && target is NPC npc)
+            {
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.ShockProjectile, ElementalID.ShockBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.SlagProjectile, ElementalID.SlagBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.CryoProjectile, ElementalID.CryoBuff, 120);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 120);
+            }
+            
+            if (player is Player myPlayer2 && target is Player targetPlayer)
+            {
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.ShockProjectile, ElementalID.ShockBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.SlagProjectile, ElementalID.SlagBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.CryoProjectile, ElementalID.CryoBuff, 120);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 120);
+            }
         }
     }
 }

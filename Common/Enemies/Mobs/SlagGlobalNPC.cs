@@ -29,7 +29,7 @@ public class SlagGlobalNPC : GlobalNPC
         base.DrawEffects(npc, ref drawColor);
 
         // Check if the name contains "Slime" (case-insensitive for robustness)
-        bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase);
+        bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase) || npc.TypeName.Contains("Pinky", System.StringComparison.OrdinalIgnoreCase);
 
         // --- Apply color logic based on buff and slime status ---
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))

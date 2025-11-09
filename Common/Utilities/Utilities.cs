@@ -487,23 +487,16 @@ namespace Vaultaria.Common.Utilities
             }
         }
         
-        public static void AssignColor(NPC npc, ref Color drawColor, Color colorToAssign, bool condition = true)
+        public static void DisplayStatusMessage(Vector2 position, Color colour, string msg)
         {
-            // Check if the name contains "Slime" (case-insensitive for robustness)
-            bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase);
-
-            // --- Apply color logic based on buff and slime status ---
-            if (condition == true)
-            {
-                npc.color = colorToAssign;
-            }
-            else
-            {
-                if (!isSlime)
-                {
-                    npc.color = drawColor;
-                }
-            }
+            // Display the text at the position
+            CombatText.NewText(
+                new Rectangle((int)position.X, (int)position.Y, 1, 1), 
+                colour, // The color of the text (e.g., gold)
+                msg, // The message you want to display
+                dramatic: true, // Optional: Makes the text larger and appear more impactful
+                dot: false
+            );
         }
     }
 }

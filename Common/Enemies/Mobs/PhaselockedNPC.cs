@@ -5,41 +5,46 @@ using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
 using Vaultaria.Common.Utilities;
 using Microsoft.Xna.Framework.Graphics;
-using Vaultaria.Content.Buffs.PotionEffects;
+using Vaultaria.Content.Buffs.MagicEffects;
+using Vaultaria.Content.Projectiles.Magic;
+using Terraria.DataStructures;
 
-public class DeceptionVision : GlobalNPC
+public class PhaselockedNPC : GlobalNPC
 {
     public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
         base.PostDraw(npc, spriteBatch, screenPos, drawColor);
 
-        if(!npc.townNPC)
+        if (!npc.townNPC)
         {
-            Player player = Main.player[Main.myPlayer];
-
-            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            if (npc.HasBuff(ModContent.BuffType<Phaselocked>()))
             {
                 AddMark(npc, spriteBatch, screenPos);
-            }   
+            }
         }
     }
 
-    public override void DrawEffects(NPC npc, ref Color drawColor)
+    public override void OnKill(NPC npc)
     {
-        base.DrawEffects(npc, ref drawColor);
-
-        if(!npc.townNPC)
+        // Check for the buff first.
+        if (npc.HasBuff(ModContent.BuffType<Phaselocked>()))
         {
-            Player player = Main.player[Main.myPlayer];
+            Vector2 direction = npc.Center;
+            direction.Normalize();
+            direction *= 8f;
 
-            // Check if the name contains "Slime" (case-insensitive for robustness)
-            bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase);
-
-            if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
-            {
-                drawColor = Color.SkyBlue;
-            }
+            Projectile.NewProjectileDirect(
+                npc.GetSource_FromThis(),
+                npc.Center,
+                direction,
+                ModContent.ProjectileType<PhaselockBubble>(),
+                0,
+                0f,
+                Main.myPlayer
+            );
         }
+
+        base.OnKill(npc);
     }
 
     private void AddMark(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
@@ -47,7 +52,7 @@ public class DeceptionVision : GlobalNPC
         // --- 1. Load the Texture (This should usually be cached in Load() for efficiency) ---
 
         // Replace "MyIndicator" with the path to your texture (e.g., "Vaultaria/Textures/Indicator")
-        Texture2D texture = ModContent.Request<Texture2D>("Vaultaria/Common/Textures/zero").Value;
+        Texture2D texture = ModContent.Request<Texture2D>("Vaultaria/Common/Textures/bubble").Value;
 
         // --- 2. Calculate Drawing Position ---
 
@@ -60,8 +65,17 @@ public class DeceptionVision : GlobalNPC
         Rectangle sourceRectangle = texture.Frame(); // Use the whole texture
         Vector2 origin = sourceRectangle.Size() / 2f; // Draw from the center of the texture
 
-        // --- 4. Draw the Texture ---
+        float scale;
+        if (npc.height < npc.width)
+        {
+            scale = 0.25f * (npc.height / 5);
+        }
+        else
+        {
+            scale = 0.25f * (npc.height / 7);
+        }
 
+        // --- 4. Draw the Texture ---
         spriteBatch.Draw(
             texture,                  // The texture to draw
             drawCenter,             // The screen position to draw at
@@ -69,7 +83,7 @@ public class DeceptionVision : GlobalNPC
             Color.White,              // Drawing color (White uses the texture's native color)
             0f,                       // Rotation (none)
             origin,                   // Origin for rotation and positioning
-            0.5f,                       // Scale (0.5x size)
+            scale,                       // Scale (0.5x size)
             SpriteEffects.None,       // Flip effects
             0f                        // Layer depth (0f is foreground)
         );

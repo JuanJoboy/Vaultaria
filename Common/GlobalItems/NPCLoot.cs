@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Content.Items.Accessories.Attunements;
 using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Materials;
@@ -44,6 +45,7 @@ namespace Vaultaria.Common.GlobalItems
             int eridium = ModContent.ItemType<Eridium>();
 
             DropMiscItems(npcLoot);
+            CheckBiome(npcLoot);
 
             //********************************** NPC's **********************************//
             if (npc == NPCID.GiantTortoise || npc == NPCID.IceTortoise || npc == NPCID.Derpling)
@@ -258,6 +260,17 @@ namespace Vaultaria.Common.GlobalItems
 
             // Eridium
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Eridium>(), 100, 1, 2));
+        }
+
+        private void CheckBiome(Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.ByCondition(new SoulFireCondition(), ModContent.ItemType<SoulFire>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new ShockraCondition(), ModContent.ItemType<Shockra>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new BlightTigerCondition(), ModContent.ItemType<BlightTiger>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new MindBlownCondition(), ModContent.ItemType<MindBlown>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new CorruptedSpiritCondition(), ModContent.ItemType<CorruptedSpirit>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new ColdHeartedCondition(), ModContent.ItemType<ColdHearted>(), 1000, 1, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new NuclearArmsCondition(), ModContent.ItemType<NuclearArms>(), 1000, 1, 1));
         }
     }
 }

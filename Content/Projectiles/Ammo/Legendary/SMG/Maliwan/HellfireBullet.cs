@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
         private float elementalChance = 100f;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
-        private int buffTime = 60;
+        private int buffTime = 180;
 
         public override void SetDefaults()
         {
@@ -32,15 +32,10 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             Projectile.extraUpdates = 1;
         }
 
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 4;
-        }
-
         public override void AI()
         {
             base.AI();
-            Utilities.FrameRotator(4, Projectile);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void OnKill(int timeLeft)
@@ -48,7 +43,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.JungleSpore).noGravity = false;
+                Dust.NewDustPerfect(Projectile.Center, DustID.Lava).noGravity = false;
             }
         }
 
@@ -80,7 +75,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 
             return false;
         }
-        
+
         public override List<string> GetElement()
         {
             return new List<string>

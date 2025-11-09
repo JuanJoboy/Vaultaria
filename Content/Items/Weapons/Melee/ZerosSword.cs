@@ -66,12 +66,9 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 {
                     if (player.Hitbox.Intersects(npc.Hitbox) && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
                     {
-                        player.velocity *= 0.8f;
+                        player.velocity *= 0.995f;
                     }
                 }
-
-                player.immune = true; // Just to stabilize the player
-                player.immuneTime = 5;
             }
         }
 
@@ -87,20 +84,13 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 .Register();
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "0")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "How hilarious\nYou just set off my trap card\nYour death approaches.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-        }
-
         public override bool? CanHitNPC(Player player, NPC target)
         {
+            if (target.townNPC)
+            {
+                return false;
+            }
+
             Rectangle mouse = new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 20, 20);
 
             if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
@@ -113,45 +103,17 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
             return true;
         }
-
-        // Teleports the player to the closest npc
-        private void Dash1(Player player)
+        
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            float range = 500f;
-            NPC closest = null;
-
-            for (int i = 0; i < Main.maxNPCs; i++)
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "0")
             {
-                NPC npc = Main.npc[i];
-                if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
-                {
-                    float dist = Vector2.Distance(player.Center, npc.Center);
-                    if (dist < range) // Checks if the NPC is closer than any previously checked NPC and if there's a clear line of sight
-                    {
-                        closest = npc;
-                    }
-                }
-            }
-
-            if (closest != null)
+                OverrideColor = new Color(228, 227, 105) // Light Yellow
+            });
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "How hilarious\nYou just set off my trap card\nYour death approaches.")
             {
-                // Calculate the absolute difference in Y positions.
-                float yDifference = Math.Abs(player.position.Y - closest.position.Y);
-
-                // If the player is within the acceptable vertical range (TOLERANCE)
-                if (yDifference <= 50)
-                {
-                    // Only move the player's X position to the NPC's X position
-                    player.position.X = closest.position.X + 30;
-                }
-                else
-                {
-                    player.Center = closest.Center;
-                }
-
-                player.immune = true; // Just to stabilize the player
-                player.immuneTime = 5;
-            }
+                OverrideColor = new Color(198, 4, 4) // Red
+            });
         }
     }
 }

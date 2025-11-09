@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 10f;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
@@ -86,7 +86,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
-                Item.shootSpeed = 4f;
+                Item.shootSpeed = 10f;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
                 Item.UseSound = SoundID.Item41;

@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 18;
-            Item.shoot = ModContent.ProjectileType<CloudBullet>();
+            Item.shoot = ModContent.ProjectileType<HellfireBullet>();
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
