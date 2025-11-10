@@ -114,24 +114,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             return base.CanUseItem(player);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if (altFireMode == false)
-            {
-                Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 4, 5, 2, 10);
-            }
-            else
-            {
-                int homingProjectileType = ModContent.ProjectileType<BabyMakerGrenade>();
-
-                Projectile.NewProjectile(source, position, velocity, homingProjectileType, damage, knockback, player.whoAmI);
-                
-                return false;
-            }
-            
-            return false;
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -152,17 +134,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 8 ranged damage";
-            }
-
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Kiki got a shotgun!")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Who's a widdle gunny-wunny?")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

@@ -399,6 +399,11 @@ Items: {
 		Tooltip: ""
 	}
 
+	A: {
+		DisplayName: A
+		Tooltip: ""
+	}
+
 	Hellfire: {
 		Tooltip: ""
 		DisplayName: Hellfire

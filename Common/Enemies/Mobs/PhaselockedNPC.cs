@@ -19,7 +19,7 @@ public class PhaselockedNPC : GlobalNPC
         {
             if (npc.HasBuff(ModContent.BuffType<Phaselocked>()))
             {
-                AddMark(npc, spriteBatch, screenPos);
+                AddDrawing(npc, spriteBatch, screenPos);
             }
         }
     }
@@ -47,7 +47,7 @@ public class PhaselockedNPC : GlobalNPC
         base.OnKill(npc);
     }
 
-    private void AddMark(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
+    private void AddDrawing(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
     {
         // --- 1. Load the Texture (This should usually be cached in Load() for efficiency) ---
 

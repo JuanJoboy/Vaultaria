@@ -16,9 +16,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
         public float incendiaryMultiplier = 0.25f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
-        private int explosiveBuff = ElementalID.IncendiaryBuff;
-        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 
 
@@ -60,7 +58,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -70,7 +67,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
             }
         }
 
@@ -80,7 +76,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
             {
                 Player player = Main.player[Projectile.owner];
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
-                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;
@@ -103,8 +98,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
         {
             return new List<string>
             {
-                "Explosive",
-                "Incendiary"
+                "Explosive"
             };
         }
     }

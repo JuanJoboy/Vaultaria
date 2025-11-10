@@ -19,7 +19,7 @@ public class DeceptionVision : GlobalNPC
 
             if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
             {
-                AddMark(npc, spriteBatch, screenPos);
+                AddDrawing(npc, spriteBatch, screenPos);
             }   
         }
     }
@@ -42,7 +42,7 @@ public class DeceptionVision : GlobalNPC
         }
     }
 
-    private void AddMark(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
+    private void AddDrawing(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
     {
         // --- 1. Load the Texture (This should usually be cached in Load() for efficiency) ---
 
