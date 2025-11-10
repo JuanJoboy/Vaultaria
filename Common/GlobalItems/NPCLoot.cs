@@ -23,7 +23,9 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
@@ -90,6 +92,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.QueenBee)
             {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BabyMaker>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FlameOfTheFirehawk>(), 5, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 3, 6));
             }
@@ -121,6 +124,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.QueenSlimeBoss)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deliverance>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(eridium, 1, 15, 18));
             }
 

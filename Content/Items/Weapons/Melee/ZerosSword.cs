@@ -66,7 +66,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 {
                     if (player.Hitbox.Intersects(npc.Hitbox) && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
                     {
-                        player.velocity *= 0.995f;
+                        player.velocity *= 0f;
                     }
                 }
             }

@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
             base.AI();
             Utilities.FrameRotator(6, Projectile);
 
-            Projectile.velocity.Y += 0.15f;
+            Projectile.velocity.Y += 0.25f;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 {
@@ -52,12 +53,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
             return new Vector2(-20f, 5f);
         }
 
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(20)
+                .AddIngredient(ItemID.LivingFireBlock, 10)
+                .AddIngredient(ItemID.PhoenixBlaster, 1)
+                .AddIngredient(ItemID.HellstoneBar, 10)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly shoots Corrosive clouds")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly shoots Incendiary Projectiles")
             {
-                OverrideColor = new Color(136, 235, 94) // Light Green
+                OverrideColor = new Color(231, 92, 22) // Orange
             });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "Now, you will rise.")
             {

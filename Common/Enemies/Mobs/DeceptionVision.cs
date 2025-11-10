@@ -66,7 +66,7 @@ public class DeceptionVision : GlobalNPC
             texture,                  // The texture to draw
             drawCenter,             // The screen position to draw at
             sourceRectangle,          // Which part of the texture to use
-            Color.White,              // Drawing color (White uses the texture's native color)
+            Color.White * 0.75f,              // Drawing color (White uses the texture's native color)
             0f,                       // Rotation (none)
             origin,                   // Origin for rotation and positioning
             0.5f,                       // Scale (0.5x size)

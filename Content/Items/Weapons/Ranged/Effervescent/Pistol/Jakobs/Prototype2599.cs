@@ -134,10 +134,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
             CreateRecipe()
                 .AddIngredient<Eridium>(50)
                 .AddIngredient(ItemID.HallowedBar, 25)
-                .AddIngredient(ItemID.Revolver, 1)
-                .AddIngredient(ItemID.Shotgun, 1)
-                .AddIngredient(ItemID.SoulofSight, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
+                .AddIngredient(ItemID.RainbowBrick, 20)
+                .AddIngredient(ItemID.Ichor, 5)
+                .AddIngredient(ItemID.PhoenixBlaster, 1)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

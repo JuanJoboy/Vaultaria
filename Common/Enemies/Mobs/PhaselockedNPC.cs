@@ -68,11 +68,11 @@ public class PhaselockedNPC : GlobalNPC
         float scale;
         if (npc.height < npc.width)
         {
-            scale = 0.25f * (npc.height / 5);
+            scale = 0.3f * (npc.height / 5); // was 0.25 before
         }
         else
         {
-            scale = 0.25f * (npc.height / 7);
+            scale = 0.3f * (npc.height / 7); // was 0.25 before
         }
 
         // --- 4. Draw the Texture ---
@@ -80,7 +80,7 @@ public class PhaselockedNPC : GlobalNPC
             texture,                  // The texture to draw
             drawCenter,             // The screen position to draw at
             sourceRectangle,          // Which part of the texture to use
-            Color.White,              // Drawing color (White uses the texture's native color)
+            Color.White * 0.5f,              // Drawing color (White uses the texture's native color)
             0f,                       // Rotation (none)
             origin,                   // Origin for rotation and positioning
             scale,                       // Scale (0.5x size)

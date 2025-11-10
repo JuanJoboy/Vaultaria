@@ -8,7 +8,7 @@ using Vaultaria.Content.Buffs.PotionEffects;
 
 namespace Vaultaria.Content.Items.Potions
 {
-    public class Deception : ModItem
+    public class DeceptionPotion : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -53,9 +53,11 @@ namespace Vaultaria.Content.Items.Potions
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Shiverthorn, 25)
-                .AddIngredient(ItemID.Daybloom, 25)
-                .AddTile(TileID.AlchemyTable)
+                .AddIngredient(ItemID.BottledWater, 1)
+                .AddIngredient(ItemID.Daybloom, 1)
+                .AddIngredient(ItemID.Shiverthorn, 1)
+                .AddIngredient(ItemID.GlowingMushroom, 1)
+                .AddTile(TileID.Bottles)
                 .Register();
         }
         

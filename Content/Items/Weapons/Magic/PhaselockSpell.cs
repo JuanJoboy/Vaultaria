@@ -32,11 +32,11 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             Item.crit = 6;
             Item.DamageType = DamageClass.Magic;
             Item.scale = 1f;
-            Item.mana = 10; // This item uses 10 mana
+            Item.mana = 0;
 
-            Item.useTime = 40;
-            Item.useAnimation = 40;
-            Item.reuseDelay = 40;
+            Item.useTime = 100;
+            Item.useAnimation = 100;
+            Item.reuseDelay = 100;
             Item.autoReuse = false;
             Item.useTurn = true;
 
@@ -44,6 +44,29 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Purple;
             Item.UseSound = SoundID.Item15;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Rectangle mouse = new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 1, 1);
+
+            // Loops through every NPC in the world
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
+                {
+                    if (Main.mouseLeftRelease && npc.Hitbox.Intersects(mouse))
+                    {
+                        npc.AddBuff(ModContent.BuffType<Phaselocked>(), 300);
+                        Item.mana = player.statManaMax2;
+                        ElementalProjectile.SetElements(player, npc);
+                        return true;
+                    }
+                }
+            }
+
+            return base.UseItem(player);
         }
 
         public override bool? CanHitNPC(Player player, NPC target)
@@ -58,14 +81,6 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                 return false;
             }
 
-            Rectangle mouse = new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 20, 20);
-
-            if (Main.mouseLeft && target.Hitbox.Intersects(mouse))
-            {
-                target.AddBuff(ModContent.BuffType<Phaselocked>(), 300);
-                ElementalProjectile.SetElements(player, target);
-            }
-
             return true;
         }
 
@@ -74,25 +89,13 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(75)
-                .AddIngredient(ItemID.FragmentSolar, 50)
-                .AddIngredient(ItemID.LunarBar, 25)
-                .AddIngredient(ItemID.Tabi, 1)
-                .AddIngredient(ItemID.Muramasa, 1)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "0")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on")
             {
                 OverrideColor = new Color(228, 227, 105) // Light Yellow
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "How hilarious\nYou just set off my trap card\nYour death approaches.")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "(giggles) I'm really good at this!")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

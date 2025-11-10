@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
@@ -39,9 +38,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.reuseDelay = 35;
+            Item.useTime = 8;
+            Item.useAnimation = 8;
             Item.autoReuse = true;
 
             // Other properties
@@ -63,13 +61,24 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
                     player.ConsumeItem(ammo.type, false);
                 }
             }
-            
+
             return true;
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (altFireMode)
+            {
+                // Spawn the grenade manually
+                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BabyMakerGrenade>(), damage, knockback, player.whoAmI);
+                return false; // prevent vanilla bullet spawn
+            }
+
+            return true; // normal bullet behavior
         }
 
         public override bool CanUseItem(Player player)
         {
-
             if (player.altFunctionUse == 2) // Throw
             {
                 altFireMode = true;
@@ -79,12 +88,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
-                Item.shootSpeed = 10f;
+                Item.shootSpeed = 17f;
                 Item.shoot = ModContent.ProjectileType<BabyMakerGrenade>();
 
-                Item.useTime = 15;
-                Item.useAnimation = 15;
-                Item.reuseDelay = 15;
+                Item.useTime = 8;
+                Item.useAnimation = 8;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
@@ -99,12 +107,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
-                Item.shootSpeed = 10f;
+                Item.shootSpeed = 17f;
                 Item.shoot = ProjectileID.Bullet;
 
-                Item.useTime = 30;
-                Item.useAnimation = 30;
-                Item.reuseDelay = 45;
+                Item.useTime = 8;
+                Item.useAnimation = 8;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
@@ -112,19 +119,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             }
 
             return base.CanUseItem(player);
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(50)
-                .AddIngredient(ItemID.HallowedBar, 25)
-                .AddIngredient(ItemID.Revolver, 1)
-                .AddIngredient(ItemID.Shotgun, 1)
-                .AddIngredient(ItemID.SoulofSight, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
         }
 
         public override Vector2? HoldoutOffset()

@@ -69,7 +69,7 @@ namespace Vaultaria.Content.Projectiles.Magic
                 NPC npc = Main.npc[i];
                 if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
                 {
-                    float dist = Vector2.Distance(Projectile.Center, npc.Center); // Measures the distance from turret to NPC
+                    float dist = Vector2.Distance(Projectile.Center, npc.Center);
                     if (dist < range)
                     {
                         closest = npc;

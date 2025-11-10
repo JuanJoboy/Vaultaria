@@ -386,7 +386,7 @@ Items: {
 
 	ZerosSword: {
 		Tooltip: ""
-		DisplayName: Zeros Sword
+		DisplayName: Zero's Sword
 	}
 
 	Deception: {
@@ -422,6 +422,31 @@ Items: {
 	PhaselockSpell: {
 		Tooltip: ""
 		DisplayName: Phaselock Spell
+	}
+
+	VaultHuntersRelic: {
+		Tooltip: ""
+		DisplayName: Vault Hunter's Relic
+	}
+
+	GearboxRenegade: {
+		DisplayName: Gearbox Renegade
+		Tooltip: ""
+	}
+
+	GearboxProjectileConvergence: {
+		DisplayName: Gearbox Projectile Convergence
+		Tooltip: ""
+	}
+
+	GearboxMuckamuck: {
+		DisplayName: Gearbox Muckamuck
+		Tooltip: ""
+	}
+
+	DeceptionPotion: {
+		Tooltip: ""
+		DisplayName: Deception Potion
 	}
 }
 

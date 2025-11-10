@@ -134,25 +134,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(50)
-                .AddIngredient(ItemID.HallowedBar, 25)
-                .AddIngredient(ItemID.Revolver, 1)
-                .AddIngredient(ItemID.Shotgun, 1)
-                .AddIngredient(ItemID.SoulofSight, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
-            {
-                return new Vector2(-10f, 0f);
-            }
-            
+            return new Vector2(-10f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

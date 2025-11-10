@@ -19,12 +19,55 @@ using System.Collections;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
 using Vaultaria.Content.Items.Accessories.Attunements;
 using Vaultaria.Content.Buffs.PotionEffects;
+using Terraria.ModLoader.IO;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
 
 namespace Vaultaria.Common.Players
 {
     public class VaultariaPlayer : ModPlayer
     {
         public NPC.HitInfo globalNpcHitInfo;
+
+        // 1. Persistence Flag: Saved with the character file.
+        public bool hasInitialized = false;
+
+        // 2. The Hook: Runs when the character first loads or enters the world.
+        public override void OnEnterWorld()
+        {
+            Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in this mod", Color.Red);
+
+            // The logic runs only if this character has NOT been initialized yet.
+            // if (!hasInitialized)
+            {
+                // --- CUSTOM INITIALIZATION LOGIC GOES HERE ---
+
+                // Example 1: Give the player a starting item (e.g., a ModItem)
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<VaultHuntersRelic>(), 1);
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
+                Player.QuickSpawnItem(Player.GetSource_None(), ItemID.MusketBall, 1000);
+
+                // Example 3: Display a welcome message
+                Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
+
+                // Set the flag to true so this code doesn't run again on the next login.
+                hasInitialized = true;
+            }
+        }
+        
+        // 3. Data Saving: Ensure the flag is saved and loaded with the player.
+        public override void SaveData(TagCompound tag)
+        {
+            tag.Add("hasInitialized", hasInitialized);
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            hasInitialized = tag.GetBool("hasInitialized");
+        }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
