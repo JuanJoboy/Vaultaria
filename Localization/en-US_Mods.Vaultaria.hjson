@@ -448,6 +448,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Deception Potion
 	}
+
+	Gub: {
+		DisplayName: Gub
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -494,6 +499,7 @@ Projectiles: {
 	HomingDeliverance.DisplayName: Homing Deliverance
 	BabyMakerGrenade.DisplayName: Baby Maker Grenade
 	PhaselockBubble.DisplayName: Phaselock Bubble
+	GubBullet.DisplayName: Gub Bullet
 }
 
 Buffs: {
@@ -518,12 +524,12 @@ Buffs: {
 	}
 
 	ExplosiveBuff: {
-		DisplayName: Explosive Buff
+		DisplayName: Explosive Debuff
 		Description: EXPLOSIONS!!!
 	}
 
 	SlagBuff: {
-		DisplayName: Slag Buff
+		DisplayName: Slagged
 		Description: Take increased damage
 	}
 
@@ -533,7 +539,7 @@ Buffs: {
 	}
 
 	CryoBuff: {
-		DisplayName: Cryo Buff
+		DisplayName: Cryoed
 		Description: Take Cryo damage over time
 	}
 
@@ -543,8 +549,8 @@ Buffs: {
 	}
 
 	RadiationBuff: {
-		Description: Mods.Vaultaria.Buffs.RadiationBuff.Description
 		DisplayName: Radiation Buff
+		Description: Take Radiation damage over time and Explode on death
 	}
 
 	DeceptionBuff: {
@@ -553,13 +559,8 @@ Buffs: {
 	}
 
 	Phaselocked: {
-		Description: Mods.Vaultaria.Buffs.Phaselocked.Description
+		Description: Stuck in a bubble
 		DisplayName: Phaselocked
-	}
-
-	Phaselocking: {
-		DisplayName: Phaselocking
-		Description: Mods.Vaultaria.Buffs.Phaselocking.Description
 	}
 }
 
@@ -587,3 +588,5 @@ Prefixes: {
 	Masher.DisplayName: Masher
 	RangerMasher.DisplayName: Masher
 }
+
+NPCs.Claptrap.DisplayName: Claptrap
