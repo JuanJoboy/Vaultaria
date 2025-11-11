@@ -589,4 +589,58 @@ Prefixes: {
 	RangerMasher.DisplayName: Masher
 }
 
-NPCs.Claptrap.DisplayName: Claptrap
+NPCs: {
+	Claptrap: {
+		DisplayName: Claptrap
+		DeathMessage: Claptrap is finally dead. Good Riddance.
+		DeathMessageAlt: Claptrap has officially gone rogue. Time to scrap the chassis.
+
+		// --- NPC Names ---
+		TownNPCName: {
+			0: Claptrap
+			1: Unit 743
+			2: Fragtrap
+			3: CL4P-TP
+		}
+
+		// --- Dialogue ---
+		Dialogue: {
+			Claptrap: {
+				PartyGirlDialogue: A fellow entertainer? I find {0} to be a fantastic dance partner! Wub wub wub!
+				StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
+				StandardDialogue2: I hope there aren't any stairs here
+				CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
+				RareDialogue: You wanna know a secret, I can actually go up stairs.
+				TalkALot: You're such a good listener Squire.
+			}
+		}
+
+		// --- Happiness Text ---
+		TownNPCMood: {
+			Content:
+				'''
+				Stay a while, and listen. Oh god, please -- PLEASE! -- stay a while.
+				Unrelated mumbling.
+				'''
+			NoHome: MINION! Build a home for your Master this instance!
+			FarFromHome: We're a long way from Sanctuary now... I wander if anyone's noticed I'm gone.
+			LoveSpace: Look at all this room to dance, I LOVE IT.
+			DislikeCrowded: I love a good party, but there's only so much room on the dance floor, we need more space.
+			HateCrowded: HAVE U NO ARCHITECTURAL SENSE MINION! THIS PLACE IS TOO CROWDED!
+			LoveBiome: I love {BiomeName}.
+			LikeBiome: I like {BiomeName}.
+			LoveNPC: I love {NPCName}.
+			LikeNPC: I like {NPCName}.
+			DislikeNPC: I dislike {NPCName}.
+			HateNPC: I hate {NPCName}.
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		// --- Bestiary Text ---
+		Bestiary: {
+			Claptrap_1: A highly annoying but surprisingly useful Hyperion CL4P-TP unit that decided to settle down.
+			Claptrap_2: The constant chatter and questionable dance moves are a small price to pay for access to Vaultarian knowledge.
+		}
+	}
+}

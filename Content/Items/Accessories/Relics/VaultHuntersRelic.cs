@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         {
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
-            Item.value = Item.buyPrice(silver: 1);
+            Item.value = Item.buyPrice(copper: 0);
             Item.rare = ItemRarityID.White;
         }
 
@@ -23,12 +23,6 @@ namespace Vaultaria.Content.Items.Accessories.Relics
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

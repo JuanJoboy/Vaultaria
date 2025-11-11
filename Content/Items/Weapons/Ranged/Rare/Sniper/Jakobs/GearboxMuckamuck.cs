@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.scale = 1.2f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -42,19 +42,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(copper: 1);
+            Item.value = Item.buyPrice(copper: 0);
             Item.UseSound = SoundID.Item31;
         }
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-3f, 0f);
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .Register();
+            return new Vector2(-13f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
