@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Vaultaria.Content.NPCs.Town;
+using Vaultaria.Content.NPCs.Town.Claptrap;
 
 namespace Vaultaria.Common.Systems
 {

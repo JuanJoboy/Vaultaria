@@ -39,7 +39,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.mana = 20;
 
             // Other properties
-            Item.sellPrice(gold: 20);
+            Item.value = Item.buyPrice(gold: 10);
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;

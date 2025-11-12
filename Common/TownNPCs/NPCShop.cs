@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Content.Items.Potions;
 using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace ExampleMod.Common.GlobalNPCs
@@ -17,6 +18,11 @@ namespace ExampleMod.Common.GlobalNPCs
                 shop.Add<ShotgunAmmo>();
                 shop.Add<SniperAmmo>();
                 shop.Add<LauncherAmmo>();
+            }
+
+            if (shop.NpcType == NPCID.Wizard)
+            {
+                shop.Add<DeceptionPotion>();
             }
         }
 	}

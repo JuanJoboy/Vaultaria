@@ -26,18 +26,44 @@ using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
+using Vaultaria.Content.Items.Accessories.Attunements;
+using Vaultaria.Content.Items.Materials;
+using System.Collections;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
+using Vaultaria.Content.Items.Accessories.Shields;
+using Vaultaria.Content.Items.Weapons.Ammo;
 
-namespace Vaultaria.Content.NPCs.Town
+namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
 	// [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
 	[AutoloadHead]
 	public class Claptrap : ModNPC
 	{
-		public const string ShopName = "Shop";
+		public const string ShopName = "Gearbox Premiere Club";
 		public int NumberOfTimesTalkedTo = 0;
 
 		private static int ShimmerHeadIndex;
-		private static Profiles.StackedNPCProfile NPCProfile;
+		private static Profiles.StackedNPCProfile? NPCProfile;
+
+		private int currentIndex = 0;
+		private readonly (string buttonTitle, int cornerPicture)[] pages =
+		{
+            ("MainMenu", ItemID.None),
+            ("Vaultaria", ItemID.None),
+            ("Eridium", ModContent.ItemType<Eridium>()),
+            ("Incendiary", ModContent.ItemType<SoulFire>()),
+            ("Shock", ModContent.ItemType<Shockra>()),
+            ("Corrosive", ModContent.ItemType<BlightTiger>()),
+            ("Explosive", ModContent.ItemType<MindBlown>()),
+            ("Slag", ModContent.ItemType<CorruptedSpirit>()),
+            ("Cryo", ModContent.ItemType<ColdHearted>()),
+            ("Radiation", ModContent.ItemType<NuclearArms>()),
+            ("DoublePenetrating", ModContent.ItemType<UnkemptHarold>()),
+            ("Trickshot", ModContent.ItemType<Fibber>()),
+            ("Accessories", ModContent.ItemType<Sham>()),
+            ("Ammo", ModContent.ItemType<LauncherAmmo>())
+		};
 
 		// Sets a unique message when the NPC dies.
 		// See also NPCID.Sets.IsTownChild if you just want the message used by Angler and Princess.
@@ -55,7 +81,7 @@ namespace Vaultaria.Content.NPCs.Town
 			NPCID.Sets.ExtraFramesCount[Type] = 9; // Generally for Town NPCs, but this is how the NPC does extra things such as sitting in a chair and talking to other NPCs. This is the remaining frames after the walking frames.
 			NPCID.Sets.AttackFrameCount[Type] = 4; // The amount of frames in the attacking animation.
 			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the NPC that it tries to attack enemies.
-			NPCID.Sets.AttackType[Type] = 0; // The type of attack the Town NPC performs. 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
+			NPCID.Sets.AttackType[Type] = 1; // The type of attack the Town NPC performs. 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
 			NPCID.Sets.AttackTime[Type] = 90; // The amount of time it takes for the NPC's attack animation to be over once it starts.
 			NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack. Lower numbers make the Town NPC appear more aggressive.
 			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
@@ -66,7 +92,7 @@ namespace Vaultaria.Content.NPCs.Town
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but Claptrap will be drawn facing the right
+				Direction = -1 // -1 is left and 1 is right. NPCs are drawn facing the left by default
 				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
 				// If you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
 			};
@@ -94,7 +120,8 @@ namespace Vaultaria.Content.NPCs.Town
 
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			NPC.townNPC = true; // Sets NPC to be a Town NPC
 			NPC.friendly = true; // NPC Will not attack player
 			NPC.width = 18;
@@ -109,7 +136,7 @@ namespace Vaultaria.Content.NPCs.Town
 
 			AnimationType = NPCID.Guide;
 		}
-
+		
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange([
@@ -118,28 +145,28 @@ namespace Vaultaria.Content.NPCs.Town
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				// Sets your NPC's flavor text in the bestiary. (use localization keys)
-				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.Bestiary.Claptrap_1"),
+				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.NPCs.Claptrap.Bestiary.Claptrap_1"),
 
 				// You can add multiple elements if you really wanted to
-				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.Bestiary.Claptrap_2")
+				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.NPCs.Claptrap.Bestiary.Claptrap_2"),
 			]);
 		}
 
-		// The PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
-		// Returning false will allow you to manually draw your NPC
-		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-			// This code slowly rotates the NPC in the bestiary
-			// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.Rotation won't work here as it gets overridden by drawModifiers.Rotation each tick)
-			if (NPCID.Sets.NPCBestiaryDrawOffset.TryGetValue(Type, out NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers)) {
-				drawModifiers.Rotation += 0.001f;
+		// // The PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
+		// // Returning false will allow you to manually draw your NPC
+		// public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+		// 	// This code slowly rotates the NPC in the bestiary
+		// 	// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.Rotation won't work here as it gets overridden by drawModifiers.Rotation each tick)
+		// 	if (NPCID.Sets.NPCBestiaryDrawOffset.TryGetValue(Type, out NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers)) {
+		// 		drawModifiers.Rotation += 0.001f;
 
-				// Replace the existing NPCBestiaryDrawModifiers with our new one with an adjusted rotation
-				NPCID.Sets.NPCBestiaryDrawOffset.Remove(Type);
-				NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
-			}
+		// 		// Replace the existing NPCBestiaryDrawModifiers with our new one with an adjusted rotation
+		// 		NPCID.Sets.NPCBestiaryDrawOffset.Remove(Type);
+		// 		NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
+		// 	}
 
-			return true;
-		}
+		// 	return true;
+		// }
 
 		public override void HitEffect(NPC.HitInfo hit) {
 			int num = NPC.life > 0 ? 1 : 5;
@@ -153,9 +180,13 @@ namespace Vaultaria.Content.NPCs.Town
 				// Retrieve the gore types. This NPC has shimmer and party variants for head, arm, and leg gore. (12 total gores)
 				string variant = "";
 				if (NPC.IsShimmerVariant)
+				{
 					variant += "_Shimmer";
+				}
 				if (NPC.altTexture == 1)
+				{
 					variant += "_Party";
+				}
 				int hatGore = NPC.GetPartyHatGore();
 				int headGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Head").Type;
 				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
@@ -186,19 +217,33 @@ namespace Vaultaria.Content.NPCs.Town
 			return true;
         }
 
-		public override ITownNPCProfile TownNPCProfile() {
+		public override ITownNPCProfile? TownNPCProfile() {
 			return NPCProfile;
 		}
 
-		public override List<string> SetNPCNameList() {
-			return new List<string>() {
-				"Someone",
-				"Somebody",
-				"Blocky",
-				"Colorless"
-			};
+		public override List<string> SetNPCNameList()
+		{
+			if (NPC.IsShimmerVariant)
+			{
+				return new List<string>() {
+					"Shadowtrap",
+					"5H4D0W-TP"
+				};
+			}
+			else
+			{
+				return new List<string>() {
+					"Claptrap",
+					"CL4P-TP",
+					"Fragtrap",
+					"FR4G-TP",
+					"Useless",
+					"Moron",
+					"Piece Of Junk"
+				};
+            }
 		}
-
+		
 		public override void FindFrame(int frameHeight) {
 			/*npc.frame.Width = 40;
 			if (((int)Main.time / 10) % 2 == 0)
@@ -211,49 +256,149 @@ namespace Vaultaria.Content.NPCs.Town
 			}*/
 		}
 
-		public override string GetChat() {
+		public override string GetChat()
+		{
+			// If the player talks to the npc and the chat isnt on the main menu section, then this if-statement gets the text and picture related to what the player left the npc on. Otherwise it would show the main dialogues and no picture on a page related to something else.
+			if (pages[currentIndex] != ("MainMenu", ItemID.None))
+			{
+				Main.npcChatCornerItem = pages[currentIndex].cornerPicture;
+				return Language.GetTextValue($"Mods.Vaultaria.NPCs.Claptrap.VaultarianInfo.{pages[currentIndex].buttonTitle}");
+            }
+
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 
 			int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-			if (partyGirl >= 0 && Main.rand.NextBool(4)) {
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.PartyGirlDialogue", Main.npc[partyGirl].GivenName));
+			if (partyGirl >= 0 && Main.rand.NextBool(4))
+			{
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.PartyGirlDialogue", Main.npc[partyGirl].GivenName));
 			}
 			// These are things that the NPC has a chance of telling you when you talk to it.
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.StandardDialogue1"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.StandardDialogue2"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.CommonDialogue"), 5.0);
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.RareDialogue"), 0.1);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 5.0);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.1);
 
 			NumberOfTimesTalkedTo++;
-			if (NumberOfTimesTalkedTo >= 10) {
+			if (NumberOfTimesTalkedTo >= 10)
+			{
 				// This counter is linked to a single instance of the NPC, so if Claptrap is killed, the counter will reset.
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.TalkALot"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.TalkALot"));
 			}
 
 			string chosenChat = chat; // chat is implicitly cast to a string. This is where the random choice is made.
 
-			// Here is some additional logic based on the chosen chat line. In this case, we want to display an item in the corner for StandardDialogue4.
-			if (chosenChat == Language.GetTextValue("Mods.Vaultaria.Dialogue.Claptrap.StandardDialogue4")) {
-				// Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-				Main.npcChatCornerItem = ItemID.HiveBackpack;
-			}
+			// // Here is some additional logic based on the chosen chat line. In this case, we want to display an item in the corner for StandardDialogue4.
+			// if (chosenChat == Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1")) {
+			// 	// Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+			// 	Main.npcChatCornerItem = ItemID.HiveBackpack;
+			// }
 
 			return chosenChat;
 		}
 
-		public override void SetChatButtons(ref string button, ref string button2) { // What the chat buttons are when you open up the chat UI
-			button = Language.GetTextValue("LegacyInterface.28"); // This is the key to the word "Shop"
-			button2 = "Learn about Vaultaria";
-		}
-
-		public override void OnChatButtonClicked(bool firstButton, ref string shop)
+		public override void SetChatButtons(ref string button1, ref string button2)
 		{
-			if (firstButton)
+			if (currentIndex == 0)
 			{
-				shop = ShopName; // Name of the shop tab we want to open.
+				ChatButtons(ref button1, "Shop", ref button2, "Vaultaria");
+			}
+			else if (currentIndex == 1)
+			{
+				ChatButtons(ref button1, "MainMenu", ref button2, "Eridium");
+			}
+			else if (currentIndex == 2)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Incendiary");
+			}
+			else if (currentIndex == 3)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Shock");
+			}
+			else if (currentIndex == 4)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Corrosive");
+			}
+			else if (currentIndex == 5)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Explosive");
+			}
+			else if (currentIndex == 6)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Slag");
+			}
+			else if (currentIndex == 7)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Cryo");
+			}
+			else if (currentIndex == 8)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Radiation");
+			}
+			else if (currentIndex == 9)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "DoublePenetrating");
+			}
+			else if (currentIndex == 10)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Trickshot");
+			}
+			else if (currentIndex == 11)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Accessories");
+			}
+			else if (currentIndex == 12)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Ammo");
+			}
+			else if (currentIndex == pages.Length - 1)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "MainMenu");
 			}
 		}
 
+		// Sets what text should be shown when a button is pressed
+		private void ChatButtons(ref string button1, string text1, ref string button2, string text2)
+		{
+			button1 = Language.GetTextValue($"Mods.Vaultaria.NPCs.Claptrap.Buttons.{text1}");
+			button2 = Language.GetTextValue($"Mods.Vaultaria.NPCs.Claptrap.Buttons.{text2}");
+		}
+
+        public override void OnChatButtonClicked(bool firstButton, ref string shop)
+        {
+			if (firstButton)
+			{
+				if (pages[currentIndex] == ("MainMenu", ItemID.None))
+				{
+					shop = ShopName;
+				}
+				else
+				{
+					currentIndex--;
+				}
+			}
+			else
+			{
+				currentIndex++;
+				if (currentIndex >= pages.Length)
+				{
+					currentIndex = 0; // Loop forwards
+				}
+			}
+
+			string chatText;
+			if (pages[currentIndex] == ("MainMenu", ItemID.None)) // Fixes the issue with going back to the main menu and it not showing a proper dialogue message
+			{
+				chatText = GetChat();
+			}
+			else // Else shows the regular vaultaria pages
+			{
+				chatText = Language.GetTextValue($"Mods.Vaultaria.NPCs.Claptrap.VaultarianInfo.{pages[currentIndex].buttonTitle}");
+			}
+
+			Main.npcChatText = chatText;
+			Main.npcChatCornerItem = pages[currentIndex].cornerPicture;
+        }
+		
 		// Not completely finished, but below is what the NPC will sell
 		public override void AddShops() {
 			var npcShop = new NPCShop(Type, ShopName)
@@ -323,14 +468,15 @@ namespace Vaultaria.Content.NPCs.Town
 			return true;
 		}
 
-		public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
+		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+		{
 			damage = 20;
 			knockback = 4f;
 		}
 
 		public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
-			cooldown = 30;
-			randExtraCooldown = 30;
+			cooldown = 10;
+			randExtraCooldown = 10;
 		}
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {

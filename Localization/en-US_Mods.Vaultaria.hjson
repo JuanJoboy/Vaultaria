@@ -591,31 +591,54 @@ Prefixes: {
 
 NPCs: {
 	Claptrap: {
-		DisplayName: Claptrap
+		DisplayName: Mistake
 		DeathMessage: Claptrap is finally dead. Good Riddance.
 		DeathMessageAlt: Claptrap has officially gone rogue. Time to scrap the chassis.
 
-		// --- NPC Names ---
-		TownNPCName: {
-			0: Claptrap
-			1: Unit 743
-			2: Fragtrap
-			3: CL4P-TP
+		Buttons: {
+			Shop: Gearbox Premiere Club
+			Vaultaria: Vaultaria
+			MainMenu: Main Menu
+			Back: Back
+			Eridium: Eridium
+			Incendiary: Incendiary
+			Shock: Shock
+			Corrosive: Corrosive
+			Explosive: Explosive
+			Slag: Slag
+			Cryo: Cryo
+			Radiation: Radiation
+			DoublePenetrating: Double Penetrating
+			Trickshot: Trickshot
+			Accessories: Accessories
+			Ammo: Ammo
 		}
 
-		// --- Dialogue ---
+		VaultarianInfo: {
+			Vaultaria: Attention, Meatbag! I, CL4P-TP, your humble (and totally amazing) guide, will cycle through these pages to drop some knowledge bombs on Vaultaria's mechanics, so that you learn everything you need to not explode instantly in Vaultaria.
+			Eridium: Whoa, look at the shiny stuff! Eridium is the universe's greatest resource, period! There's a rare chance for you to get tiny bits from every loser you kill, but BIG, beautiful stacks from bosses. You need it to craft EVERYTHING here! Start farming Vault Hunter, I'm not doing it for you!
+			Incendiary: BURN BABY BURN! Defeat the Torch God and unleash the FIRE! This prefix lights those psychos up with a powerful Burning DOT! Wanna be an arsonist? Grab the Attunement, it drops rarely from the pathetic losers in The Underworld.
+			Shock: ZAP! You get this electric power after kicking the Martian Saucer's metal butt! This bad boy Electrifies foes and summons a stationary Shock Ring for extra pain! Find the Attunement accessory where the weirdos hang out: Space, or during a Rain / Martian Invasion!
+			Corrosive: Time to melt some faces! Beat Your World Evil's Boss (you know, the Worm or the Brain, ugh gross) to unlock this goop. I'd personally never touch the stuff, Corrosion is a nasty thing to deal with. It inflicts Venom debuffs, poisoning them good! The Attunement accessory is hiding somewhere with the creepy crawlies in the Hardmode Jungle.
+			Explosive: EXPLOSIONSS!!!! I SAID EXPLOSIONS! You unlock Mr. Torgue's favorite prefix by defeating the measly Pirate Ship! Creates an explosion, dealing massive AOE damage and shatters enemy armor. THAT SENTENCE HAD TOO MANY SYLLABLES! APOLOGIZE! Get the Attunement during the Pirate Invasion or the Old One's Army.
+			Slag: Achievement Unlocked! Beat the Wall Of Flesh to unlock this purple goodness. Slag reduces enemy defense and makes them take increased damage from EVERYTHING else! It’s the Ultimate Vault Hunter way to fight. Find the Attunement from the spooky guys in the Hardmode Dungeon.
+			Cryo: So... Cold... This is worse than Windshear Waste. You earn this by beating those freaky Ice Golems. This prefix applies a nasty Frostburn DOT and has a chance to FREEZE enemies solid. Which means NO DANCING, definitely my least favorite thing to be hit with. Look for the Attunement in the chilly Hardmode Snow Biome or during the Frost Moon/Frost Legion!
+			Radiation: Radioactive! This is advanced science, obtained by defeating The Twins (which is like totally easy for me, maybe hard for you though). It reduces enemy defense and gives them Cursed Inferno DOT. Best part? When the irradiated guy dies, he EXPLODES and spreads the pain! The Attunement drops from the nasty folk in the Hardmode Corruption / Crimson Biome.
+			DoublePenetrating: If any nimrod has ever told you that less is more, then IGNORE THEM! MORE IS MORE HERE! Beat Deerclops to get this incredible prefix. It doubles your projectiles, making you twice as cool! WARNING: It doubles your ammo cost! Still worth it. TRUST ME.
+			Trickshot: The first prefix available. You get this one just for existing! Trickshot is great for you losers who have terrible aim cause your bullets ricochet off surfaces, ensuring you eventually hit something (something that I'd never need).
+			Accessories: Listen up! You have three glorious new equipment types to play with: Shields, Relics, and Attunements. You can wear one of each (I know, mind-blowing). These gizmos grant special abilities to help you, the Vault Hunter, bring peace. (And by peace, I mean DEATH TO EVERYONE WHO DARES CROSS ME!)
+			Ammo: Ha! Your weak Terrarian ammo is pathetic! Some of the BEST weapons need my superior Ammo from the Borderlands. It drops from any marauder you kill. However if you wanna be a lazy squire, you can buy it from that hateful Arms Dealer.
+		}
+
 		Dialogue: {
-			Claptrap: {
-				PartyGirlDialogue: A fellow entertainer? I find {0} to be a fantastic dance partner! Wub wub wub!
-				StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
-				StandardDialogue2: I hope there aren't any stairs here
-				CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
-				RareDialogue: You wanna know a secret, I can actually go up stairs.
-				TalkALot: You're such a good listener Squire.
-			}
+			PartyGirlDialogue: A fellow entertainer? I find {0} to be a fantastic dance partner! Wub wub wub!
+			StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
+			StandardDialogue2: I hope there aren't any stairs here
+			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
+			RareDialogue: You wanna know a secret, I can actually go up stairs.
+			TalkALot: You're such a good listener Squire.
 		}
 
-		// --- Happiness Text ---
 		TownNPCMood: {
 			Content:
 				'''
@@ -629,18 +652,19 @@ NPCs: {
 			HateCrowded: HAVE U NO ARCHITECTURAL SENSE MINION! THIS PLACE IS TOO CROWDED!
 			LoveBiome: I love {BiomeName}.
 			LikeBiome: I like {BiomeName}.
-			LoveNPC: I love {NPCName}.
-			LikeNPC: I like {NPCName}.
 			DislikeNPC: I dislike {NPCName}.
 			HateNPC: I hate {NPCName}.
+			LoveNPC: I love {NPCName}.
+			LikeNPC: I like {NPCName}.
 			LikeNPC_Princess: I like {NPCName}.
 			Princess_LovesNPC: I like {NPCName}.
 		}
 
-		// --- Bestiary Text ---
 		Bestiary: {
 			Claptrap_1: A highly annoying but surprisingly useful Hyperion CL4P-TP unit that decided to settle down.
 			Claptrap_2: The constant chatter and questionable dance moves are a small price to pay for access to Vaultarian knowledge.
 		}
+
+		Census.SpawnCondition: Conditions unknown
 	}
 }
