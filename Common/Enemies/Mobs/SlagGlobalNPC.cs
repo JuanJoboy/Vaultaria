@@ -5,43 +5,27 @@ using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using Vaultaria.Common.Utilities;
+using Vaultaria.Common.Configs;
 
 public class SlagGlobalNPC : GlobalNPC
-{
+{    
     public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
     {
+        VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
         {
-            modifiers.SourceDamage *= 1.1f;
+            modifiers.SourceDamage *= config.SlagDamageMultiplier;
         }
     }
 
     public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
     {
+        VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
         if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
         {
-            modifiers.SourceDamage *= 1.1f;
-        }
-    }
-
-    public override void DrawEffects(NPC npc, ref Color drawColor)
-    {
-        base.DrawEffects(npc, ref drawColor);
-
-        // Check if the name contains "Slime" (case-insensitive for robustness)
-        bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase) || npc.TypeName.Contains("Pinky", System.StringComparison.OrdinalIgnoreCase);
-
-        // --- Apply color logic based on buff and slime status ---
-        if (npc.HasBuff(ModContent.BuffType<SlagBuff>()))
-        {
-            npc.color = Color.Purple;
-        }
-        else
-        {
-            if (!isSlime)
-            {
-                npc.color = drawColor;
-            }
+            modifiers.SourceDamage *= config.SlagDamageMultiplier;
         }
     }
 

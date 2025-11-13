@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Accessories.Shields;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 {

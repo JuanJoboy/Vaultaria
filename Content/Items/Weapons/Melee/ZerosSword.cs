@@ -64,7 +64,9 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 NPC npc = Main.npc[i];
                 if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
                 {
-                    if (player.Hitbox.Intersects(npc.Hitbox) && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+                    Rectangle npcRectangle = new Rectangle((int)npc.Center.X, (int)npc.Center.Y, npc.width + 20, npc.height + 20);
+
+                    if (player.Hitbox.Intersects(npcRectangle) && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
                     {
                         player.velocity *= 0f;
                     }

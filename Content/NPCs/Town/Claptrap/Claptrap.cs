@@ -275,8 +275,11 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 			// These are things that the NPC has a chance of telling you when you talk to it.
 			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
 			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 5.0);
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.1);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 5.0f);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.1f);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogue"), 0.01f);
 
 			NumberOfTimesTalkedTo++;
 			if (NumberOfTimesTalkedTo >= 10)

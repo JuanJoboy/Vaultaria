@@ -453,6 +453,16 @@ Items: {
 		DisplayName: Gub
 		Tooltip: ""
 	}
+
+	WarriorsTail: {
+		Tooltip: ""
+		DisplayName: Warriors Tail
+	}
+
+	DestroyersEye: {
+		Tooltip: ""
+		DisplayName: Destroyers Eye
+	}
 }
 
 Projectiles: {
@@ -500,6 +510,10 @@ Projectiles: {
 	BabyMakerGrenade.DisplayName: Baby Maker Grenade
 	PhaselockBubble.DisplayName: Phaselock Bubble
 	GubBullet.DisplayName: Gub Bullet
+	WarriorLaserHoldout.DisplayName: Warrior Laser Holdout
+	WarriorLaserBeam.DisplayName: Warrior Laser Beam
+	DestroyerLaserHoldout.DisplayName: Destroyer Laser Holdout
+	DestroyerLaserBeam.DisplayName: Destroyer Laser Beam
 }
 
 Buffs: {
@@ -634,8 +648,11 @@ NPCs: {
 			PartyGirlDialogue: A fellow entertainer? I find {0} to be a fantastic dance partner! Wub wub wub!
 			StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
 			StandardDialogue2: I hope there aren't any stairs here
+			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.
+			StandardDialogue4: Wub wub wub wub wub wub.
 			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
 			RareDialogue: You wanna know a secret, I can actually go up stairs.
+			VeryRareDialogue: My ***... Its full of stars.
 			TalkALot: You're such a good listener Squire.
 		}
 
@@ -666,5 +683,26 @@ NPCs: {
 		}
 
 		Census.SpawnCondition: Conditions unknown
+	}
+}
+
+Configs: {
+	VaultariaConfig: {
+		EnableDoublePenetratingPrefix: {
+			Label: Enable Double Penetrating Prefix
+			Tooltip: If disabled, the Double Penetrating prefix will not be available.
+		}
+
+		EridiumDropRateMultiplier: {
+			Label: Eridium Drop Rate Multiplier
+			Tooltip: Multiplies the Eridium drop rate.
+		}
+
+		SlagDamageMultiplier: {
+			Label: Slag Damage Multiplier
+			Tooltip: The amount of additional damage taken by Slagged enemies (3 would make an enemy take 3x as much damage).
+		}
+
+		DisplayName: Vaultaria Config
 	}
 }

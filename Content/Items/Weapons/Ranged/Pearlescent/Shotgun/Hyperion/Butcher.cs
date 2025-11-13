@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
 {
@@ -43,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item38;
+            Item.UseSound = new SoundStyle("Vaultaria/Common/Sounds/Butcher");
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

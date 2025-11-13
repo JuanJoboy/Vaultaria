@@ -23,6 +23,7 @@ using Terraria.ModLoader.IO;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
+using Terraria.GameContent;
 
 namespace Vaultaria.Common.Players
 {

@@ -32,9 +32,6 @@ public class DeceptionVision : GlobalNPC
         {
             Player player = Main.player[Main.myPlayer];
 
-            // Check if the name contains "Slime" (case-insensitive for robustness)
-            bool isSlime = npc.TypeName.Contains("Slime", System.StringComparison.OrdinalIgnoreCase);
-
             if (player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
             {
                 drawColor = Color.SkyBlue;
