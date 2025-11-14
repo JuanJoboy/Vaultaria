@@ -652,7 +652,8 @@ NPCs: {
 			StandardDialogue4: Wub wub wub wub wub wub.
 			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
 			RareDialogue: You wanna know a secret, I can actually go up stairs.
-			VeryRareDialogue: My ***... Its full of stars.
+			VeryRareDialogueSafe: My ***... Its full of stars.
+			VeryRareDialogueExp: My ass... Its full of stars.
 			TalkALot: You're such a good listener Squire.
 		}
 
@@ -695,12 +696,17 @@ Configs: {
 
 		EridiumDropRateMultiplier: {
 			Label: Eridium Drop Rate Multiplier
-			Tooltip: Multiplies the Eridium drop rate.
+			Tooltip: Multiplies the Eridium drop rate from bosses.
 		}
 
 		SlagDamageMultiplier: {
 			Label: Slag Damage Multiplier
 			Tooltip: The amount of additional damage taken by Slagged enemies (3 would make an enemy take 3x as much damage).
+		}
+
+		EnableProfanity: {
+			Label: Enable Profanity
+			Tooltip: Allows for cuss words to be displayed
 		}
 
 		DisplayName: Vaultaria Config

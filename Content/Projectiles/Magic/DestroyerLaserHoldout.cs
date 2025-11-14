@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 		public const int NumBeams = 10;
 
 		// This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
-		public const float MaxCharge = 90f;
+		public const float MaxCharge = 0f;
 
 		// This value controls how many frames it takes for the beams to begin dealing damage. Before then they can't hit anything.
 		public const float DamageStart = 0f;

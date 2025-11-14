@@ -6,7 +6,7 @@ namespace Vaultaria.Common.Configs
     // Define the scope: ClientSide for settings that don't need server sync.
     public class VaultariaConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ClientSide;
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
         // --- Optional Boolean Setting ---
 
@@ -14,9 +14,10 @@ namespace Vaultaria.Common.Configs
         [DefaultValue(true)] // KEY: Setting this to true makes the setting optional.
         public bool EnableDoublePenetratingPrefix;
 
-        // --- Optional Integer Setting ---
+        [DefaultValue(false)]
+        public bool EnableProfanity;
 
-        [ReloadRequired]
+        // --- Optional Integer Setting ---
         [DefaultValue(1)] // Default value is 1 (no multiplier)
         [Range(1, 10)] // Optional: Defines the min/max slider range in the UI
         public int EridiumDropRateMultiplier;

@@ -33,6 +33,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
@@ -277,9 +278,18 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
 			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
 			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 5.0f);
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.1f);
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogue"), 0.01f);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
+			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
+
+			VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+			if(config.EnableProfanity == true)
+            {
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
+            }
+			else
+            {
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
+            }
 
 			NumberOfTimesTalkedTo++;
 			if (NumberOfTimesTalkedTo >= 10)

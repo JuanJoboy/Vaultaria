@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			// For example, this copies sprite size, use style, sell price, and the item being a magic weapon.
 			Item.CloneDefaults(ItemID.LastPrism);
 			Item.mana = 4;
-			Item.damage = 42;
+			Item.damage = 1000;
 			Item.shoot = ModContent.ProjectileType<DestroyerLaserHoldout>();
 			Item.shootSpeed = 30f;
 
