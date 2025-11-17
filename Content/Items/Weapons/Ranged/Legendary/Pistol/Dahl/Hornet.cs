@@ -45,7 +45,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Item.UseSound = SoundID.Item31;
+            Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
+            // Item.UseSound = SoundID.Item31;
         }
 
         public override Vector2? HoldoutOffset()

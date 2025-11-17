@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Item.UseSound = SoundID.Item11;
+            Utilities.ItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
         }
 
         public override void AddRecipes()

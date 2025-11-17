@@ -47,7 +47,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item41;
         }
 
         public override bool AltFunctionUse(Player player)
@@ -106,7 +105,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Item.UseSound = SoundID.Item41;
+                Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
             }
 
             return base.CanUseItem(player);

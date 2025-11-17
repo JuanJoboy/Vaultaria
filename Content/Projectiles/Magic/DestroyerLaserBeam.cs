@@ -62,10 +62,13 @@ namespace Vaultaria.Content.Projectiles.Magic
 		// As a value, hue ranges from 0f to 1f, both of which are pure red. The laser beams vary from 0.57 to 0.75, which winds up being a blue-to-purple gradient.
 		// Saturation ranges from 0f to 1f and controls how greyed out the color is. 0 is fully grayscale, 1 is vibrant, intense color.
 		// Lightness ranges from 0f to 1f and controls how dark or light the color is. 0 is pitch black. 1 is pure white.
-		private const float BeamColorHue = 0.75f;
+		private const float BeamColorHue = 0.5f;
 		private const float BeamHueVariance = 0.18f;
 		private const float BeamColorSaturation = 0.66f;
-		private const float BeamColorLightness = 0.53f;
+		private const float BeamColorLightness = 0.25f;
+
+		// Inner beams are always pure white so that they act as a "blindingly bright" center to each laser.
+		private Color GetInnerBeamColor() => Color.White;
 
 		// This property encloses the internal AI variable Projectile.ai[0]. It makes the code easier to read.
 		private float BeamID {
@@ -309,9 +312,6 @@ namespace Vaultaria.Content.Projectiles.Magic
 			c.A = 64;
 			return c;
 		}
-
-		// Inner beams are always pure white so that they act as a "blindingly bright" center to each laser.
-		private Color GetInnerBeamColor() => Color.White;
 
 		private void ProduceBeamDust(Color beamColor) {
 			// Create one dust per frame a small distance from where the beam ends.

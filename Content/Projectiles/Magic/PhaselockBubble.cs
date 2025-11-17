@@ -35,13 +35,13 @@ namespace Vaultaria.Content.Projectiles.Magic
         {
             base.AI();
             Player player = Main.player[Projectile.owner];
-
+            
             NPC target = FindTarget();
-
-            Utilities.MoveToPosition(Projectile, target.Center, 4, 1);
 
             if (target != null && target.active && !target.friendly)
             {
+                Utilities.MoveToPosition(Projectile, target.Center, 4, 1);
+
                 float distance = Vector2.Distance(Projectile.Center, target.Center);
 
                 // Simple collision approximation: when close enough

@@ -68,11 +68,11 @@ public class PhaselockedNPC : GlobalNPC
         float scale;
         if (npc.height < npc.width)
         {
-            scale = 0.3f * (npc.height / 5); // was 0.25 before
+            scale = 0.5f * (npc.height / 5); // was 0.25 before
         }
         else
         {
-            scale = 0.3f * (npc.height / 7); // was 0.25 before
+            scale = 0.2f * (npc.height / 7); // was 0.25 before
         }
 
         // --- 4. Draw the Texture ---

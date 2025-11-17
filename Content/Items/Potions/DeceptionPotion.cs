@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Buffs.PotionEffects;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Potions
 {
@@ -36,11 +37,11 @@ namespace Vaultaria.Content.Items.Potions
             // Item.potion = true;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<DeceptionBuff>();
-            Item.buffTime = 360;
+            Item.buffTime = 420;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Item.UseSound = SoundID.Item3;
+            Utilities.ItemSound(Item, Utilities.Sounds.Deception, 500);
         }
 
         public override bool? UseItem(Player player)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Globals;
 using Terraria.DataStructures;
 using System;
+using Vaultaria.Content.Buffs.Prefixes.Elements;
 
 namespace Vaultaria.Common.Utilities
 {
@@ -400,22 +401,18 @@ namespace Vaultaria.Common.Utilities
             if (player is Player myPlayer && target is NPC npc)
             {
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
-                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.ShockProjectile, ElementalID.ShockBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
-                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.CryoProjectile, ElementalID.CryoBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
             }
             
             if (player is Player myPlayer2 && target is Player targetPlayer)
             {
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
-                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.ShockProjectile, ElementalID.ShockBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
-                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.CryoProjectile, ElementalID.CryoBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
             }
         }

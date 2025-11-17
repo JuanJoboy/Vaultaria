@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item40;
+            Utilities.ItemSound(Item, Utilities.Sounds.BanditAR, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -92,6 +92,24 @@ namespace Vaultaria.Common.Players
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, 50, multiplier, ElementalID.RadiationPrefix, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240);
         }
 
+        public override bool CanUseItem(Item item)
+        {
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
+
+            // Since the point16 positions are tile coordinates, I must convert them to pixels (multiply by 16).
+            Rectangle vault1Rectangle = new Rectangle(VaultBuilder.positionX * 16, VaultBuilder.positionY * 16, (vault1Dimensions.X * 16) + 20, (vault1Dimensions.Y * 16) + 20);
+
+            if(Player.Hitbox.Intersects(vault1Rectangle))
+            {
+                if(item.pick > 0 || item.pick == -1 || item.hammer > 0 || item.type == ItemID.Actuator)
+                {
+                    return false;
+                }
+            }
+
+            return base.CanUseItem(item);
+        }
+
         public override float UseSpeedMultiplier(Item item)
         {
             float multiplier = 1;

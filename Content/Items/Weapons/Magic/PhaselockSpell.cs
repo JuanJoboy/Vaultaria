@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.MagicEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Magic
 {
@@ -34,16 +35,16 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             Item.scale = 1f;
             Item.mana = 0;
 
-            Item.useTime = 100;
-            Item.useAnimation = 100;
-            Item.reuseDelay = 100;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 60;
             Item.autoReuse = false;
             Item.useTurn = true;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Purple;
-            Item.UseSound = SoundID.Item15;
+            Utilities.ItemSound(Item, Utilities.Sounds.Phaselock, 300);
         }
 
         public override bool? UseItem(Player player)
@@ -93,7 +94,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on")
             {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
+                OverrideColor = new Color(239, 139, 252) // Light Pink
             });
             tooltips.Add(new TooltipLine(Mod, "Red Text", "(giggles) I'm really good at this!")
             {

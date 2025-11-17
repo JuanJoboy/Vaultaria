@@ -46,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item40;
+            Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
         }
 
         public override bool CanUseItem(Player player)
@@ -78,7 +78,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.shootSpeed = 12;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Item.UseSound = SoundID.Item40;
+                Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
 
                 Item.damage = 40;
                 Item.crit = 0;

@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 4);
-            Item.UseSound = SoundID.Item41;
+            Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         }
 
         public override Vector2? HoldoutOffset()

@@ -44,7 +44,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item12;
         }
 
         public override bool AltFunctionUse(Player player)
@@ -62,7 +61,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.shootSpeed = 60f;
                 Item.shoot = ModContent.ProjectileType<ShockblastExBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
-                Item.UseSound = SoundID.Item92;
+                Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
 
                 Item.damage = 200;
                 Item.crit = 0;
@@ -80,7 +79,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.shootSpeed = 60f;
                 Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
-                Item.UseSound = SoundID.Item75;
+                Utilities.ItemSound(Item, Utilities.Sounds.ETechAR, 60);
 
                 Item.damage = 70;
                 Item.crit = 0;

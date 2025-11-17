@@ -1,6 +1,11 @@
 Tiles: {
 	ZedVendingMachine.MapEntry: Zed's Vending Machine
 	MarcusVendingMachine.MapEntry: Marcus's Vending Machine
+	Vault1.MapEntry: Vault1
+	Pedestal.MapEntry: Pedestal
+	PedestalTile.MapEntry: Pedestal Tile
+	BossSummoner.MapEntry: Boss Summoner
+	Vault1BossSummoner.MapEntry: Vault1 Boss Summoner
 }
 
 Items: {
@@ -463,6 +468,26 @@ Items: {
 		Tooltip: ""
 		DisplayName: Destroyers Eye
 	}
+
+	Vault1: {
+		Tooltip: ""
+		DisplayName: Vault1
+	}
+
+	Pedestal: {
+		Tooltip: ""
+		DisplayName: Pedestal
+	}
+
+	VaultKey: {
+		Tooltip: ""
+		DisplayName: Vault Key
+	}
+
+	Vault1BossSummoner: {
+		Tooltip: ""
+		DisplayName: Vault1 Boss Summoner
+	}
 }
 
 Projectiles: {
@@ -514,6 +539,7 @@ Projectiles: {
 	WarriorLaserBeam.DisplayName: Warrior Laser Beam
 	DestroyerLaserHoldout.DisplayName: Destroyer Laser Holdout
 	DestroyerLaserBeam.DisplayName: Destroyer Laser Beam
+	Asd.DisplayName: Asd
 }
 
 Buffs: {

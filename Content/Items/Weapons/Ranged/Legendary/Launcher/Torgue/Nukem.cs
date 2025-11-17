@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Item.UseSound = SoundID.Item62;
+            Utilities.ItemSound(Item, Utilities.Sounds.TorgueLauncher, 60);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Item.UseSound = SoundID.Item11;
+            Utilities.ItemSound(Item, Utilities.Sounds.TorguePistol, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
 using Terraria.ID;
@@ -98,6 +100,109 @@ namespace Vaultaria.Common.Utilities
             { ProjectileID.CursedDart, ItemID.CursedDart },
             { ProjectileID.IchorDart, ItemID.IchorDart }
         };
+
+        public enum Sounds
+        {
+            BanditAR,
+            BanditARRocket,
+            BanditLauncher,
+            BanditPistol,
+            BanditShotgun,
+            BanditSMG,
+            DahlARBurst,
+            DahlARSingle,
+            DahlPistolBurst,
+            DahlPistolSingle,
+            DahlSMGBurst,
+            DahlSMGSingle,
+            DahlSniperBurst,
+            DahlSniperSingle,
+            Deception,
+            ETechAR,
+            ETechLauncher,
+            ETechSMGBurst,
+            ETechSMGSingle,
+            ETechSniperBurst,
+            HyperionPistol,
+            HyperionShotgun,
+            HyperionSMG,
+            HyperionSniper,
+            JakobsPistol,
+            JakobsShotgun,
+            JakobsSniper,
+            MaliwanLauncher,
+            MaliwanPistol,
+            MaliwanSMG,
+            MaliwanSniper,
+            Phaselock,
+            TedioreLauncher,
+            TedioreLauncherThrow,
+            TediorePistol,
+            TediorePistolThrow,
+            TedioreShotgun,
+            TedioreShotgunThrow,
+            TedioreSMG,
+            TedioreSMGThrow,
+            TorgueAR,
+            TorgueLauncher,
+            TorguePistol,
+            TorgueShotgun,
+            VladofAR,
+            VladofARRocket,
+            VladofLauncher,
+            VladofPistol,
+            VladofSniper,
+        }
+
+        // An array of tiles that should be taken into consideration when trying to generate a vault when a world is made
+        public static int[] badTiles =
+        [
+            TileID.DemonAltar,
+            TileID.BlueDungeonBrick,
+            TileID.PinkDungeonBrick, 
+            TileID.GreenDungeonBrick,
+            TileID.CrackedBlueDungeonBrick,
+            TileID.CrackedPinkDungeonBrick, 
+            TileID.CrackedGreenDungeonBrick,
+            TileID.Ebonstone,
+            TileID.ShadowOrbs, 
+            TileID.Crimstone,
+            TileID.HoneyBlock,
+            TileID.Hive, 
+            TileID.LihzahrdBrick,
+            TileID.LihzahrdAltar,
+            TileID.HeavenforgeBrick,
+            TileID.Containers,
+            TileID.Containers2,
+            TileID.FakeContainers,
+            TileID.FakeContainers2,
+            TileID.Sand,
+            TileID.SandFallBlock,
+            TileID.Silt,
+            TileID.Slush,
+        ];
+
+        public static int[] badLiquids =
+        [
+            LiquidID.Shimmer,
+            LiquidID.Lava,
+        ];
+
+        // An array of items that cant be used when near a vault
+        public static int[] blockedItems = 
+        [
+            ItemID.Bomb,
+            ItemID.Dynamite,
+            ItemID.StickyBomb,
+            ItemID.BouncyBomb, 
+            ItemID.LihzahrdAltar,
+            ItemID.Wire,
+            ItemID.Actuator,
+            ItemID.Explosives,
+            ItemID.WetBomb,
+            ItemID.DryBomb,
+            ItemID.LavaBomb,
+        ];
 
         /// <summary>
         /// Heals the player based on the healingPercentage.
@@ -497,6 +602,33 @@ namespace Vaultaria.Common.Utilities
                 dramatic: true, // Optional: Makes the text larger and appear more impactful
                 dot: false
             );
+        }
+
+        public static void ItemSound(Item item, Sounds sound, int instances = 60)
+        {
+            item.UseSound = new SoundStyle($"Vaultaria/Common/Sounds/{sound}") 
+            {
+                // Allow up to 30 concurrent instances of the sound to play. 
+                // This makes fast firing sound layered and prevents harsh cutoffs.
+                MaxInstances = instances
+            };
+        }
+
+        public static bool VaultArea(string vault, int i, int j)
+        {
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/{vault}", ModContent.GetInstance<Vaultaria>());
+
+            int topLeftCorner = VaultBuilder.positionX;
+            int topRightCorner = VaultBuilder.positionX + vault1Dimensions.X;
+            int bottomLeftCorner = VaultBuilder.positionY;
+            int bottomRightCorner = VaultBuilder.positionY + vault1Dimensions.Y;
+
+            if(i >= topLeftCorner && i < topRightCorner && j >= bottomLeftCorner && j < bottomRightCorner)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

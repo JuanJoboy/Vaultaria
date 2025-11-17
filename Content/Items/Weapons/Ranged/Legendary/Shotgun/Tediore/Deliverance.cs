@@ -89,7 +89,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Item.UseSound = SoundID.Item39;
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgunThrow, 120);
                 thrown = true;
             }
             else // Shoot
@@ -110,7 +110,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Item.UseSound = SoundID.Item41;
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
             }
 
             return base.CanUseItem(player);

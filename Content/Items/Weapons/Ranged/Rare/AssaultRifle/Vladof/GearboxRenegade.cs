@@ -43,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(copper: 0);
-            Item.UseSound = SoundID.Item31;
+            Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
         }
 
         public override Vector2? HoldoutOffset()

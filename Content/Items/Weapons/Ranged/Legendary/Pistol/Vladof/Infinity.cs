@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 {
@@ -43,7 +44,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Item.UseSound = SoundID.Item31;
+            // Item.UseSound = SoundID.Item31;
+            Utilities.ItemSound(Item, Utilities.Sounds.VladofPistol, 60);
         }
 
         public override void AddRecipes()

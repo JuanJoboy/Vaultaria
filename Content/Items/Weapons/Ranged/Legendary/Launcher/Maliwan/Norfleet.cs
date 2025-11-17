@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(platinum: 1);
-            Item.UseSound = SoundID.Item84;
+            Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

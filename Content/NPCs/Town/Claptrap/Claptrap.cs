@@ -106,8 +106,9 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				.SetBiomeAffection<ForestBiome>(AffectionLevel.Love) // Example Person prefers the forest.
 				.SetBiomeAffection<SnowBiome>(AffectionLevel.Like) // Example Person likes the snow.
 				.SetNPCAffection(NPCID.Dryad, AffectionLevel.Love) // Loves living near the dryad.
-				.SetNPCAffection(NPCID.Guide, AffectionLevel.Like) // Likes living near the guide.
-				.SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Dislike) // Dislikes living near the merchant.
+				.SetNPCAffection(NPCID.PartyGirl, AffectionLevel.Love) // Loves living near the party girl.
+				.SetNPCAffection(NPCID.Nurse, AffectionLevel.Like) // Likes living near the nurse.
+				.SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Like) // Likes living near the arms dealer.
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate) // Hates living near the demolitionist.
 			; // < Mind the semicolon!
 

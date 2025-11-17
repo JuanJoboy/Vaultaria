@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
@@ -11,6 +12,7 @@ using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Items.Weapons.Magic;
 using Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary;
@@ -41,6 +43,20 @@ namespace Vaultaria.Common.GlobalItems
 {
     public class NPCLoot : GlobalNPC
     {
+        public override void OnKill(NPC npc)
+        {
+            base.OnKill(npc);
+
+            if (npc.type == NPCID.EyeofCthulhu && SubworldLibrary.SubworldSystem.AnyActive())
+            {
+                if (npc.boss)
+                {
+                    Item.NewItem(npc.GetSource_Death(), npc.Center, ModContent.ItemType<DestroyersEye>());
+                    Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Promethean Vault Raided");
+                }
+            }
+        }
+
         public override void ModifyNPCLoot(NPC mob, Terraria.ModLoader.NPCLoot npcLoot)
         {
             int npc = mob.type;

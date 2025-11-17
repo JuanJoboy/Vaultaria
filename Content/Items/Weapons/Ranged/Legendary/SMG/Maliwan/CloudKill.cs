@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Item.UseSound = SoundID.Item75;
+            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
         }
 
         public override Vector2? HoldoutOffset()

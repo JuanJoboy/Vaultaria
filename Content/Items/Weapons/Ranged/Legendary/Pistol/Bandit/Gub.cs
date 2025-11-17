@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Item.UseSound = SoundID.Item11;
+            Utilities.ItemSound(Item, Utilities.Sounds.BanditPistol, 60);
         }
 
         public override Vector2? HoldoutOffset()
