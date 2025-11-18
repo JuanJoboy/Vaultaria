@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
+namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
 {
-    public class LeadStorm : ModItem
+    public class Carbine : ModItem
     {
         public override void SetStaticDefaults()
         {

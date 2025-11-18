@@ -213,7 +213,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 			DelegateMethods.v3_1 = beamColor.ToVector3() * BeamLightBrightness * chargeRatio;
 			Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * BeamLength, beamDims.Y, new Utils.TileActionAttempt(DelegateMethods.CastLight));
 		}
-
+		
 		// Uses a simple polynomial (x^3) to get sudden but smooth damage increase near the end of the charge-up period.
 		private float GetDamageMultiplier(float chargeRatio) {
 			float f = chargeRatio * chargeRatio * chargeRatio;

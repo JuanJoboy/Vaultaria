@@ -20,9 +20,9 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion;
 using Vaultaria.Content.Items.Accessories.Attunements;
 using Vaultaria.Content.Buffs.PotionEffects;
 using Terraria.ModLoader.IO;
-using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl;
-using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
-using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs;
 using Terraria.GameContent;
 
 namespace Vaultaria.Common.Players

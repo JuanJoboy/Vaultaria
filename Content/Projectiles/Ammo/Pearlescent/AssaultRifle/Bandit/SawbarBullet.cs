@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
 {
@@ -43,6 +44,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
             base.AI();
 
             Projectile.rotation = Projectile.velocity.ToRotation();
+
+            ChangeExplosion();
 
             if (Projectile.ai[0] == 1f)
             {
@@ -119,6 +122,20 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
             {
                 "Incendiary"
             };
+        }
+
+        private void ChangeExplosion()
+        {
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+            
+			if(config.EnableOldSawbarExplosion == true)
+            {
+                incendiaryProjectile = ProjectileID.SolarWhipSwordExplosion;
+            }
+            else
+            {
+                incendiaryProjectile = ElementalID.IncendiaryProjectile;
+            }
         }
     }
 }

@@ -6,6 +6,9 @@ Tiles: {
 	PedestalTile.MapEntry: Pedestal Tile
 	BossSummoner.MapEntry: Boss Summoner
 	Vault1BossSummoner.MapEntry: Vault1 Boss Summoner
+	Vault2BossSummoner.MapEntry: Vault2 Boss Summoner
+	PedestalTile2.MapEntry: Pedestal Tile2
+	PedestalTile1.MapEntry: Pedestal Tile1
 }
 
 Items: {
@@ -461,12 +464,12 @@ Items: {
 
 	WarriorsTail: {
 		Tooltip: ""
-		DisplayName: Warriors Tail
+		DisplayName: The Tail of the Warrior
 	}
 
 	DestroyersEye: {
 		Tooltip: ""
-		DisplayName: Destroyers Eye
+		DisplayName: The Eye of the Destroyer
 	}
 
 	Vault1: {
@@ -474,19 +477,144 @@ Items: {
 		DisplayName: Vault1
 	}
 
-	Pedestal: {
-		Tooltip: ""
-		DisplayName: Pedestal
-	}
-
-	VaultKey: {
-		Tooltip: ""
-		DisplayName: Vault Key
-	}
-
 	Vault1BossSummoner: {
 		Tooltip: ""
-		DisplayName: Vault1 Boss Summoner
+		DisplayName: Vault 1 Summoner
+	}
+
+	Pedestal1: {
+		DisplayName: Vault 1 Pedestal
+		Tooltip: ""
+	}
+
+	VaultFragment6: {
+		Tooltip: ""
+		DisplayName: Promethea Vault Fragment
+	}
+
+	VaultFragment5: {
+		Tooltip: ""
+		DisplayName: Promethea Vault Fragment
+	}
+
+	VaultFragment4: {
+		Tooltip: ""
+		DisplayName: Promethea Vault Fragment
+	}
+
+	VaultFragment3: {
+		Tooltip: ""
+		DisplayName: Eden-6 Vault Fragment
+	}
+
+	VaultFragment2: {
+		Tooltip: ""
+		DisplayName: Eden-6 Vault Fragment
+	}
+
+	VaultFragment1: {
+		Tooltip: ""
+		DisplayName: Eden-6 Vault Fragment
+	}
+
+	Pedestal2: {
+		DisplayName: Vault 2 Pedestal
+		Tooltip: ""
+	}
+
+	Vault2BossSummoner: {
+		DisplayName: Vault 2 Summoner
+		Tooltip: ""
+	}
+
+	VaultKey1: {
+		DisplayName: Eden-6 Vault Key
+		Tooltip: ""
+	}
+
+	VaultKey2: {
+		DisplayName: Promethea Vault Key
+		Tooltip: ""
+	}
+
+	CopperAmmo: {
+		DisplayName: Copper Ammo
+		Tooltip: ""
+	}
+
+	TinAmmo: {
+		DisplayName: Tin Ammo
+		Tooltip: ""
+	}
+
+	LumpyRoot: {
+		DisplayName: Lumpy Root
+		Tooltip: ""
+	}
+
+	Aegis: {
+		DisplayName: Aegis
+		Tooltip: ""
+	}
+
+	Handgun: {
+		DisplayName: Handgun
+		Tooltip: ""
+	}
+
+	Skatergun: {
+		DisplayName: Skatergun
+		Tooltip: ""
+	}
+
+	SmoothFox: {
+		DisplayName: Smooth Fox
+		Tooltip: ""
+	}
+
+	Quad: {
+		DisplayName: Quad
+		Tooltip: ""
+	}
+
+	Lascaux: {
+		DisplayName: Lascaux
+		Tooltip: ""
+	}
+
+	NightSniper: {
+		DisplayName: Night Sniper
+		Tooltip: ""
+	}
+
+	InspiringTransaction: {
+		DisplayName: Inspiring Transaction
+		Tooltip: ""
+	}
+
+	Carbine: {
+		DisplayName: Carbine
+		Tooltip: ""
+	}
+
+	FlushRifle: {
+		DisplayName: Flush Rifle
+		Tooltip: ""
+	}
+
+	ThreeWayHulk: {
+		DisplayName: Three Way Hulk
+		Tooltip: ""
+	}
+
+	Revenant: {
+		DisplayName: Revenant
+		Tooltip: ""
+	}
+
+	Snider: {
+		DisplayName: Snider
+		Tooltip: ""
 	}
 }
 
@@ -540,6 +668,8 @@ Projectiles: {
 	DestroyerLaserHoldout.DisplayName: Destroyer Laser Holdout
 	DestroyerLaserBeam.DisplayName: Destroyer Laser Beam
 	Asd.DisplayName: Asd
+	CopperBullet.DisplayName: Copper Bullet
+	TinBullet.DisplayName: Tin Bullet
 }
 
 Buffs: {
@@ -715,9 +845,9 @@ NPCs: {
 
 Configs: {
 	VaultariaConfig: {
-		EnableDoublePenetratingPrefix: {
-			Label: Enable Double Penetrating Prefix
-			Tooltip: If disabled, the Double Penetrating prefix will not be available.
+		EnableOldSawbarExplosion: {
+			Label: Enable Old Sawbar Explosion
+			Tooltip: Enabling this makes the Sawbar create tighter explosions.
 		}
 
 		EridiumDropRateMultiplier: {

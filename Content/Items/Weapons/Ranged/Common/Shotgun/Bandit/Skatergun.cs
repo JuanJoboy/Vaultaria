@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 {
     public class Skatergun : ModItem
     {

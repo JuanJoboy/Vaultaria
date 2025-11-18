@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Placeables.Vaults
 {
-    public class Pedestal1 : ModItem
+    public class Pedestal2 : ModItem
     {
         public override void SetStaticDefaults()
         {

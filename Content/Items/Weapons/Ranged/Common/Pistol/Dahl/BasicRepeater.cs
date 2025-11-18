@@ -7,7 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 {
     public class BasicRepeater : ModItem
     {

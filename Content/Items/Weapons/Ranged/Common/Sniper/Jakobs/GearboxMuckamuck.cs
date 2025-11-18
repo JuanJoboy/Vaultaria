@@ -7,7 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs
 {
     public class GearboxMuckamuck : ModItem
     {

@@ -27,14 +27,13 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
             Item.autoReuse = true;
             Item.useTurn = true;
 
-            Item.maxStack = Item.CommonMaxStack;
-            Item.consumable = true;
+            Item.maxStack = 1;
 
             Item.value = Item.buyPrice(gold: 1);
 
             // Sets the rarity of the item, which affects its name color in the inventory.
             // ItemRarityID.Blue corresponds to the default blue rarity color.
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Master;
         }
 
         public override bool CanRightClick()

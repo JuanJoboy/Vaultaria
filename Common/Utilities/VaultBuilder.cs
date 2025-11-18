@@ -20,13 +20,16 @@ namespace Vaultaria.Common.Utilities
 {
     public static class VaultBuilder
     {
-        public static int positionX;
-        public static int positionY;
+        public static int vault1positionX;
+        public static int vault1positionY;
+
+        public static int vault2positionX;
+        public static int vault2positionY;
 
         public static void GenerateVault(string vault, int topLeftX, int topLeftY)
         {
             string path = $"Common/Systems/GenPasses/Vaults/{vault}";
-            Point16 pos = new Point16(topLeftX, topLeftY);;
+            Point16 pos = new Point16(topLeftX, topLeftY);
             Mod mod = ModContent.GetInstance<Vaultaria>();
             GenFlags flags = GenFlags.NullsKeepGivenSlope;
             Point16 dimensions = StructureHelper.API.Generator.GetStructureDimensions(path, mod);
@@ -75,16 +78,27 @@ namespace Vaultaria.Common.Utilities
             bool structGenInBounds = StructureHelper.API.Generator.IsInBounds(path, mod, pos);
             bool notInZone = NotInZone(pos, dimensions);
 
+            string[] pathArray = path.Split('/');
+            string vault = pathArray[pathArray.Length - 1];
+
             if(structGenInBounds && notInZone)
             {
                 StructureHelper.API.Generator.GenerateStructure(path, pos, mod, false, false, flags);
-                positionX = pos.X;
-                positionY = pos.Y;
+
+                switch(vault)
+                {
+                    case "Vault1":
+                        vault1positionX = pos.X;
+                        vault1positionY = pos.Y;
+                        break;
+                    case "Vault2":
+                        vault2positionX = pos.X;
+                        vault2positionY = pos.Y;
+                        break;
+                }
             }
             else
             {
-                string[] pathArray = path.Split('/');
-                string vault = pathArray[pathArray.Length - 1];
                 GenerateVault(vault);
             }
         }

@@ -9,7 +9,7 @@ using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ammo;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
+namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 {
     public class Quad : ModItem
     {

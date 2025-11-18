@@ -7,7 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion
 {
     public class GearboxProjectileConvergence : ModItem
     {

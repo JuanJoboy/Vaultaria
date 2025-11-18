@@ -7,9 +7,9 @@ using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Dahl
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
 {
-    public class BasicRepeater : ModItem
+    public class Aegis : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {

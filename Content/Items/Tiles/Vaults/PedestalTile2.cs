@@ -21,7 +21,9 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             Main.tileFrameImportant[Type] = true; // Tells Terraria that there is TileObjectData that is used for rendering
             Main.tileSolidTop[Type] = false; // The tile is solid on top
             Main.tileNoAttach[Type] = true; // Doesn't attach to other tiles
-            Main.tileLavaDeath[Type] = true; // This tile is killed by Lava
+            Main.tileLavaDeath[Type] = false; // This tile is killed by Lava
+            Main.tileShine2[Type] = true;
+            Main.tileShine[Type] = 1000;
 
             // Tile Config
             TileID.Sets.DisableSmartCursor[Type] = false; // Enables smart cursor interaction with this tile
@@ -68,7 +70,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             Player player = Main.player[Main.myPlayer];
 
-            if(player.HeldItem.type == ModContent.ItemType<VaultKey1>())
+            if(player.HeldItem.type == ModContent.ItemType<VaultKey2>())
             {
                 SoundEngine.PlaySound(SoundID.Item4);
                 WorldGenerator.pedestalInVault2 = true;

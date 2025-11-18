@@ -1,4 +1,6 @@
+using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Common.Globals
 {
@@ -6,12 +8,20 @@ namespace Vaultaria.Common.Globals
     {
         public override bool CanExplode(int i, int j, int type)
         {
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
+            Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
+
             if(SubworldLibrary.SubworldSystem.AnyActive())
             {
                 return false;
             }
 
-            if(Utilities.Utilities.VaultArea("Vault1", i, j))
+            if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
+            {
+                return false;
+            }
+
+            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i, j))
             {
                 return false;
             }
@@ -21,12 +31,20 @@ namespace Vaultaria.Common.Globals
 
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
+            Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
+
             if(SubworldLibrary.SubworldSystem.AnyActive())
             {
                 return false;
             }
 
-            if(Utilities.Utilities.VaultArea("Vault1", i, j))
+            if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
+            {
+                return false;
+            }
+
+            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i, j))
             {
                 return false;
             }
@@ -36,7 +54,15 @@ namespace Vaultaria.Common.Globals
 
         public override bool CanPlace(int i, int j, int type)
         {
-            if(Utilities.Utilities.VaultArea("Vault1", i, j) && !SubworldLibrary.SubworldSystem.AnyActive())
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
+            Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
+
+            if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
+            {
+                return false;
+            }
+
+            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i, j))
             {
                 return false;
             }
@@ -46,12 +72,20 @@ namespace Vaultaria.Common.Globals
 
         public override bool CanReplace(int i, int j, int type, int tileTypeBeingPlaced)
         {
+            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
+            Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
+
             if(SubworldLibrary.SubworldSystem.AnyActive())
             {
                 return false;
             }
 
-            if(Utilities.Utilities.VaultArea("Vault1", i, j))
+            if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
+            {
+                return false;
+            }
+
+            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i, j))
             {
                 return false;
             }

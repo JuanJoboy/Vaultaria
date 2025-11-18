@@ -180,6 +180,8 @@ namespace Vaultaria.Common.Utilities
             TileID.SandFallBlock,
             TileID.Silt,
             TileID.Slush,
+            TileID.PlatinumBrick,
+            TileID.AstraBrick,
         ];
 
         public static int[] badLiquids =
@@ -614,14 +616,13 @@ namespace Vaultaria.Common.Utilities
             };
         }
 
-        public static bool VaultArea(string vault, int i, int j)
+        // Used for most tile and wall checks to see if the current area is a vault
+        public static bool VaultArea(Point16 vaultDimensions, int positionX, int positionY, int i, int j)
         {
-            Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/{vault}", ModContent.GetInstance<Vaultaria>());
-
-            int topLeftCorner = VaultBuilder.positionX;
-            int topRightCorner = VaultBuilder.positionX + vault1Dimensions.X;
-            int bottomLeftCorner = VaultBuilder.positionY;
-            int bottomRightCorner = VaultBuilder.positionY + vault1Dimensions.Y;
+            int topLeftCorner = positionX;
+            int topRightCorner = positionX + vaultDimensions.X;
+            int bottomLeftCorner = positionY;
+            int bottomRightCorner = positionY + vaultDimensions.Y;
 
             if(i >= topLeftCorner && i < topRightCorner && j >= bottomLeftCorner && j < bottomRightCorner)
             {
@@ -629,6 +630,20 @@ namespace Vaultaria.Common.Utilities
             }
 
             return false;
+        }
+
+        // Used just for KillWall() in VaultWalls.cs
+        public static void VaultArea(Point16 vaultDimensions, int positionX, int positionY, int i, int j, ref bool fail)
+        {
+            int topLeftCorner = positionX;
+            int topRightCorner = positionX + vaultDimensions.X;
+            int bottomLeftCorner = positionY;
+            int bottomRightCorner = positionY + vaultDimensions.Y;
+
+            if(i >= topLeftCorner && i < topRightCorner && j >= bottomLeftCorner && j < bottomRightCorner)
+            {
+                fail = true;
+            }
         }
     }
 }

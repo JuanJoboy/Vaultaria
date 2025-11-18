@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
+namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 {
-    public class Skatergun : ModItem
+    public class SmoothFox : ModItem
     {
         public override void SetStaticDefaults()
         {
