@@ -52,7 +52,7 @@ namespace Vaultaria.Common.GlobalItems
                 if (npc.boss)
                 {
                     Item.NewItem(npc.GetSource_Death(), npc.Center, ModContent.ItemType<DestroyersEye>());
-                    Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Promethean Vault Raided");
+                    Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Eden-6 Vault Raided");
                 }
             }
         }

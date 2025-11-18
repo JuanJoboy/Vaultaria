@@ -15,7 +15,7 @@ using Vaultaria.Content.Items.Weapons.Magic;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
 {
-    public class Vault2BossSummoner : ModTile
+    public class Vault1BossSummoner : ModTile
     {
         public override void SetStaticDefaults()
         {

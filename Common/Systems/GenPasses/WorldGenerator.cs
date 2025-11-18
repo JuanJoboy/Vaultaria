@@ -11,6 +11,7 @@ namespace Vaultaria.Common.Systems.GenPasses
     public class WorldGenerator : ModSystem
     {
         public static bool pedestalInVault1 = false;
+        public static bool pedestalInVault2 = false;
 
         // This hook runs after the main world generation is complete.
         public override void PostWorldGen()
@@ -32,6 +33,7 @@ namespace Vaultaria.Common.Systems.GenPasses
             tag.Add("Vault1Y", VaultBuilder.positionY);
 
             tag["pedestalInVault1"] = pedestalInVault1;
+            tag["pedestalInVault2"] = pedestalInVault2;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -44,12 +46,13 @@ namespace Vaultaria.Common.Systems.GenPasses
             VaultBuilder.positionY = tag.GetInt("Vault1Y");
 
             pedestalInVault1 = tag.GetBool("pedestalInVault1");
+            pedestalInVault2 = tag.GetBool("pedestalInVault2");
         }
         
         // This resets the flag when a new world is created
         public override void ClearWorld()
         {
-            pedestalInVault1 = false;
+            pedestalInVault2 = false;
         }
     }
 }

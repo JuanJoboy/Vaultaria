@@ -3,10 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Placeables.Vaults
 {
-    public class VaultKey : ModItem
+    public class VaultKey2 : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -39,6 +40,17 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
         public override bool CanRightClick()
         {
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(40)
+                .AddIngredient<VaultFragment4>(1)
+                .AddIngredient<VaultFragment5>(1)
+                .AddIngredient<VaultFragment6>(1)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }

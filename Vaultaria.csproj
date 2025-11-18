@@ -13,11 +13,11 @@
 	<!-- References -->
 	<ItemGroup>
 		<Reference Include="StructureHelper">
-			<HintPath>..\..\..\ModAssemblies\StructureHelper\StructureHelper.dll</HintPath>
+			<HintPath>ModAssemblies\StructureHelper\StructureHelper.dll</HintPath>
 		</Reference>
 		
 		<Reference Include="SubworldLibrary">
-			<HintPath>..\..\..\ModAssemblies\SubworldLibrary\SubworldLibrary.dll</HintPath>
+			<HintPath>ModAssemblies\SubworldLibrary\SubworldLibrary.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

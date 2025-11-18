@@ -13,7 +13,7 @@ using Vaultaria.Content.Items.Placeables.Vaults;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
 {
-    public class PedestalTile : ModTile
+    public class PedestalTile1 : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -39,7 +39,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
             if (WorldGenerator.pedestalInVault1 == true)
             {
-                Texture2D texture = ModContent.Request<Texture2D>("Vaultaria/Common/Textures/pedestalWithKey").Value;
+                Texture2D texture = ModContent.Request<Texture2D>("Vaultaria/Common/Textures/OpenedPedestal1").Value;
 
                 Vector2 tilePosition = new Vector2(i * 16, j * 16); // tile to pixel
                 Vector2 zero = Main.drawToScreen? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange); // TModLoader says to use this
@@ -68,7 +68,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             Player player = Main.player[Main.myPlayer];
 
-            if(player.HeldItem.type == ModContent.ItemType<VaultKey>())
+            if(player.HeldItem.type == ModContent.ItemType<VaultKey1>())
             {
                 SoundEngine.PlaySound(SoundID.Item4);
                 WorldGenerator.pedestalInVault1 = true;

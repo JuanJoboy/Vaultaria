@@ -3,10 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Placeables.Vaults
 {
-    public class Pedestal : ModItem
+    public class VaultKey1 : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,17 +30,27 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
 
-            Item.createTile = ModContent.TileType<Tiles.Vaults.PedestalTile>();
-
-            // Specifies which "style" of the tile to place. Useful for multi-frame tiles
-            // or tiles with different visual variations. 0 means the first (default) style.
-            Item.placeStyle = 0;
-
             Item.value = Item.buyPrice(gold: 1);
 
             // Sets the rarity of the item, which affects its name color in the inventory.
             // ItemRarityID.Blue corresponds to the default blue rarity color.
             Item.rare = ItemRarityID.Blue;
+        }
+
+        public override bool CanRightClick()
+        {
+            return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(40)
+                .AddIngredient<VaultFragment1>(1)
+                .AddIngredient<VaultFragment2>(1)
+                .AddIngredient<VaultFragment3>(1)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }
