@@ -8,11 +8,11 @@ using Microsoft.Build.Evaluation;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
-namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
+namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore
 {
-    public class BabyMakerGrenade : ElementalProjectile
+    public class HandgunGrenade : ElementalProjectile
     {
-        public float explosiveMultiplier = 1f;
+        public float explosiveMultiplier = 0.7f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
             Projectile.scale = 2.1f;
 
             // Damage
-            Projectile.damage = 25;
+            Projectile.damage = 8;
             Projectile.CritChance = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

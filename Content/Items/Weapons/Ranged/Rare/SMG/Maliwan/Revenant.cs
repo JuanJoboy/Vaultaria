@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.SMG.Maliwan
+namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 {
     public class Revenant : ModItem
     {
@@ -24,17 +24,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.SMG.Maliwan
             Item.Size = new Vector2(60, 20);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 18;
-            Item.shoot = ModContent.ProjectileType<HellfireBullet>();
+            Item.shoot = ModContent.ProjectileType<RevenantBullet>();
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 17;
+            Item.damage = 14;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -53,28 +53,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.SMG.Maliwan
             return new Vector2(-20f, 5f);
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(20)
-                .AddIngredient(ItemID.LivingFireBlock, 10)
-                .AddIngredient(ItemID.PhoenixBlaster, 1)
-                .AddIngredient(ItemID.HellstoneBar, 10)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly shoots Incendiary Projectiles")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Now, you will rise.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }

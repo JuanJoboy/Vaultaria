@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Projectiles.Ammo.Uncommon.Shotgun.Torgue;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue
 {
@@ -24,46 +24,35 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue
             Item.Size = new Vector2(60, 20);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
-            Item.shoot = ModContent.ProjectileType<HeartBreakerBullet>();
+            Item.shootSpeed = 6;
+            Item.shoot = ModContent.ProjectileType<HulkBullet>();
             Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
             Item.damage = 3;
-            Item.crit = 6;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.reuseDelay = 0;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 10);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionShotgun, 60);
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 5, 2, 10);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 15, 5, 1, 11);
 
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(30)
-                .AddIngredient(ItemID.HellstoneBar, 15)
-                .AddIngredient(ItemID.Boomstick, 1)
-                .AddIngredient(ItemID.HealingPotion, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
         }
 
         public override Vector2? HoldoutOffset()
@@ -79,18 +68,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue
             {
                 Player player = Main.LocalPlayer;
                 int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 12 ranged damage";
+                damageLine.Text = finalDamage + " x 15 ranged damage";
             }
 
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Shotgun Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "+50% Lifesteal per bullet")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink   
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I don't want to set the world on fire…")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }

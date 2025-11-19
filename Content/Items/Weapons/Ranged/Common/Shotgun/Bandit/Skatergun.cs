@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Cyan;
+            Item.rare = ItemRarityID.White;
 
             // Gun properties
             Item.noMelee = true;
@@ -33,18 +33,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 80;
+            Item.damage = 3;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 7;
-            Item.useAnimation = 7;
-            Item.reuseDelay = 0;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 15;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionShotgun, 30);
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.BanditShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -52,17 +52,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
             Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 5, 1, 11);
             
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(75)
-                .AddIngredient(ItemID.FragmentVortex, 50)
-                .AddIngredient(ItemID.LunarBar, 25)
-                .AddIngredient(ItemID.TacticalShotgun, 1)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
         }
 
         public override Vector2? HoldoutOffset()
@@ -82,10 +71,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
             }
 
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Fresh meat!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }

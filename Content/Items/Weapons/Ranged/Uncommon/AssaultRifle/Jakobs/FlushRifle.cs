@@ -23,49 +23,38 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Green;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 10f;
-            Item.shoot = ModContent.ProjectileType<LeadStormBullet>();
-            Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
+            Item.shoot = ProjectileID.Bullet;
+            Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 27;
-            Item.crit = 20;
+            Item.damage = 7;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 6;
-            Item.useAnimation = 6;
-            Item.reuseDelay = 2;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
+            Item.reuseDelay = 10;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 5, 4, 8);
-
-            return false;
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         }
 
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-7f, 5f);
         }
-        
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires 3 arching bullets\nUses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "What a glorious feeling!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
         }
     }
 }

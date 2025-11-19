@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Cyan;
+            Item.rare = ItemRarityID.White;
 
             // Gun properties
             Item.noMelee = true;
@@ -33,36 +33,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 80;
+            Item.damage = 5;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 7;
-            Item.useAnimation = 7;
-            Item.reuseDelay = 0;
+            Item.useTime = 4;
+            Item.useAnimation = 12;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionShotgun, 30);
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 5, 1, 11);
-            
-            return false;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(75)
-                .AddIngredient(ItemID.FragmentVortex, 50)
-                .AddIngredient(ItemID.LunarBar, 25)
-                .AddIngredient(ItemID.TacticalShotgun, 1)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
         }
 
         public override Vector2? HoldoutOffset()
@@ -72,20 +54,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 6 ranged damage";
-            }
-
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Fresh meat!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }

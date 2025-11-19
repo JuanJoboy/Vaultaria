@@ -114,6 +114,7 @@ namespace Vaultaria.Common.Utilities
             DahlPistolBurst,
             DahlPistolSingle,
             DahlSMGBurst,
+            LascauxBurst,
             DahlSMGSingle,
             DahlSniperBurst,
             DahlSniperSingle,
@@ -610,7 +611,7 @@ namespace Vaultaria.Common.Utilities
         {
             item.UseSound = new SoundStyle($"Vaultaria/Common/Sounds/{sound}") 
             {
-                // Allow up to 30 concurrent instances of the sound to play. 
+                // Allow up to 60 concurrent instances of the sound to play. 
                 // This makes fast firing sound layered and prevents harsh cutoffs.
                 MaxInstances = instances
             };

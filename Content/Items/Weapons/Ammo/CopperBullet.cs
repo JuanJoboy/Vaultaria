@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {
-    public class CopperAmmo : ModItem
+    public class CopperBullet : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,6 +29,15 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             Item.consumable = true;
             Item.value = Item.buyPrice(copper: 30);
             Item.rare = ItemRarityID.White;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.CopperBar, 1)
+                .AddTile(TileID.WorkBenches)
+                .Register()
+                .ReplaceResult(this, 75);
         }
     }
 }

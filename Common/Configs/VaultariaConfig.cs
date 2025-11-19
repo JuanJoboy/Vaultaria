@@ -11,7 +11,7 @@ namespace Vaultaria.Common.Configs
         // --- Optional Boolean Setting ---
 
         // [ReloadRequired] // Marking it with [ReloadRequired] makes tModLoader force a mod reload if the option is changed. It should be used for things like item toggles, which only take effect during mod loading
-        [DefaultValue(true)] // KEY: Setting this to true makes the setting optional.
+        [DefaultValue(false)]
         public bool EnableOldSawbarExplosion;
 
         [DefaultValue(false)]

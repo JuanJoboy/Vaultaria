@@ -402,11 +402,6 @@ Items: {
 		DisplayName: Deception
 	}
 
-	AthenasAspis: {
-		DisplayName: Athenas Aspis
-		Tooltip: ""
-	}
-
 	A: {
 		DisplayName: A
 		Tooltip: ""
@@ -616,6 +611,21 @@ Items: {
 		DisplayName: Snider
 		Tooltip: ""
 	}
+
+	Pimpernel: {
+		DisplayName: Pimpernel
+		Tooltip: ""
+	}
+
+	CopperBullet: {
+		DisplayName: Copper Bullet
+		Tooltip: ""
+	}
+
+	TinBullet: {
+		Tooltip: ""
+		DisplayName: Tin Bullet
+	}
 }
 
 Projectiles: {
@@ -670,6 +680,13 @@ Projectiles: {
 	Asd.DisplayName: Asd
 	CopperBullet.DisplayName: Copper Bullet
 	TinBullet.DisplayName: Tin Bullet
+	LumpyBullet.DisplayName: Lumpy Bullet
+	AegisBullet.DisplayName: Aegis Bullet
+	HandgunGrenade.DisplayName: Handgun Grenade
+	RevenantBullet.DisplayName: Revenant Bullet
+	PimpernelBullet.DisplayName: Pimpernel Bullet
+	HulkBullet.DisplayName: Hulk Bullet
+	SniderBullet.DisplayName: Snider Bullet
 }
 
 Buffs: {

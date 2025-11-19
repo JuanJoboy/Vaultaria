@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion
             Item.Size = new Vector2(60, 20);
             Item.scale = 1.2f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.White;
+            Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
@@ -32,18 +32,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 10;
-            Item.crit = 1;
+            Item.damage = 17;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 48;
-            Item.useAnimation = 48;
-            Item.reuseDelay = 48;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(copper: 0);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.HyperionSniper, 60);
         }
 
         public override Vector2? HoldoutOffset()
@@ -54,10 +54,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Courtesy of being a Premiere Club member.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
         }
     }
 }

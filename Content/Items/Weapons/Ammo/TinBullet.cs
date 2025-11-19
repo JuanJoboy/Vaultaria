@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {
-    public class TinAmmo : ModItem
+    public class TinBullet : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -34,9 +34,10 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Cactus, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
+                .AddIngredient(ItemID.TinBar, 1)
+                .AddTile(TileID.WorkBenches)
+                .Register()
+                .ReplaceResult(this, 75);
         }
     }
 }
