@@ -34,12 +34,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 25;
+            Item.damage = 19;
             Item.crit = 11;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 10;
-            Item.useAnimation = 10;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
             Item.reuseDelay = 2;
             Item.autoReuse = true;
 

@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 35;
+            Item.damage = 31;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 

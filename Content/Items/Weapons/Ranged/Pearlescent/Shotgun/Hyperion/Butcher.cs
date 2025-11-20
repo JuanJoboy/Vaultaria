@@ -33,17 +33,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 80;
+            Item.damage = 64;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 7;
-            Item.useAnimation = 7;
+            Item.useTime = 6;
+            Item.useAnimation = 6;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.HyperionShotgun, 30);
         }
 

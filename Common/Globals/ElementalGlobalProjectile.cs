@@ -5,6 +5,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.GunEffects;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
 using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Common.Globals
@@ -13,6 +17,49 @@ namespace Vaultaria.Common.Globals
     {
         public int firedWeaponPrefixID;
         public override bool InstancePerEntity => true;
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            base.ModifyHitNPC(projectile, target, ref modifiers);
+
+            Player player = Main.player[projectile.owner];
+
+            if(player.HeldItem.type == ModContent.ItemType<LadyFist>())
+            {
+                modifiers.CritDamage += 8;
+            }
+
+            if(player.HeldItem.type == ModContent.ItemType<Trespasser>())
+            {
+                modifiers.Defense *= 0;
+                modifiers.DefenseEffectiveness *= 0;
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPC(projectile, target, hit, damageDone);
+
+            Player player = Main.player[projectile.owner];
+
+            if(player.HeldItem.type == ModContent.ItemType<AkumasDemise>())
+            {
+                if (ElementalProjectile.SetElementalChance(75))
+                {
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.75f, player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 180);
+                }
+            }
+
+            if(player.HeldItem.type == ModContent.ItemType<Oracle>())
+            {                
+                projectile.penetrate = 2;
+
+                if(hit.Crit)
+                {
+                    Utilities.Utilities.MoveToTarget(projectile, target, 10, 10);
+                }
+            }
+        }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {

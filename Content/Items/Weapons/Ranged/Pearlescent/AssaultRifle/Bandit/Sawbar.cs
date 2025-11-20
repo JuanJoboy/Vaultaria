@@ -33,12 +33,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 40;
+            Item.damage = 23;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 9;
+            Item.useAnimation = 9;
             Item.reuseDelay = 2;
             Item.autoReuse = true;
 

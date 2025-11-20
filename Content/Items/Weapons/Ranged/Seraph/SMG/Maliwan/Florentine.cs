@@ -27,18 +27,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 7.5f;
+            Item.shootSpeed = 9f;
             Item.shoot = ModContent.ProjectileType<FlorentineBullet>();
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 25;
+            Item.damage = 28;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 13;
-            Item.useAnimation = 13;
+            Item.useTime = 7;
+            Item.useAnimation = 7;
             Item.reuseDelay = 1;
             Item.autoReuse = true;
 

@@ -26,6 +26,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof;
@@ -251,6 +252,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.CultistBoss)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Antagonist>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AkumasDemise>(), 1, 1, 1));
                 Eridium(npcLoot, 30, 35);
             }
 

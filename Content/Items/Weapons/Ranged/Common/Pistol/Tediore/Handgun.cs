@@ -116,7 +116,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TediorePistol, 60);
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMG, 60);
             }
 
             return base.CanUseItem(player);

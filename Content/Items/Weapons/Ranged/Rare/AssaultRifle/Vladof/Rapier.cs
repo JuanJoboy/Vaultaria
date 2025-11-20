@@ -63,7 +63,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
                 Item.useTime = 10;
                 Item.useAnimation = 10;
-                Item.damage = 220;
+                Item.damage = 440;
                 Item.crit = 0;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;

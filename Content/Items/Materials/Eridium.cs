@@ -19,6 +19,8 @@ namespace Vaultaria.Content.Items.Materials
             Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.buyPrice(silver: 50);
             Item.rare = ItemRarityID.Purple;
+            Item.ammo = ModContent.ItemType<Eridium>();
+            Item.consumable = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -72,6 +72,8 @@ namespace Vaultaria.Common.Players
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            base.OnHitNPCWithProj(proj, target, hit, damageDone);
+
             // Check if the projectile that just hit is one of my elemental projectiles
             // If it is, do nothing. This prevents the recursive spawning loop
             if (ElementalProjectile.elementalProjectile.Contains(proj.type))
@@ -90,6 +92,15 @@ namespace Vaultaria.Common.Players
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CryoPrefix, ElementalID.CryoProjectile, ElementalID.CryoBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, 50, multiplier, ElementalID.RadiationPrefix, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240);
+
+            HitWithElectricBanjoOn(target, hit);
+        }
+
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPCWithItem(item, target, hit, damageDone);
+
+            HitWithElectricBanjoOn(target, hit);
         }
 
         public override float UseSpeedMultiplier(Item item)
@@ -363,6 +374,23 @@ namespace Vaultaria.Common.Players
                 case 7:
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 60);
                     break;
+            }
+        }
+
+        private void HitWithElectricBanjoOn(NPC target, NPC.HitInfo hit)
+        {
+            if(IsWearing(ModContent.ItemType<ElectricBanjo>()))
+            {
+                for(int i = 0; i < Main.npc.Length; i++)
+                {
+                    if(Main.npc[i].townNPC == false && Vector2.Distance(Main.npc[i].Center, target.Center) < 250)
+                    {
+                        if(Utilities.Utilities.Randomizer(20))
+                        {
+                            ElementalProjectile.SetElementOnNPC(Main.npc[i], hit, 0.3f, Player, ElementalID.ShockProjectile, ElementalID.ShockBuff, 120);
+                        }
+                    }
+                }
             }
         }
     }

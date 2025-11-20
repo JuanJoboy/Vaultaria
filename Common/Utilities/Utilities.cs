@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Setup.Configuration;
@@ -207,6 +208,8 @@ namespace Vaultaria.Common.Utilities
             ItemID.LavaBomb,
         ];
 
+        public static ArrayList itemArray = new ArrayList();
+
         /// <summary>
         /// Heals the player based on the healingPercentage.
         /// <br/> The full formula for healing is:
@@ -253,7 +256,7 @@ namespace Vaultaria.Common.Utilities
         /// <param name="knockback"></param>
         /// <param name="numberOfAdditionalBullets"></param>
         /// <param name="degreeSpread"></param>
-        public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread, int min, int max)
+        public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread, int min = 0, int max = 0)
         {
             for (int i = 0; i < numberOfAdditionalBullets; i++)
             {

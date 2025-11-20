@@ -27,18 +27,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 16;
             Item.shoot = ModContent.ProjectileType<OgreBullet>();
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 37;
+            Item.damage = 25;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 9;
-            Item.useAnimation = 9;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.reuseDelay = 2;
             Item.autoReuse = true;
 

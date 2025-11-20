@@ -626,6 +626,81 @@ Items: {
 		Tooltip: ""
 		DisplayName: Tin Bullet
 	}
+
+	AkumasDemise: {
+		DisplayName: Akuma's Demise
+		Tooltip: ""
+	}
+
+	LadyFist: {
+		DisplayName: Lady Fist
+		Tooltip: ""
+	}
+
+	Trespasser: {
+		Tooltip: ""
+		DisplayName: Trespasser
+	}
+
+	Blackout: {
+		DisplayName: Blackout
+		Tooltip: ""
+	}
+
+	Oracle: {
+		DisplayName: Oracle
+		Tooltip: ""
+	}
+
+	Striker: {
+		DisplayName: Striker
+		Tooltip: ""
+	}
+
+	OrphanMaker: {
+		DisplayName: Orphan Maker
+		Tooltip: ""
+	}
+
+	Seraphim: {
+		DisplayName: Seraphim
+		Tooltip: ""
+	}
+
+	Boomacorn: {
+		DisplayName: Boomacorn
+		Tooltip: ""
+	}
+
+	TooScoops: {
+		Tooltip: ""
+		DisplayName: Too Scoops
+	}
+
+	Deathless: {
+		Tooltip: ""
+		DisplayName: Deathless
+	}
+
+	ElectricBanjo: {
+		Tooltip: ""
+		DisplayName: Electric Banjo
+	}
+
+	EridianFabricator: {
+		Tooltip: ""
+		DisplayName: Eridian Fabricator
+	}
+
+	GhastCall: {
+		Tooltip: ""
+		DisplayName: Ghast Call
+	}
+
+	PlasmaCoil: {
+		Tooltip: ""
+		DisplayName: Plasma Coil
+	}
 }
 
 Projectiles: {
@@ -687,6 +762,12 @@ Projectiles: {
 	PimpernelBullet.DisplayName: Pimpernel Bullet
 	HulkBullet.DisplayName: Hulk Bullet
 	SniderBullet.DisplayName: Snider Bullet
+	BlackoutBullet.DisplayName: Blackout Bullet
+	SeraphimBullet.DisplayName: Seraphim Bullet
+	BoomacornBullet.DisplayName: Boomacorn Bullet
+	TooScoopsBullet.DisplayName: Too Scoops Bullet
+	GhastCallModule.DisplayName: Ghast Call Module
+	PlasmaCoilBullet.DisplayName: Plasma Coil Bullet
 }
 
 Buffs: {

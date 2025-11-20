@@ -32,12 +32,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 14;
+            Item.damage = 20;
             Item.crit = 6;
             Item.DamageType = DamageClass.Melee;
 
-            Item.useTime = 14;
-            Item.useAnimation = 14;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.reuseDelay = 4;
             Item.autoReuse = true;
 
