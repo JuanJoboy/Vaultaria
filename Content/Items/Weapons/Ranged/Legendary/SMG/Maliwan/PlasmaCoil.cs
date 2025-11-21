@@ -47,18 +47,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
             Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
         }
 
-        public override bool? UseItem(Player player)
-        {
-            // Use a counter or timer to control the playback rate.
-            // For example, trigger the sound every 5 frames (12 times per second).
-            if (Main.GameUpdateCount % 5f == 0) // Checks if player is not using an item and time modulo 5 is 0
-            {
-                Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
-            }
-
-            return base.UseItem(player);
-        }
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-20f, 5f);
@@ -67,11 +55,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly shoots Corrosive clouds")
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a 16-Round Burst of elemental orbs")
             {
                 OverrideColor = new Color(136, 235, 94) // Light Green
             });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Now, you will rise.")
+            tooltips.Add(new TooltipLine(Mod, "Red Text", "Harness the 4th state of matter.")
             {
                 OverrideColor = new Color(198, 4, 4) // Red
             });

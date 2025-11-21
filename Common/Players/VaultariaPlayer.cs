@@ -94,6 +94,14 @@ namespace Vaultaria.Common.Players
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, 50, multiplier, ElementalID.RadiationPrefix, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240);
 
             HitWithElectricBanjoOn(target, hit);
+
+            if (IsWearing(ModContent.ItemType<MoonlightSaga>()))
+            {
+                if (Player.ZoneSkyHeight)
+                {
+                    Utilities.Utilities.HealOnNPCHit(target, damageDone, 0.65f, proj);
+                }
+            }
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)

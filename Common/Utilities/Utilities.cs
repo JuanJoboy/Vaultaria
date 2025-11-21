@@ -104,6 +104,7 @@ namespace Vaultaria.Common.Utilities
 
         public enum Sounds
         {
+            LegendaryDrop,
             BanditAR,
             BanditARRocket,
             BanditLauncher,
@@ -130,6 +131,7 @@ namespace Vaultaria.Common.Utilities
             HyperionSMG,
             HyperionSniper,
             JakobsPistol,
+            JakobsAR,
             JakobsShotgun,
             JakobsSniper,
             MaliwanLauncher,

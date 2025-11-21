@@ -701,6 +701,21 @@ Items: {
 		Tooltip: ""
 		DisplayName: Plasma Coil
 	}
+
+	MoonlightSaga: {
+		DisplayName: Moonlight Saga
+		Tooltip: ""
+	}
+
+	JackOCannon: {
+		DisplayName: Jack O Cannon
+		Tooltip: ""
+	}
+
+	SwordSplosion: {
+		DisplayName: SWORDSPLOSION
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -742,7 +757,6 @@ Projectiles: {
 	ShockblastElBullet.DisplayName: Shockblast
 	ShockblastExBullet.DisplayName: Shockblast
 	Prototype2599Bullet.DisplayName: Prototype2599
-	AspisShield.DisplayName: Aspis Shield
 	HellfireBullet.DisplayName: Hellfire Bullet
 	HomingDeliverance.DisplayName: Homing Deliverance
 	BabyMakerGrenade.DisplayName: Baby Maker Grenade
@@ -768,6 +782,7 @@ Projectiles: {
 	TooScoopsBullet.DisplayName: Too Scoops Bullet
 	GhastCallModule.DisplayName: Ghast Call Module
 	PlasmaCoilBullet.DisplayName: Plasma Coil Bullet
+	SwordSplosionKnife.DisplayName: Sword Splosion Knife
 }
 
 Buffs: {

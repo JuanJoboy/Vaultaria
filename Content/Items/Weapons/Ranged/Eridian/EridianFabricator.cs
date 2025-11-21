@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Materials;
 
-namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Eridian
+namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 {
     public class EridianFabricator : ModItem
     {
@@ -43,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Eridian
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.TorgueAR, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.LegendaryDrop, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -84,10 +84,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Eridian
 
         private int FabricateAnItem(Player player)
         {
-            int itemIndex = Main.rand.Next(0, Utilities.itemArray.Count);
-            ModItem item = (ModItem) Utilities.itemArray[itemIndex];
+            int itemIndex = Main.rand.Next(0, Utilities.itemArray.Count); // Picks a random index from 0 to the end of the array
+            ModItem item = (ModItem) Utilities.itemArray[itemIndex]; // Get whatever item is at that index
 
-            return player.QuickSpawnItem(player.GetSource_DropAsItem(), item.Type);
+            return player.QuickSpawnItem(player.GetSource_DropAsItem(), item.Type); // Spawn the item at the player
         }
     }
 }
