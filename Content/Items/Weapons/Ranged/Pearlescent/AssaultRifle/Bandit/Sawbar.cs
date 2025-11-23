@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.Size = new Vector2(91, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Cyan;
 
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile projectile = Projectile.NewProjectileDirect(
+            Projectile.NewProjectileDirect(
                 source,
                 position,
                 velocity,
@@ -66,20 +66,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 0f);
+            return new Vector2(-10f, 4f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots bullets that create Fiery explosions")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Suppressing fires!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "tooltip2", "Shoots bullets that create Fiery explosions", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "Suppressing fires!");
         }
     }
 }

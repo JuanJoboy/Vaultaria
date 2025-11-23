@@ -9,7 +9,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.AssaultRifle.Torgue
 {
     public class LumpyBullet : ElementalProjectile
     {
-        public float explosiveMultiplier = 0.4f;
+        public float explosiveMultiplier = 1f;
         private float explosiveChance = 100f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.AssaultRifle.Torgue
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(80, 8);
+            Projectile.Size = new Vector2(28, 6);
 
             // Damage
             Projectile.friendly = true;

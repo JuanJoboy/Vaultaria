@@ -14,7 +14,7 @@ public class RadiationGlobalNPC : GlobalNPC
 
         if(npc.life <= 2 && npc.HasBuff(ElementalID.RadiationBuff))
         {
-            ElementalProjectile.SetRadiation(npc, hit, 1, ProjectileID.DD2ExplosiveTrapT3Explosion, ElementalID.RadiationBuff, 240);
+            ElementalProjectile.SetRadiation(npc, hit, 1, ElementalID.LargeExplosiveProjectile, ElementalID.RadiationBuff, 240);
             IrradiateNearbyNPCs(npc, hit);
         }
     }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -11,7 +12,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(47, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Blue;
@@ -19,15 +20,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+15 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Has a 50% chance to absorb any Projectile")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "The second is better.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+15 HP\n+2 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Has a 50% chance to absorb any Projectile", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "The second is better.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(14, 7);
 
             // Damage
             Projectile.friendly = true;

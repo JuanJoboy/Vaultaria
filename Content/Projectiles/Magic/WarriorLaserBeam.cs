@@ -325,7 +325,8 @@ namespace Vaultaria.Content.Projectiles.Magic
 			float scale = Main.rand.NextFloat(0.7f, 1.1f);
 			Vector2 velocity = angle.ToRotationVector2() * startDistance;
 			Dust dust = Dust.NewDustDirect(endPosition, 0, 0, type, velocity.X, velocity.Y, 0, beamColor, scale);
-			dust.color = beamColor;
+			// dust.color = beamColor;
+			dust.color = Utilities.VaultarianColours.Slag.GetVaultarianColor();
 			dust.noGravity = true;
 
 			// If the beam is currently large, make the dust faster and larger to match.
@@ -360,5 +361,29 @@ namespace Vaultaria.Content.Projectiles.Magic
 			// In this case, it is cutting all tiles which can be destroyed by Projectiles, for example grass or pots.
 			Utils.PlotTileLine(beamStartPos, beamEndPos, Projectile.width * Projectile.scale, cut);
 		}
+
+        private float slagMultiplier = 0.01f;
+        private float elementalChance = 100f;
+        private short slagProjectile = ElementalID.SlagProjectile;
+        private int slagBuff = ElementalID.SlagBuff;
+        private int buffTime = 240;
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
+            }
+        }
 	}
 }

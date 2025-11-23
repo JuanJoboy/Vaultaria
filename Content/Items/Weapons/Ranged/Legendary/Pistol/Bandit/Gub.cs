@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(45, 30);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 29;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -54,19 +54,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots Corrosive bullets")
-            {
-                OverrideColor = new Color(136, 235, 94) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Abt natural.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "The Curse of the Gub")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Corrosive bullets", Utilities.VaultarianColours.Corrosive);
+            Utilities.RedText(tooltips, Mod, "Abt natural.\nThe Curse of the Gub");
         }
     }
 }

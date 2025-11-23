@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(48, 30);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 7;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -71,28 +71,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(2f, 0f);
+            return new Vector2(-2f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo\nHolding the Grog Nozzle has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+5 Projectiles\n\t-50% Fire Rate")
-            {
-                OverrideColor = new Color(224, 224, 224) // Light Grey
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "+65% Lifesteal per bullet")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "+100% Chance to Apply Slag")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Hand over the keys, Sugar...")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo\nHolding the Grog Nozzle has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "\t+5 Projectiles\n\t-50% Fire Rate", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "+65% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "+100% Chance to Apply Slag", Utilities.VaultarianColours.Slag);
+            Utilities.RedText(tooltips, Mod, "Hand over the keys, Sugar...");
         }
 
         public override void HoldItem(Player player)

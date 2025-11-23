@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(103, 29);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -56,29 +56,15 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 0f);
+            return new Vector2(-10f, -2f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 3 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly fires 3 explosive bullets")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Ogres chew their food.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 3);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Rapidly fires 3 explosive bullets", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Ogres chew their food.");
         }
     }
 }

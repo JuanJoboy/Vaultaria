@@ -12,7 +12,6 @@ namespace Vaultaria.Content.Projectiles.Minions
 {
     public class Turret : ElementalProjectile
     {
-        private float yPosition;
         private bool touchedTheGround = false;
 
         public override void SetStaticDefaults()
@@ -22,8 +21,7 @@ namespace Vaultaria.Content.Projectiles.Minions
 
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
+            Projectile.Size = new Vector2(51, 60);
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.sentry = true;
@@ -45,7 +43,7 @@ namespace Vaultaria.Content.Projectiles.Minions
                 Projectile.GetSource_FromThis(),
                 Projectile.Center,
                 Vector2.Zero,
-                ProjectileID.DD2ExplosiveTrapT3Explosion,
+                ElementalID.LargeExplosiveProjectile,
                 100,
                 2f,
                 Projectile.owner
@@ -60,14 +58,14 @@ namespace Vaultaria.Content.Projectiles.Minions
         {
             // Gets the owner and ensures that only one turret can spawn
             Player owner = Main.player[Projectile.owner];
-            owner.maxTurrets ++;
+            owner.maxTurrets++;
             owner.UpdateMaxTurrets();
 
             Projectile.velocity = Vector2.Zero; // Stay stationary
 
             if (touchedTheGround == false)
             {
-                float y = Projectile.velocity.Y += 15; // Fall to the ground
+                Projectile.velocity.Y += 15; // Fall to the ground
             }
 
             NPC target = FindTarget();
@@ -195,7 +193,7 @@ namespace Vaultaria.Content.Projectiles.Minions
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Projectile.velocity.Y = 0f; // Stop falling
-            Projectile.position.Y -= 16f; // Raise it by 16 pixels
+            Projectile.position.Y += 16f; // Lower it by an additional 16 pixels since it stays in the air for some reason
             touchedTheGround = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
         }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Buffs.AccessoryEffects;
+using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Accessories.Relics
@@ -15,7 +16,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(30, 29);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Yellow;
@@ -23,15 +24,9 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+40 HP\n+5 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, get the following bonuses:\n\t+20% Gun Damage\n\t+20% Fire Rate\nAnd if you are under 20% health, take damage to regain full health")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I always hated you the most.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+40 HP\n+5 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, get the following bonuses:\n\t+20% Gun Damage\n\t+20% Fire Rate\nAnd if you are under 20% health, take damage to regain full health", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "I always hated you the most.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

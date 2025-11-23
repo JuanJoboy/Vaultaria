@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Prefixes.Shields;
 using Vaultaria.Content.Prefixes.Weapons;
 
@@ -14,7 +15,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(41, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 30);
             Item.rare = ItemRarityID.Pink;
@@ -22,15 +23,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+50 HP\n+6 Defense\nRegenerates health rapidly"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Grants immunity to all the elements and most debuffs")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Strength through adversity.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+50 HP\n+6 Defense\nRegenerates health rapidly");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Grants immunity to all the elements and most debuffs", Utilities.VaultarianColours.Master);
+            Utilities.RedText(tooltips, Mod, "Strength through adversity.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

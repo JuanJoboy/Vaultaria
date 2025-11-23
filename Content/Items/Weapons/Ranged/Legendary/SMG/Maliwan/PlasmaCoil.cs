@@ -20,15 +20,15 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.95f;
+            Item.Size = new Vector2(68, 32);
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 18;
-            Item.shoot = ModContent.ProjectileType<PlasmaCoilBullet>();
+            Item.shoot = ModContent.ProjectileType<RadiationPlasmaCoilBullet>();
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
@@ -44,7 +44,60 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if (player.altFunctionUse == 2) // Shoot Cryo
+            {
+                // Gun properties
+                Item.noMelee = true;
+                Item.shootSpeed = 18;
+                Item.shoot = ModContent.ProjectileType<CryoPlasmaCoilBullet>();
+                Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
+
+                // Combat properties
+                Item.knockBack = 2.3f;
+                Item.damage = 30;
+                Item.crit = 6;
+                Item.DamageType = DamageClass.Ranged;
+
+                Item.useTime = 1;
+                Item.useAnimation = 16;
+                Item.reuseDelay = 2;
+                Item.autoReuse = true;
+
+                Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+            }
+            else // Shoot Radiation
+            {
+                // Gun properties
+                Item.noMelee = true;
+                Item.shootSpeed = 18;
+                Item.shoot = ModContent.ProjectileType<RadiationPlasmaCoilBullet>();
+                Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
+
+                // Combat properties
+                Item.knockBack = 2.3f;
+                Item.damage = 9;
+                Item.crit = 6;
+                Item.DamageType = DamageClass.Ranged;
+
+                Item.useTime = 1;
+                Item.useAnimation = 16;
+                Item.reuseDelay = 2;
+                Item.autoReuse = true;
+
+                Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+            }
+
+            return base.CanUseItem(player);
         }
 
         public override Vector2? HoldoutOffset()
@@ -54,15 +107,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a 16-Round Burst of elemental orbs")
-            {
-                OverrideColor = new Color(136, 235, 94) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Harness the 4th state of matter.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Left-Click to shoot a 16-Round Burst of Radiation orbs", Utilities.VaultarianColours.Radiation);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Right-Click to shoot a 16-Round Burst of Cryo orbs", Utilities.VaultarianColours.Cryo);
+            Utilities.RedText(tooltips, Mod, "Harness the 4th state of matter.");   
         }
     }
 }

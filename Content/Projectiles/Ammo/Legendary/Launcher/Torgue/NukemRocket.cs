@@ -11,14 +11,14 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
     {
         public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
+        private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 30;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(18, 42);
 
             // Damage
             Projectile.friendly = true;

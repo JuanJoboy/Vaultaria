@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion;
-using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 {
@@ -21,8 +19,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
+            Item.Size = new Vector2(63, 29);
+            Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -50,39 +48,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 18, 5, 2, 10);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 18, 2, 2, 10);
 
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(30)
-                .AddIngredient(ItemID.HellstoneBar, 15)
-                .AddIngredient(ItemID.Boomstick, 1)
-                .AddIngredient(ItemID.HealingPotion, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30f, 0f);
+            return new Vector2(-0f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 18 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            Utilities.MultiShotText(tooltips, Item, 18);
+            Utilities.Text(tooltips, Mod);
         }
     }
 }

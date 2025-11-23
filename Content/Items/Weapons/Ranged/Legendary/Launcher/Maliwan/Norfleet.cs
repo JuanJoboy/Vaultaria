@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(115, 34);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Master;
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 35, 3, 9);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 3, 35);
 
             return false;
         }
@@ -71,26 +71,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 3 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 25 Launcher Ammo per shot"));
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots 3 elemental orbs that deal massive damage")
-            {
-                OverrideColor = new Color(168, 69, 95) // Master
-            });
-
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Blows up everything!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 3);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 25 Launcher Ammo per shot");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots 3 elemental orbs that deal massive damage", Utilities.VaultarianColours.Master);
+            Utilities.RedText(tooltips, Mod, "Blows up everything!");
         }
     }
 }

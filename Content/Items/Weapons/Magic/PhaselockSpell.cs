@@ -10,6 +10,7 @@ using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.MagicEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.Audio;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Content.Items.Weapons.Magic
 {
@@ -24,12 +25,12 @@ namespace Vaultaria.Content.Items.Weapons.Magic
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(28, 30);
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.RaiseLamp;
             Item.knockBack = 0f;
-            Item.damage = 10;
+            Item.damage = 20;
             Item.crit = 6;
             Item.DamageType = DamageClass.Magic;
             Item.scale = 1f;
@@ -46,10 +47,11 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             Item.rare = ItemRarityID.Purple;
             Utilities.ItemSound(Item, Utilities.Sounds.Phaselock, 300);
         }
-
+        
         public override bool? UseItem(Player player)
         {
             Rectangle mouse = new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 1, 1);
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
 
             // Loops through every NPC in the world
             for (int i = 0; i < Main.maxNPCs; i++)
@@ -61,7 +63,16 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                     {
                         npc.AddBuff(ModContent.BuffType<Phaselocked>(), 300);
                         Item.mana = player.statManaMax2;
-                        ElementalProjectile.SetElements(player, npc);
+
+                        if(config.GetRuinFirst && Main.hardMode)
+                        {
+                            ElementalProjectile.SetElements(player, npc);
+                        }
+                        else if(!config.GetRuinFirst && Main.hardMode && NPC.downedMoonlord)
+                        {
+                            ElementalProjectile.SetElements(player, npc);
+                        }
+
                         return true;
                     }
                 }
@@ -92,14 +103,22 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on")
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on", Utilities.VaultarianColours.Healing);
+
+			if(config.GetRuinFirst == true)
             {
-                OverrideColor = new Color(239, 139, 252) // Light Pink
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "(giggles) I'm really good at this!")
+                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Wall of Flesh to get Ruin", Utilities.VaultarianColours.Information);
+                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Moon Lord to get Sub-Sequence", Utilities.VaultarianColours.Information);
+            }
+            else
             {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Wall of Flesh to get Sub-Sequence", Utilities.VaultarianColours.Information);
+                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
+            }
+
+            Utilities.RedText(tooltips, Mod, "(giggles) I'm really good at this!");
         }
     }
 }

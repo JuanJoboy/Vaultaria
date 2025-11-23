@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(99, 29);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -72,20 +72,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 2 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n+100% Fire rate"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Speed kills.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 2);
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "+100% Fire rate", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Speed kills.");
         }
     }
 }

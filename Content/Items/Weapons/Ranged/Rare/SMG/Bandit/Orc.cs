@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(40, 29);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Purple;
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 20;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -66,19 +66,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
             return new Vector2(-15f, 0f);
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nHolding the Orc has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "\t+1 Projectile\n\t+20% Damage\n\t+50% Fire Rate\n\tProjectiles ricochet")
-            {
-                OverrideColor = new Color(224, 224, 224) // Light Grey
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Have I achieved worth yet?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-        }
-
         public override void HoldItem(Player player)
         {
             if (!player.HasBuff(ModContent.BuffType<OrcEffect>()))
@@ -88,6 +75,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit
                     player.AddBuff(ModContent.BuffType<OrcEffect>(), 600);   
                 }
             }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses any normal bullet type as ammo\nHolding the Orc has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "\t+1 Projectile\n\t+20% Damage\n\t+50% Fire Rate\n\tProjectiles ricochet", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Have I achieved worth yet?");
         }
     }
 }

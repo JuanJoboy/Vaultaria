@@ -21,20 +21,20 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.2f;
+            Item.Size = new Vector2(138, 30);
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Green;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 40;
             Item.shoot = ModContent.ProjectileType<SniderBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 10;
+            Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -50,12 +50,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-13f, 0f);
+            return new Vector2(-17f, -3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Sniper Ammo"));
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Sniper Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Incendiary Bullets", Utilities.VaultarianColours.Incendiary);
         }
     }
 }

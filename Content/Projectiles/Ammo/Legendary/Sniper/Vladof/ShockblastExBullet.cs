@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
         public float shockMultiplier = 0.5f;
         private float explosiveChance = 100f;
         private float shockChance = 30f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
+        private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private short shockProjectile = ElementalID.ShockProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int shockBuff = ElementalID.ShockBuff;

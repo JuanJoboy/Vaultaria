@@ -21,26 +21,26 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.2f;
+            Item.Size = new Vector2(123, 30);
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 15;
             Item.shoot = ModContent.ProjectileType<PimpernelBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 10;
-            Item.crit = 1;
+            Item.knockBack = 1f;
+            Item.damage = 70;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 48;
-            Item.useAnimation = 48;
-            Item.reuseDelay = 48;
+            Item.useTime = 17;
+            Item.useAnimation = 17;
+            Item.reuseDelay = 17;
             Item.autoReuse = true;
 
             // Other properties
@@ -55,12 +55,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Sniper Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a Bullet that spawns an additional bullet that rises into the air. Additional bullet splits into 5 more bullets in a star shaped pattern. These 5 Bullets can hit enemies twice, but the second hit deals 50% less damage. 50% Splash Damage (gets Reaper Buff, but no Grenade Damage Buff)"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Sink me!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Sniper Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Spawns 4 pellets on impact", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Sink me!");
         }
     }
 }

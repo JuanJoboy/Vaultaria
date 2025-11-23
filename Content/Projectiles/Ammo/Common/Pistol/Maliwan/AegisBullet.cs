@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Maliwan
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(80, 8);
+            Projectile.Size = new Vector2(22, 6);
 
             // Damage
             Projectile.friendly = true;
@@ -58,17 +58,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Maliwan
             }
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (SetElementalChance(shockChance))
-            {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, shockMultiplier, player, shockProjectile);
-            }
-
-            return false;
-        }
-        
         public override List<string> GetElement()
         {
             return new List<string>

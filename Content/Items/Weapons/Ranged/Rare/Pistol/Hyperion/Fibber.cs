@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(40, 29);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 26;
             Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
@@ -67,23 +67,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(2f, 0f);
+            return new Vector2(-3f, 2f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "+50% Love"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "+3000% Damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Firing Increases Accuracy"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip5", "On tile collision, the initial Projectile splits into 10 Projectiles")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Would I lie to you?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "+50% Love");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "+3000% Damage");
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Firing Increases Accuracy");
+            Utilities.Text(tooltips, Mod, "Tooltip5", "On tile collision, the initial Projectile splits into 10 Projectiles", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Would I lie to you?");
         }
 
         public override bool AllowPrefix(int pre)

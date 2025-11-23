@@ -9,6 +9,7 @@ using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 using Vaultaria.Content.Buffs.MagicEffects;
 using Microsoft.CodeAnalysis;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Content.Projectiles.Magic
 {
@@ -17,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Magic
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(54, 54);
 
             // Damage
             Projectile.friendly = true;
@@ -35,6 +36,7 @@ namespace Vaultaria.Content.Projectiles.Magic
         {
             base.AI();
             Player player = Main.player[Projectile.owner];
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
             
             NPC target = FindTarget();
 
@@ -50,7 +52,15 @@ namespace Vaultaria.Content.Projectiles.Magic
                     if (!target.HasBuff(ModContent.BuffType<Phaselocked>()))
                     {
                         target.AddBuff(ModContent.BuffType<Phaselocked>(), 300);
-                        SetElements(player, target);
+
+                        if(config.GetRuinFirst && Main.hardMode)
+                        {
+                            SetElements(player, target);
+                        }
+                        else if(!config.GetRuinFirst && Main.hardMode && NPC.downedMoonlord)
+                        {
+                            SetElements(player, target);
+                        }
                     }
 
                     Projectile.Kill();

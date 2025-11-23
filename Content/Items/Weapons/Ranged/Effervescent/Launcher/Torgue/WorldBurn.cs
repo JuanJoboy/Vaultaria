@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(115, 30);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Expert;
@@ -65,17 +65,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 20 Launcher Ammo per shot"));
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a more powerful Fiery nuke")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
-            
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "War does not compute.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 20 Launcher Ammo per shot");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots a more powerful Fiery nuke", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "War does not compute.");
         }
     }
 }

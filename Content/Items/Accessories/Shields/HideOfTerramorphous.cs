@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Audio;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -13,7 +14,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(68, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(platinum: 1);
             Item.rare = ItemRarityID.Master;
@@ -21,23 +22,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+150 HP\n+10 Defense\nRegenerates health rapidly"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When under 65% health, melee attacks do 80% bonus damage")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals 100% bonus thorn damage")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "Releases a Fire Nova blast that deals 100 damage when health dips under 30%")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "...His hide turned the mightiest tame...")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+150 HP\n+10 Defense\nRegenerates health rapidly");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "When under 65% health, melee attacks do 80% bonus damage", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Deals 100% bonus thorn damage", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Releases a Fire Nova blast that deals 100 damage when health dips under 30%", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "...His hide turned the mightiest tame...");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -55,7 +44,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 usage = 0;
                 int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(100);
                 float novaKnockback = 5f;
-                int novaType = ProjectileID.DD2ExplosiveTrapT3Explosion;
+                int novaType = ElementalID.LargeExplosiveProjectile;
 
                 Projectile.NewProjectile(
                     player.GetSource_Accessory(Item),

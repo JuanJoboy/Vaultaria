@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 5, 2, 10);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 3, 2, 10);
 
             return false;
         }
@@ -73,24 +73,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 12 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Shotgun Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "+50% Lifesteal per bullet")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink   
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I don't want to set the world on fire…")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 12);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "+50% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "I don't want to set the world on fire…");
         }
     }
 }

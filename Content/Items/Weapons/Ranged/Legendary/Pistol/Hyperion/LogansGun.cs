@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(45, 30);
             Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -62,20 +62,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-1f, 0f);
+            return new Vector2(-1f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots Explosive-Fire Rockets")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Gun, Gunner!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Explosive-Fire Rockets", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "Gun, Gunner!");
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Grenades.Rare;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
 {
@@ -18,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(17, 29);
             Item.scale = 0.75f;
             Item.rare = ItemRarityID.White;
             Item.maxStack = 9999;
@@ -60,10 +61,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Double your fun")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Allows for grenade jumping", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Double your fun");
         }
     }
 }

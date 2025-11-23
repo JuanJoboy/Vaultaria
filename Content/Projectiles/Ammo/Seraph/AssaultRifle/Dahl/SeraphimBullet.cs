@@ -1,23 +1,24 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic; // For Lists
+using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Dahl
 {
     public class SeraphimBullet : ElementalProjectile
     {
-        public float incendiaryMultiplier = 0.5f;
-        private float elementalChance = 85;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
+        public float incendiaryMultiplier = 1f;
+        private float elementalChance = 100f;
+        private short incendiaryProjectile = ProjectileID.SolarWhipSwordExplosion;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
-        private int buffTime = 0;
+        private int buffTime = 180;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(10, 10);
+            Projectile.Size = new Vector2(22, 6);
 
             // Damage
             Projectile.friendly = true;
@@ -29,22 +30,16 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Dahl
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
         }
         
-        public override void OnKill(int timeLeft)
+        public override void AI()
         {
-            int numDust = 20;
-            for (int i = 0; i < numDust; i++)
-            {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Torch).noGravity = false;
-            }
+            base.AI();
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Utilities.HealOnNPCHit(target, damageDone, 0.5f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
@@ -54,8 +49,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Dahl
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.5f, Projectile);
-
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
@@ -63,6 +56,17 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Dahl
             }
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(elementalChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
+            }
+
+            return false;
+        }
+        
         public override List<string> GetElement()
         {
             return new List<string>

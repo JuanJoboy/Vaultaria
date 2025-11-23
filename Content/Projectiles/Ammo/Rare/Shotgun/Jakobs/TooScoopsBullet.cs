@@ -9,20 +9,19 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
 {
     public class TooScoopsBullet : ElementalProjectile
     {
+        public float cryoMultiplier = 1f;
         public float explosiveMultiplier = 1f;
-        public float shockMultiplier = 0.5f;
-        private float explosiveChance = 100f;
-        private float shockChance = 30f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
-        private short shockProjectile = ElementalID.ShockProjectile;
+        private float cryoChance = 100f;
+        private short cryoProjectile = ElementalID.CryoProjectile;
+        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private int cryoBuff = ElementalID.CryoBuff;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int shockBuff = ElementalID.ShockBuff;
         private int buffTime = 60;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(80, 8);
+            Projectile.Size = new Vector2(14, 14);
 
             // Damage
             Projectile.friendly = true;
@@ -42,17 +41,25 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
+        public override void OnKill(int timeLeft)
+        {
+            int numDust = 20;
+            for (int i = 0; i < numDust; i++)
+            {
+                Dust.NewDustPerfect(Projectile.Center, DustID.IceTorch).noGravity = false;
+                Dust.NewDustPerfect(Projectile.Center, DustID.Smoke).noGravity = false;
+            }
+        }
+
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 
-            if (SetElementalChance(explosiveChance))
+            if (SetElementalChance(cryoChance))
             {
+                SetElementOnNPC(target, hit, cryoMultiplier, player, cryoProjectile, cryoBuff, buffTime);
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-            }
-            if (SetElementalChance(shockChance))
-            {
-                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
             }
         }
 
@@ -60,33 +67,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
         {
             Player player = Main.player[Projectile.owner];
 
-            if (SetElementalChance(explosiveChance))
+            if (SetElementalChance(cryoChance))
             {
+                SetElementOnPlayer(target, info, cryoMultiplier, player, cryoProjectile, cryoBuff, buffTime);
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
-            if (SetElementalChance(shockChance))
-            {
-                SetElementOnPlayer(target, info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
-            }
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (SetElementalChance(explosiveChance))
-            {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
-            }
-
-            return false;
         }
         
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Shock",
-                "Explosive"
+                "Cryo"
             };
         }
     }

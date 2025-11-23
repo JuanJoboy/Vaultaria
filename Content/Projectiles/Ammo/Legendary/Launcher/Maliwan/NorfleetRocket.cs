@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 {
@@ -15,10 +16,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
         private int shockBuff = ElementalID.ShockBuff;
         private int buffTime = 90;
 
+        private NPC.HitInfo info;
+
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(60, 60);
 
             // Damage
             Projectile.friendly = true;
@@ -57,10 +60,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (SetElementalChance(elementalChance))
+            Player player = Main.player[Projectile.owner];
+
+            for(int i = 0; i < Main.npc.Length; i++)
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                if (SetElementalChance(elementalChance))
+                {
+                    if(Vector2.Distance(Main.npc[i].Center, Projectile.Center) < 200 && !Main.npc[i].townNPC)
+                    {
+                        SetElementOnNPC(Main.npc[i], hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                        info = hit;
+                    }
+                }
             }
         }
 
@@ -78,9 +89,19 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            Player player = Main.player[Projectile.owner];
+            info.SourceDamage = 400;
+
+            for(int i = 0; i < Main.npc.Length; i++)
+            {
+                if(Vector2.Distance(Main.npc[i].Center, Projectile.Center) < 200 && !Main.npc[i].townNPC && Main.npc[i].active && Main.npc[i] != null)
+                {
+                    SetElementOnNPC(Main.npc[i], info, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
+                }
+            }
+
             if (SetElementalChance(elementalChance))
             {
-                Player player = Main.player[Projectile.owner];
                 SetElementOnTile(Projectile, shockMultiplier, player, shockProjectile);
             }
 

@@ -6,18 +6,18 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 {
-    public class PlasmaCoilBullet : ElementalProjectile
+    public class CryoPlasmaCoilBullet : ElementalProjectile
     {
-        public float incendiaryMultiplier = 2f;
-        private float elementalChance = 100f;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
-        private int incendiaryBuff = ElementalID.IncendiaryBuff;
+        public float cryoMultiplier = 2f;
+        private float elementalChance = 20;
+        private short cryoProjectile = ElementalID.CryoProjectile;
+        private int cryoBuff = ElementalID.CryoBuff;
         private int buffTime = 180;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(28, 14);
 
             // Damage
             Projectile.friendly = true;
@@ -43,7 +43,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             int numDust = 20;
             for (int i = 0; i < numDust; i++)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Lava).noGravity = false;
+                Dust.NewDustPerfect(Projectile.Center, DustID.IceTorch).noGravity = false;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+                SetElementOnNPC(target, hit, cryoMultiplier, player, cryoProjectile, cryoBuff, buffTime);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, incendiaryMultiplier, player, incendiaryProjectile, incendiaryBuff, buffTime);
+                SetElementOnPlayer(target, info, cryoMultiplier, player, cryoProjectile, cryoBuff, buffTime);
             }
         }
 
@@ -70,17 +70,17 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
+                SetElementOnTile(Projectile, cryoMultiplier, player, cryoProjectile);
             }
 
-            return false;
+            return true;
         }
 
         public override List<string> GetElement()
         {
             return new List<string>
             {
-                "Incendiary"
+                "Cryo"
             };
         }
     }

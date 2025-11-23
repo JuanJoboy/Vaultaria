@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Common.Systems;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Weapons
 {
@@ -48,7 +49,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
         {
             yield return new TooltipLine(Mod, "Slag1", "20% Chance to Slag\nSlagged enemies take increased damage")
             {
-                OverrideColor = new Color(142, 94, 235) // Purple
+                OverrideColor = Utilities.VaultarianColours.Slag.GetVaultarianColor()
             };
         }
 	}

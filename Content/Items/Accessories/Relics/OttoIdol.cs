@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Relics
@@ -10,7 +11,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(38, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Blue;
@@ -18,15 +19,10 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+60 HP\n+5 Defense\nGet 10% health back on every kill"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Every man for himself.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Sudden-er Death!\n(-1 HP/s)")
-            {
-                OverrideColor = new Color(0, 249, 199) // Cyan
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+60 HP\n+5 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Get 10% health back on every kill", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "Every man for himself.");
+            Utilities.CursedText(tooltips, Mod, "Curse of the Sudden-er Death!\n(-1 HP/s)");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria.Audio;
 using Vaultaria.Content.Prefixes.Shields;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -26,7 +27,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(45, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Yellow;
@@ -34,19 +35,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+4 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Grants immunity to Incendiary damage")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Continually releases Fire Nova blasts that deals 40 damage when under 30% health")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "From the ashes she will rise.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+4 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Grants immunity to Incendiary damage", Utilities.VaultarianColours.Incendiary);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Continually releases Fire Nova blasts that deals 40 damage when under 30% health", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "From the ashes she will rise.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -54,8 +46,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.statLifeMax2 += 20;
             player.statDefense += 4;
 
-            player.AddBuff(1, 60); // Obsidian Skin
-            player.AddBuff(124, 60); // Warmth
+            player.AddBuff(BuffID.ObsidianSkin, 60); // Obsidian Skin
+            player.AddBuff(BuffID.Warmth, 60); // Warmth
             player.buffImmune[ModContent.BuffType<IncendiaryBuff>()] = true;
 
             // 1. Decrement the cooldown timer each tick
@@ -69,11 +61,11 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             //    - The cooldown timer has reached 0 (or less)
             if (player.statLife <= (player.statLifeMax2 * 0.3f) && novaCooldown <= 0)
             {
-                player.AddBuff(116, 60); // Inferno
+                player.AddBuff(BuffID.Inferno, 60); // Inferno
                 // 3. If conditions are met, spawn the nova
                 int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(50);
                 float novaKnockback = 5f;
-                int novaType = ProjectileID.DD2ExplosiveTrapT3Explosion; // Using vanilla explosion projectile
+                int novaType = ElementalID.LargeExplosiveProjectile; // Using vanilla explosion projectile
 
                 // Spawn the nova projectile
                 // Projectile.NewProjectile

@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(20, 14);
 
             // Damage
             Projectile.friendly = true; // Hurts enemies

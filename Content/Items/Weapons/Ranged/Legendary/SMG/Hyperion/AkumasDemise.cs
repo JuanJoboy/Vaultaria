@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(71, 30);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.LightPurple;
@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion
             Item.knockBack = 2.3f;
             Item.damage = 50;
             Item.crit = 6;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = DamageClass.Magic;
 
             Item.useTime = 13;
             Item.useAnimation = 13;
@@ -54,10 +54,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Sun Gun, don't worry its not hot")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Shoots an Incendiary laser", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "Sun Gun, don't worry its not hot.");
         }
     }
 }

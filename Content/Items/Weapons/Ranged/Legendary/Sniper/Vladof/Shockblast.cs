@@ -110,20 +110,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 Sniper Ammo per shot"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Left-click to shoot fast Shock e-tech rounds")
-            {
-                OverrideColor = new Color(46, 153, 228) // Blue
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Right-click to shoot more powerful Explosive-Shock rounds")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Blast them to smithereens!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "tooltip1", "Consumes 3 Sniper Ammo per shot");
+            Utilities.Text(tooltips, Mod, "tooltip2", "Left-click to shoot fast Shock e-tech rounds", Utilities.VaultarianColours.Shock);
+            Utilities.Text(tooltips, Mod, "tooltip3", "Right-click to shoot more powerful Explosive-Shock rounds", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Blast them to smithereens!");
         }
     }
 }

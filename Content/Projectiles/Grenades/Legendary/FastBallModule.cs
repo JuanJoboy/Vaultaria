@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(20, 16);
             Projectile.scale = 1.6f;
 
             // Damage

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -41,7 +42,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "Evolved", "Grants immunity to Slag damage, Ichor & Slowness")
             {
-                OverrideColor = new Color(142, 94, 235) // Purple
+                OverrideColor = Utilities.VaultarianColours.Slag.GetVaultarianColor()
             };
         }
 	}

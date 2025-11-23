@@ -27,11 +27,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(25, 25);
             Projectile.scale = 2.1f;
 
             // Damage
-            Projectile.damage = 25;
+            Projectile.damage = 1;
             Projectile.CritChance = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

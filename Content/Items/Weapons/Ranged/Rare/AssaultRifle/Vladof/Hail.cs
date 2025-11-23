@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(58, 29);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -49,20 +49,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 5f);
+            return new Vector2(-6f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% Lifesteal per bullet")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "What play thing can you offer me today?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "tooltip2", "+25% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "What play thing can you offer me today?");
         }
     }
 }

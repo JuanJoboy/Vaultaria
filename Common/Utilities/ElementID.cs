@@ -33,7 +33,9 @@ namespace Vaultaria.Common.Utilities
 
         // Explosive Element
         public static readonly int ExplosivePrefix = ModContent.PrefixType<Explosive>();
+        public static readonly short SmallExplosiveProjectile = ProjectileID.DD2ExplosiveTrapT1Explosion;
         public static readonly short ExplosiveProjectile = ProjectileID.DD2ExplosiveTrapT2Explosion;
+        public static readonly short LargeExplosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
         public static readonly int ExplosiveBuff = ModContent.BuffType<ExplosiveBuff>();
 
         // Cryo Element

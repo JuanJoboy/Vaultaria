@@ -19,8 +19,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.2f;
+            Item.Size = new Vector2(98, 26);
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -43,22 +43,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSniper, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
         }
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-13f, 0f);
+            return new Vector2(-10f, -2f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Bypasses all enemy defense"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I infrequently perish.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bypasses all enemy defense", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "I infrequently perish.");
         }
     }
 }

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
 {
@@ -10,7 +11,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(46, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Pink;
@@ -18,19 +19,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+60 HP\n+5 Defense\nRegenerates health\n+50% Deflection Chance\n+880% Deflected Bullet Damage\n+50% Damage Reduction"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Deflects enemy bullets, sending them flying toward nearby enemies.")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Launches Slag homing balls at attackers")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I'm rubber, you're glue.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+60 HP\n+5 Defense\nRegenerates health\n+50% Deflection Chance\n+880% Deflected Bullet Damage\n+50% Damage Reduction");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Deflects enemy bullets, sending them flying toward nearby enemies.", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Launches Slag homing balls at attackers", Utilities.VaultarianColours.Slag);
+            Utilities.RedText(tooltips, Mod, "I'm rubber, you're glue.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

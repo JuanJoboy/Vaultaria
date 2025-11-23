@@ -73,20 +73,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 7 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nFires as fast as you can pull the trigger"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Monty's wife don't take no guff.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 7);
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Fires as fast as you can pull the trigger");
+            Utilities.RedText(tooltips, Mod, "Monty's wife don't take no guff.");
         }
     }
 }

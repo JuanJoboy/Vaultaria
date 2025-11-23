@@ -19,8 +19,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1f;
+            Item.Size = new Vector2(83, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Master;
 
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
             Item.useAmmo = ModContent.ItemType<Eridium>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 0f;
             Item.damage = 0;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -48,7 +48,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            FabricateAnItem(player);
+            int itemIndex = Main.rand.Next(0, Utilities.itemArray.Count); // Picks a random index from 0 to the end of the array
+            ModItem item = (ModItem) Utilities.itemArray[itemIndex]; // Get whatever item is at that index
+
+            player.QuickSpawnItem(player.GetSource_DropAsItem(), item.Type); // Spawn the item at the player
 
             return false;
         }
@@ -71,23 +74,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses 250 eridium"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots a Legendary or Rare gun")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "A Gun... Gun?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-        }
-
-        private int FabricateAnItem(Player player)
-        {
-            int itemIndex = Main.rand.Next(0, Utilities.itemArray.Count); // Picks a random index from 0 to the end of the array
-            ModItem item = (ModItem) Utilities.itemArray[itemIndex]; // Get whatever item is at that index
-
-            return player.QuickSpawnItem(player.GetSource_DropAsItem(), item.Type); // Spawn the item at the player
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses 250 eridium", Utilities.VaultarianColours.Slag);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots out a Legendary gun", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "A Gun... Gun?");
         }
     }
 }

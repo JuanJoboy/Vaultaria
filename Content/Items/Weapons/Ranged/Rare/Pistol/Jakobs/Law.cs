@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(66, 30);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 8;
             Item.crit = 4;
             Item.DamageType = DamageClass.Ranged;
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(5f, 0f);
+            return new Vector2(-2f, 0f);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -108,15 +108,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Uses any normal bullet type as ammo\nRight-Click to do a melee attack"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25% melee life-steal if Order is also equipped")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink   
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "De Da.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Right-Click to do a melee attack");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "+25% melee life-steal if Order is also equipped", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "De Da.");
         }
 
         private void HasOrderOn(Player player, int damageDone)

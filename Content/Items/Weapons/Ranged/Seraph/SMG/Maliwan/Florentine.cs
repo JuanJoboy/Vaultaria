@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(70, 29);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
@@ -61,8 +61,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 
             if (projectile.ModProjectile is FlorentineBullet bullet)
             {
-                bullet.shockMultiplier = 0.2f;
-                bullet.slagMultiplier = 0.2f;
+                bullet.shockMultiplier = 0.6f;
+                bullet.slagMultiplier = 0.6f;
             }
 
             return false;
@@ -75,15 +75,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Has a 40% chance to do 20% Slag & 40% Shock bonus damage")
-            {
-                OverrideColor = new Color(96, 128, 224)
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Double trouble.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Has a 40% chance to do 60% Slag & 60% Shock bonus damage", Utilities.VaultarianColours.Slag);
+            Utilities.RedText(tooltips, Mod, "Double trouble.");
         }
     }
 }

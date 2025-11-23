@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             // Combat properties
             Item.knockBack = 2.3f;
             Item.damage = 45;
-            Item.crit = 100;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 12;
@@ -66,11 +66,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nFires as fast as you can pull the trigger"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "You seek guidance?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Critical hits either hit the same target again or ricochet to the closest enemy", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "You seek guidance?");
         }
     }
 }

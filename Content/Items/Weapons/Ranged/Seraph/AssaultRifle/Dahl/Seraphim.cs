@@ -21,26 +21,26 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.1f;
+            Item.Size = new Vector2(71, 30);
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 40f;
             Item.shoot = ModContent.ProjectileType<SeraphimBullet>();
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
             Item.damage = 40;
-            Item.crit = 20;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 6;
             Item.useAnimation = 18;
-            Item.reuseDelay = 2;
+            Item.reuseDelay = 15;
             Item.autoReuse = true;
 
             // Other properties
@@ -50,16 +50,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-7f, 5f);
+            return new Vector2(-10f, 4f);
         }
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires a high burst of Incendiary bullets\nUses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Holy? Holy? Holey!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Fires a high burst of Incendiary bullets", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "Holy? Holy? Holey!");
         }
     }
 }

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Placeables.VendingMachines
 {
@@ -62,11 +63,8 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Used to craft one of a kind weaponry"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "No refunds.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Used to craft one of a kind weaponry");
+            Utilities.RedText(tooltips, Mod, "No refunds.");
         }
     }
 }

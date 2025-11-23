@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(50, 27);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -31,13 +31,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 8;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 4;
-            Item.useAnimation = 12;
+            Item.useAnimation = 36;
             Item.reuseDelay = 8;
             Item.autoReuse = true;
 
@@ -53,11 +53,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "The gun of the Bulls.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.RedText(tooltips, Mod, "The gun of the Bulls.");
         }
     }
 }

@@ -707,14 +707,49 @@ Items: {
 		Tooltip: ""
 	}
 
-	JackOCannon: {
-		DisplayName: Jack O Cannon
-		Tooltip: ""
-	}
-
 	SwordSplosion: {
 		DisplayName: SWORDSPLOSION
 		Tooltip: ""
+	}
+
+	FabledTortoise: {
+		Tooltip: ""
+		DisplayName: Fabled Tortoise
+	}
+
+	NightHawkin: {
+		DisplayName: Night Hawkin
+		Tooltip: ""
+	}
+
+	Bane: {
+		Tooltip: ""
+		DisplayName: Bane
+	}
+
+	Cobra: {
+		DisplayName: Cobra
+		Tooltip: ""
+	}
+
+	Volcano: {
+		Tooltip: ""
+		DisplayName: Volcano
+	}
+
+	OlPainful: {
+		DisplayName: Ol Painful
+		Tooltip: ""
+	}
+
+	CatONineTails: {
+		Tooltip: ""
+		DisplayName: Cat o' Nine Tails
+	}
+
+	Skullmasher: {
+		Tooltip: ""
+		DisplayName: Skullmasher
 	}
 }
 
@@ -783,6 +818,12 @@ Projectiles: {
 	GhastCallModule.DisplayName: Ghast Call Module
 	PlasmaCoilBullet.DisplayName: Plasma Coil Bullet
 	SwordSplosionKnife.DisplayName: Sword Splosion Knife
+	AspisShield.DisplayName: Aspis Shield
+	CobraBullet.DisplayName: Cobra Bullet
+	VolcanoBullet.DisplayName: Volcano Bullet
+	RadiationPlasmaCoilBullet.DisplayName: Radiation Plasma Coil Bullet
+	CryoPlasmaCoilBullet.DisplayName: Cryo Plasma Coil Bullet
+	PimpernelChildBullet.DisplayName: Pimpernel Child Bullet
 }
 
 Buffs: {
@@ -979,5 +1020,10 @@ Configs: {
 		}
 
 		DisplayName: Vaultaria Config
+
+		GetRuinFirst: {
+			Label: Get Ruin First
+			Tooltip: If enabled, Ruin is gained after defeating the Wall of Flesh instead of Sub-Sequence
+		}
 	}
 }

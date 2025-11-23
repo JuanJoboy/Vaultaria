@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.1f;
+            Item.Size = new Vector2(71, 29);
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Green;
 
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 7;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -49,12 +49,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-7f, 5f);
+            return new Vector2(-10f, 5f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            Utilities.Text(tooltips, Mod);
         }
     }
 }

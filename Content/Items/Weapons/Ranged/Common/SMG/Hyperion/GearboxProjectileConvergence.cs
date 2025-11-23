@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(60, 27);
             Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 2;
+            Item.damage = 5;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -53,11 +53,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Courtesy of being a Premiere Club member.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.RedText(tooltips, Mod, "Courtesy of being a Premiere Club member.");
         }
     }
 }

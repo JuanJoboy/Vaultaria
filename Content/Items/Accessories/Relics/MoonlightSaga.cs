@@ -14,20 +14,14 @@ namespace Vaultaria.Content.Items.Accessories.Relics
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "High health regen and life steal when shooting enemies in space")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "You give me everything just by breathing.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+2 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "High health regen and life steal when shooting enemies in space", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "You give me everything just by breathing.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

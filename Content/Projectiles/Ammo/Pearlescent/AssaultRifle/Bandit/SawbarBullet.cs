@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(20, 2);
 
             // Damage
             Projectile.friendly = true;

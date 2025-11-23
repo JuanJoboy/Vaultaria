@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Uncommon.Sniper.Maliwan
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(80, 8);
+            Projectile.Size = new Vector2(22, 6);
 
             // Damage
             Projectile.friendly = true;

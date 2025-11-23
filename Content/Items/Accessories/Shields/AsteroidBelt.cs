@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Common.Utilities;
 using Terraria.GameContent.Biomes.CaveHouse;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
@@ -12,7 +13,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(46, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(silver: 90);
             Item.rare = ItemRarityID.Blue;
@@ -20,15 +21,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Launch homing Explosive Meteors when damaged")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Straight from the bug homeworld.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+2 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Launch homing Explosive Meteors when damaged", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Straight from the bug homeworld.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

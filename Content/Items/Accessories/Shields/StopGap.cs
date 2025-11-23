@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
@@ -14,7 +15,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(36, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Yellow;
@@ -22,15 +23,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+30 HP\n+3 Defense\nRegenerates health"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When under 10% health, become immune to all damage for 5 seconds\nMust have full health before immunity can be used again")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "The process is called 'living'")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+30 HP\n+3 Defense\nRegenerates health");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "When under 10% health, become immune to all damage for 5 seconds\nMust have full health before immunity can be used again");
+            Utilities.RedText(tooltips, Mod, "The process is called 'living'");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

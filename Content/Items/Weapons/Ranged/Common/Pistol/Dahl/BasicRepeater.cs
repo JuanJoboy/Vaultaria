@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(48, 29);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
@@ -38,7 +38,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.reuseDelay = 60;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
@@ -67,11 +67,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses any normal bullet type as ammo\nFires a basic 3 burst round"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Wait a minute - you're not dead!\nYES! Now I can get off this glacier!\nClaptrap, your metaphorical ship has finally come in!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "ToolTip2", "Fires a basic 3 burst round");
+            Utilities.RedText(tooltips, Mod, "Wait a minute - you're not dead!\nYES! Now I can get off this glacier!\nClaptrap, your metaphorical ship has finally come in!");
         }
     }
 }

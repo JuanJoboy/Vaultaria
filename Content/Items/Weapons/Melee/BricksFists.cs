@@ -20,9 +20,10 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(51, 60);
+            Item.scale = 0.5f;
             Item.noMelee = true;
-            Item.noUseGraphic = true;
+            Item.noUseGraphic = false;
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.Rapier;
@@ -49,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(7, -7);
+            return new Vector2(20, -30);
         }
 
         public override void AddRecipes()
@@ -71,14 +72,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws a flurry of fists")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "SLAB... Did you... Did you just jump of the BUZZARD'S NEST?!\nGOD DAMN YOU MAKE ME PROUD!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Throws a flurry of fists");
+            Utilities.RedText(tooltips, Mod, "SLAB... Did you... Did you just jump of the BUZZARD'S NEST?!\nGOD DAMN YOU MAKE ME PROUD!");
         }
     }
 }

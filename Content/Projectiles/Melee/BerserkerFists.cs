@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Melee
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(40, 30);
             Projectile.scale = 1.6f;
 
             // Damage

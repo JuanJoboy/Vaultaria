@@ -21,26 +21,26 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(45, 29);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 50f;
             Item.shoot = ModContent.ProjectileType<AegisBullet>();
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 4;
+            Item.knockBack = 0.5f;
+            Item.damage = 10;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 4;
+            Item.useTime = 12;
             Item.useAnimation = 12;
-            Item.reuseDelay = 60;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties
@@ -50,12 +50,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-8f, 0f);
+            return new Vector2(-8f, 5f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "Uses Pistol Ammo"));
+            Utilities.Text(tooltips, Mod, "ToolTip1", "Uses Pistol Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Shock bullets", Utilities.VaultarianColours.Shock);
         }
     }
 }

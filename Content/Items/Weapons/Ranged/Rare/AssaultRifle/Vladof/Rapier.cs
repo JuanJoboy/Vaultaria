@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(68, 30);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -116,16 +116,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\n+200% Melee Damage"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Right-Click to do a melee attack"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "As I end the refrain, thrust home.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Porcelain Fist!\n(Take 3x more damage)")
-            {
-                OverrideColor = new Color(0, 249, 199) // Cyan
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "ToolTip2", "+200% Melee Damage");
+            Utilities.Text(tooltips, Mod, "ToolTip3", "Right-Click to do a melee attack");
+            Utilities.RedText(tooltips, Mod, "As I end the refrain, thrust home.");
+            Utilities.CursedText(tooltips, Mod, "Curse of the Porcelain Fist!\n(Take 3x more damage)");
         }
     }
 }

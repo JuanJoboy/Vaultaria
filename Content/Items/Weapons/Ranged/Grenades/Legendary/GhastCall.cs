@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(20, 35);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Yellow;
             Item.maxStack = 9999;
@@ -39,10 +39,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
             Item.autoReuse = true;
             Item.useTurn = false;
 
-            Item.shoot = ModContent.ProjectileType<FastBallModule>();
+            Item.shoot = ModContent.ProjectileType<GhastCallModule>();
             Item.consumable = true;
             Item.ammo = Item.type;
-            Item.shootSpeed = 18;
+            Item.shootSpeed = 10;
 
             // Other properties
             Item.value = Item.buyPrice(silver: 25);
@@ -63,14 +63,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws 3 Corrosive skulls")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "To you I am past, a story to tell.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Throws 3 Corrosive homing skulls", Utilities.VaultarianColours.Corrosive);
+            Utilities.RedText(tooltips, Mod, "To you I am past, a story to tell.");
         }
     }
 }

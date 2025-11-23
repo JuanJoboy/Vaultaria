@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Materials
 {
@@ -25,10 +26,7 @@ namespace Vaultaria.Content.Items.Materials
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "An alien material used to turn ordinary items into legendary gear")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "An alien material used to turn ordinary items into legendary gear", Utilities.VaultarianColours.Slag);
         }
     }
 }

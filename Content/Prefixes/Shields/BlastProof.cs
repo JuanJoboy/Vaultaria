@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -48,7 +49,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "BlastProof", "Reduces damage from explosions")
             {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
+                OverrideColor = Utilities.VaultarianColours.Explosive.GetVaultarianColor()
             };
         }
 	}

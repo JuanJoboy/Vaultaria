@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Materials
 {
@@ -23,7 +24,7 @@ namespace Vaultaria.Content.Items.Materials
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "The second fragment of the Eden-6 Vault Key"));
+            Utilities.Text(tooltips, Mod, "Tooltip1", "The second fragment of the Eden-6 Vault Key");
         }
     }
 }

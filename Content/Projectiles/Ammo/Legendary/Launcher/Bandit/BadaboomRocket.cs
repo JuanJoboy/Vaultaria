@@ -13,14 +13,14 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
     {
         public float explosiveMultiplier = 1.3f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
+        private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 30;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(24, 13);
 
             // Damage
             Projectile.friendly = true;

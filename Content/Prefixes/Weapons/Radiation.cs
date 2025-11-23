@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Common.Systems;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Weapons
 {
@@ -48,7 +49,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
         {
             yield return new TooltipLine(Mod, "Radiation", "20% Chance to deal 20% bonus Radiation damage")
             {
-                OverrideColor = new Color(227, 205, 109) // Light Yellow
+                OverrideColor = Utilities.VaultarianColours.Radiation.GetVaultarianColor()
             };
         }
 	}

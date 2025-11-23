@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
         public float explosiveMultiplier = 1.75f;
         public float incendiaryMultiplier = 1.75f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ProjectileID.DD2ExplosiveTrapT3Explosion;
+        private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(18, 42);
 
             // Damage
             Projectile.friendly = true;

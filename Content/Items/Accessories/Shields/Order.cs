@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
@@ -11,7 +12,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(54, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(silver: 50);
             Item.rare = ItemRarityID.Blue;
@@ -19,19 +20,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+15 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "When under 30% health, melee attacks do 40% bonus damage")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "25% melee life-steal if Law is also equipped")
-            {
-                OverrideColor = new Color(245, 201, 239) // Pink
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Chung-gunk!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+15 HP\n+2 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "When under 30% health, melee attacks do 40% bonus damage", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "25% melee life-steal if Law is also equipped", Utilities.VaultarianColours.Healing);
+            Utilities.RedText(tooltips, Mod, "Chung-gunk!");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

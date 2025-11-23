@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Items.Materials;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
-using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore;
 using Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
@@ -23,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(41, 29);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
@@ -34,13 +33,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 0.5f;
             Item.damage = 3;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 8;
-            Item.useAnimation = 8;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties
@@ -103,7 +103,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
             {
                 altFireMode = false;
 
-                Item.damage = 3;
+                Item.damage = 10;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
@@ -111,8 +111,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
                 Item.shootSpeed = 17f;
                 Item.shoot = ProjectileID.Bullet;
 
-                Item.useTime = 8;
-                Item.useAnimation = 8;
+                Item.useTime = 12;
+                Item.useAnimation = 12;
+                Item.reuseDelay = 20;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
@@ -124,16 +125,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 0f);
+            return new Vector2(-5f, 5f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Who's a widdle gunny-wunny?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Right-Click to throw the Pistol", Utilities.VaultarianColours.Explosive);
         }
     }
 }

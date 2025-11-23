@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(59, 29);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -54,15 +54,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Pistol Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires Explosive rounds")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Better lucky than good!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Fires Explosive rounds", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Better lucky than good!");
         }
     }
 }

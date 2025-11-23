@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Content.Projectiles.Grenades.Legendary;
 using Terraria.DataStructures;
 using System.Collections.Generic;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
 {
@@ -18,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(17, 35);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Yellow;
             Item.maxStack = 9999;
@@ -60,14 +61,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Has a slight downward arc when thrown and deals high explosive damage on impact")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Forgot the curveball Ricky, give him the heater.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Has a slight downward arc when thrown and deals high explosive damage on impact", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Forgot the curveball Ricky, give him the heater.");
         }
     }
 }

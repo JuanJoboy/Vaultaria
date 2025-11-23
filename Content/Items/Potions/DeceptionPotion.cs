@@ -44,13 +44,6 @@ namespace Vaultaria.Content.Items.Potions
             Utilities.ItemSound(Item, Utilities.Sounds.Deception, 500);
         }
 
-        public override bool? UseItem(Player player)
-        {
-            player.PlayerFrame();
-
-            return base.UseItem(player);
-        }
-
         // public override void AddRecipes()
         // {
         //     CreateRecipe()
@@ -64,14 +57,8 @@ namespace Vaultaria.Content.Items.Potions
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "100% Increased Gun Damage & 150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Your eyes deceive you\nAn illusion fools you all\nI move for the kill.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "100% Increased Gun Damage & 150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Your eyes deceive you\nAn illusion fools you all\nI move for the kill.");
         }
     }
 }

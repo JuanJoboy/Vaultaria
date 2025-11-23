@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -51,7 +52,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "Thermo", "Grants immunity to Cryo damage")
             {
-                OverrideColor = new Color(131, 235, 228) // Light Blue
+                OverrideColor = Utilities.VaultarianColours.Cryo.GetVaultarianColor()
             };
         }
 	}

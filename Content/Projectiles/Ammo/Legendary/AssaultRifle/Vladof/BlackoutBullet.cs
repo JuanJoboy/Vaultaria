@@ -10,15 +10,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof
     public class BlackoutBullet : ElementalProjectile
     {
         public float explosiveMultiplier = 1f;
-        private float elementalChance = 100f;
+        public float slagMultiplier = 0.5f;
+        private float elementalChance = 10f;
         private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short slagProjectile = ElementalID.SlagProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
+        private int slagBuff = ElementalID.SlagBuff;
         private int buffTime = 90;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(26, 4);
 
             // Damage
             Projectile.damage = 15;
@@ -33,15 +36,10 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof
             Projectile.tileCollide = true;
         }
 
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 4;
-        }
-
         public override void AI()
         {
             base.AI();
-            Utilities.FrameRotator(8, Projectile);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void OnKill(int timeLeft)
@@ -57,29 +55,38 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
+            Player player = Main.player[Projectile.owner];
+            
             if (SetElementalChance(elementalChance))
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnNPC(target, hit, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
+
+            SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
+            Player player = Main.player[Projectile.owner];
+            
             if (SetElementalChance(elementalChance))
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
+                SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
+
+            SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            Player player = Main.player[Projectile.owner];
+            
             if (SetElementalChance(elementalChance))
             {
-                Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+                SetElementOnTile(Projectile, slagMultiplier, player, slagProjectile);
             }
+
+            SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
 
             return false;
         }
@@ -88,7 +95,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof
         {
             return new List<string>
             {
-                "Explosive"
+                "Explosive",
+                "Slag"
             };
         }
     }

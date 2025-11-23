@@ -21,8 +21,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
+            Item.Size = new Vector2(80, 30);
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -55,6 +55,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             return false;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if(Main.hardMode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override bool? UseItem(Player player)
         {
             player.statLife -= 5;
@@ -62,42 +72,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             return base.UseItem(player);
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(30)
-                .AddIngredient(ItemID.HellstoneBar, 15)
-                .AddIngredient(ItemID.Boomstick, 1)
-                .AddIngredient(ItemID.HealingPotion, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30f, 0f);
+            return new Vector2(-12, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
+            Utilities.MultiShotText(tooltips, Item, 4);
+            Utilities.Text(tooltips, Mod);
 
-            if (damageLine != null)
+            if(!Main.hardMode)
             {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 4 ranged damage";
+                Utilities.Text(tooltips, Mod, "Tooltip2", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Makes orphans. Often.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-            tooltips.Add(new TooltipLine(Mod, "Curse", "Curse of the Nefarious Backlash!\n(-5 HP on use)")
-            {
-                OverrideColor = new Color(0, 249, 199) // Cyan
-            });
+            Utilities.RedText(tooltips, Mod, "Makes orphans. Often.");
+            Utilities.CursedText(tooltips, Mod, "Curse of the Nefarious Backlash!\n(-5 HP on use)");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(28, 54);
             Item.scale = 1f;
             Item.rare = ItemRarityID.Green;
 
@@ -47,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(30, -7);
+            return new Vector2(10, -7);
         }
 
         // This tells Terraria that this item has an alternate use mode (usually right-click)
@@ -117,14 +117,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Right-Click to throw an explosive buzz axe")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "I'M THE CONDUCTOR OF THE POOP TRAIN!!!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Right-Click to throw an explosive buzz axe");
+            Utilities.RedText(tooltips, Mod, "I'M THE CONDUCTOR OF THE POOP TRAIN!!!");
         }
     }
 }

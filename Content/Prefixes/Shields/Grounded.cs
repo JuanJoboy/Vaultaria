@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -40,7 +41,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "Grounded", "Grants immunity to Shock damage")
             {
-                OverrideColor = new Color(46, 153, 228) // Blue
+                OverrideColor = Utilities.VaultarianColours.Shock.GetVaultarianColor()
             };
         }
 	}

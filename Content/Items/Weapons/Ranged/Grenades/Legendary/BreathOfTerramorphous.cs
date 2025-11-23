@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Grenades.Legendary;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
 {
@@ -18,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(18, 30);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Master;
             Item.maxStack = 9999;
@@ -60,15 +61,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Is highly effective on the floor"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Creates Fire explosions on impact for 5 seconds")
-            {
-                OverrideColor = new Color(231, 92, 22) // Orange
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "His breath was of fire…")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Is highly effective on the floor");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Creates Fire explosions on impact for 5 seconds", Utilities.VaultarianColours.Incendiary);
+            Utilities.RedText(tooltips, Mod, "His breath was of fire…");
         }
     }
 }

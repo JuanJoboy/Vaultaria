@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.1f;
+            Item.Size = new Vector2(60, 26);
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 3;
+            Item.damage = 4;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -61,16 +61,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 6 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            Utilities.MultiShotText(tooltips, Item, 6);
+            Utilities.Text(tooltips, Mod);
         }
     }
 }

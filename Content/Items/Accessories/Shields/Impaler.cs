@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
@@ -10,7 +11,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(46, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 3);
             Item.rare = ItemRarityID.Yellow;
@@ -18,19 +19,10 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+25 HP\n+3 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Launches Corrosive homing spikes when damaged with a projectile")
-            {
-                OverrideColor = new Color(136, 235, 94) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "Deals Corrosive Thorn Damage to melee attackers")
-            {
-                OverrideColor = new Color(136, 235, 94) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Vlad would be proud")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+25 HP\n+3 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Launches Corrosive homing spikes when damaged with a projectile", Utilities.VaultarianColours.Corrosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Deals Corrosive Thorn Damage to melee attackers", Utilities.VaultarianColours.Corrosive);
+            Utilities.RedText(tooltips, Mod, "Vlad would be proud");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

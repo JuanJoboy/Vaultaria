@@ -19,8 +19,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.2f;
+            Item.Size = new Vector2(123, 29);
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -53,11 +53,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Courtesy of being a Premiere Club member.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.RedText(tooltips, Mod, "Courtesy of being a Premiere Club member.");
         }
     }
 }

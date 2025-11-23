@@ -22,9 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         public override void SetDefaults()
         {
             // Visual properties
-            int size = 12;
-            Item.width = size;
-            Item.height = size;
+            Item.Size = new Vector2(31, 29);
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -56,7 +54,6 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             return false;
         }
 
-
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             position = Main.MouseWorld; // Spawns the minion at the mouse
@@ -80,24 +77,12 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies\n2 Sentries can be summoned"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Shoots:"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip3", "    \tChlorophyte bullets rapidly")
-            {
-                OverrideColor = new Color(181, 240, 98) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip4", "    \tA homing slag ball per second")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
-            tooltips.Add(new TooltipLine(Mod, "Tooltip5", "    \tA Cluster Rocket per 2 seconds")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Ten years of Dahl military experience at your service.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies\n2 Sentries can be summoned");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots:");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "    \tChlorophyte bullets rapidly", Utilities.VaultarianColours.Corrosive);
+            Utilities.Text(tooltips, Mod, "Tooltip4", "    \tA homing slag ball per second", Utilities.VaultarianColours.Slag);
+            Utilities.Text(tooltips, Mod, "Tooltip5", "    \tA Cluster Rocket per 2 seconds", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Ten years of Dahl military experience at your service.");
         }
 
         public override bool AllowPrefix(int pre)

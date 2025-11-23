@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Relics
@@ -13,20 +14,14 @@ namespace Vaultaria.Content.Items.Accessories.Relics
             Item.Size = new Vector2(20, 20);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Attacks have a chance to chain Shock damage to nearby enemies")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "We never could have foreseen the success.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+2 Defense");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Attacks have a chance to chain Shock damage to nearby enemies", Utilities.VaultarianColours.Shock);
+            Utilities.RedText(tooltips, Mod, "We never could have foreseen the success.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 
 namespace Vaultaria.Content.Items.Accessories.Shields
@@ -10,7 +11,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(35, 34);
             Item.accessory = true;
             Item.value = Item.buyPrice(copper: 90);
             Item.rare = ItemRarityID.White;
@@ -18,11 +19,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "ToolTip1", "+10 HP\n+2 Defense"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Your ability to walk short distances without dying\nwill surely be Handsome Jack's downfall!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+10 HP\n+2 Defense");
+            Utilities.RedText(tooltips, Mod, "Your ability to walk short distances without dying\nwill surely be Handsome Jack's downfall!");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

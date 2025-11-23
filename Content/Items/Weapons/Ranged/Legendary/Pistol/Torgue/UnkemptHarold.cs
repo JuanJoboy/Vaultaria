@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(41, 30);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot; // Use style for guns
             Item.rare = ItemRarityID.Yellow;
@@ -72,7 +72,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(0f, 0f);
+            return new Vector2(-3f, 4f);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
@@ -87,15 +87,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Consumes 3 Pistol Ammo per shot"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Fires multiple Explosive rounds")
-            {
-                OverrideColor = new Color(228, 227, 105) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Did I fire six shots, or only five? Three? Seven. Whatever.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 3 Pistol Ammo per shot");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Fires multiple Explosive rounds", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Did I fire six shots, or only five? Three? Seven. Whatever.");
         }
     }
 }

@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.1f;
+            Item.Size = new Vector2(60, 34);
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -49,12 +49,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-15f, 0f);
+            return new Vector2(-15f, 5f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            Utilities.Text(tooltips, Mod);
         }
     }
 }

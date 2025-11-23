@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -42,7 +43,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "Alkaline", "Grants immunity to Corrosive damage & Venom")
             {
-                OverrideColor = new Color(136, 235, 94) // Light Green
+                OverrideColor = Utilities.VaultarianColours.Corrosive.GetVaultarianColor()
             };
         }
 	}

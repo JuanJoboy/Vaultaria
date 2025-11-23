@@ -84,15 +84,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Sniper Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Initial Projectile splits into 3 Projectiles")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Man killer.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "tooltip1", "Uses Sniper Ammo");
+            Utilities.Text(tooltips, Mod, "tooltip2", "Initial Projectile splits into 3 Projectiles", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Man killer.");
         }
     }
 }

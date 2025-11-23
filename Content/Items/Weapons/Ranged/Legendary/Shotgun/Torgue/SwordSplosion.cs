@@ -62,20 +62,10 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 3 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Shotgun Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "KBecause Mister Torgue said so.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 3);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots out swords that explode on contact", Utilities.VaultarianColours.Explosive);
+            Utilities.RedText(tooltips, Mod, "Because Mister Torgue said so.");
         }
     }
 }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Prefixes.Shields
 {
@@ -47,7 +48,7 @@ namespace Vaultaria.Content.Prefixes.Shields
         {
             yield return new TooltipLine(Mod, "Inflammable", "Grants immunity to Fire damage")
             {
-                OverrideColor = new Color(231, 92, 22) // Orange
+                OverrideColor = Utilities.VaultarianColours.Incendiary.GetVaultarianColor()
             };
         }
 	}

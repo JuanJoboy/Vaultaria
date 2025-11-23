@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Buffs.AccessoryEffects;
+using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Accessories.Attunements
@@ -12,7 +13,7 @@ namespace Vaultaria.Content.Items.Accessories.Attunements
     {
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(30, 30);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
@@ -20,10 +21,7 @@ namespace Vaultaria.Content.Items.Accessories.Attunements
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Adds 20% Shock damage to all attacks")
-            {
-                OverrideColor = new Color(46, 153, 228) // Blue
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Adds 20% Shock damage to all attacks", Utilities.VaultarianColours.Shock);
         }
     }
 }

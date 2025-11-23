@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(80, 30);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 16;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
@@ -73,20 +73,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
-
-            if (damageLine != null)
-            {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 4 ranged damage";
-            }
-
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Give me some light, away!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.MultiShotText(tooltips, Item, 4);
+            Utilities.Text(tooltips, Mod);
+            Utilities.RedText(tooltips, Mod, "Give me some light, away!");
         }
     }
 }

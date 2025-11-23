@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(20, 2);
 
             // Damage
             Projectile.friendly = true;

@@ -19,8 +19,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.2f;
+            Item.Size = new Vector2(116, 32);
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -53,7 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Dahl
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
+            Utilities.Text(tooltips, Mod);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(64, 30);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -54,15 +54,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "Rapidly shoots Corrosive clouds")
-            {
-                OverrideColor = new Color(136, 235, 94) // Light Green
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Now, you will rise.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Rapidly shoots Corrosive clouds", Utilities.VaultarianColours.Corrosive);
+            Utilities.RedText(tooltips, Mod, "Now, you will rise.");
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Vaultaria.Content.Buffs.MagicEffects;
 using Vaultaria.Content.Projectiles.Magic;
 using Terraria.DataStructures;
+using Vaultaria.Common.Configs;
 
 public class PhaselockedNPC : GlobalNPC
 {
@@ -26,6 +27,22 @@ public class PhaselockedNPC : GlobalNPC
 
     public override void OnKill(NPC npc)
     {
+        VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
+        if(!config.GetRuinFirst && Main.hardMode)
+        {
+            SubSequence(npc);
+        }
+        else if(config.GetRuinFirst && Main.hardMode && NPC.downedMoonlord)
+        {
+            SubSequence(npc);
+        }
+
+        base.OnKill(npc);
+    }
+
+    public void SubSequence(NPC npc)
+    {
         // Check for the buff first.
         if (npc.HasBuff(ModContent.BuffType<Phaselocked>()))
         {
@@ -43,8 +60,6 @@ public class PhaselockedNPC : GlobalNPC
                 Main.myPlayer
             );
         }
-
-        base.OnKill(npc);
     }
 
     private void AddDrawing(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
@@ -65,15 +80,7 @@ public class PhaselockedNPC : GlobalNPC
         Rectangle sourceRectangle = texture.Frame(); // Use the whole texture
         Vector2 origin = sourceRectangle.Size() / 2f; // Draw from the center of the texture
 
-        float scale;
-        if (npc.height < npc.width)
-        {
-            scale = 0.5f * (npc.height / 5); // was 0.25 before
-        }
-        else
-        {
-            scale = 0.2f * (npc.height / 7); // was 0.25 before
-        }
+        float scale = npc.height * 0.125f * 0.125f * npc.width * 0.125f * 0.125f;
 
         // --- 4. Draw the Texture ---
         spriteBatch.Draw(

@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(28, 6);
 
             // Damage
             Projectile.damage = 15;
@@ -33,15 +33,10 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue
             Projectile.tileCollide = true;
         }
 
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 4;
-        }
-
         public override void AI()
         {
             base.AI();
-            Utilities.FrameRotator(8, Projectile);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void OnKill(int timeLeft)

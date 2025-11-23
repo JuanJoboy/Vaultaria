@@ -17,7 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(22, 6);
 
             // Damage
             Projectile.friendly = true;

@@ -24,12 +24,20 @@ using Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs;
 using Terraria.GameContent;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
+using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Common.Players
 {
     public class VaultariaPlayer : ModPlayer
     {
         public NPC.HitInfo globalNpcHitInfo;
+        private static int numTimesPenetrated = 0;
 
         // 1. Persistence Flag: Saved with the character file.
         public bool hasInitialized = false;
@@ -49,7 +57,7 @@ namespace Vaultaria.Common.Players
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ItemID.MusketBall, 1000);
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<CopperBullet>(), 600);
 
                 // Example 3: Display a welcome message
                 Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
@@ -59,7 +67,7 @@ namespace Vaultaria.Common.Players
             }
         }
         
-        // 3. Data Saving: Ensure the flag is saved and loaded with the player.
+        // 3. Data Saving: Ensure the flag is saved and loaded with the player
         public override void SaveData(TagCompound tag)
         {
             tag.Add("hasInitialized", hasInitialized);
@@ -99,7 +107,54 @@ namespace Vaultaria.Common.Players
             {
                 if (Player.ZoneSkyHeight)
                 {
-                    Utilities.Utilities.HealOnNPCHit(target, damageDone, 0.65f, proj);
+                    Utilities.Utilities.HealOnNPCHit(target, damageDone, 0.1f, proj);
+                }
+            }
+
+            if(IsHolding(ModContent.ItemType<NightHawkin>()))
+            {
+                if(Utilities.Utilities.Randomizer(30))
+                {
+                    if(Main.dayTime)
+                    {
+                        ElementalProjectile.SetElementOnNPC(target, 0.75f, Player, ElementalID.CryoProjectile, ElementalID.CryoBuff, 120);
+                    }
+                    else
+                    {
+                        ElementalProjectile.SetElementOnNPC(target, 0.75f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 120);
+                    }
+                }
+            }
+
+            if(IsHolding(ModContent.ItemType<AkumasDemise>()))
+            {
+                if (ElementalProjectile.SetElementalChance(75))
+                {
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.75f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 180);
+                }
+            }
+
+            if(IsHolding(ModContent.ItemType<Oracle>()))
+            {                
+                proj.penetrate = 2;
+
+                if(hit.Crit && numTimesPenetrated < 5)
+                {
+                    Utilities.Utilities.MoveToTarget(proj, target, 10, 10);
+                    numTimesPenetrated++;
+                }
+                else
+                {
+                    proj.Kill();
+                    numTimesPenetrated = 0;
+                }
+            }
+
+            if(IsHolding(ModContent.ItemType<CatONineTails>()))
+            {                
+                if (ElementalProjectile.SetElementalChance(20))
+                {
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.75f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 180);
                 }
             }
         }
@@ -136,6 +191,26 @@ namespace Vaultaria.Common.Players
             }
 
             return multiplier;
+        }
+
+        public override void PostUpdateRunSpeeds()
+        {
+            base.PostUpdateRunSpeeds();
+
+            if(IsHolding(ModContent.ItemType<Bane>()))
+            {
+                float speedPenalty = 0.2f;
+
+                // Apply the 80% reduction (0.2f remaining speed)
+                Player.moveSpeed *= speedPenalty; 
+                Player.runAcceleration *= speedPenalty;
+                Player.accRunSpeed *= speedPenalty;
+                Player.maxRunSpeed *= speedPenalty;
+                
+                // Also apply the penalty to wing-specific speed stats
+                Player.wingRunAccelerationMult *= speedPenalty;
+                Player.wingAccRunSpeed *= speedPenalty;
+            }
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
@@ -316,6 +391,17 @@ namespace Vaultaria.Common.Players
 
             return false;
         }
+
+        private bool IsHolding(int item)
+        {
+            if(Player.HeldItem.type == item)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
 
         private void HomingCauseProjectile(Projectile proj, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
         {

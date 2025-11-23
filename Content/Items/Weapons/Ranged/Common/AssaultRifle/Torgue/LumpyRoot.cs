@@ -22,8 +22,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 1.1f;
+            Item.Size = new Vector2(92, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -34,8 +34,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 4;
+            Item.knockBack = 0.5f;
+            Item.damage = 8;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -51,12 +51,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-3f, 0f);
+            return new Vector2(-13f, 3.5f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses Assault Rifle Ammo"));
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Explosive bullets", Utilities.VaultarianColours.Explosive);
         }
     }
 }

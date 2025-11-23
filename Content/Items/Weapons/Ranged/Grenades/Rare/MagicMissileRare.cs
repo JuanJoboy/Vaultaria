@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Content.Projectiles.Shields;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
 {
@@ -18,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(19, 29);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Blue;
             Item.maxStack = 9999;
@@ -80,14 +81,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Throws out 2 Slag balls that home in on an enemy and explode on impact")
-            {
-                OverrideColor = new Color(142, 94, 235) // Purple
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "No wand required. Just point and shoot.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Throws out 2 Slag balls that home in on an enemy and explode on impact", Utilities.VaultarianColours.Slag);
+            Utilities.RedText(tooltips, Mod, "No wand required. Just point and shoot.");
         }
     }
 }

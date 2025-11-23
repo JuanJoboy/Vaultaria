@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(50, 26);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
             Item.useAmmo = ModContent.ItemType<SubmachineGunAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 14;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
@@ -50,12 +50,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 5f);
+            return new Vector2(-20f, 2f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses SMG Ammo"));
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Corrosive Bullets", Utilities.VaultarianColours.Corrosive);
         }
     }
 }

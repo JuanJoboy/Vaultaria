@@ -22,16 +22,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.8f;
-            Item.shoot = ModContent.ProjectileType<BoomacornBullet>();
-            Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
+            Item.Size = new Vector2(108, 30);
+            Item.scale = 0.7f;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
-            Item.shoot = ProjectileID.Bullet;
-            Item.useAmmo = AmmoID.Bullet;
+            Item.shootSpeed = 30;
+            Item.shoot = ModContent.ProjectileType<BoomacornBullet>();
+            Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
@@ -49,6 +49,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             Utilities.ItemSound(Item, Utilities.Sounds.JakobsShotgun, 60);
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if(Main.hardMode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 7, 5, 4, 6);
@@ -56,45 +66,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             return false;
         }
 
-        public override bool? UseItem(Player player)
-        {
-            player.statLife -= 5;
-
-            return base.UseItem(player);
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(30)
-                .AddIngredient(ItemID.HellstoneBar, 15)
-                .AddIngredient(ItemID.Boomstick, 1)
-                .AddIngredient(ItemID.HealingPotion, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30f, 0f);
+            return new Vector2(-0f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine damageLine = tooltips.Find(tip => tip.Name == "Damage");
+            Utilities.MultiShotText(tooltips, Item, 7);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots every element", Utilities.VaultarianColours.Information);
 
-            if (damageLine != null)
+            if(!Main.hardMode)
             {
-                Player player = Main.LocalPlayer;
-                int finalDamage = (int)player.GetTotalDamage(Item.DamageType).ApplyTo(Item.damage);
-                damageLine.Text = finalDamage + " x 7 ranged damage";
+                Utilities.Text(tooltips, Mod, "Tooltip3", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Always, I want to be with you.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.RedText(tooltips, Mod, "Always, I want to be with you.");
         }
     }
 }

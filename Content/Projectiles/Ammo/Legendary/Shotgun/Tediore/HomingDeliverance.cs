@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(70, 30);
 
             // Damage
             Projectile.friendly = true;

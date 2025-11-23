@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Uncommon.Shotgun.Torgue
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(80, 8);
+            Projectile.Size = new Vector2(28, 6);
 
             // Damage
             Projectile.friendly = true;

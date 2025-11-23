@@ -22,8 +22,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.9f;
+            Item.Size = new Vector2(68, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -83,7 +83,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             {
                 altFireMode = true;
 
-                Item.damage = 0;
+                Item.damage = 100;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
@@ -102,7 +102,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             {
                 altFireMode = false;
 
-                Item.damage = 60;
+                Item.damage = 25;
                 Item.crit = 16;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
@@ -123,16 +123,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 0f);
+            return new Vector2(-25f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Who's a widdle gunny-wunny?")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Right-Click to throw an explosive SMG");
+            Utilities.RedText(tooltips, Mod, "Who's a widdle gunny-wunny?");   
         }
     }
 }

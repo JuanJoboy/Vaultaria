@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.6f;
+            Item.Size = new Vector2(56, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 31;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
@@ -46,6 +46,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             Item.value = Item.buyPrice(gold: 10);
             // Item.UseSound = SoundID.Item31;
             Utilities.ItemSound(Item, Utilities.Sounds.VladofPistol, 60);
+        }
+
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            return false;
         }
 
         public override void AddRecipes()
@@ -67,16 +72,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Uses any normal bullet type as ammo\nConsumes no ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "It's closer than you think! (no it isn't)")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
-        }
-
-        public override bool CanConsumeAmmo(Item ammo, Player player)
-        {
-            return false;
+            Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Consumes no ammo");
+            Utilities.RedText(tooltips, Mod, "It's closer than you think! (no it isn't)");
         }
     }
 }

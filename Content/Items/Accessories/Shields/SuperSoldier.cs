@@ -15,7 +15,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(33, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(gold: 15);
             Item.rare = ItemRarityID.Master;
@@ -23,15 +23,9 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "+20 HP\n+4 Defense\nRegenerates health"));
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "When under 10% health, become invulnerable, & gain the following increases while health is full:\n\t+50% Fire Rate\n\t+25% Move Speed\n\t+25% No Ammo Consumption Chance\nMust have full health before immunity can be used again")
-            {
-                OverrideColor = new Color(245, 252, 175) // Light Yellow
-            });
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "Roland, out.")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+4 Defense\nRegenerates health");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "When under 10% health, become invulnerable, & gain the following increases while health is full:\n\t+50% Fire Rate\n\t+25% Move Speed\n\t+25% No Ammo Consumption Chance\nMust have full health before immunity can be used again", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Roland, out.");
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

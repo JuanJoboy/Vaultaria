@@ -17,7 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(20, 2);
 
             // Damage
             Projectile.friendly = true;

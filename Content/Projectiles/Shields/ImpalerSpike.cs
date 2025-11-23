@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Projectiles.Shields
             Projectile.CloneDefaults(ProjectileID.ChlorophyteBullet);
 
             // Size
-            Projectile.Size = new Vector2(20, 20);
+            Projectile.Size = new Vector2(21, 29);
 
             // Damage
             Projectile.friendly = true;
@@ -43,21 +43,7 @@ namespace Vaultaria.Content.Projectiles.Shields
         public override void PostAI()
         {
             base.PostAI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
-
-            // This will cycle through all of the frames in the sprite sheet
-            int frameSpeed = 4; // How fast you want it to animate (lower = faster)
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
-            }
+            Utilities.FrameRotator(4, Projectile);
         }
 
         public override void OnKill(int timeLeft)

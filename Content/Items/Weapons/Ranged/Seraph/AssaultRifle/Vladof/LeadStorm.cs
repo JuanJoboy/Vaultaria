@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
+            Item.Size = new Vector2(76, 30);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;
@@ -61,11 +61,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Tooltip1", "Fires 3 arching bullets\nUses Assault Rifle Ammo"));
-            tooltips.Add(new TooltipLine(Mod, "Red Text", "What a glorious feeling!")
-            {
-                OverrideColor = new Color(198, 4, 4) // Red
-            });
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Assault Rifle Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Fires 3 arching bullets", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "What a glorious feeling!");
         }
     }
 }
