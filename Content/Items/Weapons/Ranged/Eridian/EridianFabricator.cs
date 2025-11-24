@@ -66,7 +66,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
             return true;
         }
 
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-20f, 0f);

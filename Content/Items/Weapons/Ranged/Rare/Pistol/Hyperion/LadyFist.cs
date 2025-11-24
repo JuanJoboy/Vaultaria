@@ -48,6 +48,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             Utilities.ItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if(NPC.downedGolemBoss)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-7f, 2f);
@@ -57,6 +67,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
         {
             Utilities.Text(tooltips, Mod);
             Utilities.Text(tooltips, Mod, "Tooltip1", "+800% Crit");
+
+            if(!NPC.downedGolemBoss)
+            {
+                Utilities.Text(tooltips, Mod, "Tooltip2", "Can only be used after defeating Golem", Utilities.VaultarianColours.Information);
+            }
+
             Utilities.RedText(tooltips, Mod, "Love is a Lady Finger. True love is a Lady Fist.");
         }
     }

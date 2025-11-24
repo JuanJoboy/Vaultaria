@@ -30,6 +30,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
             Item.shootSpeed = 10;
             Item.shoot = ModContent.ProjectileType<ZimBullet>();
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
+            ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<Gub>();
 
             // Combat properties
             Item.knockBack = 1f;

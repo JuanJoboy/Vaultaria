@@ -1,8 +1,10 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Content.Items.Potions;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Maliwan;
 
 namespace ExampleMod.Common.GlobalNPCs
 {
@@ -23,6 +25,25 @@ namespace ExampleMod.Common.GlobalNPCs
             if (shop.NpcType == NPCID.Wizard)
             {
                 shop.Add<DeceptionPotion>();
+            }
+
+            if (shop.NpcType == NPCID.SkeletonMerchant && Main.hardMode)
+            {
+                float cavern = (float) Main.rockLayer;
+                float hell = Main.UnderworldLayer;
+
+                float halfway = (cavern + hell) / 2;
+
+                NPC merchant = null;
+                merchant.type = NPCID.SkeletonMerchant;
+
+                Vector2 topLeft = new Vector2(Main.leftWorld, halfway);
+                Vector2 bottomRight = new Vector2(Main.rightWorld, hell);
+
+                if(merchant.Center.Between(topLeft, bottomRight))
+                {
+                    shop.Add<Volcano>();
+                }
             }
         }
 	}

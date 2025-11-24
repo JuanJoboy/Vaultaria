@@ -34,6 +34,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Common.Configs;
+using Vaultaria.Content.Items.Placeables.Vaults;
 
 namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
@@ -63,7 +64,8 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
             ("DoublePenetrating", ModContent.ItemType<UnkemptHarold>()),
             ("Trickshot", ModContent.ItemType<Fibber>()),
             ("Accessories", ModContent.ItemType<Sham>()),
-            ("Ammo", ModContent.ItemType<LauncherAmmo>())
+            ("Ammo", ModContent.ItemType<LauncherAmmo>()),
+            ("Vaults", ModContent.ItemType<VaultKey1>()),
 		};
 
 		// Sets a unique message when the NPC dies.
@@ -363,6 +365,10 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 			else if (currentIndex == 12)
 			{
 				ChatButtons(ref button1, "Back", ref button2, "Ammo");
+			}
+			else if (currentIndex == 13)
+			{
+				ChatButtons(ref button1, "Back", ref button2, "Vaults");
 			}
 			else if (currentIndex == pages.Length - 1)
 			{

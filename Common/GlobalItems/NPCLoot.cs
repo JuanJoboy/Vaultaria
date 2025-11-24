@@ -18,6 +18,8 @@ using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue;
@@ -37,6 +39,8 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
 
@@ -44,6 +48,8 @@ namespace Vaultaria.Common.GlobalItems
 {
     public class NPCLoot : GlobalNPC
     {
+        private static bool ladyFistCollected = false;
+
         public override void OnKill(NPC npc)
         {
             base.OnKill(npc);
@@ -54,6 +60,21 @@ namespace Vaultaria.Common.GlobalItems
                 {
                     Item.NewItem(npc.GetSource_Death(), npc.Center, ModContent.ItemType<DestroyersEye>());
                     Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Eden-6 Vault Raided");
+                }
+            }
+        }
+
+        public override void OnChatButtonClicked(NPC npc, bool firstButton)
+        {
+            base.OnChatButtonClicked(npc, firstButton);
+
+            if(npc.type == NPCID.Angler)
+            {
+                if(Main.anglerQuest == 1 && ladyFistCollected == false)
+                {
+                    Player player = Main.player[Main.myPlayer];
+                    Item.NewItem(player.GetSource_GiftOrReward(), player.Center, ModContent.ItemType<LadyFist>());
+                    ladyFistCollected = true;
                 }
             }
         }
@@ -69,6 +90,12 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.GiantTortoise || npc == NPCID.IceTortoise || npc == NPCID.Derpling)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OttoIdol>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FabledTortoise>(), 100, 1, 1));
+            }
+
+            if (npc == NPCID.Nymph)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deathless>(), 4, 1, 1));
             }
 
             //********************************** Bosses *********************************//
@@ -142,6 +169,30 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deliverance>(), 10, 1, 1));
                 Eridium(npcLoot, 15, 18);
+            }
+
+            if (npc == NPCID.BigMimicCorruption)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Blackout>(), 10, 1, 1));
+                Eridium(npcLoot, 5, 15);
+            }
+
+            if (npc == NPCID.BigMimicCrimson)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CatONineTails>(), 10, 1, 1));
+                Eridium(npcLoot, 5, 15);
+            }
+
+            if (npc == NPCID.BigMimicHallow)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Seraphim>(), 10, 1, 1));
+                Eridium(npcLoot, 5, 15);
+            }
+
+            if (npc == NPCID.BigMimicJungle)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bane>(), 10, 1, 1));
+                Eridium(npcLoot, 5, 15);
             }
 
             if (npc == NPCID.TheDestroyer)
@@ -258,6 +309,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.MoonLordCore)
             {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VaultFragment6>(), 1, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CommanderPlanetoid>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 20, 1, 1));
                 Eridium(npcLoot, 25, 40);

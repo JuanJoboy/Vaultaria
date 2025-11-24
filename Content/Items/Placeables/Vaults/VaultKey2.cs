@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Placeables.Vaults
 {
@@ -50,6 +51,11 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
                 .AddIngredient<VaultFragment6>(1)
                 .AddTile(TileID.DemonAltar)
                 .Register();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Right-Click a Vault-Key Pedestal to enter the vault", Utilities.VaultarianColours.Information);
         }
     }
 }
