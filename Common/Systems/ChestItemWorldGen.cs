@@ -7,6 +7,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl;
@@ -36,6 +37,8 @@ namespace Vaultaria.Common.Systems
             PlaceInFrozenChests();
             
             PlaceInSkyWareChests();
+
+			PlaceInWebChests();
             
             PlaceInWaterChests();
 
@@ -61,10 +64,10 @@ namespace Vaultaria.Common.Systems
                 {
 					// We have found a Frozen Chest
 					// If we don't want to add one of the items to every Frozen Chest, we can randomly skip this chest with a 33% chance.
-					if (WorldGen.genRand.NextBool(3))
-                    {
-						continue;
-                    }
+					// if (WorldGen.genRand.NextBool(3))
+                    // {
+					// 	continue;
+                    // }
 
 					// Next we need to find the first empty slot for our item
 					for (int inventoryIndex = 0; inventoryIndex < Chest.maxItems; inventoryIndex++)
@@ -160,6 +163,17 @@ namespace Vaultaria.Common.Systems
             PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
+        private void PlaceInWebChests()
+        {
+			int[] itemsToPlaceInChest = [ModContent.ItemType<NightHawkin>()];
+			int itemsToPlaceInChestChoice = 0;
+			int itemsPlaced = 0;
+			int maxItems = Main.chest.Length;
+			int chest = 15;
+
+            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+        }
+
         private void PlaceInWaterChests()
         {
 			int[] itemsToPlaceInChest = [ModContent.ItemType<Lascaux>()];
@@ -178,7 +192,7 @@ namespace Vaultaria.Common.Systems
 			int lockedShadowChest = 4;
 
 			int skyWareChest = 13;
-			int lihzahrdChest = 17;
+			int lihzahrdChest = 16;
 
             PlaceItemsInChest([ModContent.ItemType<VaultFragment1>()], 0, 0, 1, waterChest);
             PlaceItemsInChest([ModContent.ItemType<VaultFragment2>()], 0, 0, 1, lockedGoldChest);

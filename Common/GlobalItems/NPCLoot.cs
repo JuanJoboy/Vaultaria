@@ -40,6 +40,8 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
@@ -70,7 +72,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if(npc.type == NPCID.Angler)
             {
-                if(Main.anglerQuest == 1 && ladyFistCollected == false)
+                if(Main.anglerQuest > 30 && ladyFistCollected == false)
                 {
                     Player player = Main.player[Main.myPlayer];
                     Item.NewItem(player.GetSource_GiftOrReward(), player.Center, ModContent.ItemType<LadyFist>());
@@ -108,6 +110,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.EyeofCthulhu)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Law>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PhaselockSpell>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 
@@ -225,6 +228,12 @@ namespace Vaultaria.Common.GlobalItems
                 Eridium(npcLoot, 6, 10);
             }
 
+            if (npc == NPCID.Parrot || npc == NPCID.PirateCaptain || npc == NPCID.PirateCorsair || npc == NPCID.PirateCrossbower || npc == NPCID.PirateDeadeye || npc == NPCID.PirateDeckhand || npc == NPCID.PirateGhost || npc == NPCID.PirateShip)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 100, 1, 1));
+                Eridium(npcLoot, 6, 10);
+            }
+
             if (npc == NPCID.Everscream)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Zim>(), 25, 1, 1));
@@ -240,6 +249,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Pumpking)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WorldBurn>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GhastCall>(), 20, 100, 150));
                 Eridium(npcLoot, 6, 10);
             }
 
@@ -314,6 +324,8 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 20, 1, 1));
                 Eridium(npcLoot, 25, 40);
             }
+
+            npcLoot.Add(ItemDropRule.ByCondition(new CobraCondition(), ModContent.ItemType<Cobra>(), 1, 1, 1));
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

@@ -187,7 +187,7 @@ namespace Vaultaria.Common.Utilities
             { VaultarianColours.Cryo, new Color(131, 235, 228) }, // Light Blue
             { VaultarianColours.Radiation, new Color(227, 205, 109) }, // Light Yellow
             { VaultarianColours.Healing, new Color(245, 201, 239) }, // Pink
-            { VaultarianColours.RedText, new Color(198, 4, 4) }, // Red
+            { VaultarianColours.RedText, new Color(242, 70, 58) }, // Red
             { VaultarianColours.CursedText, new Color(0, 249, 199) }, // Cyan
             { VaultarianColours.Information, new Color(224, 224, 224) }, // Light Grey
             { VaultarianColours.Master, new Color(168, 69, 95) }, // Master

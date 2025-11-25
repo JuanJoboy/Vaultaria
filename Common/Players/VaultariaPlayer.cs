@@ -48,7 +48,7 @@ namespace Vaultaria.Common.Players
             Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in this mod", Color.Red);
 
             // The logic runs only if this character has NOT been initialized yet.
-            // if (!hasInitialized)
+            if (!hasInitialized)
             {
                 // --- CUSTOM INITIALIZATION LOGIC GOES HERE ---
 

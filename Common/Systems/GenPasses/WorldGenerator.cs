@@ -5,6 +5,7 @@ using Terraria.WorldBuilding;
 using Terraria;
 using System;
 using Terraria.ModLoader.IO;
+using Terraria.ID;
 
 namespace Vaultaria.Common.Systems.GenPasses
 {

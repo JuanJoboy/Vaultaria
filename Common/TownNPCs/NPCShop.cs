@@ -27,23 +27,9 @@ namespace ExampleMod.Common.GlobalNPCs
                 shop.Add<DeceptionPotion>();
             }
 
-            if (shop.NpcType == NPCID.SkeletonMerchant && Main.hardMode)
+            if (shop.NpcType == NPCID.SkeletonMerchant)
             {
-                float cavern = (float) Main.rockLayer;
-                float hell = Main.UnderworldLayer;
-
-                float halfway = (cavern + hell) / 2;
-
-                NPC merchant = null;
-                merchant.type = NPCID.SkeletonMerchant;
-
-                Vector2 topLeft = new Vector2(Main.leftWorld, halfway);
-                Vector2 bottomRight = new Vector2(Main.rightWorld, hell);
-
-                if(merchant.Center.Between(topLeft, bottomRight))
-                {
-                    shop.Add<Volcano>();
-                }
+                shop.Add<Volcano>(Condition.Hardmode, Condition.NearLava);
             }
         }
 	}

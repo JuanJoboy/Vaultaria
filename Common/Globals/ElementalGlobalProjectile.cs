@@ -35,6 +35,7 @@ namespace Vaultaria.Common.Globals
             {
                 modifiers.Defense *= 0;
                 modifiers.DefenseEffectiveness *= 0;
+                modifiers.ArmorPenetration += 100000;
             }
         }
 

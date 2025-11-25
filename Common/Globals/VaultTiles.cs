@@ -1,4 +1,6 @@
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 
@@ -36,7 +38,16 @@ namespace Vaultaria.Common.Globals
 
             if(SubworldLibrary.SubworldSystem.AnyActive())
             {
-                return false;
+                Tile tile = Main.tile[i, j];
+
+                if(tile.HasActuator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
@@ -56,6 +67,11 @@ namespace Vaultaria.Common.Globals
         {
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
+
+            if(SubworldLibrary.SubworldSystem.AnyActive())
+            {
+                return false;
+            }
 
             if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
             {

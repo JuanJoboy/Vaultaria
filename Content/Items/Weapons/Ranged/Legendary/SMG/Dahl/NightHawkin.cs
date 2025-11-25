@@ -47,6 +47,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
             Utilities.ItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if(Main.hardMode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-20f, 2f);
@@ -55,7 +65,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod);
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Cryo bullets during the day and Incendiary bullets at night", Utilities.VaultarianColours.Cryo);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Cryo bullets during the day", Utilities.VaultarianColours.Cryo);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Shoots Incendiary bullets at night", Utilities.VaultarianColours.Incendiary);
+
+            if(!Main.hardMode)
+            {
+                Utilities.Text(tooltips, Mod, "Tooltip4", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
+            }
+
             Utilities.RedText(tooltips, Mod, "Stranger than things.");
         }
     }
