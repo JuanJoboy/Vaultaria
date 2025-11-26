@@ -751,6 +751,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Skullmasher
 	}
+
+	DestroyerTrophy: {
+		Tooltip: ""
+		DisplayName: Destroyer Trophy
+	}
 }
 
 Projectiles: {
@@ -915,9 +920,13 @@ Prefixes: {
 
 NPCs: {
 	Destroyer: {
-		Bestiary: {
-			Destroyer_1: What is the Destroyer? It is a mouth with endless appetite. It is hate that never cools. It is the long shadow cast by our universe against the mouldering sun of time. It will never truly be contained. Merely made to wait until its chains slip - or are slipped for it.
-		}
+		DisplayName: The Destroyer
+		Bestiary.Destroyer_1: What is the Destroyer? It is a mouth with endless appetite. It is hate that never cools. It is the long shadow cast by our universe against the mouldering sun of time. It will never truly be contained. Merely made to wait until its chains slip - or are slipped for it.
+	}
+
+	DestroyerMinion: {
+		DisplayName: Destroyer Minion
+		Bestiary.DestroyerMinion_1: What is the Destroyer? It is a mouth with endless appetite. It is hate that never cools. It is the long shadow cast by our universe against the mouldering sun of time. It will never truly be contained. Merely made to wait until its chains slip - or are slipped for it.
 	}
 
 	Claptrap: {
@@ -1034,6 +1043,4 @@ Configs: {
 			Tooltip: If enabled, Ruin is gained after defeating the Wall of Flesh instead of Sub-Sequence
 		}
 	}
-
-
 }

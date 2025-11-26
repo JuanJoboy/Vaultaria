@@ -55,17 +55,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Jakobs
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(30)
-                .AddIngredient(ItemID.HellstoneBar, 15)
-                .AddIngredient(ItemID.Boomstick, 1)
-                .AddIngredient(ItemID.HealingPotion, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10f, 3f);

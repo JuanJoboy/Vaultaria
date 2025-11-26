@@ -73,6 +73,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
                 Utilities.Text(tooltips, Mod, "Tooltip2", "Can only be used after defeating Golem", Utilities.VaultarianColours.Information);
             }
 
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Given after completing 30 Angler quests", Utilities.VaultarianColours.Information);
+
             Utilities.RedText(tooltips, Mod, "Love is a Lady Finger. True love is a Lady Fist.");
         }
     }

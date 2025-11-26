@@ -65,18 +65,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(50)
-                .AddIngredient(ItemID.SniperRifle, 1)
-                .AddIngredient(ItemID.SoulofFright, 25)
-                .AddIngredient(ItemID.Ectoplasm, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 3)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-15f, 0f);

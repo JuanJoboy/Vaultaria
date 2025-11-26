@@ -10,7 +10,8 @@ namespace Vaultaria.Content.Items.Tiles.Furniture
 	// Simple 3x3 tile that can be placed on a wall
 	public class DestroyerTrophy : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.FramesOnKillWall[Type] = true;

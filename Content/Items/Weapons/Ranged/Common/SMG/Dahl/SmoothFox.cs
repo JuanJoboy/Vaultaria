@@ -55,6 +55,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Wooden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

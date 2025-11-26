@@ -82,6 +82,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
                 Utilities.Text(tooltips, Mod, "Tooltip3", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
             }
 
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Found in Skyware Chests", Utilities.VaultarianColours.Information);
+
             Utilities.RedText(tooltips, Mod, "Always, I want to be with you.");
         }
     }

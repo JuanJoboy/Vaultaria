@@ -30,13 +30,6 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
 		}
 
-		public override void AddRecipes() {
-			CreateRecipe()
-				.AddIngredient<Eridium>(10)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-				.Register();
-		}
-
 		// Because this weapon fires a holdout projectile, it needs to block usage if its projectile already exists.
 		public override bool CanUseItem(Player player) {
 			return player.ownedProjectileCounts[ModContent.ProjectileType<WarriorLaserHoldout>()] <= 0;

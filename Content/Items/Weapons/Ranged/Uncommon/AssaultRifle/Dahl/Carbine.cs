@@ -55,6 +55,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Frozen Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

@@ -58,6 +58,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Assault Rifle Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Explosive bullets", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Wooden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

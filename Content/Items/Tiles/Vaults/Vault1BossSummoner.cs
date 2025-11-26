@@ -18,12 +18,8 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 {
     public class Vault1BossSummoner : ModTile
     {
-        public override string Texture => "Terraria/Images/NPC_" + NPCID.DD2LanePortal;
-
         public override void SetStaticDefaults()
         {
-			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.DD2LanePortal];
-
             // Item Config
             Main.tileFrameImportant[Type] = true; // Tells Terraria that there is TileObjectData that is used for rendering
             Main.tileSolidTop[Type] = false; // The tile is solid on top

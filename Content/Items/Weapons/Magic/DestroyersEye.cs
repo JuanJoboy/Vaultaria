@@ -26,14 +26,6 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			// Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
 		}
 
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-				.AddIngredient<Eridium>(10)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-				.Register();
-		}
-
 		// Because this weapon fires a holdout projectile, it needs to block usage if its projectile already exists.
 		public override bool CanUseItem(Player player)
 		{

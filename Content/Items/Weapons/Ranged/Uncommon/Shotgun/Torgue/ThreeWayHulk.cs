@@ -64,6 +64,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue
         {
             Utilities.MultiShotText(tooltips, Item, 15);
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Golden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

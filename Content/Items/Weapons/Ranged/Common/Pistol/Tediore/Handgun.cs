@@ -132,6 +132,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
         {
             Utilities.Text(tooltips, Mod);
             Utilities.Text(tooltips, Mod, "Tooltip2", "Right-Click to throw the Pistol", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Wooden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

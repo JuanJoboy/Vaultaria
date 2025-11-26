@@ -54,6 +54,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Water Chests", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "The gun of the Bulls.");
         }
     }

@@ -65,6 +65,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             Utilities.MultiShotText(tooltips, Item, 3);
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots out swords that explode on contact", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Given after completing 50 Angler quests", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Because Mister Torgue said so.");
         }
     }

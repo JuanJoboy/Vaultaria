@@ -57,6 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
         {
             Utilities.Text(tooltips, Mod, "ToolTip1", "Uses Pistol Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Shock bullets", Utilities.VaultarianColours.Shock);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Wooden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

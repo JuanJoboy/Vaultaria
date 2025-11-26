@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Items.Materials
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "The first fragment of the Promethean Vault Key");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Skyware Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

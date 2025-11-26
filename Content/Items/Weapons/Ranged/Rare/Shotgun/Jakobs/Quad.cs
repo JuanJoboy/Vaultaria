@@ -62,6 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         {
             Utilities.MultiShotText(tooltips, Item, 18);
             Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

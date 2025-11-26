@@ -57,6 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Corrosive Bullets", Utilities.VaultarianColours.Corrosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Rich Mahogany Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

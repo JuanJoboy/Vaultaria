@@ -87,6 +87,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
                 Utilities.Text(tooltips, Mod, "Tooltip2", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
             }
 
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
+
             Utilities.RedText(tooltips, Mod, "Makes orphans. Often.");
             Utilities.CursedText(tooltips, Mod, "Curse of the Nefarious Backlash!\n(-5 HP on use)");
         }

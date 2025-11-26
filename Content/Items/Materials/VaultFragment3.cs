@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Items.Materials
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "The third fragment of the Eden-6 Vault Key");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
         }
     }
 }

@@ -73,6 +73,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
                 Utilities.Text(tooltips, Mod, "Tooltip4", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
             }
 
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Found in Web Covered Chests", Utilities.VaultarianColours.Information);
+
             Utilities.RedText(tooltips, Mod, "Stranger than things.");
         }
     }

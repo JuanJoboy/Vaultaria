@@ -74,14 +74,12 @@ namespace Vaultaria.Content.NPCs.Bosses.Destroyer
 			NPC.aiStyle = -1;
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
-			int associatedNPCType = BodyType();
-			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
-
-			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
+			{
 				new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
-				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.NPCs.Destroyer.Bestiary.Destroyer_1")
+				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.NPCs.DestroyerMinion.Bestiary.DestroyerMinion_1")
 			});
 		}
 

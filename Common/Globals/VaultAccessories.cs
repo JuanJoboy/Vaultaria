@@ -89,7 +89,6 @@ namespace Vaultaria.Common.Globals
 
             // 1. Force the player to drop the current hook line (if one is deployed).
             player.grappling[0] = -1; 
-            player.releaseHook = true;
         }
     }
 }

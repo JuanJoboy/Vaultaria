@@ -19,8 +19,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+2 Defense");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Health is reduced but damage is doubled", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Health is reduced but damage is doubled", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "What do we say to the God of Death?");
         }
 

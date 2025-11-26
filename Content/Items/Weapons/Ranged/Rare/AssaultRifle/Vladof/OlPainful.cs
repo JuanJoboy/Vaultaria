@@ -62,6 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "ToolTip1", "Shoots 3 lasers", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Skyware Chests", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Come on in... Ol' Painful is waiting.");
         }
     }

@@ -120,7 +120,7 @@ namespace Vaultaria.Content.NPCs.Bosses.Destroyer
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				CustomTexturePath = "Destroyer_Preview",
+				CustomTexturePath = "Vaultaria/Content/NPCs/Bosses/Destroyer/Destroyer_Preview",
 				PortraitScale = 0.6f, // Portrait refers to the full picture when clicking on the icon in the bestiary
 				PortraitPositionYOverride = 0f,
 			};
@@ -164,9 +164,11 @@ namespace Vaultaria.Content.NPCs.Bosses.Destroyer
 			}
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
 			// Sets the description of this NPC that is listed in the bestiary
-			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
+			{
 				new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
 				new FlavorTextBestiaryInfoElement("Mods.Vaultaria.NPCs.Destroyer.Bestiary.Destroyer_1")
 			});

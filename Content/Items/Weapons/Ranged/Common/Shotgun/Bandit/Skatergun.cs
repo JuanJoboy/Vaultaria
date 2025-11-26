@@ -63,6 +63,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
         {
             Utilities.MultiShotText(tooltips, Item, 6);
             Utilities.Text(tooltips, Mod);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Found in Wooden Chests", Utilities.VaultarianColours.Information);
         }
     }
 }
