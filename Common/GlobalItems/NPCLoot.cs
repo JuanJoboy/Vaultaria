@@ -27,10 +27,12 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
@@ -45,18 +47,20 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
+using Vaultaria.Content.NPCs.Bosses.Destroyer;
 
 namespace Vaultaria.Common.GlobalItems
 {
     public class NPCLoot : GlobalNPC
     {
         private static bool ladyFistCollected = false;
+        private static bool swordPlosionCollected = false;
 
         public override void OnKill(NPC npc)
         {
             base.OnKill(npc);
 
-            if (npc.type == NPCID.EyeofCthulhu && SubworldLibrary.SubworldSystem.AnyActive())
+            if (npc.type == ModContent.NPCType<Destroyer>() && SubworldLibrary.SubworldSystem.AnyActive())
             {
                 if (npc.boss)
                 {
@@ -70,15 +74,10 @@ namespace Vaultaria.Common.GlobalItems
         {
             base.OnChatButtonClicked(npc, firstButton);
 
-            if(npc.type == NPCID.Angler)
-            {
-                if(Main.anglerQuest > 30 && ladyFistCollected == false)
-                {
-                    Player player = Main.player[Main.myPlayer];
-                    Item.NewItem(player.GetSource_GiftOrReward(), player.Center, ModContent.ItemType<LadyFist>());
-                    ladyFistCollected = true;
-                }
-            }
+            Player player = Main.player[Main.myPlayer];
+
+            QuestItem(npc, 30, ladyFistCollected, player);
+            QuestItem(npc, 50, swordPlosionCollected, player);
         }
 
         public override void ModifyNPCLoot(NPC mob, Terraria.ModLoader.NPCLoot npcLoot)
@@ -99,6 +98,10 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deathless>(), 4, 1, 1));
             }
+
+            Cobra(npc, npcLoot);
+
+            Pimpernel(npc, npcLoot);
 
             //********************************** Bosses *********************************//
             if (npc == NPCID.KingSlime)
@@ -170,7 +173,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.QueenSlimeBoss)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deliverance>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Striker>(), 10, 1, 1));
                 Eridium(npcLoot, 15, 18);
             }
 
@@ -225,12 +228,6 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.PirateShip || npc == NPCID.PirateCaptain)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Nukem>(), 5, 1, 1));
-                Eridium(npcLoot, 6, 10);
-            }
-
-            if (npc == NPCID.Parrot || npc == NPCID.PirateCaptain || npc == NPCID.PirateCorsair || npc == NPCID.PirateCrossbower || npc == NPCID.PirateDeadeye || npc == NPCID.PirateDeckhand || npc == NPCID.PirateGhost || npc == NPCID.PirateShip)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 100, 1, 1));
                 Eridium(npcLoot, 6, 10);
             }
 
@@ -301,11 +298,13 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.DukeFishron)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DeathRattle>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deliverance>(), 10, 1, 1));
                 Eridium(npcLoot, 20, 30);
             }
 
             if (npc == NPCID.HallowBoss)
             {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Skullmasher>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new Conditions.EmpressOfLightIsGenuinelyEnraged(), ModContent.ItemType<Norfleet>(), 1, 1, 1));
                 Eridium(npcLoot, 20, 30);
             }
@@ -324,8 +323,6 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HideOfTerramorphous>(), 20, 1, 1));
                 Eridium(npcLoot, 25, 40);
             }
-
-            npcLoot.Add(ItemDropRule.ByCondition(new CobraCondition(), ModContent.ItemType<Cobra>(), 1, 1, 1));
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -365,6 +362,53 @@ namespace Vaultaria.Common.GlobalItems
             npcLoot.Add(ItemDropRule.ByCondition(new CorruptedSpiritCondition(), ModContent.ItemType<CorruptedSpirit>(), 1000, 1, 1));
             npcLoot.Add(ItemDropRule.ByCondition(new ColdHeartedCondition(), ModContent.ItemType<ColdHearted>(), 1000, 1, 1));
             npcLoot.Add(ItemDropRule.ByCondition(new NuclearArmsCondition(), ModContent.ItemType<NuclearArms>(), 1000, 1, 1));
+        }
+
+        private void Cobra(int npc, Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            if (npc == NPCID.SkeletronHead)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cobra>(), 10000, 1, 1));
+            }
+
+            if (npc == NPCID.DungeonGuardian)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cobra>(), 1, 1, 1));
+            }
+
+            if (npc == NPCID.CultistArcherBlue || npc == NPCID.CultistArcherWhite || npc == NPCID.CultistDevote || npc == NPCID.CultistBoss)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cobra>(), 100, 1, 1));
+            }
+
+            if(Main.hardMode)
+            {
+                if (npc == NPCID.AngryBones || npc == NPCID.DarkCaster || npc == NPCID.CursedSkull || npc == NPCID.GiantCursedSkull || npc == NPCID.DungeonSlime || npc == NPCID.SpikeBall || npc == NPCID.BlazingWheel || npc == NPCID.BlueArmoredBones || npc == NPCID.BlueArmoredBonesMace || npc == NPCID.BlueArmoredBonesNoPants || npc == NPCID.BlueArmoredBonesSword || npc == NPCID.RustyArmoredBonesAxe || npc == NPCID.RustyArmoredBonesFlail || npc == NPCID.RustyArmoredBonesSword || npc == NPCID.RustyArmoredBonesSwordNoArmor || npc == NPCID.HellArmoredBones || npc == NPCID.HellArmoredBonesMace || npc == NPCID.HellArmoredBonesSpikeShield || npc == NPCID.HellArmoredBonesSword || npc == NPCID.Paladin || npc == NPCID.Necromancer || npc == NPCID.NecromancerArmored || npc == NPCID.RaggedCaster || npc == NPCID.RaggedCasterOpenCoat || npc == NPCID.DiabolistRed || npc == NPCID.DiabolistWhite || npc == NPCID.SkeletonCommando || npc == NPCID.SkeletonSniper || npc == NPCID.TacticalSkeleton || npc == NPCID.BoneLee || npc == NPCID.DungeonSpirit)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Cobra>(), 1000, 1, 1));
+                }
+            }
+        }
+
+        private void Pimpernel(int npc, Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            if (npc == NPCID.Parrot || npc == NPCID.PirateCaptain || npc == NPCID.PirateCorsair || npc == NPCID.PirateCrossbower || npc == NPCID.PirateDeadeye || npc == NPCID.PirateDeckhand || npc == NPCID.PirateGhost || npc == NPCID.PirateShip)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 100, 1, 1));
+                Eridium(npcLoot, 6, 10);
+            }
+        }
+
+        private void QuestItem(NPC npc, int questNumber, bool condition, Player player)
+        {
+            if(npc.type == NPCID.Angler)
+            {
+                if(Main.anglerQuest > questNumber && condition == false)
+                {
+                    Item.NewItem(player.GetSource_GiftOrReward(), player.Center, ModContent.ItemType<LadyFist>());
+                    condition = true;
+                }
+            }
         }
     }
 }

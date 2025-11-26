@@ -12,13 +12,18 @@ using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Placeables.Vaults;
 using Vaultaria.Content.Items.Weapons.Magic;
+using Vaultaria.Content.NPCs.Bosses.Destroyer;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
 {
     public class Vault1BossSummoner : ModTile
     {
+        public override string Texture => "Terraria/Images/NPC_" + NPCID.DD2LanePortal;
+
         public override void SetStaticDefaults()
         {
+			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.DD2LanePortal];
+
             // Item Config
             Main.tileFrameImportant[Type] = true; // Tells Terraria that there is TileObjectData that is used for rendering
             Main.tileSolidTop[Type] = false; // The tile is solid on top
@@ -58,7 +63,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
 		private void SpawnBoss(Player player)
         {
-			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, NPCID.EyeofCthulhu);
+			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, ModContent.NPCType<Destroyer>());
 
 			boss.lifeMax *= 3;
             boss.life = boss.lifeMax;

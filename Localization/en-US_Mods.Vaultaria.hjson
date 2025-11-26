@@ -914,6 +914,12 @@ Prefixes: {
 }
 
 NPCs: {
+	Destroyer: {
+		Bestiary: {
+			Destroyer_1: What is the Destroyer? It is a mouth with endless appetite. It is hate that never cools. It is the long shadow cast by our universe against the mouldering sun of time. It will never truly be contained. Merely made to wait until its chains slip - or are slipped for it.
+		}
+	}
+
 	Claptrap: {
 		DisplayName: Mistake
 		DeathMessage: Claptrap is finally dead. Good Riddance.
@@ -1028,4 +1034,6 @@ Configs: {
 			Tooltip: If enabled, Ruin is gained after defeating the Wall of Flesh instead of Sub-Sequence
 		}
 	}
+
+
 }
