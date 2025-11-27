@@ -756,6 +756,16 @@ Items: {
 		Tooltip: ""
 		DisplayName: Destroyer Trophy
 	}
+
+	LaserDisker: {
+		DisplayName: Laser Disker
+		Tooltip: ""
+	}
+
+	Wombat: {
+		DisplayName: Wombat
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -829,6 +839,9 @@ Projectiles: {
 	RadiationPlasmaCoilBullet.DisplayName: Radiation Plasma Coil Bullet
 	CryoPlasmaCoilBullet.DisplayName: Cryo Plasma Coil Bullet
 	PimpernelChildBullet.DisplayName: Pimpernel Child Bullet
+	LaserDiskerBullet.DisplayName: Laser Disker Bullet
+	LaserDiskerGrenade.DisplayName: Laser Disker Grenade
+	WombatBullet.DisplayName: Wombat Bullet
 }
 
 Buffs: {
@@ -972,7 +985,8 @@ NPCs: {
 		}
 
 		Dialogue: {
-			PartyGirlDialogue: A fellow entertainer? I find {0} to be a fantastic dance partner! Wub wub wub!
+			PartyGirlDialogue1: A fellow entertainer? I find Claptrap to be a fantastic dance partner! Wub wub wub!
+			PartyGirlDialogue2: Not sure what happened to Claptrap, but he no longer wants to dance anymore
 			StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
 			StandardDialogue2: I hope there aren't any stairs here
 			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.

@@ -21,6 +21,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Torgue;
@@ -50,6 +51,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
 using Vaultaria.Content.NPCs.Bosses.Destroyer;
+using Vaultaria.Content.NPCs.Town.Claptrap;
 
 namespace Vaultaria.Common.GlobalItems
 {
@@ -84,11 +86,12 @@ namespace Vaultaria.Common.GlobalItems
         {
             int npc = mob.type;
 
-            //********************************** Misc **********************************//
-
-
-
             //********************************** NPC's **********************************//
+
+			if (npc == ModContent.NPCType<Claptrap>())
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new LaserDiskerCondition(), ModContent.ItemType<LaserDisker>(), 1, 1, 1));
+            }
 
             Bane(npc, npcLoot);
 

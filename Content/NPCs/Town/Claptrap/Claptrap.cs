@@ -35,6 +35,7 @@ using Vaultaria.Content.Items.Accessories.Shields;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Common.Configs;
 using Vaultaria.Content.Items.Placeables.Vaults;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore;
 
 namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
@@ -131,7 +132,7 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 			NPC.width = 18;
 			NPC.height = 40;
 			NPC.aiStyle = NPCAIStyleID.Passive;
-			NPC.damage = 10;
+			NPC.damage = 20;
 			NPC.defense = 15;
 			NPC.lifeMax = 250;
 			NPC.HitSound = SoundID.NPCHit1;
@@ -271,35 +272,72 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 
-			int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-			if (partyGirl >= 0 && Main.rand.NextBool(4))
-			{
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.PartyGirlDialogue", Main.npc[partyGirl].GivenName));
-			}
-			// These are things that the NPC has a chance of telling you when you talk to it.
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
-			chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
-
-			VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
-			if(config.EnableProfanity == true)
+			if(NPC.IsShimmerVariant)
             {
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
+				int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
+				if (partyGirl >= 0 && Main.rand.NextBool(4))
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.PartyGirlDialogue1", Main.npc[partyGirl].GivenName));
+				}
+				
+				// These are things that the NPC has a chance of telling you when you talk to it.
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
+
+				VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+				if(config.EnableProfanity == true)
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
+				}
+				else
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
+				}
+
+				NumberOfTimesTalkedTo++;
+				if (NumberOfTimesTalkedTo >= 10)
+				{
+					// This counter is linked to a single instance of the NPC, so if Claptrap is killed, the counter will reset.
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.TalkALot"));
+				}
             }
 			else
             {
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
-            }
+				int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
+				if (partyGirl >= 0 && Main.rand.NextBool(4))
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.PartyGirlDialogue1", Main.npc[partyGirl].GivenName));
+				}
+				
+				// These are things that the NPC has a chance of telling you when you talk to it.
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
 
-			NumberOfTimesTalkedTo++;
-			if (NumberOfTimesTalkedTo >= 10)
-			{
-				// This counter is linked to a single instance of the NPC, so if Claptrap is killed, the counter will reset.
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.TalkALot"));
-			}
+				VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+				if(config.EnableProfanity == true)
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
+				}
+				else
+				{
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
+				}
+
+				NumberOfTimesTalkedTo++;
+				if (NumberOfTimesTalkedTo >= 10)
+				{
+					// This counter is linked to a single instance of the NPC, so if Claptrap is killed, the counter will reset.
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.TalkALot"));
+				}
+            }
 
 			string chosenChat = chat; // chat is implicitly cast to a string. This is where the random choice is made.
 
@@ -456,10 +494,6 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				}
 			}
 		}
-
-		// public override void ModifyNPCLoot(NPCLoot npcLoot) {
-		// 	npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LaserDisker>()));
-		// }
 
 		// Make this Town NPC teleport to the King and/or Queen statue when triggered. Return toKingStatue for only King Statues. Return !toKingStatue for only Queen Statues. Return true for both.
 		public override bool CanGoToStatue(bool toKingStatue) => true;
