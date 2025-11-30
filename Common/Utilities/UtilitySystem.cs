@@ -15,7 +15,7 @@ public class UtilitySystem : ModSystem
         // GetContent<ModItem>() returns an IEnumerable<ModItem>.
         foreach (ModItem modItem in filteredItems)
         {
-            Utilities.itemArray.Add(modItem);
+            Utilities.gunGunItemArray.Add(modItem);
         }
     }
 }

@@ -81,7 +81,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Torgue
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots 7 Explosive shots", Utilities.VaultarianColours.Explosive);
             Utilities.Text(tooltips, Mod, "Tooltip3", "Does friendly-fire damage", Utilities.VaultarianColours.Information);
-
             Utilities.RedText(tooltips, Mod, "The bush bulldozer.");
         }
     }

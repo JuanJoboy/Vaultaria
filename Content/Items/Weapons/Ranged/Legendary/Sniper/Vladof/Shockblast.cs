@@ -29,6 +29,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 60f;
+            Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
@@ -48,6 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
         public override bool AltFunctionUse(Player player)
         {
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             return true;
         }
 

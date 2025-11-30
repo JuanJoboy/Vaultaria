@@ -104,18 +104,32 @@ namespace Vaultaria.Content.Items.Weapons.Magic
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+            bool moonLord = NPC.downedMoonlord;
+            bool wof = Main.hardMode;
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on", Utilities.VaultarianColours.Healing);
 
 			if(config.GetRuinFirst == true)
             {
-                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Wall of Flesh to get Ruin", Utilities.VaultarianColours.Information);
-                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Moon Lord to get Sub-Sequence", Utilities.VaultarianColours.Information);
+                if(!wof)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip2", "Defeat the Wall of Flesh to get Ruin", Utilities.VaultarianColours.Information);
+                }
+                if(!moonLord)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat the Moon Lord to get Sub-Sequence", Utilities.VaultarianColours.Information);
+                }
             }
             else
             {
-                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Wall of Flesh to get Sub-Sequence", Utilities.VaultarianColours.Information);
-                Utilities.Text(tooltips, Mod, "Tooltip1", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
+                if(!wof)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip2", "Defeat the Wall of Flesh to get Sub-Sequence", Utilities.VaultarianColours.Information);
+                }
+                if(!moonLord)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
+                }
             }
 
             Utilities.RedText(tooltips, Mod, "(giggles) I'm really good at this!");

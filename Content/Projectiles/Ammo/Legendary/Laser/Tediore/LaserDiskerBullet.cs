@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Laser.Tediore
 
             // Damage
             Projectile.friendly = true;
-            Projectile.hostile = true;
+            Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.aiStyle = 0;
 

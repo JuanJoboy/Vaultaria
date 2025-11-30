@@ -766,6 +766,46 @@ Items: {
 		DisplayName: Wombat
 		Tooltip: ""
 	}
+
+	AgilityRelic: {
+		Tooltip: ""
+		DisplayName: Agility Relic
+	}
+
+	Bloodwing: {
+		Tooltip: ""
+		DisplayName: Bloodwing
+	}
+
+	BloodwingStaff: {
+		DisplayName: Bloodwing Staff
+		Tooltip: ""
+	}
+
+	GammaBurstPotion: {
+		DisplayName: Gamma Burst Potion
+		Tooltip: ""
+	}
+
+	DigiClone: {
+		Tooltip: ""
+		DisplayName: Zane's Digi Clone Clicker
+	}
+
+	WilhelmsCombatDrones: {
+		Tooltip: ""
+		DisplayName: Wilhelm's Combat Drones
+	}
+
+	ScorpioTurret: {
+		Tooltip: ""
+		DisplayName: Roland's Scorpio Turret
+	}
+
+	TerminationProtocols: {
+		Tooltip: ""
+		DisplayName: Termination Protocols
+	}
 }
 
 Projectiles: {
@@ -842,6 +882,13 @@ Projectiles: {
 	LaserDiskerBullet.DisplayName: Laser Disker Bullet
 	LaserDiskerGrenade.DisplayName: Laser Disker Grenade
 	WombatBullet.DisplayName: Wombat Bullet
+	BloodwingMinion.DisplayName: Bloodwing Minion
+	Turret1.DisplayName: Turret1
+	Clone.DisplayName: Clone
+	Wolf.DisplayName: Wolf
+	Saint.DisplayName: Saint
+	RolandTurret.DisplayName: Roland Turret
+	AxtonTurret.DisplayName: Axton Turret
 }
 
 Buffs: {
@@ -903,6 +950,21 @@ Buffs: {
 	Phaselocked: {
 		Description: Stuck in a bubble
 		DisplayName: Phaselocked
+	}
+
+	Bloodwing: {
+		Description: Bloodwing will fight for you
+		DisplayName: Bloodwing
+	}
+
+	GammaBurstBuff: {
+		DisplayName: Gamma Burst Buff
+		Description: Makes minions irradiated
+	}
+
+	WolfAndSaint: {
+		Description: Wolf And Saint will fight for you
+		DisplayName: Wolf And Saint
 	}
 }
 
@@ -1055,6 +1117,11 @@ Configs: {
 		GetRuinFirst: {
 			Label: Get Ruin First
 			Tooltip: If enabled, Ruin is gained after defeating the Wall of Flesh instead of Sub-Sequence
+		}
+
+		KeepMinionSizeTheSameWhenGammaBursting: {
+			Label: Keep Minion Size The Same When Gamma Bursting
+			Tooltip: If enabled, then your minion's size won't be doubled when gamma-ed
 		}
 	}
 }

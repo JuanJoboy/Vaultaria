@@ -31,6 +31,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 20;
+            Item.shoot = ModContent.ProjectileType<LaserDiskerBullet>();
+            Item.mana = 20;
 
             // Combat properties
             Item.knockBack = 2.3f;

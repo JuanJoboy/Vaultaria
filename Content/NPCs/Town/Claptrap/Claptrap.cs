@@ -288,16 +288,6 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
 
-				VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
-				if(config.EnableProfanity == true)
-				{
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
-				}
-				else
-				{
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
-				}
-
 				NumberOfTimesTalkedTo++;
 				if (NumberOfTimesTalkedTo >= 10)
 				{
@@ -320,16 +310,6 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
-
-				VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
-				if(config.EnableProfanity == true)
-				{
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueExp"), 0.4f);
-				}
-				else
-				{
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.VeryRareDialogueSafe"), 0.4f);
-				}
 
 				NumberOfTimesTalkedTo++;
 				if (NumberOfTimesTalkedTo >= 10)

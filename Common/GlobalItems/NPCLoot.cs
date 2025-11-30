@@ -50,6 +50,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
+using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 using Vaultaria.Content.NPCs.Bosses.Destroyer;
 using Vaultaria.Content.NPCs.Town.Claptrap;
 
@@ -182,6 +183,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Deerclops)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnkemptHarold>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DigiClone>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 

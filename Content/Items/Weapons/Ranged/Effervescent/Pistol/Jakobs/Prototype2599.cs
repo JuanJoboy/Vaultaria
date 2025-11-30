@@ -51,6 +51,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
         public override bool AltFunctionUse(Player player)
         {
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             return true;
         }
 

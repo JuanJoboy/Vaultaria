@@ -49,6 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
         public override bool AltFunctionUse(Player player)
         {
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             return true;
         }
 

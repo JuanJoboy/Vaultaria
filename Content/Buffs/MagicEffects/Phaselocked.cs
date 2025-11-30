@@ -10,7 +10,7 @@ namespace Vaultaria.Content.Buffs.MagicEffects
         public override void SetStaticDefaults()
         {
             Main.buffNoSave[Type] = true;
-            Main.debuff[Type] = false;
+            Main.debuff[Type] = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)

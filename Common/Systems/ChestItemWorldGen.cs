@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
@@ -18,6 +19,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan;
+using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 
 namespace Vaultaria.Common.Systems
 {
@@ -33,7 +35,7 @@ namespace Vaultaria.Common.Systems
             PlaceInShadowChests();
             
             PlaceInJungleChests();
-            
+
             PlaceInFrozenChests();
             
             PlaceInSkyWareChests();
@@ -121,10 +123,10 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInShadowChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Quad>(), ModContent.ItemType<OrphanMaker>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Quad>(), ModContent.ItemType<OrphanMaker>(), ModContent.ItemType<ScorpioTurret>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
-			int maxItems = itemsToPlaceInChest.Length * 5;
+			int maxItems = itemsToPlaceInChest.Length * 3;
 			int chest = 4;
 
             PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
@@ -132,10 +134,10 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInJungleChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>(), ModContent.ItemType<AgilityRelic>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
-			int maxItems = itemsToPlaceInChest.Length * 20;
+			int maxItems = itemsToPlaceInChest.Length * 10;
 			int chest = 8;
 
             PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
@@ -157,7 +159,7 @@ namespace Vaultaria.Common.Systems
 			int[] itemsToPlaceInChest = [ModContent.ItemType<OlPainful>(), ModContent.ItemType<Boomacorn>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
-			int maxItems = itemsToPlaceInChest.Length;
+			int maxItems = itemsToPlaceInChest.Length * 3;
 			int chest = 13;
 
             PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);

@@ -8,9 +8,9 @@ using Terraria.DataStructures;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
 
-namespace Vaultaria.Content.Projectiles.Minions
+namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 {
-    public class Turret : ElementalProjectile
+    public class AxtonTurret : ElementalProjectile
     {
         private bool touchedTheGround = false;
 

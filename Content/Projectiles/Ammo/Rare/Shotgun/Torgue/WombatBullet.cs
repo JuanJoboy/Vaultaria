@@ -38,6 +38,16 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Torgue
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
+        public override bool CanHitPlayer(Player target)
+        {
+            if(target == Main.LocalPlayer)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];

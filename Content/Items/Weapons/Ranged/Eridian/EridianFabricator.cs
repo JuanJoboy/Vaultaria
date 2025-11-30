@@ -48,8 +48,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int itemIndex = Main.rand.Next(0, Utilities.itemArray.Count); // Picks a random index from 0 to the end of the array
-            ModItem item = (ModItem) Utilities.itemArray[itemIndex]; // Get whatever item is at that index
+            int itemIndex = Main.rand.Next(0, Utilities.gunGunItemArray.Count); // Picks a random index from 0 to the end of the array
+            ModItem item = (ModItem) Utilities.gunGunItemArray[itemIndex]; // Get whatever item is at that index
 
             player.QuickSpawnItem(player.GetSource_DropAsItem(), item.Type); // Spawn the item at the player
 

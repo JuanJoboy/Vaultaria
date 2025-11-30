@@ -245,7 +245,7 @@ namespace Vaultaria.Common.Utilities
             ItemID.LavaBomb,
         ];
 
-        public static ArrayList itemArray = new ArrayList();
+        public static ArrayList gunGunItemArray = new ArrayList();
 
         // The 'this' keyword in the signature allows for it to be used as an extension
         // Turns it from the 1st style below into the 2nd style
@@ -420,6 +420,23 @@ namespace Vaultaria.Common.Utilities
                     projectile.frame = 0;
                 }
             }
+        }
+
+        public static void MinionFrameRotator(int frameSpeed, Projectile projectile)
+        {
+            projectile.frameCounter++;
+            if (projectile.frameCounter >= frameSpeed)
+            {
+                projectile.frameCounter = 0;
+                projectile.frame++;
+
+                if (projectile.frame >= Main.projFrames[projectile.type])
+                {
+                    projectile.frame = 0;
+                }
+            }
+
+            projectile.spriteDirection = projectile.direction;
         }
 
         /// <summary>

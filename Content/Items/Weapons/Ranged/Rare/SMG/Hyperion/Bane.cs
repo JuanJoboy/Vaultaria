@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 18;
-            Item.shoot = AmmoID.Bullet;
+            Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties

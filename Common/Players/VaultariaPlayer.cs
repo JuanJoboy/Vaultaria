@@ -31,6 +31,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Projectiles.Summoner.Sentry;
 
 namespace Vaultaria.Common.Players
 {
@@ -76,6 +77,27 @@ namespace Vaultaria.Common.Players
         public override void LoadData(TagCompound tag)
         {
             hasInitialized = tag.GetBool("hasInitialized");
+        }
+
+        public override void UpdateDead()
+        {
+            base.UpdateDead();
+
+            if(IsWearing(ModContent.ItemType<TerminationProtocols>()))
+            {
+                int damage = Player.statDefense * 4;
+
+                if(Main.masterMode)
+                {
+                    damage *= 3;
+                }
+                else if(Main.expertMode)
+                {
+                    damage *= 2;
+                }
+
+                Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, damage, 4);
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
@@ -156,6 +178,12 @@ namespace Vaultaria.Common.Players
                 {
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.75f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 180);
                 }
+            }
+
+            if(proj.active && proj.owner == Player.whoAmI && proj.minion && Player.HasBuff<GammaBurstBuff>())
+            {
+                hit.SourceDamage *= 2;
+                ElementalProjectile.SetElementOnNPC(target, hit, 1f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 180);
             }
         }
 

@@ -15,10 +15,10 @@ namespace Vaultaria.Common.Configs
         public bool EnableOldSawbarExplosion;
 
         [DefaultValue(false)]
-        public bool EnableProfanity;
-
-        [DefaultValue(false)]
         public bool GetRuinFirst;
+        
+        [DefaultValue(false)]
+        public bool KeepMinionSizeTheSameWhenGammaBursting;
 
         // --- Optional Integer Setting ---
         [DefaultValue(1)] // Default value is 1 (no multiplier)

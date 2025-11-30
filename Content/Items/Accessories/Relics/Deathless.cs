@@ -27,10 +27,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         {
             player.statLifeMax2 = 10;
             player.statDefense += 150;
-            player.GetDamage<MagicDamageClass>() += 1;
-            player.GetDamage<MeleeDamageClass>() += 1;
-            player.GetDamage<RangedDamageClass>() += 1;
-            player.GetDamage<SummonDamageClass>() += 1;
+            player.GetDamage<GenericDamageClass>() *= 2;
             player.moveSpeed += 1;
         }
     }

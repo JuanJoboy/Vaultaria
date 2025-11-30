@@ -45,22 +45,5 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 player.maxRunSpeed += 0.5f;
             }
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(20)
-                .AddIngredient(ItemID.DemoniteBar, 12)
-                .AddIngredient(ItemID.Cobweb, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(20)
-                .AddIngredient(ItemID.CrimtaneBar, 12)
-                .AddIngredient(ItemID.Cobweb, 50)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-        }
     }
 }

@@ -9,7 +9,7 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Potions
 {
-    public class DeceptionPotion : ModItem
+    public class GammaBurstPotion : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -36,18 +36,30 @@ namespace Vaultaria.Content.Items.Potions
 
             Item.potion = true;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<DeceptionBuff>();
-            Item.buffTime = 420;
+            Item.buffType = ModContent.BuffType<GammaBurstBuff>();
+            Item.buffTime = 600;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.Deception, 500);
+            Item.UseSound = SoundID.Item3;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater, 1)
+                .AddIngredient(ItemID.Ichor, 1)
+                .AddIngredient(ItemID.FallenStar, 1)
+                .AddIngredient(ItemID.GlowingMushroom, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "100% Increased Gun Damage & 150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
-            Utilities.RedText(tooltips, Mod, "Your eyes deceive you\nAn illusion fools you all\nI move for the kill.");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Doubles minion damage and size");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Causes minion attacks to deal additional Radiation damage", Utilities.VaultarianColours.Radiation);
+            Utilities.RedText(tooltips, Mod, "Good Boy.");
         }
     }
 }

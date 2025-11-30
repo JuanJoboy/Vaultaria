@@ -1,0 +1,151 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Projectiles.Summoner.Sentry;
+using System.Collections.Generic;
+using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Common.Utilities;
+using System.Reflection.Metadata.Ecma335;
+
+namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
+{
+    public class DigiClone : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.GamepadWholeScreenUseRange[Type] = true; // For game pads
+        }
+
+        public override void SetDefaults()
+        {
+            // Visual properties
+            Item.Size = new Vector2(31, 29);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.rare = ItemRarityID.Yellow;
+
+            // Combat properties
+            Item.damage = 10;
+            Item.crit = 4;
+            Item.DamageType = DamageClass.Summon;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 2;
+            Item.knockBack = 2.3f;
+            Item.autoReuse = true;
+            Item.mana = 20;
+
+            // Other properties
+            Item.value = Item.buyPrice(gold: 10);
+
+            Item.noMelee = true;
+            Item.shootSpeed = 4f;
+            Item.shoot = ModContent.ProjectileType<Clone>();
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (player.altFunctionUse != 2)
+            {
+                player.AddBuff(Item.buffType, 2);
+
+                Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, Main.myPlayer);
+                projectile.originalDamage = Item.damage;
+            }
+
+            return false;
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            position = Main.MouseWorld; // Spawns the minion at the mouse
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if (player.altFunctionUse == 2) // Teleport to Clone
+            {
+                Item.useStyle = ItemUseStyleID.RaiseLamp;
+                Item.noMelee = true;
+
+                Item.useTime = 8;
+                Item.useAnimation = 8;
+                Item.reuseDelay = 8;
+                Item.autoReuse = true;
+                Item.useTurn = false;
+
+                TeleportToClone(player);
+
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
+            }
+            else // Summon Clone
+            {
+                Item.damage = 10;
+                Item.crit = 0;
+                Item.DamageType = DamageClass.Generic;
+                Item.useStyle = ItemUseStyleID.RaiseLamp;
+                Item.noMelee = true;
+                Item.shootSpeed = 17f;
+                Item.shoot = ModContent.ProjectileType<Clone>();
+
+                Item.useTime = 8;
+                Item.useAnimation = 8;
+                Item.autoReuse = true;
+                Item.useTurn = false;
+
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
+            }
+
+            return base.CanUseItem(player);
+        }
+
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(4f, 0f);
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Your Digi-Clone shoots a copy of whatever item your player is currently holding");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Digi-Clone won't consume your ammo, but still requires ammo to shoot the weapon");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Only Magic and Ranged weapons can be copied");
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Right-Click to swap positions with Digi-Clone");
+            Utilities.RedText(tooltips, Mod, "I know that fella. We went to the same assassin bars.");
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>();
+        }
+
+        private void TeleportToClone(Player player)
+        {
+            foreach(Projectile p in Main.ActiveProjectiles)
+            {
+                if(p.type == ModContent.ProjectileType<Clone>() && p != null && p.owner == player.whoAmI)
+                {
+                    for (int i = 0; i < 40; i++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, DustID.Cloud, 0f, 0f, 0, default(Color), 0.7f);
+                        Dust.NewDust(p.position, p.width, p.height, DustID.Cloud, 0f, 0f, 0, default(Color), 0.7f);
+                    }
+
+                    // Swaps the values of these 2 variables
+                    (p.Center, player.Center) = (player.Center, p.Center);
+                    p.netUpdate = true;
+                    
+                    return;
+                }
+            }
+        }
+    }
+}

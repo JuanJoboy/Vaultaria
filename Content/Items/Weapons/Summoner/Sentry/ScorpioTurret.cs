@@ -11,7 +11,7 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 {
-    public class SabreTurret : ModItem
+    public class ScorpioTurret : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.rare = ItemRarityID.Blue;
 
             // Combat properties
-            Item.damage = 75;
+            Item.damage = 25;
             Item.DamageType = DamageClass.Summon;
             Item.useTime = 20;
             Item.useAnimation = 20;
@@ -41,7 +41,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;
-            Item.shoot = ModContent.ProjectileType<AxtonTurret>();
+            Item.shoot = ModContent.ProjectileType<RolandTurret>();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -59,17 +59,6 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             position = Main.MouseWorld; // Spawns the minion at the mouse
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(75)
-                .AddIngredient(ItemID.FragmentStardust, 50)
-                .AddIngredient(ItemID.LunarBar, 25)
-                .AddIngredient(ItemID.MoonlordTurretStaff, 1)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
-                .Register();
-        }
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(4f, 0f);
@@ -77,12 +66,12 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies\n2 Sentries can be summoned");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots:");
-            Utilities.Text(tooltips, Mod, "Tooltip3", "    \tChlorophyte bullets rapidly", Utilities.VaultarianColours.Corrosive);
-            Utilities.Text(tooltips, Mod, "Tooltip4", "    \tA homing slag ball per second", Utilities.VaultarianColours.Slag);
-            Utilities.Text(tooltips, Mod, "Tooltip5", "    \tA Cluster Rocket per 2 seconds", Utilities.VaultarianColours.Explosive);
-            Utilities.RedText(tooltips, Mod, "Ten years of Dahl military experience at your service.");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Deploy a Scorpio Turret that targets and fires upon enemies");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots Silver bullets every second", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Spawns ammo randomly every 5 seconds", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip4", "Spawns hearts randomly every 10 seconds", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip5", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "LOOK OUT! BADASS LOADER!");
         }
 
         public override bool AllowPrefix(int pre)
