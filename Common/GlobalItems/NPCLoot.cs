@@ -51,7 +51,6 @@ using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
-using Vaultaria.Content.NPCs.Bosses.Destroyer;
 using Vaultaria.Content.NPCs.Town.Claptrap;
 
 namespace Vaultaria.Common.GlobalItems
@@ -354,12 +353,7 @@ namespace Vaultaria.Common.GlobalItems
                 Eridium(npcLoot, 25, 40);
             }
 
-            if (npc == ModContent.NPCType<Destroyer>())
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
-                Utilities.Utilities.DisplayStatusMessage(mob.Center, Color.Gold, "Vault of the Destroyer Raided");
-            }
+            VaultBosses(mob, npcLoot);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -458,6 +452,16 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Vulture || npc == NPCID.Antlion || npc == NPCID.FlyingAntlion || npc == NPCID.WalkingAntlion || npc == NPCID.GiantWalkingAntlion || npc == NPCID.GiantFlyingAntlion || npc == NPCID.SandSlime || npc == NPCID.DesertGhoul)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bane>(), 100, 1, 1));
+            }
+        }
+
+        private void VaultBosses(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            if (npc.type == NPCID.EyeofCthulhu)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
+                Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Vault of the Destroyer Raided");
             }
         }
     }

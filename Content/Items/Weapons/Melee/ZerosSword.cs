@@ -100,6 +100,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 if (Main.mouseLeft && target.Hitbox.Intersects(mouse))
                 {
                     Utilities.MoveToPosition(player, Main.MouseWorld, 20, 3f);
+                    Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
                 }
             }
 

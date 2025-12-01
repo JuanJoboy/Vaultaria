@@ -8,11 +8,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Vaultaria.Common.Systems.GenPasses;
-// using Vaultaria.Common.Systems.GenPasses.Vaults;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Placeables.Vaults;
 using Vaultaria.Content.Items.Weapons.Magic;
-using Vaultaria.Content.NPCs.Bosses.Destroyer;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
 {
@@ -59,7 +58,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
 		private void SpawnBoss(Player player)
         {
-			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, ModContent.NPCType<Destroyer>());
+			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, NPCID.EyeofCthulhu);
 
 			boss.lifeMax *= 3;
             boss.life = boss.lifeMax;

@@ -40,6 +40,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
 
             // Other properties
             Item.value = Item.buyPrice(silver: 50);
+            Item.UseSound = SoundID.Item44;
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;

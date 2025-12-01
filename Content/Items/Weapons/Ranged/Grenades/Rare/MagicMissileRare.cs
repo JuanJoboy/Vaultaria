@@ -46,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
 
             // Other properties
             Item.value = Item.buyPrice(silver: 10);
-            Item.UseSound = SoundID.Item169;
+            Item.UseSound = SoundID.DD2_GoblinBomberThrow;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

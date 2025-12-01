@@ -105,6 +105,8 @@ namespace Vaultaria.Common.Utilities
         public enum Sounds
         {
             LegendaryDrop,
+            Norfleet,
+            Execute,
             BanditAR,
             BanditARRocket,
             BanditLauncher,

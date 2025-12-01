@@ -27,7 +27,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 
 			// Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
 			Item.color = OverrideColor;
-			Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
+			Item.UseSound = SoundID.Item113;
 		}
 
 		// Because this weapon fires a holdout projectile, it needs to block usage if its projectile already exists.

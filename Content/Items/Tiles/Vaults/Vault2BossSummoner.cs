@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Vaultaria.Common.Systems.GenPasses;
-// using Vaultaria.Common.Systems.GenPasses.Vaults;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Placeables.Vaults;
 using Vaultaria.Content.Items.Weapons.Magic;
