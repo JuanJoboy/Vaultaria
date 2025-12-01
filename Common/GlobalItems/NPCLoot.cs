@@ -358,7 +358,7 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
-                Utilities.Utilities.DisplayStatusMessage(mob.Center, Color.Gold, "Eden-6 Vault Raided");
+                Utilities.Utilities.DisplayStatusMessage(mob.Center, Color.Gold, "Vault of the Destroyer Raided");
             }
         }
 

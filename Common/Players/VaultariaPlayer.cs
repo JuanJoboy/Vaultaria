@@ -371,7 +371,7 @@ namespace Vaultaria.Common.Players
             base.OnHitAnything(x, y, victim);
 
             float multiplier = 0.2f;
-            int buffTime = 30;
+            int buffTime = 60;
 
             if (victim is NPC npcVictim)
             {

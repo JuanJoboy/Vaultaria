@@ -27,7 +27,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.rare = ItemRarityID.Blue;
 
             // Combat properties
-            Item.damage = 25;
+            Item.damage = 20;
             Item.DamageType = DamageClass.Summon;
             Item.useTime = 20;
             Item.useAnimation = 20;

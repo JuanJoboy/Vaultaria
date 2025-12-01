@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Materials
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "The third fragment of the Promethean Vault Key");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "The third fragment of the Destroyer's Vault Key");
         }
     }
 }

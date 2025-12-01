@@ -116,6 +116,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             Utilities.Text(tooltips, Mod, "tooltip2", "Left-click to shoot fast Shock e-tech rounds", Utilities.VaultarianColours.Shock);
             Utilities.Text(tooltips, Mod, "tooltip3", "Right-click to shoot more powerful Explosive-Shock rounds", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "Blast them to smithereens!");
+            Utilities.CursedText(tooltips, Mod, "Exodus");
         }
     }
 }

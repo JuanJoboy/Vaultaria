@@ -56,6 +56,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
             Utilities.Text(tooltips, Mod);
             Utilities.Text(tooltips, Mod, "Tooltip2", "Critical hits either hit the same target again or ricochet to the closest enemy", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "You seek guidance?");
+            Utilities.CursedText(tooltips, Mod, "Exodus");
         }
     }
 }

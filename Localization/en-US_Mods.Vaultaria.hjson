@@ -484,32 +484,32 @@ Items: {
 
 	VaultFragment6: {
 		Tooltip: ""
-		DisplayName: Promethea Vault Fragment
+		DisplayName: Destroyer's Vault Fragment
 	}
 
 	VaultFragment5: {
 		Tooltip: ""
-		DisplayName: Promethea Vault Fragment
+		DisplayName: Destroyer's Vault Fragment
 	}
 
 	VaultFragment4: {
 		Tooltip: ""
-		DisplayName: Promethea Vault Fragment
+		DisplayName: Destroyer's Vault Fragment
 	}
 
 	VaultFragment3: {
 		Tooltip: ""
-		DisplayName: Eden-6 Vault Fragment
+		DisplayName: Warrior's Vault Fragment
 	}
 
 	VaultFragment2: {
 		Tooltip: ""
-		DisplayName: Eden-6 Vault Fragment
+		DisplayName: Warrior's Vault Fragment
 	}
 
 	VaultFragment1: {
 		Tooltip: ""
-		DisplayName: Eden-6 Vault Fragment
+		DisplayName: Warrior's Vault Fragment
 	}
 
 	Pedestal2: {
@@ -523,12 +523,12 @@ Items: {
 	}
 
 	VaultKey1: {
-		DisplayName: Eden-6 Vault Key
+		DisplayName: Warrior Vault Key
 		Tooltip: ""
 	}
 
 	VaultKey2: {
-		DisplayName: Promethea Vault Key
+		DisplayName: Destroyer Vault Key
 		Tooltip: ""
 	}
 

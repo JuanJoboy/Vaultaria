@@ -69,7 +69,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             }
 
             NPC target = FindTarget();
-            int summonDamage = (int)(Projectile.originalDamage * owner.GetDamage(DamageClass.Summon).Multiplicative);
+            int summonDamage = (int)(Projectile.damage * owner.GetDamage(DamageClass.Summon).Multiplicative);
 
             if (EnemyFoundToShoot(target, 0, 6f))
             {

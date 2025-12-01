@@ -332,6 +332,7 @@ namespace Vaultaria.Content.NPCs.Bosses.Destroyer
 
 			if (SecondStage) {
 				DoSecondStage(player);
+				FindPlayerToLaser();
 			}
 			else {
 				DoFirstStage(player);
@@ -536,13 +537,73 @@ namespace Vaultaria.Content.NPCs.Bosses.Destroyer
 				float kitingOffsetX = Utils.Clamp(player.velocity.X * 16, -100, 100);
 				Vector2 position = player.Bottom + new Vector2(kitingOffsetX + Main.rand.Next(-100, 100), Main.rand.Next(50, 100));
 
-				int type = ModContent.ProjectileType<DestroyerLaserBeam>();
+				int type = ProjectileID.VortexLaser;
 				int damage = NPC.damage / 2;
 				var entitySource = NPC.GetSource_FromAI();
 
 				Projectile.NewProjectile(entitySource, position, -Vector2.UnitY, type, damage, 0f, Main.myPlayer);
 			}
 		}
+
+		private void FindPlayerToLaser()
+        {
+            Player target = FindTarget();
+
+            if (EnemyFoundToShoot(target, 0, 6f))
+            {
+                Vector2 direction = target.Center - NPC.Center;
+                direction.Normalize();
+                direction *= 8f;
+
+                Projectile proj = Projectile.NewProjectileDirect(
+                    NPC.GetSource_FromThis(),
+                    NPC.Center,
+                    direction,
+                    ProjectileID.ChlorophyteBullet,
+                    50,
+                    2f
+                );
+
+                // Reset fire timer
+                NPC.ai[0] = 0f;
+            }
+        }
+
+        private Player FindTarget()
+        {
+            float range = 500f; // 500 pixels
+            Player closest = null;
+
+            // Loops through every NPC in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+
+				float dist = Vector2.Distance(NPC.Center, player.Center); // Measures the distance from turret to NPC
+				if (dist < range && Collision.CanHitLine(NPC.Center, 1, 1, player.Center, 1, 1)) // Checks if the NPC is closer than any previously checked NPC and if there's a clear line of sight
+				{
+					closest = player;
+					range = dist;
+				}
+            }
+
+            return closest; // Returns the best valid NPC target, or null if none found
+        }
+
+        private bool EnemyFoundToShoot(Player target, int index, float ticks)
+        {
+            // Fire timer stored in ai[0]
+            NPC.ai[index]++;
+            if (NPC.ai[index] >= ticks) // Fire every 6 ticks (~0.1 sec)
+            {
+                if (target != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
 		private void ApplySecondStageBuffImmunities() {
 			if (NPC.buffImmune[BuffID.OnFire]) {

@@ -80,7 +80,27 @@ public class PhaselockedNPC : GlobalNPC
         Rectangle sourceRectangle = texture.Frame(); // Use the whole texture
         Vector2 origin = sourceRectangle.Size() / 2f; // Draw from the center of the texture
 
-        float scale = npc.height * 0.125f * 0.125f * npc.width * 0.125f * 0.125f;
+        float scale = npc.height * 0.0625f * npc.width * 0.0625f * 0.5f;
+
+        NPC golemHeadDummy = new NPC();
+        NPC golemHandDummy = new NPC();
+        golemHeadDummy.SetDefaults(NPCID.GolemHead);
+        golemHandDummy.SetDefaults(NPCID.GolemFistLeft);
+
+        if(npc.height >= npc.width * 2)
+        {
+            scale *= 2;
+        }
+
+        if(npc.height >= golemHeadDummy.height || npc.width >= golemHeadDummy.width)
+        {
+            scale /= 3.5f;
+        }
+
+        if(npc.height >= golemHandDummy.height || npc.width >= golemHandDummy.width)
+        {
+            scale /= 2f;
+        }
 
         // --- 4. Draw the Texture ---
         spriteBatch.Draw(

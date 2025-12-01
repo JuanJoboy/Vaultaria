@@ -52,9 +52,9 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             }
 
             NPC target = FindTarget();
-            int summonDamage = (int)(Projectile.originalDamage * player.GetDamage(DamageClass.Summon).Multiplicative);
+            int summonDamage = (int)(Projectile.damage * player.GetDamage(DamageClass.Summon).Multiplicative);
 
-            if (EnemyFoundToShoot(target, 0, 30f))
+            if (EnemyFoundToShoot(target, 0, 10f))
             {
                 // Calculates a normalized direction to the target and scales it to a bullet speed of 8
                 Vector2 direction = target.Center - Projectile.Center;

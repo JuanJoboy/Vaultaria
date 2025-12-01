@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Vaultaria.Common.Systems.GenPasses;
-using Vaultaria.Common.Systems.GenPasses.Vaults;
+// using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Content.Items.Placeables.Vaults;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
@@ -78,7 +78,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
             if(!SubworldSystem.AnyActive<Vaultaria>() && WorldGenerator.pedestalInVault1 == true)
             {
-                SubworldSystem.Enter<Vault1Subworld>();
+                // SubworldSystem.Enter<Vault1Subworld>();
             }
 
             return base.RightClick(i, j);

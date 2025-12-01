@@ -94,7 +94,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                 }
             }
             
-            int summonDamage = (int)(Projectile.originalDamage * player.GetDamage(DamageClass.Summon).Multiplicative);
+            int summonDamage = (int)(Projectile.damage * player.GetDamage(DamageClass.Summon).Multiplicative);
 
             if (EnemyFoundToShoot(target, 0, 120f))
             {

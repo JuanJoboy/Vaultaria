@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 		public const float MaxCharge = 60f;
 
 		// This value controls how many frames it takes for the beams to begin dealing damage. Before then they can't hit anything.
-		public const float DamageStart = 60f;
+		public const float DamageStart = 0f;
 
 		// This value controls how sluggish the Prism turns while being used. Vanilla Last Prism is 0.08f.
 		// Higher values make the Prism turn faster.
