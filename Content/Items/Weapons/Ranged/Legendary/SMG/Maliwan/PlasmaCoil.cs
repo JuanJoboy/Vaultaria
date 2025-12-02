@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -74,7 +74,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
                 Item.reuseDelay = 2;
                 Item.autoReuse = true;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+                Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
             }
             else // Shoot Radiation
             {
@@ -95,7 +95,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
                 Item.reuseDelay = 2;
                 Item.autoReuse = true;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+                Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
             }
 
             return base.CanUseItem(player);

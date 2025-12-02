@@ -47,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.LaserDisker, 60);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -96,7 +96,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgunThrow, 120);
+                Utilities.ItemSound(Item, Utilities.Sounds.TedioreLaserThrow, 120);
             }
             else // Shoot
             {
@@ -117,7 +117,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
+                Utilities.ItemSound(Item, Utilities.Sounds.LaserDisker, 60);
             }
 
             return base.CanUseItem(player);

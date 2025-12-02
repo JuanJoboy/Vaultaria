@@ -77,17 +77,17 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             return new Vector2(4f, 0f);
         }
 
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>();
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bird to fight for you");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Has a chance to inflict a random element on enemies");
             Utilities.RedText(tooltips, Mod, "Oh, where the hell is... argh, I had a violin somewhere,\nI was gonna play it all sarcastically... goddammit, it was gonna be awesome.\nBLAKE! WHERE'S THE BLOODY VIOLIN?!");
-        }
-
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<MagicTrickshot>() &&
-                   pre != ModContent.PrefixType<MagicDP>();
         }
     }
 }

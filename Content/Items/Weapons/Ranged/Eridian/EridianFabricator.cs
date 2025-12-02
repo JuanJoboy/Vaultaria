@@ -71,6 +71,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
             return new Vector2(-20f, 0f);
         }
 
+        public override bool AllowPrefix(int pre)
+        {
+            return false;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses 250 eridium", Utilities.VaultarianColours.Slag);

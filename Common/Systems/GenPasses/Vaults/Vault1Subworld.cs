@@ -26,6 +26,7 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         public override void Update()
         {
             base.Update();
+			Player player = Main.LocalPlayer;
 
 			Main.dayTime = false;
 			Main.time = Main.nightLength;
@@ -33,6 +34,8 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 
 			Wiring.UpdateMech(); // Make wiring work
 			DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
+
+			Utilities.Utilities.SpawnPreHardmodeBosses(player);
         }
 
         public override void OnLoad()

@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 4);
-            Utilities.ItemSound(Item, Utilities.Sounds.ETechAR, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.ETechARSingle, 60);
         }
 
         public override Vector2? HoldoutOffset()

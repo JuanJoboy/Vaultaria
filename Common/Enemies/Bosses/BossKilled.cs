@@ -14,106 +14,65 @@ namespace Vaultaria.Common.Global
             // Ensure this logic only runs on the server in multiplayer, or locally in singleplayer.
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                // if (npc.type == NPCID.SkeletronHead)
-                // {
-                //     if (BossDownedSystem.skeletron == false)
-                //     {
-                //         Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Masher Prefix Unlocked!");
-
-                //         // Set the static flag and sync the event flag cleared status
-                //         BossDownedSystem.skeletron = true;
-                //         NPC.SetEventFlagCleared(ref BossDownedSystem.skeletron, -1);
-                //     }
-                // }
-
-                if (npc.type == NPCID.TorchGod)
-                {
-                    if (BossDownedSystem.torchGod == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.OrangeRed, "Incendiary Prefix Unlocked!");
-
-                        BossDownedSystem.torchGod = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.torchGod, -1);
-                    }
-                }
+                CallAllPrefixUnlocked(npc);
                 
-                if (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.EaterofWorldsHead)
-                {
-                    if (BossDownedSystem.evilBoss == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.LightGreen, "Corrosive Prefix Unlocked!");
-                        
-                        BossDownedSystem.evilBoss = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.evilBoss, -1);
-                    }
-                }
+                CallAllVaultBossDowned(npc);
+            }
+        }
 
-                if (npc.type == NPCID.Deerclops)
+        private void PrefixUnlocked(NPC npc, ref bool npcDowned, int npcID, Color color, string prefixUnlocked)
+        {
+            if (npc.type == npcID)
+            {
+                if (npcDowned == false)
                 {
-                    if (BossDownedSystem.deerClops == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Double Penetrating Prefix Unlocked!");
-                        
-                        BossDownedSystem.deerClops = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.deerClops, -1);
-                    }
-                }
+                    Utilities.Utilities.DisplayStatusMessage(npc.Center, color, $"{prefixUnlocked} Prefix Unlocked!");
 
-                if (npc.type == NPCID.WallofFlesh)
-                {
-                    if (BossDownedSystem.wallOfFlesh == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Violet, "Slag Prefix Unlocked!");
-
-                        BossDownedSystem.wallOfFlesh = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.wallOfFlesh, -1);
-                    }
+                    npcDowned = true;
+                    NPC.SetEventFlagCleared(ref npcDowned, -1);
                 }
-                
-                if (npc.type == NPCID.PirateCaptain)
-                {
-                    if (BossDownedSystem.pirateShip == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Yellow, "Explosive Prefix Unlocked!");
-                        
-                        BossDownedSystem.pirateShip = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.pirateShip, -1);
-                    }
-                }
+            }   
+        }
 
-                if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
-                {
-                    if (BossDownedSystem.twins == false)
-                    {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.YellowGreen, "Radiation Prefix Unlocked!");
-                        
-                        BossDownedSystem.twins = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.twins, -1);
-                    }
-                }
+        private void CallAllPrefixUnlocked(NPC npc)
+        {
+            // PrefixUnlocked(npc, BossDownedSystem.skeletron, NPCID.SkeletronHead, Color.Gold, "Masher");
+            PrefixUnlocked(npc, ref BossDownedSystem.torchGod, NPCID.TorchGod, Color.OrangeRed, "Incendiary");
+            PrefixUnlocked(npc, ref BossDownedSystem.evilBoss, NPCID.BrainofCthulhu, Color.LightGreen, "Corrosive");
+            PrefixUnlocked(npc, ref BossDownedSystem.evilBoss, NPCID.EaterofWorldsHead, Color.LightGreen, "Corrosive");
+            PrefixUnlocked(npc, ref BossDownedSystem.deerClops, NPCID.Deerclops, Color.Gold, "Double Penetrating");
+            PrefixUnlocked(npc, ref BossDownedSystem.wallOfFlesh, NPCID.WallofFlesh, Color.Violet, "Slag");
+            PrefixUnlocked(npc, ref BossDownedSystem.pirateShip, NPCID.PirateShip, Color.Yellow, "Explosive");
+            PrefixUnlocked(npc, ref BossDownedSystem.twins, NPCID.Retinazer, Color.YellowGreen, "Radiation");
+            PrefixUnlocked(npc, ref BossDownedSystem.twins, NPCID.Spazmatism, Color.YellowGreen, "Radiation");
+            PrefixUnlocked(npc, ref BossDownedSystem.iceGolem, NPCID.IceGolem, Color.LightBlue, "Cryo");
+            PrefixUnlocked(npc, ref BossDownedSystem.martianSaucerCore, NPCID.MartianSaucerCore, Color.DeepSkyBlue, "Shock");
+        }
 
-                if (npc.type == NPCID.IceGolem)
+        private void VaultBossDowned(NPC npc, ref bool npcDowned, ref bool dontRespawn, int npcID)
+        {
+            if(SubworldLibrary.SubworldSystem.AnyActive())
+            {
+                if (npc.type == npcID)
                 {
-                    if (BossDownedSystem.iceGolem == false)
+                    if (npcDowned == false)
                     {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.LightBlue, "Cryo Prefix Unlocked!");
-
-                        BossDownedSystem.iceGolem = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.iceGolem, -1);
+                        npcDowned = true;
+                        NPC.SetEventFlagCleared(ref npcDowned, -1);
                     }
-                }
-                
-                if (npc.type == NPCID.MartianSaucerCore)
-                {
-                    if (BossDownedSystem.martianSaucerCore == false)
+                    if(dontRespawn == false)
                     {
-                        Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.DeepSkyBlue, "Shock Prefix Unlocked!");
-                        
-                        BossDownedSystem.martianSaucerCore = true;
-                        NPC.SetEventFlagCleared(ref BossDownedSystem.martianSaucerCore, -1);
+                        dontRespawn = true;
+                        NPC.SetEventFlagCleared(ref dontRespawn, -1);
                     }
                 }
             }
+        }
+
+        private void CallAllVaultBossDowned(NPC npc)
+        {
+            VaultBossDowned(npc, ref BossDownedSystem.vaultKingSlime, ref BossDownedSystem.vaultKingSlimeDR, NPCID.KingSlime);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
         }
     }
 }

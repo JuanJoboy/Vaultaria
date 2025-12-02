@@ -16,6 +16,13 @@ namespace Vaultaria.Common.Systems
         public static bool iceGolem = false;
         public static bool martianSaucerCore = false;
 
+        public static bool vaultKingSlime = false;
+        public static bool vaultKingSlimeDR = false;
+        public static bool vaultEyeOfCthulhu = false;
+        public static bool vaultEyeOfCthulhuDR = false;
+        public static bool vaultQueenBee = false;
+        public static bool vaultQueenBeeDR = false;
+
         // Use Save/LoadWorldData to ensure the state persists
         public override void SaveWorldData(TagCompound tag)
         {
@@ -28,6 +35,13 @@ namespace Vaultaria.Common.Systems
             tag["twins"] = twins;
             tag["iceGolem"] = iceGolem;
             tag["martianSaucerCore"] = martianSaucerCore;
+
+            tag["vaultKingSlime"] = vaultKingSlime;
+            tag["vaultKingSlimeDR"] = vaultKingSlimeDR; // DR = Don't Respawn
+            tag["vaultEyeOfCthulhu"] = vaultEyeOfCthulhu;
+            tag["vaultEyeOfCthulhuDR"] = vaultEyeOfCthulhuDR;
+            tag["vaultQueenBee"] = vaultQueenBee;
+            tag["vaultQueenBeeDR"] = vaultQueenBeeDR;
         }
         
         // Load both flags
@@ -42,6 +56,13 @@ namespace Vaultaria.Common.Systems
             twins = tag.GetBool("twins");
             iceGolem = tag.GetBool("iceGolem");
             martianSaucerCore = tag.GetBool("martianSaucerCore");
+
+            vaultKingSlime = tag.GetBool("vaultKingSlime");
+            vaultKingSlimeDR = tag.GetBool("vaultKingSlimeDR");
+            vaultEyeOfCthulhu = tag.GetBool("vaultEyeOfCthulhu");
+            vaultEyeOfCthulhuDR = tag.GetBool("vaultEyeOfCthulhuDR");
+            vaultQueenBee = tag.GetBool("vaultQueenBee");
+            vaultQueenBeeDR = tag.GetBool("vaultQueenBeeDR");
         }
         
         // This resets the flag when a new world is created
@@ -56,6 +77,13 @@ namespace Vaultaria.Common.Systems
             twins = false;
             iceGolem = false;
             martianSaucerCore = false;
+
+            vaultKingSlime = false;
+            vaultKingSlimeDR = false;
+            vaultEyeOfCthulhu = false;
+            vaultEyeOfCthulhuDR = false;
+            vaultQueenBee = false;
+            vaultQueenBeeDR = false;
         }
     }
 }

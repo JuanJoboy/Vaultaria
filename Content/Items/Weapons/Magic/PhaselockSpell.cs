@@ -11,6 +11,7 @@ using Vaultaria.Content.Buffs.MagicEffects;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.Audio;
 using Vaultaria.Common.Configs;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Magic
 {
@@ -99,6 +100,19 @@ namespace Vaultaria.Content.Items.Weapons.Magic
         public override bool? CanMeleeAttackCollideWithNPC(Rectangle meleeAttackHitbox, Player player, NPC target)
         {
             return false;
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>() &&
+                   pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

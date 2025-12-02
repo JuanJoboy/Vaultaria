@@ -81,18 +81,25 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             return new Vector2(4f, 0f);
         }
 
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>() &&
+                   pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Summons Wolf and Saint to fight for you");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Wolf attacks enemies", Utilities.VaultarianColours.Radiation);
             Utilities.Text(tooltips, Mod, "Tooltip3", "Saint regenerates your health", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "You killed Wilhelm...?");
-        }
-
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<MagicTrickshot>() &&
-                   pre != ModContent.PrefixType<MagicDP>();
         }
     }
 }

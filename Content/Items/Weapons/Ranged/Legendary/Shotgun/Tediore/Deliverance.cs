@@ -47,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Item.UseSound = SoundID.Item41;
+            Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
         }
 
         public override bool AltFunctionUse(Player player)

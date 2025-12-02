@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 18;
+            Item.shootSpeed = 300;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 

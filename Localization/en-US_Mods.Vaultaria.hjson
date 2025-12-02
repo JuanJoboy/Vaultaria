@@ -806,6 +806,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Termination Protocols
 	}
+
+	Taser: {
+		DisplayName: T4s-R
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

@@ -7,6 +7,7 @@ using Vaultaria.Content.Projectiles.Melee;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Melee
 {
@@ -113,6 +114,17 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 .AddIngredient(ItemID.Dynamite, 100)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

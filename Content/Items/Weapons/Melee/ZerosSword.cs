@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.PotionEffects;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Melee
 {
@@ -39,7 +40,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Other properties
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
-            Item.UseSound = SoundID.Item15;
+            Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
@@ -100,11 +101,21 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 if (Main.mouseLeft && target.Hitbox.Intersects(mouse))
                 {
                     Utilities.MoveToPosition(player, Main.MouseWorld, 20, 3f);
-                    Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
                 }
             }
 
             return true;
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
         }
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)

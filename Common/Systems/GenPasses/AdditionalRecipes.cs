@@ -9,21 +9,19 @@ namespace Vaultaria.Common.Systems.GenPasses
 {
     public class AdditionalRecipes : ModSystem
     {
-        public override void PostAddRecipes()
+        public override void AddRecipes()
         {
-            for(int i = 0; i < Main.item.Length; i++)
-            {
-                Item item = new Item();
-                item.SetDefaults(i);
-                
-                if (item.ammo == AmmoID.Bullet && item.damage > 0)
-                {
-                    Recipe.Create(i, 100)
-                        .AddIngredient(ItemID.GoldCoin, 20 * item.damage)
-                        .AddTile(ModContent.TileType<MarcusVendingMachine>())
-                        .Register();
-                }
-            }
+            base.AddRecipes();
+
+            Recipe.Create(ItemID.Heart, 1)
+            .AddIngredient(ItemID.GoldCoin, 10) 
+            .AddTile(ModContent.TileType<ZedVendingMachine>()) 
+            .Register();
+
+            Recipe.Create(ItemID.Heart, 10)
+            .AddIngredient(ItemID.PlatinumCoin, 1) 
+            .AddTile(ModContent.TileType<ZedVendingMachine>()) 
+            .Register();
         }
     }   
 }

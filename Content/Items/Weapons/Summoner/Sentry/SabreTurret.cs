@@ -38,6 +38,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
+            Item.UseSound = SoundID.Item46;
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;
@@ -75,6 +76,19 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             return new Vector2(4f, 0f);
         }
 
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>() &&
+                   pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Deploy a Sabre Turret that targets and fires upon enemies\n2 Sentries can be summoned");
@@ -83,12 +97,6 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Utilities.Text(tooltips, Mod, "Tooltip4", "    \tA homing slag ball per second", Utilities.VaultarianColours.Slag);
             Utilities.Text(tooltips, Mod, "Tooltip5", "    \tA Cluster Rocket per 2 seconds", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "Ten years of Dahl military experience at your service.");
-        }
-
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<MagicTrickshot>() &&
-                   pre != ModContent.PrefixType<MagicDP>();
         }
     }
 }

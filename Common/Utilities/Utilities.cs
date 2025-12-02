@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Common.Systems;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue;
@@ -105,8 +106,11 @@ namespace Vaultaria.Common.Utilities
         public enum Sounds
         {
             LegendaryDrop,
+            DigiCloneSpawn,
+            DigiCloneSwap,
             Norfleet,
             Execute,
+            GenericLaser,
             BanditAR,
             BanditARRocket,
             BanditLauncher,
@@ -124,11 +128,18 @@ namespace Vaultaria.Common.Utilities
             DahlSniperBurst,
             DahlSniperSingle,
             Deception,
-            ETechAR,
+            ETechARBurst,
+            ETechARSingle,
             ETechLauncher,
+            ETechPistolBurst,
+            ETechPistolSingle,
             ETechSMGBurst,
             ETechSMGSingle,
+            ETechShotgun,
             ETechSniperBurst,
+            ETechSniperSingle,
+            PlasmaCoil,
+            HyperionLaser,
             HyperionPistol,
             HyperionShotgun,
             HyperionSMG,
@@ -137,11 +148,16 @@ namespace Vaultaria.Common.Utilities
             JakobsAR,
             JakobsShotgun,
             JakobsSniper,
+            MaliwanContinuousLaser,
+            MaliwanLaserSingle,
             MaliwanLauncher,
             MaliwanPistol,
             MaliwanSMG,
             MaliwanSniper,
             Phaselock,
+            TedioreLaser,
+            TedioreLaserThrow,
+            LaserDisker,
             TedioreLauncher,
             TedioreLauncherThrow,
             TediorePistol,
@@ -452,7 +468,7 @@ namespace Vaultaria.Common.Utilities
         /// <param name="projectile"></param>
         /// <param name="dustID"></param>
         /// <param name="gravityOff"></param>
-        public static void DustMaker(int amountOfDust, Projectile projectile, short dustID, bool gravityOff)
+        public static void DustMaker(int amountOfDust, Projectile projectile, short dustID, bool gravityOff = false)
         {
             for (int i = 0; i < amountOfDust; i++)
             {
@@ -759,6 +775,51 @@ namespace Vaultaria.Common.Utilities
             {
                 fail = true;
             }
+        }
+
+		public static void SpawnPreHardmodeBosses(Player player)
+        {
+            ContinueBossRush1(player, ref BossDownedSystem.vaultKingSlime, ref BossDownedSystem.vaultKingSlimeDR, NPCID.EyeofCthulhu);
+            ContinueBossRush1(player, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultEyeOfCthulhuDR, NPCID.QueenBee);
+        }
+
+		public static void ContinueBossRush1(Player player, ref bool oldBossIsDead, ref bool dontSpawnOldBossAgain, int newBossToSpawn)
+        {
+            if(BossTimer(player, ref oldBossIsDead, ref dontSpawnOldBossAgain) == true)
+            {
+                SpawnBoss(player, newBossToSpawn);
+            }
+        }
+
+		public static bool BossTimer(Player player, ref bool oldBossIsDead, ref bool dontSpawnOldBossAgain)
+        {
+            if(oldBossIsDead == true && dontSpawnOldBossAgain == true)
+			{
+                for(int i = 0; i < 600; i++)
+                {
+                    if(i % 60 == 0)
+                    {
+						string seconds = (60 - (i / 60)).ToString();
+                        DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
+                    }
+                }
+
+				return true;
+            }
+
+			return false;
+        }
+
+		public static void SpawnBoss(Player player, int newBossToSpawn)
+        {
+			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, newBossToSpawn);
+
+            boss.boss = true;
+			boss.lifeMax *= (int) 1.5f;
+            boss.life = boss.lifeMax;
+			boss.damage *= 2;
+            boss.velocity *= 1.5f;
+            boss.scale *= 1.2f;
         }
     }
 }

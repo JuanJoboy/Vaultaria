@@ -39,30 +39,11 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
         public override bool RightClick(int i, int j)
         {
-            Player player = Main.player[Main.myPlayer];
+            Player player = Main.LocalPlayer;
 
-            SpawnBoss(player);
+            Utilities.SpawnBoss(player, NPCID.KingSlime);
 
             return base.RightClick(i, j);
-        }
-
-		private void StartInvasion(Player player)
-        {
-			Main.StartInvasion(InvasionID.GoblinArmy);
-
-			if(Main.invasionProgress == Main.invasionProgressMax)
-			{
-				SpawnBoss(player);
-			}
-        }
-
-		private void SpawnBoss(Player player)
-        {
-			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, NPCID.EyeofCthulhu);
-
-			boss.lifeMax *= 3;
-            boss.life = boss.lifeMax;
-			boss.damage *= 5;
         }
     }
 }

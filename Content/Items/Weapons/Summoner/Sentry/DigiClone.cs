@@ -40,6 +40,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
+            Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
 
             Item.noMelee = true;
             Item.shootSpeed = 4f;
@@ -84,7 +85,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
                 TeleportToClone(player);
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
+                Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSwap, 120);
             }
             else // Summon Clone
             {
@@ -101,7 +102,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
+                Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
             }
 
             return base.CanUseItem(player);
@@ -124,7 +125,14 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         public override bool AllowPrefix(int pre)
         {
             return pre != ModContent.PrefixType<MagicTrickshot>() &&
-                   pre != ModContent.PrefixType<MagicDP>();
+                   pre != ModContent.PrefixType<MagicDP>() &&
+                   pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
         }
 
         private void TeleportToClone(Player player)

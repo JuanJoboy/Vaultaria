@@ -86,7 +86,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Item.UseSound = SoundID.Item31;
+                // Item.UseSound = SoundID.Item31;
+                Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
             }
             else // Quad Shot (normal)
             {

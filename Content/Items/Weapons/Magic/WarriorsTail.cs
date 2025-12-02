@@ -7,6 +7,7 @@ using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Placeables.VendingMachines;
 using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Magic
 {
@@ -34,6 +35,19 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 		public override bool CanUseItem(Player player) {
 			return player.ownedProjectileCounts[ModContent.ProjectileType<WarriorLaserHoldout>()] <= 0;
 		}
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>() &&
+                   pre != ModContent.PrefixType<MagicDP>() &&
+                   pre != ModContent.PrefixType<Incendiary>() &&
+                   pre != ModContent.PrefixType<Shock>() &&
+                   pre != ModContent.PrefixType<Corrosive>() &&
+                   pre != ModContent.PrefixType<Explosive>() &&
+                   pre != ModContent.PrefixType<Slag>() &&
+                   pre != ModContent.PrefixType<Cryo>() &&
+                   pre != ModContent.PrefixType<Radiation>();
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

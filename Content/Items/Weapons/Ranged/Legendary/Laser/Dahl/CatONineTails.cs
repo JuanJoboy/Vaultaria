@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan;
+using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
 {
@@ -37,19 +38,24 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
             Item.crit = 6;
             Item.DamageType = DamageClass.Magic;
 
-            Item.useTime = 5;
-            Item.useAnimation = 30;
+            Item.useTime = 7;
+            Item.useAnimation = 7;
             Item.reuseDelay = 5;
             Item.autoReuse = true;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.ETechSMGBurst, 60);
+            Utilities.ItemSound(Item, Utilities.Sounds.GenericLaser, 60);
         }
 
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-20f, 5f);
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<MagicTrickshot>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

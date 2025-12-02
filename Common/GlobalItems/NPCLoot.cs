@@ -457,11 +457,13 @@ namespace Vaultaria.Common.GlobalItems
 
         private void VaultBosses(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.EyeofCthulhu)
+            if(SubworldLibrary.SubworldSystem.AnyActive())
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
-                Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Vault of the Destroyer Raided");
+                if (npc.type == NPCID.EyeofCthulhu)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WarriorsTail>(), 1, 1, 1));
+                    Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Vault of the Warrior Raided");
+                }   
             }
         }
     }

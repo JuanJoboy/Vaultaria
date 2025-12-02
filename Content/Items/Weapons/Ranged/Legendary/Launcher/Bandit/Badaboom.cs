@@ -69,6 +69,11 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
 
             return true;
         }
+        
+        public override bool AllowPrefix(int pre)
+        {
+            return pre != ModContent.PrefixType<RangerTrickshot>();
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -76,11 +81,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Bandit
             Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 25 Launcher Ammo per shot");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Allows for rocket jumping", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Multi-kill.\nYoooo, the skip dude.");
-        }
-        
-        public override bool AllowPrefix(int pre)
-        {
-            return pre != ModContent.PrefixType<RangerTrickshot>();
         }
     }
 }
