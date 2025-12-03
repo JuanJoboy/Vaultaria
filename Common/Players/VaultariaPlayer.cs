@@ -32,6 +32,8 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Summoner.Sentry;
+using Vaultaria.Content.Items.Accessories.Skills;
+using Vaultaria.Content.Buffs.SkillEffects;
 
 namespace Vaultaria.Common.Players
 {
@@ -85,7 +87,7 @@ namespace Vaultaria.Common.Players
 
             if(IsWearing(ModContent.ItemType<TerminationProtocols>()))
             {
-                int damage = Player.statDefense * 4;
+                int damage = Player.statDefense * 4f;
 
                 if(Main.masterMode)
                 {
@@ -243,6 +245,8 @@ namespace Vaultaria.Common.Players
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
         {
+            base.ModifyWeaponDamage(item, ref damage);
+
             if (Player.HasBuff(ModContent.BuffType<OrcEffect>()))
             {
                 damage *= 1.2f;

@@ -26,10 +26,13 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         public override void Update()
         {
             base.Update();
+			Player player = Main.LocalPlayer;
 
 			Main.dayTime = false;
 			Main.time = Main.nightLength;
 			Main.dayRate = 0;
+
+			Utilities.Utilities.SpawnHardmodeBosses(player);
         }
 	}
 }

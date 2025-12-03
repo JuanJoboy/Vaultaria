@@ -46,7 +46,45 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Purple;
-            Utilities.ItemSound(Item, Utilities.Sounds.Phaselock, 300);
+
+            PhaselockSound();
+        }
+
+        private void PhaselockSound()
+        {
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+            bool moonLord = NPC.downedMoonlord;
+            bool wof = Main.hardMode;
+
+			if(config.GetRuinFirst == true)
+            {
+                if(wof)
+                {
+                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
+                }
+                else
+                {
+                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
+                }
+            }
+            else
+            {
+                if(moonLord)
+                {
+                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
+                }
+                else
+                {
+                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
+                }
+            }
+        }
+
+        public override void HoldItem(Player player)
+        {
+            base.HoldItem(player);
+
+            PhaselockSound();
         }
         
         public override bool? UseItem(Player player)
@@ -117,11 +155,11 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on", Utilities.VaultarianColours.Healing);
+
             VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
             bool moonLord = NPC.downedMoonlord;
             bool wof = Main.hardMode;
-
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bubble at your cursor, that locks in place the npc that was clicked on", Utilities.VaultarianColours.Healing);
 
 			if(config.GetRuinFirst == true)
             {

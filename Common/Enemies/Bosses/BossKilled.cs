@@ -14,9 +14,14 @@ namespace Vaultaria.Common.Global
             // Ensure this logic only runs on the server in multiplayer, or locally in singleplayer.
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                CallAllPrefixUnlocked(npc);
-                
-                CallAllVaultBossDowned(npc);
+                if(!SubworldLibrary.SubworldSystem.AnyActive())
+                {
+                    CallAllPrefixUnlocked(npc);
+                }
+                else
+                {
+                    CallAllVaultBossDowned(npc);
+                }
             }
         }
 
@@ -49,30 +54,50 @@ namespace Vaultaria.Common.Global
             PrefixUnlocked(npc, ref BossDownedSystem.martianSaucerCore, NPCID.MartianSaucerCore, Color.DeepSkyBlue, "Shock");
         }
 
-        private void VaultBossDowned(NPC npc, ref bool npcDowned, ref bool dontRespawn, int npcID)
+        private void VaultBossDowned(NPC npc, ref bool npcDowned, int npcID)
         {
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if (npc.type == npcID)
             {
-                if (npc.type == npcID)
+                if (npcDowned == false)
                 {
-                    if (npcDowned == false)
-                    {
-                        npcDowned = true;
-                        NPC.SetEventFlagCleared(ref npcDowned, -1);
-                    }
-                    if(dontRespawn == false)
-                    {
-                        dontRespawn = true;
-                        NPC.SetEventFlagCleared(ref dontRespawn, -1);
-                    }
+                    npcDowned = true;
+                    NPC.SetEventFlagCleared(ref npcDowned, -1);
                 }
+            }
+        }
+
+        private void ShowVaultMessage(NPC npc, int npcID, Color color, string msg)
+        {
+            if(npc.type == npcID)
+            {
+                Utilities.Utilities.DisplayStatusMessage(npc.Center, color, msg);
             }
         }
 
         private void CallAllVaultBossDowned(NPC npc)
         {
-            VaultBossDowned(npc, ref BossDownedSystem.vaultKingSlime, ref BossDownedSystem.vaultKingSlimeDR, NPCID.KingSlime);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
+            // Vault 1
+            VaultBossDowned(npc, ref BossDownedSystem.vaultKingSlime, NPCID.KingSlime);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultEyeOfCthulhu, NPCID.EyeofCthulhu);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultQueenBee, NPCID.QueenBee);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultDeerClops, NPCID.Deerclops);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultSkeletron, NPCID.SkeletronHead);
+
+            ShowVaultMessage(npc, NPCID.SkeletronHead, Color.OrangeRed, "Vault of the Warrior Raided!");
+
+            // Vault 2
+            VaultBossDowned(npc, ref BossDownedSystem.vaultQueenSlime, NPCID.QueenSlimeBoss);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultTwins, NPCID.Retinazer);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultSkeletronPrime, NPCID.SkeletronPrime);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultBetsy, NPCID.DD2Betsy);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultPlantera, NPCID.Plantera);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultGolem, NPCID.Golem);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultDukeFishron, NPCID.DukeFishron);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultEmpress, NPCID.HallowBoss);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultLunaticCultist, NPCID.CultistBoss);
+            VaultBossDowned(npc, ref BossDownedSystem.vaultMoonLord, NPCID.MoonLordCore);
+
+            ShowVaultMessage(npc, NPCID.MoonLordCore, Color.LightBlue, "Vault of the Destroyer Raided!");
         }
     }
 }

@@ -20,6 +20,9 @@ namespace Vaultaria.Common.Configs
         [DefaultValue(false)]
         public bool KeepMinionSizeTheSameWhenGammaBursting;
 
+        [DefaultValue(false)]
+        public bool KeepBossSizeTheSameWhenBossRushing;
+
         // --- Optional Integer Setting ---
         [DefaultValue(1)] // Default value is 1 (no multiplier)
         [Range(1, 10)] // Optional: Defines the min/max slider range in the UI

@@ -811,6 +811,36 @@ Items: {
 		DisplayName: T4s-R
 		Tooltip: ""
 	}
+
+	Bloodsplosion: {
+		DisplayName: Bloodsplosion
+		Tooltip: ""
+	}
+
+	Bore: {
+		DisplayName: Bore
+		Tooltip: ""
+	}
+
+	Fleet: {
+		DisplayName: Fleet
+		Tooltip: ""
+	}
+
+	FollowThrough: {
+		DisplayName: F0ll0wthr0ugh
+		Tooltip: ""
+	}
+
+	Grit: {
+		DisplayName: Grit
+		Tooltip: ""
+	}
+
+	TwoFang: {
+		Tooltip: ""
+		DisplayName: Two Fang
+	}
 }
 
 Projectiles: {
@@ -894,6 +924,7 @@ Projectiles: {
 	Saint.DisplayName: Saint
 	RolandTurret.DisplayName: Roland Turret
 	AxtonTurret.DisplayName: Axton Turret
+	TaserLaser.DisplayName: Taser Laser
 }
 
 Buffs: {
@@ -971,6 +1002,11 @@ Buffs: {
 		Description: Wolf And Saint will fight for you
 		DisplayName: Wolf And Saint
 	}
+
+	FollowThroughKillSkill: {
+		DisplayName: F0ll0wthr0ugh
+		Description: Killing an enemy increases your Damage and Movement Speed for a short time
+	}
 }
 
 Prefixes: {
@@ -996,6 +1032,7 @@ Prefixes: {
 	MagicMasher.DisplayName: Masher
 	Masher.DisplayName: Masher
 	RangerMasher.DisplayName: Masher
+	RedSuit.DisplayName: Red Suit
 }
 
 NPCs: {
@@ -1048,7 +1085,7 @@ NPCs: {
 			Trickshot: The first prefix available. You get this one just for existing! Trickshot is great for you losers who have terrible aim cause your bullets ricochet off surfaces, ensuring you eventually hit something (something that I'd never need).
 			Accessories: Listen up! You have three glorious new equipment types to play with: Shields, Relics, and Attunements. You can wear one of each (I know, mind-blowing). These gizmos grant special abilities to help you, the Vault Hunter, bring peace. (And by peace, I mean DEATH TO EVERYONE WHO DARES CROSS ME!)
 			Ammo: Ha! Your weak Terrarian ammo is pathetic! Some of the BEST weapons need my superior Ammo from the Borderlands. It drops from any marauder you kill. However if you wanna be a lazy squire, you can buy it from the Arms Dealer.
-			Vaults: The Vaults of Terraria are a dangerous place to enter. There are 2 within this world, and they can be entered using their Vault Key. A Vault Key can be crafted from Fragments, that are scattered about the lands, hidden in chests. After entering a Vault, traverse through it and fight the boss to get a reward of unimaginable power.
+			Vaults: The Vaults of Terraria are a dangerous place to enter. There are 2 within this world, and they can be entered using their Vault Key. A Vault Key can be crafted from Fragments, that are scattered about the lands, hidden in chests. After entering a Vault, traverse through it and fight the Raid Bosses at the end to get a reward of unimaginable power.
 		}
 
 		Dialogue: {
@@ -1127,6 +1164,11 @@ Configs: {
 		KeepMinionSizeTheSameWhenGammaBursting: {
 			Label: Keep Minion Size The Same When Gamma Bursting
 			Tooltip: If enabled, then your minion's size won't be doubled when gamma-ed
+		}
+
+		KeepBossSizeTheSameWhenBossRushing: {
+			Label: Keep Boss Size The Same When Boss Rushing
+			Tooltip: If enabled, then the boss's sizes inside the vaults won't be increased
 		}
 	}
 }

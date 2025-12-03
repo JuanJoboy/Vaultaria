@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Vaultaria.Common.Systems;
 using Vaultaria.Common.Systems.GenPasses;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
@@ -41,9 +42,45 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             Player player = Main.LocalPlayer;
 
-            Utilities.SpawnBoss(player, NPCID.KingSlime);
+            if(NoBossIsActive())
+            {
+                ResetBossDownedSystems();
+                Utilities.SpawnBoss(player, NPCID.KingSlime);
+            }
 
             return base.RightClick(i, j);
+        }
+
+        private void ResetBossDownedSystems()
+        {
+            BossDownedSystem.vaultKingSlime = false;
+            BossDownedSystem.vaultKingSlimeDR = false;
+            BossDownedSystem.vaultEyeOfCthulhu = false;
+            BossDownedSystem.vaultEyeOfCthulhuDR = false;
+            BossDownedSystem.vaultQueenBee = false;
+            BossDownedSystem.vaultQueenBeeDR = false;
+            BossDownedSystem.vaultDeerClops = false;
+            BossDownedSystem.vaultDeerClopsDR = false;
+            BossDownedSystem.vaultSkeletron = false;
+            BossDownedSystem.vaultSkeletronDR = false;
+        }
+
+        private bool NoBossIsActive()
+        {
+            if(Utilities.bossTimer < Utilities.countdown)
+            {
+                return false;
+            }
+
+            foreach(NPC n in Main.ActiveNPCs)
+            {
+                if(n.type == NPCID.KingSlime || n.type == NPCID.EyeofCthulhu || n.type == NPCID.QueenBee || n.type == NPCID.Deerclops || n.type == NPCID.SkeletronHead || n.type == NPCID.SkeletronHand)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

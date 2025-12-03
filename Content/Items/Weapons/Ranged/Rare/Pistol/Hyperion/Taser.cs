@@ -8,6 +8,7 @@ using Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion;
 using System.Collections.Generic;
 using Vaultaria.Content.Prefixes.Weapons;
 using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 {
@@ -51,6 +52,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-7f, 2f);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Eridium>(30)
+                .AddIngredient(ItemID.SpaceGun, 1)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
+                .AddIngredient(ItemID.SoulofMight, 25)
+                .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
+                .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

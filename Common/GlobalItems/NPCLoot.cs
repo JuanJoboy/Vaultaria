@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
+using SubworldLibrary;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
@@ -353,7 +354,7 @@ namespace Vaultaria.Common.GlobalItems
                 Eridium(npcLoot, 25, 40);
             }
 
-            VaultBosses(mob, npcLoot);
+            VaultBosses(npc, npcLoot);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -455,15 +456,17 @@ namespace Vaultaria.Common.GlobalItems
             }
         }
 
-        private void VaultBosses(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
+        private void VaultBosses(int npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if (npc == NPCID.SkeletronHead)
             {
-                if (npc.type == NPCID.EyeofCthulhu)
-                {
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WarriorsTail>(), 1, 1, 1));
-                    Utilities.Utilities.DisplayStatusMessage(npc.Center, Color.Gold, "Vault of the Warrior Raided");
-                }   
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<WarriorsTail>(), 1, 1, 1));
+            }
+
+            if (npc == NPCID.MoonLordCore)
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
             }
         }
     }

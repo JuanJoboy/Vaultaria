@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Vaultaria.Common.Systems;
 using Vaultaria.Common.Systems.GenPasses;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
@@ -39,30 +40,57 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
         public override bool RightClick(int i, int j)
         {
-            Player player = Main.player[Main.myPlayer];
+            Player player = Main.LocalPlayer;
 
-            SpawnBoss(player);
+            if(NoBossIsActive())
+            {
+                ResetBossDownedSystems();
+                Utilities.SpawnBoss(player, NPCID.QueenSlimeBoss);
+            }
 
             return base.RightClick(i, j);
         }
 
-		private void StartInvasion(Player player)
+        private void ResetBossDownedSystems()
         {
-			Main.StartInvasion(InvasionID.GoblinArmy);
-
-			if(Main.invasionProgress == Main.invasionProgressMax)
-			{
-				SpawnBoss(player);
-			}
+            BossDownedSystem.vaultQueenSlime = false;
+            BossDownedSystem.vaultQueenSlimeDR = false;
+            BossDownedSystem.vaultTwins = false;
+            BossDownedSystem.vaultTwinsDR = false;
+            BossDownedSystem.vaultSkeletronPrime = false;
+            BossDownedSystem.vaultSkeletronPrimeDR = false;
+            BossDownedSystem.vaultBetsy = false;
+            BossDownedSystem.vaultBetsyDR = false;
+            BossDownedSystem.vaultPlantera = false;
+            BossDownedSystem.vaultPlanteraDR = false;
+            BossDownedSystem.vaultGolem = false;
+            BossDownedSystem.vaultGolemDR = false;
+            BossDownedSystem.vaultDukeFishron = false;
+            BossDownedSystem.vaultDukeFishronDR = false;
+            BossDownedSystem.vaultEmpress = false;
+            BossDownedSystem.vaultEmpressDR = false;
+            BossDownedSystem.vaultLunaticCultist = false;
+            BossDownedSystem.vaultLunaticCultistDR = false;
+            BossDownedSystem.vaultMoonLord = false;
+            BossDownedSystem.vaultMoonLordDR = false;
         }
 
-		private void SpawnBoss(Player player)
+        private bool NoBossIsActive()
         {
-			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, NPCID.EyeofCthulhu);
+            if(Utilities.bossTimer < Utilities.countdown)
+            {
+                return false;
+            }
 
-			boss.lifeMax *= 3;
-            boss.life = boss.lifeMax;
-			boss.damage *= 5;
+            foreach(NPC n in Main.ActiveNPCs)
+            {
+                if(n.type == NPCID.QueenSlimeBoss || n.type == NPCID.Retinazer || n.type == NPCID.Spazmatism || n.type == NPCID.SkeletronPrime || n.type == NPCID.DD2Betsy || n.type == NPCID.Plantera || n.type == NPCID.PlanterasHook || n.type == NPCID.PlanterasTentacle || n.type == NPCID.Golem || n.type == NPCID.GolemFistLeft || n.type == NPCID.GolemFistRight || n.type == NPCID.GolemHead || n.type == NPCID.GolemHeadFree || n.type == NPCID.DukeFishron || n.type == NPCID.HallowBoss || n.type == NPCID.CultistBoss || n.type == NPCID.CultistBossClone || n.type == NPCID.CultistDragonBody1 || n.type == NPCID.CultistDragonBody2 || n.type == NPCID.CultistDragonBody3 || n.type == NPCID.CultistDragonBody4 || n.type == NPCID.CultistDragonHead || n.type == NPCID.CultistDragonTail || n.type == NPCID.MoonLordCore || n.type == NPCID.MoonLordFreeEye || n.type == NPCID.MoonLordHand || n.type == NPCID.MoonLordHead || n.type == NPCID.MoonLordLeechBlob)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

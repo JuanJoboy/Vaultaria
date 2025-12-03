@@ -14,7 +14,14 @@ namespace Vaultaria.Common.Globals
         {
             if(SubworldLibrary.SubworldSystem.AnyActive())
             {
+                // No Teleporting
                 if(item.type == ItemID.RodofDiscord || item.type == ItemID.RodOfHarmony)
+                {
+                    return false;
+                }
+
+                // No External Boss Summoning
+                if(item.type == ItemID.SlimeCrown || item.type == ItemID.SuspiciousLookingEye || item.type == ItemID.Abeemination || item.type == ItemID.DeerThing || item.type == ItemID.QueenSlimeCrystal || item.type == ItemID.MechanicalEye || item.type == ItemID.MechanicalWorm || item.type == ItemID.MechanicalSkull || item.type == ItemID.MechdusaSummon || item.type == ItemID.LihzahrdPowerCell || item.type == ItemID.CelestialSigil)
                 {
                     return false;
                 }

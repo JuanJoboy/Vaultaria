@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.Xna.Framework;
@@ -7,8 +8,10 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Common.Configs;
 using Vaultaria.Common.Systems;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Vaultaria.Content.Items.Weapons.Ammo;
@@ -154,7 +157,8 @@ namespace Vaultaria.Common.Utilities
             MaliwanPistol,
             MaliwanSMG,
             MaliwanSniper,
-            Phaselock,
+            PhaselockBase,
+            PhaselockRuin,
             TedioreLaser,
             TedioreLaserThrow,
             LaserDisker,
@@ -779,32 +783,74 @@ namespace Vaultaria.Common.Utilities
 
 		public static void SpawnPreHardmodeBosses(Player player)
         {
-            ContinueBossRush1(player, ref BossDownedSystem.vaultKingSlime, ref BossDownedSystem.vaultKingSlimeDR, NPCID.EyeofCthulhu);
-            ContinueBossRush1(player, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultEyeOfCthulhuDR, NPCID.QueenBee);
+            ContinueBossRush(player, ref BossDownedSystem.vaultKingSlime, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
+            ContinueBossRush(player, ref BossDownedSystem.vaultEyeOfCthulhu, ref BossDownedSystem.vaultQueenBee, ref BossDownedSystem.vaultQueenBeeDR, NPCID.QueenBee);
+            ContinueBossRush(player, ref BossDownedSystem.vaultQueenBee, ref BossDownedSystem.vaultDeerClops, ref BossDownedSystem.vaultDeerClopsDR, NPCID.Deerclops);
+            ContinueBossRush(player, ref BossDownedSystem.vaultDeerClops, ref BossDownedSystem.vaultSkeletron, ref BossDownedSystem.vaultSkeletronDR, NPCID.SkeletronHead);
         }
 
-		public static void ContinueBossRush1(Player player, ref bool oldBossIsDead, ref bool dontSpawnOldBossAgain, int newBossToSpawn)
+		public static void SpawnHardmodeBosses(Player player)
         {
-            if(BossTimer(player, ref oldBossIsDead, ref dontSpawnOldBossAgain) == true)
+            ContinueBossRush(player, ref BossDownedSystem.vaultQueenSlime, ref BossDownedSystem.vaultTwins, ref BossDownedSystem.vaultTwinsDR, NPCID.Retinazer);
+            ContinueBossRush(player, ref BossDownedSystem.vaultTwins, ref BossDownedSystem.vaultSkeletronPrime, ref BossDownedSystem.vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
+            ContinueBossRush(player, ref BossDownedSystem.vaultSkeletronPrime, ref BossDownedSystem.vaultBetsy, ref BossDownedSystem.vaultBetsyDR, NPCID.DD2Betsy);
+            ContinueBossRush(player, ref BossDownedSystem.vaultBetsy, ref BossDownedSystem.vaultPlantera, ref BossDownedSystem.vaultPlanteraDR, NPCID.Plantera);
+            ContinueBossRush(player, ref BossDownedSystem.vaultPlantera, ref BossDownedSystem.vaultGolem, ref BossDownedSystem.vaultGolemDR, NPCID.Golem);
+            ContinueBossRush(player, ref BossDownedSystem.vaultGolem, ref BossDownedSystem.vaultDukeFishron, ref BossDownedSystem.vaultDukeFishronDR, NPCID.DukeFishron);
+            ContinueBossRush(player, ref BossDownedSystem.vaultDukeFishron, ref BossDownedSystem.vaultEmpress, ref BossDownedSystem.vaultEmpressDR, NPCID.HallowBoss);
+            ContinueBossRush(player, ref BossDownedSystem.vaultEmpress, ref BossDownedSystem.vaultLunaticCultist, ref BossDownedSystem.vaultLunaticCultistDR, NPCID.CultistBoss);
+            ContinueBossRush(player, ref BossDownedSystem.vaultLunaticCultist, ref BossDownedSystem.vaultMoonLord, ref BossDownedSystem.vaultMoonLordDR, NPCID.MoonLordCore);
+        }
+
+		public static void ContinueBossRush(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned, int newBossToSpawn)
+        {
+            if(BossTimer(player, ref oldBossIsDead, ref newBossHasDied, ref newBossHasBeenSpawned) == true)
             {
-                SpawnBoss(player, newBossToSpawn);
+                if(newBossToSpawn != NPCID.Retinazer)
+                {
+                    SpawnBoss(player, newBossToSpawn);
+                    newBossHasBeenSpawned = true;                    
+                }
+                else if(newBossToSpawn == NPCID.Retinazer)
+                {
+                    SpawnBoss(player, newBossToSpawn);
+                    SpawnBoss(player, NPCID.Spazmatism);
+                    newBossHasBeenSpawned = true;
+                }
             }
         }
 
-		public static bool BossTimer(Player player, ref bool oldBossIsDead, ref bool dontSpawnOldBossAgain)
+        // A timer that counts down from 60 to 0 and then spawns the next boss
+        public static int countdown = 600;
+        public static int bossTimer = countdown;
+
+		public static bool BossTimer(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned)
         {
-            if(oldBossIsDead == true && dontSpawnOldBossAgain == true)
-			{
-                for(int i = 0; i < 600; i++)
+            foreach(NPC n in Main.ActiveNPCs)
+            {
+                if(n.type == NPCID.Spazmatism || n.type == NPCID.Retinazer)
                 {
-                    if(i % 60 == 0)
-                    {
-						string seconds = (60 - (i / 60)).ToString();
-                        DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
-                    }
+                    return false;
+                }
+            }
+
+            if(oldBossIsDead == true && newBossHasDied == false && newBossHasBeenSpawned == false)
+			{
+                if(bossTimer <= 0)
+                {
+                    bossTimer = countdown;
+                    return true;
                 }
 
-				return true;
+                bossTimer--;
+
+                if(bossTimer > 0 && bossTimer % 60 == 0)
+                {
+                    string seconds = (bossTimer / 60).ToString();
+                    DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
+                }
+
+				return false;
             }
 
 			return false;
@@ -812,14 +858,182 @@ namespace Vaultaria.Common.Utilities
 
 		public static void SpawnBoss(Player player, int newBossToSpawn)
         {
-			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X, (int) player.Center.Y - 50, newBossToSpawn);
+			NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
+            boss.netUpdate = true;
 
-            boss.boss = true;
-			boss.lifeMax *= (int) 1.5f;
-            boss.life = boss.lifeMax;
-			boss.damage *= 2;
-            boss.velocity *= 1.5f;
-            boss.scale *= 1.2f;
+            SoundEngine.PlaySound(SoundID.Roar, boss.Center);
+            // This adds a screen shake (screenshake) similar to Deerclops
+            PunchCameraModifier modifier = new PunchCameraModifier(boss.Center, (Main.rand.NextFloat() * ((float)System.Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f);
+            Main.instance.CameraModifiers.Add(modifier);
+
+            if(newBossToSpawn != NPCID.Golem)
+            {
+                if(newBossToSpawn == NPCID.Plantera || newBossToSpawn == NPCID.DukeFishron)
+                {
+                    boss.boss = true;
+                    boss.lifeMax = (int) (boss.lifeMax * 1.5f);
+                    boss.life = boss.lifeMax;
+                    boss.damage = (int) (boss.damage * 1.25f);
+                    boss.velocity *= 1.5f;
+                }
+                else
+                {
+                    boss.boss = true;
+                    boss.lifeMax *= 2;
+                    boss.life = boss.lifeMax;
+                    boss.damage *= 2;
+                    boss.velocity *= 2f;
+                }
+
+                VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+                if(config.KeepBossSizeTheSameWhenBossRushing == false)
+                {
+                    boss.scale *= 1.5f;
+                }
+            }
+        }
+
+        // A helper method that tracks what bosses have been defeated
+        public static int DownedBossCounter()
+        {
+            int counter = 0;
+            
+            // --- Pre-Hardmode Bosses ---
+            if (NPC.downedSlimeKing)
+            {
+                counter++;
+            }
+            if (NPC.downedBoss1) // Eye of Cthulhu
+            {
+                counter++;
+            }
+            if (NPC.downedBoss2) // EoW / BoC
+            {
+                counter++;
+            }
+            if (NPC.downedQueenBee)
+            {
+                counter++;
+            }
+            if (NPC.downedDeerclops)
+            {
+                counter++;
+            }
+            if (NPC.downedBoss3) // Skeletron
+            {
+                counter++;
+            }
+            if (Main.hardMode) 
+            {
+                counter++; // Wall of Flesh is tracked by Main.hardMode
+            }
+
+            // --- Hardmode Bosses ---
+            if (NPC.downedQueenSlime)
+            {
+                counter++;
+            }
+            if (NPC.downedMechBoss1) // The Destroyer
+            {
+                counter++;
+            }
+            if (NPC.downedMechBoss2) // The Twins
+            {
+                counter++;
+            }
+            if (NPC.downedMechBoss3) // Skeletron Prime
+            {
+                counter++;
+            }
+            if (NPC.downedPlantBoss)
+            {
+                counter++;
+            }
+            if (NPC.downedGolemBoss)
+            {
+                counter++;
+            }
+            if (NPC.downedFishron)
+            {
+                counter++;
+            }
+            if (NPC.downedEmpressOfLight)
+            {
+                counter++;
+            }
+
+            // --- Lunar and Final Bosses ---
+            if (NPC.downedAncientCultist)
+            {
+                counter++;
+            }
+            if (NPC.downedTowerSolar)
+            {
+                counter++;
+            }
+            if (NPC.downedTowerVortex)
+            {
+                counter++;
+            }
+            if (NPC.downedTowerNebula)
+            {
+                counter++;
+            }
+            if (NPC.downedTowerStardust)
+            {
+                counter++;
+            }
+            if (NPC.downedMoonlord)
+            {
+                counter++;
+            }
+            
+            // --- Invasions and Events ---
+            if (NPC.downedFrost)
+            {
+                counter++;
+            }
+            if (NPC.downedGoblins)
+            {
+                counter++;
+            }
+            if (NPC.downedMartians)
+            {
+                counter++;
+            }
+            if (NPC.downedPirates)
+            {
+                counter++;
+            }
+            
+            if (NPC.downedChristmasTree)
+            {
+                counter++;
+            }
+            if (NPC.downedChristmasSantank)
+            {
+                counter++;
+            }
+            if (NPC.downedChristmasIceQueen)
+            {
+                counter++;
+            }
+            if (NPC.downedHalloweenTree)
+            {
+                counter++;
+            }
+            if (NPC.downedHalloweenKing)
+            {
+                counter++;
+            }
+
+            // --- Additional Flag ---
+            if (NPC.downedClown)
+            {
+                counter++;
+            }
+
+            return counter;
         }
     }
 }

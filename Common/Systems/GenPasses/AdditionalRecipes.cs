@@ -17,11 +17,6 @@ namespace Vaultaria.Common.Systems.GenPasses
             .AddIngredient(ItemID.GoldCoin, 10) 
             .AddTile(ModContent.TileType<ZedVendingMachine>()) 
             .Register();
-
-            Recipe.Create(ItemID.Heart, 10)
-            .AddIngredient(ItemID.PlatinumCoin, 1) 
-            .AddTile(ModContent.TileType<ZedVendingMachine>()) 
-            .Register();
         }
     }   
 }

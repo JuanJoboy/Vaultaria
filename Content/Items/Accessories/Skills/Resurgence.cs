@@ -6,9 +6,9 @@ using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
 
-namespace Vaultaria.Content.Items.Accessories.Relics
+namespace Vaultaria.Content.Items.Accessories.Skills
 {
-    public class TerminationProtocols : ModRelic
+    public class Resurgence : ModSkill
     {
         public override void SetDefaults()
         {
@@ -20,16 +20,8 @@ namespace Vaultaria.Content.Items.Accessories.Relics
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "+10 HP\n+2 Defense");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "On death, create a large explosion that is equal to your defense * 4", Utilities.VaultarianColours.Explosive);
-            Utilities.Text(tooltips, Mod, "Tooltip3", "Damage is also scaled based on chosen difficulty");
-            Utilities.RedText(tooltips, Mod, "You Willed Kilhelm...?");
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.statLifeMax2 += 10;
-            player.statDefense += 2;
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy with Melee Damage restores Health");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress");
         }
 
         public override void AddRecipes()

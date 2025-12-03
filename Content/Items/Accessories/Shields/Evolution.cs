@@ -56,6 +56,24 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.buffImmune[ModContent.BuffType<ExplosiveBuff>()] = true;
             player.buffImmune[ModContent.BuffType<SlagBuff>()] = true;
             player.buffImmune[ModContent.BuffType<CryoBuff>()] = true;
+            player.buffImmune[ModContent.BuffType<RadiationBuff>()] = true;
+
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.OnFire3] = true;
+            player.buffImmune[BuffID.Burning] = true;
+            player.buffImmune[BuffID.Electrified] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.Venom] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            player.buffImmune[BuffID.Weak] = true;
+            player.buffImmune[BuffID.BrokenArmor] = true;
+            player.buffImmune[BuffID.Slow] = true;
+            player.buffImmune[BuffID.Frozen] = true;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.Frostburn2] = true;
+            player.buffImmune[BuffID.Ichor] = true;
+            player.buffImmune[BuffID.CursedInferno] = true;
+            player.buffImmune[BuffID.Bleeding] = true;
 
             // What I want to add
             player.buffImmune[BuffID.Blackout] = true;
@@ -82,7 +100,8 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                    pre != ModContent.PrefixType<Alkaline>() &&
                    pre != ModContent.PrefixType<BlastProof>() &&
                    pre != ModContent.PrefixType<Evolved>() &&
-                   pre != ModContent.PrefixType<Thermo>();
+                   pre != ModContent.PrefixType<Thermo>() &&
+                   pre != ModContent.PrefixType<RedSuit>();
         }
     }
 }
