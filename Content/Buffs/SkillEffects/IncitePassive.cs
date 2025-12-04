@@ -6,12 +6,13 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Buffs.SkillEffects
 {
-    public class FollowThroughKillSkill : ModBuff
+    public class IncitePassive : ModBuff
     {
         public override void SetStaticDefaults()
         {
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
 
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
@@ -22,10 +23,10 @@ namespace Vaultaria.Content.Buffs.SkillEffects
 
             int numberOfBossesDefeated = Utilities.DownedBossCounter();
 
-            float baseDamage = 0.15f;
+            float baseFireRate = 0.15f;
             float baseSpeed = 0.1f;
 
-            float bonusDamage = 1 + ((numberOfBossesDefeated / 30f) + baseDamage);
+            float bonusDamage = 1 + ((numberOfBossesDefeated / 30f) + baseFireRate);
             float bonusSpeed = 1 + ((numberOfBossesDefeated / 20f) + baseSpeed);
 
             player.GetDamage(DamageClass.Generic) *= bonusDamage;

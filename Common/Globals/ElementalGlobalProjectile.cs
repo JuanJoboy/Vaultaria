@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.GunEffects;
+using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
@@ -149,6 +150,14 @@ namespace Vaultaria.Common.Globals
                 if (itemSource.Item.prefix == ModContent.PrefixType<MagicMasher>() || itemSource.Item.prefix == ModContent.PrefixType<RangerMasher>())
                 {
                     MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
+                }
+
+                if (Utilities.Utilities.IsWearing(player, ModContent.ItemType<Bore>()))
+                {
+                    projectile.penetrate = -1;
+                    projectile.maxPenetrate = -1;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 120;
                 }
             }
 

@@ -220,6 +220,17 @@ namespace Vaultaria.Common.Players
                 multiplier *= 1.5f;
             }
 
+            if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
+            {
+                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+
+                float baseFireRate = 0.05f;
+
+                float fireRate = 1 + (numberOfBossesDefeated / 100) + baseFireRate;                
+
+                multiplier *= fireRate;
+            }
+
             return multiplier;
         }
 
@@ -241,6 +252,20 @@ namespace Vaultaria.Common.Players
                 Player.wingRunAccelerationMult *= speedPenalty;
                 Player.wingAccRunSpeed *= speedPenalty;
             }
+
+            if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
+            {
+                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+
+                float baseSpeed = 0.05f;
+
+                float bonusSpeed = 1 + (numberOfBossesDefeated / 85) + baseSpeed;                
+
+                Player.moveSpeed *= bonusSpeed; 
+                Player.runAcceleration *= bonusSpeed;
+                Player.accRunSpeed *= bonusSpeed;
+                Player.maxRunSpeed *= bonusSpeed;
+            }
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
@@ -256,6 +281,13 @@ namespace Vaultaria.Common.Players
             {
                 damage *= 1.2f;
             }
+        }
+
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            base.ModifyHitNPCWithItem(item, target, ref modifiers);
+
+            BackStab(target, ref modifiers);
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
@@ -339,11 +371,19 @@ namespace Vaultaria.Common.Players
             {
                 Utilities.Utilities.AbsorbedAmmo(proj, ref modifiers, 50f);
             }
+
+            Grit(ref modifiers);
+
+            Incite();
         }
 
         public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
             RapierCurse(npc, ref modifiers);
+
+            Grit(ref modifiers);
+
+            Incite();
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -517,6 +557,51 @@ namespace Vaultaria.Common.Players
                         }
                     }
                 }
+            }
+        }
+
+        private void BackStab(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<Backstab>()) && modifiers.DamageType == DamageClass.Melee)
+            {
+                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+
+                float bonusDamage = 1 + (numberOfBossesDefeated / 65f);
+
+                if(npc.direction == 1 && Player.Center.X < npc.Center.X)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+                else if(npc.direction == -1 && Player.Center.X > npc.Center.X)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Grit(ref Player.HurtModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<Grit>()))
+            {
+                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+
+                float baseGrit = 5f;
+
+                float gritChance = numberOfBossesDefeated * 2 + baseGrit;
+
+                if(Utilities.Utilities.Randomizer(gritChance))
+                {
+                    modifiers.FinalDamage *= 0;
+                    modifiers.Knockback *= 0;
+                }
+            }
+        }
+
+        private void Incite()
+        {
+            if(IsWearing(ModContent.ItemType<Incite>()))
+            {
+                Player.AddBuff(ModContent.BuffType<IncitePassive>(), 360);
             }
         }
     }

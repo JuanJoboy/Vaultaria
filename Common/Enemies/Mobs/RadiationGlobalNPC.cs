@@ -14,26 +14,8 @@ public class RadiationGlobalNPC : GlobalNPC
 
         if(npc.life <= 2 && npc.HasBuff(ElementalID.RadiationBuff))
         {
-            ElementalProjectile.SetRadiation(npc, hit, 1, ElementalID.LargeExplosiveProjectile, ElementalID.RadiationBuff, 240);
-            IrradiateNearbyNPCs(npc, hit);
-        }
-    }
-
-    private void IrradiateNearbyNPCs(NPC explodingNPC, NPC.HitInfo hit)
-    {
-        // Loops through every NPC in the world
-        for (int i = 0; i < Main.maxNPCs; i++)
-        {
-            NPC npc = Main.npc[i];
-            float dist = Vector2.Distance(explodingNPC.Center, npc.Center); // Measures the distance from the exploding npc to other npc's
-
-            if (!npc.townNPC) // Filters to only hostile targets
-            {
-                if (dist < 200)
-                {
-                    ElementalProjectile.SetRadiation(npc, hit, 0.2f, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240); // Set radiation again on nearby npc's
-                }
-            }
+            ElementalProjectile.BloodSplode(npc, hit, 1, ElementalID.LargeExplosiveProjectile, ElementalID.RadiationBuff, 240);
+            ElementalProjectile.BloodSplodeNearbyNPCs(npc, hit, ElementalID.RadiationProjectile, ElementalID.RadiationBuff);
         }
     }
 }

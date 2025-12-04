@@ -841,6 +841,46 @@ Items: {
 		Tooltip: ""
 		DisplayName: Two Fang
 	}
+
+	Backstab: {
+		DisplayName: Backstab
+		Tooltip: ""
+	}
+
+	Forge: {
+		DisplayName: Forge
+		Tooltip: ""
+	}
+
+	Incite: {
+		DisplayName: Incite
+		Tooltip: ""
+	}
+
+	Killer: {
+		DisplayName: Killer
+		Tooltip: ""
+	}
+
+	KillingBlow: {
+		DisplayName: Killing Blow
+		Tooltip: ""
+	}
+
+	LegendaryNinja: {
+		DisplayName: Legendary Ninja
+		Tooltip: ""
+	}
+
+	Resurgence: {
+		DisplayName: Resurgence
+		Tooltip: ""
+	}
+
+	Salvation: {
+		DisplayName: Salvation
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1006,6 +1046,16 @@ Buffs: {
 	FollowThroughKillSkill: {
 		DisplayName: F0ll0wthr0ugh
 		Description: Killing an enemy increases your Damage and Movement Speed for a short time
+	}
+
+	FleetPassive: {
+		DisplayName: Fleet
+		Description: While under 30% health you gain increased Movement Speed
+	}
+
+	IncitePassive: {
+		DisplayName: Incite Passive
+		Description: Mods.Vaultaria.Buffs.IncitePassive.Description
 	}
 }
 

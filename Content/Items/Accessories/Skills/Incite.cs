@@ -20,8 +20,18 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy increases your Damage and Movement Speed for 7 seconds");
+            int numberOfBossesDefeated = Utilities.DownedBossCounter();
+
+            float baseSpeed = 0.05f;
+            float baseFireRate = 0.05f;
+
+            float bonusFireRate = (int) (100 * + ((numberOfBossesDefeated / 100f) + baseFireRate));          
+            float bonusSpeed = (int) (100 * + ((numberOfBossesDefeated / 85f) + baseSpeed));
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Taking enemy damage increases your Movement Speed and Fire Rate for a short time");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress");
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusSpeed}% Movement Speed");
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusFireRate}% Fire Rate");
         }
 
         public override void AddRecipes()

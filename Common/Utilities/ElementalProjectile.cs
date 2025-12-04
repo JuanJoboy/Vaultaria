@@ -70,6 +70,17 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.RadiationProjectile, ElementalID.RadiationBuff}
         };
 
+        public static readonly Dictionary<int, int> BuffToProjectile = new Dictionary<int, int>
+        {
+            {ElementalID.ShockBuff, ElementalID.ShockProjectile},
+            {ElementalID.IncendiaryBuff, ElementalID.IncendiaryProjectile},
+            {ElementalID.CorrosiveBuff, ElementalID.CorrosiveProjectile},
+            {ElementalID.SlagBuff, ElementalID.SlagProjectile},
+            {ElementalID.ExplosiveBuff, ElementalID.ExplosiveProjectile},
+            {ElementalID.CryoBuff, ElementalID.CryoProjectile},
+            {ElementalID.RadiationBuff, ElementalID.RadiationProjectile}
+        };
+
         // ********************************************
         // *------------- Helper Methods -------------*
         // ********************************************
@@ -123,6 +134,16 @@ namespace Vaultaria.Common.Utilities
             if (ProjectileToBuff.TryGetValue(elementalProjectile, out int buffType))
             {
                 return buffType;
+            }
+
+            return 0;
+        }
+
+        public static int WhatProjectileDoICreate(int buffType)
+        {
+            if (BuffToProjectile.TryGetValue(buffType, out int elementalProjectile))
+            {
+                return elementalProjectile;
             }
 
             return 0;
@@ -375,7 +396,7 @@ namespace Vaultaria.Common.Utilities
         /// <param name="elementalProjectile"></param>
         /// <param name="buffType"></param>
         /// <param name="buffTime"></param>
-        public static void SetRadiation(NPC target, NPC.HitInfo hit, float elementalMultiplier, short elementalProjectile, int buffType, int buffTime)
+        public static void BloodSplode(NPC target, NPC.HitInfo hit, float elementalMultiplier, short elementalProjectile, int buffType, int buffTime)
         {
             int elementalDamage = 0;
             float baseDamage = hit.SourceDamage;
@@ -392,6 +413,24 @@ namespace Vaultaria.Common.Utilities
             );
 
             target.AddBuff(buffType, buffTime);
+        }
+
+        public static void BloodSplodeNearbyNPCs(NPC explodingNPC, NPC.HitInfo hit, short elementalProjectile, int buffType, float elementalMultiplier = 0.2f)
+        {
+            // Loops through every NPC in the world
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                float dist = Vector2.Distance(explodingNPC.Center, npc.Center); // Measures the distance from the exploding npc to other npc's
+
+                if (!npc.townNPC) // Filters to only hostile targets
+                {
+                    if (dist < 200)
+                    {
+                        BloodSplode(npc, hit, elementalMultiplier, elementalProjectile, buffType, 240); // Set radiation again on nearby npc's
+                    }
+                }
+            }
         }
 
         public static void SetElements(Entity player, Entity target)

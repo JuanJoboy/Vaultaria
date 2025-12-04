@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Buffs.SkillEffects;
 
 namespace Vaultaria.Content.Items.Accessories.Skills
 {
@@ -18,11 +19,27 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Item.rare = ItemRarityID.Blue;
         }
 
+        public override void UpdateEquip(Player player)
+        {
+            base.UpdateEquip(player);
+
+            if(player.statLife <= player.statLifeMax2 * 0.3f)
+            {
+                player.AddBuff(ModContent.BuffType<FleetPassive>(), 120);
+            }
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Damage is also scaled based on chosen difficulty");
-            Utilities.RedText(tooltips, Mod, "");
+            int numberOfBossesDefeated = Utilities.DownedBossCounter();
+
+            float baseSpeed = 0.1f;
+
+            float bonusSpeed = (int) (100 * + ((numberOfBossesDefeated / 27f) + baseSpeed));
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "While under 30% health you gain increased Movement Speed");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Movement Speed increases as you progress");
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusSpeed}% Movement Speed");
         }
 
         public override void AddRecipes()

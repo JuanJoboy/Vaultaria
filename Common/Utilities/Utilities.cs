@@ -1035,5 +1035,19 @@ namespace Vaultaria.Common.Utilities
 
             return counter;
         }
+
+        public static bool IsWearing(Player player, int accessory)
+        {
+            // Ignore empty accessory slots and check if the player is wearing the accessory
+            for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
+            {
+                if (player.armor[i].ModItem != null && player.armor[i].ModItem.Type == accessory)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

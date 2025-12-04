@@ -26,7 +26,7 @@ public class KillSkillActivator : GlobalNPC
 
     private void ActivateKillSkill(Player player, int skillAccessory, int buff, int duration)
     {
-        if(IsWearing(player, skillAccessory))
+        if(Utilities.IsWearing(player, skillAccessory))
         {
             AddBuff(player, buff, duration);
         }
@@ -36,19 +36,5 @@ public class KillSkillActivator : GlobalNPC
     {
         seconds *= 60;
         player.AddBuff(buff, seconds + 60);
-    }
-
-    private bool IsWearing(Player player, int accessory)
-    {
-        // Ignore empty accessory slots and check if the player is wearing the accessory
-        for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
-        {
-            if (player.armor[i].ModItem != null && player.armor[i].ModItem.Type == accessory)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

@@ -20,9 +20,15 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Damage is also scaled based on chosen difficulty");
-            Utilities.RedText(tooltips, Mod, "");
+            int numberOfBossesDefeated = Utilities.DownedBossCounter();
+
+            float baseGrit = 5f;
+
+            float gritChance = numberOfBossesDefeated * 2 + baseGrit;
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "You gain a chance to ignore damage.");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Ignore chance increases as you progress");
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{gritChance}% Grit Chance");
         }
 
         public override void AddRecipes()
