@@ -20,8 +20,11 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy with Melee Damage restores Health");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress");
+            int bonusHealth = Utilities.DisplaySkillBonusText(300f);
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy with Melee Damage restores Health", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusHealth}% Health Gained");
         }
 
         public override void AddRecipes()

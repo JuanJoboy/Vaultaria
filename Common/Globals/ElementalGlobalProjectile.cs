@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.GunEffects;
+using Vaultaria.Content.Buffs.SkillEffects;
 using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
@@ -37,6 +38,12 @@ namespace Vaultaria.Common.Globals
                 modifiers.Defense *= 0;
                 modifiers.DefenseEffectiveness *= 0;
                 modifiers.ArmorPenetration += 100000;
+            }
+
+            if(player.HasBuff<KillerKillSkill>())
+            {
+                float critBonus = Utilities.Utilities.SkillBonus(55f, 0.05f);
+                modifiers.CritDamage *= critBonus;
             }
         }
 

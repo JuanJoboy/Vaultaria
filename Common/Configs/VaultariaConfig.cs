@@ -28,6 +28,10 @@ namespace Vaultaria.Common.Configs
         [Range(1, 10)] // Optional: Defines the min/max slider range in the UI
         public int EridiumDropRateMultiplier;
 
+        [DefaultValue(1)]
+        [Range(1, 3)]
+        public int VaultHunterMode;
+
         // --- Optional Float Setting (e.g., for damage) ---
 
         [DefaultValue(1.1f)] // Default value is 1.1 (10% increase)

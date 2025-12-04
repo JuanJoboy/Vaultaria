@@ -31,11 +31,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int numberOfBossesDefeated = Utilities.DownedBossCounter();
-
-            float baseSpeed = 0.1f;
-
-            float bonusSpeed = (int) (100 * + ((numberOfBossesDefeated / 27f) + baseSpeed));
+            int bonusSpeed = Utilities.DisplaySkillBonusText(27f, 0.1f);
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "While under 30% health you gain increased Movement Speed");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Movement Speed increases as you progress");

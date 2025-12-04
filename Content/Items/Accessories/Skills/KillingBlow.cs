@@ -20,8 +20,11 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "You deal increased Melee Damage to enemies below 30% Health");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress");
+            int bonusMelee = Utilities.DisplaySkillBonusText(16.67f, 0.20f);
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "You deal increased Melee Damage to enemies below 20% Health");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusMelee}% Melee Damage");
         }
 
         public override void AddRecipes()

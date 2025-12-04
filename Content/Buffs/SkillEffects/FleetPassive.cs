@@ -23,11 +23,7 @@ namespace Vaultaria.Content.Buffs.SkillEffects
 
             if(player.statLife <= player.statLifeMax2 * 0.3)
             {
-                int numberOfBossesDefeated = Utilities.DownedBossCounter();
-
-                float baseSpeed = 0.1f;
-
-                float bonusSpeed = 1 + ((numberOfBossesDefeated / 27f) + baseSpeed);
+                float bonusSpeed = Utilities.SkillBonus(27f, 0.1f);
 
                 player.moveSpeed *= bonusSpeed; 
                 player.runAcceleration *= bonusSpeed;

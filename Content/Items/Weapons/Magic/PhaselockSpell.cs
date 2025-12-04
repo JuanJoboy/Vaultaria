@@ -39,7 +39,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 60;
+            Item.reuseDelay = 10;
             Item.autoReuse = false;
             Item.useTurn = true;
 
@@ -118,6 +118,23 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             }
 
             return base.UseItem(player);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.CanBeChasedBy(this))
+                {
+                    if(npc.HasBuff(ModContent.BuffType<Phaselocked>()))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return base.CanUseItem(player);
         }
 
         public override bool? CanHitNPC(Player player, NPC target)

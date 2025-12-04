@@ -21,6 +21,11 @@ public class KillSkillActivator : GlobalNPC
         if(player != null)
         {
             ActivateKillSkill(player, ModContent.ItemType<FollowThrough>(), ModContent.BuffType<FollowThroughKillSkill>(), 7);
+            ActivateKillSkill(player, ModContent.ItemType<LegendaryNinja>(), ModContent.BuffType<FollowThroughKillSkill>(), 7);
+
+            ActivateKillSkill(player, ModContent.ItemType<Killer>(), ModContent.BuffType<KillerKillSkill>(), 7);
+
+            ActivateKillSkill(player, ModContent.ItemType<Salvation>(), ModContent.BuffType<SalvationKillSkill>(), 5);
         }
     }
 

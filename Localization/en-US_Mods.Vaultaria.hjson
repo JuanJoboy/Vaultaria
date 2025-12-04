@@ -1054,8 +1054,18 @@ Buffs: {
 	}
 
 	IncitePassive: {
-		DisplayName: Incite Passive
-		Description: Mods.Vaultaria.Buffs.IncitePassive.Description
+		DisplayName: Incite
+		Description: Taking enemy damage increases your Movement Speed and Fire Rate for a short time
+	}
+
+	KillerKillSkill: {
+		DisplayName: Killer
+		Description: Killing an enemy increases your Crit Damage and Fire Rate for a short time
+	}
+
+	SalvationKillSkill: {
+		DisplayName: Salvation
+		Description: Killing an enemy, grants you Gun Damage Lifesteal for a short time
 	}
 }
 
@@ -1186,17 +1196,17 @@ Configs: {
 	VaultariaConfig: {
 		EnableOldSawbarExplosion: {
 			Label: Enable Old Sawbar Explosion
-			Tooltip: Enabling this makes the Sawbar create tighter explosions.
+			Tooltip: Enabling this makes the Sawbar create tighter explosions
 		}
 
 		EridiumDropRateMultiplier: {
 			Label: Eridium Drop Rate Multiplier
-			Tooltip: Multiplies the Eridium drop rate from bosses.
+			Tooltip: Multiplies the Eridium drop rate from bosses
 		}
 
 		SlagDamageMultiplier: {
 			Label: Slag Damage Multiplier
-			Tooltip: The amount of additional damage taken by Slagged enemies (3 would make an enemy take 3x as much damage).
+			Tooltip: The amount of additional damage taken by Slagged enemies (3 would make an enemy take 3x as much damage)
 		}
 
 		EnableProfanity: {
@@ -1219,6 +1229,11 @@ Configs: {
 		KeepBossSizeTheSameWhenBossRushing: {
 			Label: Keep Boss Size The Same When Boss Rushing
 			Tooltip: If enabled, then the boss's sizes inside the vaults won't be increased
+		}
+
+		VaultHunterMode: {
+			Label: Vault Hunter Mode
+			Tooltip: The amount of additional health & defense that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is tripled (UVHM))
 		}
 	}
 }

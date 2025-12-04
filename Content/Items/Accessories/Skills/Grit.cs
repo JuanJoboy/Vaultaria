@@ -20,14 +20,14 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int numberOfBossesDefeated = Utilities.DownedBossCounter();
+            float numberOfBossesDefeated = Utilities.DownedBossCounter();
 
             float baseGrit = 5f;
 
             float gritChance = numberOfBossesDefeated * 2 + baseGrit;
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "You gain a chance to ignore damage.");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Ignore chance increases as you progress");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{gritChance}% Grit Chance");
         }
 

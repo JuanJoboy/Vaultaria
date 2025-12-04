@@ -20,13 +20,8 @@ namespace Vaultaria.Content.Buffs.SkillEffects
         {
             base.Update(player, ref buffIndex);
 
-            int numberOfBossesDefeated = Utilities.DownedBossCounter();
-
-            float baseDamage = 0.15f;
-            float baseSpeed = 0.1f;
-
-            float bonusDamage = 1 + ((numberOfBossesDefeated / 30f) + baseDamage);
-            float bonusSpeed = 1 + ((numberOfBossesDefeated / 20f) + baseSpeed);
+            float bonusDamage = Utilities.SkillBonus(30f, 0.15f);
+            float bonusSpeed = Utilities.SkillBonus(20f, 0.1f);
 
             player.GetDamage(DamageClass.Generic) *= bonusDamage;
 

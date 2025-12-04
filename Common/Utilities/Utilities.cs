@@ -893,10 +893,24 @@ namespace Vaultaria.Common.Utilities
             }
         }
 
-        // A helper method that tracks what bosses have been defeated
-        public static int DownedBossCounter()
+        public static bool IsWearing(Player player, int accessory)
         {
-            int counter = 0;
+            // Ignore empty accessory slots and check if the player is wearing the accessory
+            for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
+            {
+                if (player.armor[i].ModItem != null && player.armor[i].ModItem.Type == accessory)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // A helper method that tracks what bosses have been defeated
+        public static float DownedBossCounter()
+        {
+            float counter = 0f;
             
             // --- Pre-Hardmode Bosses ---
             if (NPC.downedSlimeKing)
@@ -1036,18 +1050,30 @@ namespace Vaultaria.Common.Utilities
             return counter;
         }
 
-        public static bool IsWearing(Player player, int accessory)
+        /// <summary>
+        /// Calculates the bonus effect that a skill should provide
+        /// <br/> The full formula is:
+        /// <br/> 1f + (DownedBossCounter() / divisor) + baseValue
+        /// <br/> First it gets the number of bosses that have been killed in the world, then divides it by the number you provide, and then adds the base value on. Then it adds 1 to it so that it becomes greater than 1, so that it can be used to multiply against values when doing calculations (Player.moveSpeed *= bonusSpeed; == Player.moveSpeed *= 1.4f;).
+        /// <br/> divisor = The number that balances the item. For example, if I kill every boss and have the counter at 30, and at most this skill should only provide 100% bonus movement speed, then the divisor should be 30, so that 30 / 30 = 1, and 1 is equal to 100% for Terraria calculations.
+        /// <br/> baseValue = A base starting value for when no bosses have been killed, but the item should still give an effect.
+        /// </summary>
+        public static float SkillBonus(float divisor, float baseValue = 0)
         {
-            // Ignore empty accessory slots and check if the player is wearing the accessory
-            for (int i = 0; i < 8 + player.extraAccessorySlots; i++)
-            {
-                if (player.armor[i].ModItem != null && player.armor[i].ModItem.Type == accessory)
-                {
-                    return true;
-                }
-            }
+            return 1f + (DownedBossCounter() / divisor) + baseValue;
+        }
 
-            return false;
+        /// <summary>
+        /// Calculates the bonus effect that a skill should provide
+        /// <br/> The full formula is:
+        /// <br/> (int) (100 * + ((DownedBossCounter() / divisor) + baseValue))
+        /// <br/> First it gets the number of bosses that have been killed in the world, then divides it by the number you provide, and then adds the base value on. Then it multiplies it by 100 to get a percentage and converts it to an int to round it.
+        /// <br/> divisor = The number that balances the item. For example, if I kill every boss and have the counter at 30, and at most this skill should only provide 100% bonus movement speed, then the divisor should be 30, so that 30 / 30 = 1, and 1 is equal to 100% for Terraria calculations.
+        /// <br/> baseValue = A base starting value for when no bosses have been killed, but the item should still give an effect.
+        /// </summary>
+        public static int DisplaySkillBonusText(float divisor, float baseValue = 0)
+        {
+            return (int) (100 * + ((DownedBossCounter() / divisor) + baseValue));
         }
     }
 }

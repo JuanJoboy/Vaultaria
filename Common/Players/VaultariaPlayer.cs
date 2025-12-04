@@ -34,6 +34,8 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Summoner.Sentry;
 using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Buffs.SkillEffects;
+using System.Formats.Tar;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Common.Players
 {
@@ -85,21 +87,7 @@ namespace Vaultaria.Common.Players
         {
             base.UpdateDead();
 
-            if(IsWearing(ModContent.ItemType<TerminationProtocols>()))
-            {
-                int damage = Player.statDefense * 4f;
-
-                if(Main.masterMode)
-                {
-                    damage *= 3;
-                }
-                else if(Main.expertMode)
-                {
-                    damage *= 2;
-                }
-
-                Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, damage, 4);
-            }
+            TerminationProtocols();
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
@@ -187,6 +175,8 @@ namespace Vaultaria.Common.Players
                 hit.SourceDamage *= 2;
                 ElementalProjectile.SetElementOnNPC(target, hit, 1f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 180);
             }
+
+            Salvation(hit);
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
@@ -222,13 +212,12 @@ namespace Vaultaria.Common.Players
 
             if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
             {
-                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+                multiplier *= Utilities.Utilities.SkillBonus(100f, 0.05f);
+            }
 
-                float baseFireRate = 0.05f;
-
-                float fireRate = 1 + (numberOfBossesDefeated / 100) + baseFireRate;                
-
-                multiplier *= fireRate;
+            if(Player.HasBuff(ModContent.BuffType<KillerKillSkill>()))
+            {
+                multiplier *= Utilities.Utilities.SkillBonus(40f, 0.05f);
             }
 
             return multiplier;
@@ -255,11 +244,7 @@ namespace Vaultaria.Common.Players
 
             if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
             {
-                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
-
-                float baseSpeed = 0.05f;
-
-                float bonusSpeed = 1 + (numberOfBossesDefeated / 85) + baseSpeed;                
+                float bonusSpeed = Utilities.Utilities.SkillBonus(85f, 0.05f);
 
                 Player.moveSpeed *= bonusSpeed; 
                 Player.runAcceleration *= bonusSpeed;
@@ -288,6 +273,8 @@ namespace Vaultaria.Common.Players
             base.ModifyHitNPCWithItem(item, target, ref modifiers);
 
             BackStab(target, ref modifiers);
+
+            KillingBlow(target, ref modifiers);
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
@@ -408,6 +395,8 @@ namespace Vaultaria.Common.Players
                     ElementRandomizer(target, hit);
                 }
             }
+
+            Resurgence(target);
         }
         
         public override void OnHitAnything(float x, float y, Entity victim)
@@ -562,11 +551,9 @@ namespace Vaultaria.Common.Players
 
         private void BackStab(NPC npc, ref NPC.HitModifiers modifiers)
         {
-            if(IsWearing(ModContent.ItemType<Backstab>()) && modifiers.DamageType == DamageClass.Melee)
+            if((IsWearing(ModContent.ItemType<Backstab>()) || IsWearing(ModContent.ItemType<LegendaryNinja>())) && Player.HeldItem.DamageType == DamageClass.Melee)
             {
-                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
-
-                float bonusDamage = 1 + (numberOfBossesDefeated / 65f);
+                float bonusDamage = Utilities.Utilities.SkillBonus(65f, 0.05f);
 
                 if(npc.direction == 1 && Player.Center.X < npc.Center.X)
                 {
@@ -583,7 +570,7 @@ namespace Vaultaria.Common.Players
         {
             if(IsWearing(ModContent.ItemType<Grit>()))
             {
-                int numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
+                float numberOfBossesDefeated = Utilities.Utilities.DownedBossCounter();
 
                 float baseGrit = 5f;
 
@@ -602,6 +589,72 @@ namespace Vaultaria.Common.Players
             if(IsWearing(ModContent.ItemType<Incite>()))
             {
                 Player.AddBuff(ModContent.BuffType<IncitePassive>(), 360);
+            }
+        }
+
+        private void KillingBlow(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if((IsWearing(ModContent.ItemType<KillingBlow>()) || IsWearing(ModContent.ItemType<LegendaryNinja>())) && Player.HeldItem.DamageType == DamageClass.Melee)
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(65f, 0.05f);
+
+                if(npc.life <= npc.lifeMax * 0.2f)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Resurgence(NPC npc)
+        {
+            if((IsWearing(ModContent.ItemType<Resurgence>()) || IsWearing(ModContent.ItemType<LegendaryNinja>())) && Player.HeldItem.DamageType == DamageClass.Melee)
+            {
+                float bonusHealth = Utilities.Utilities.SkillBonus(300f) - 1; // Without the -1, it'll be 1.x which means player.life * 1.x will be like 500 instead of 50
+
+                if (npc.life <= 0)
+                {
+                    Player.Heal((int) (Player.statLifeMax2 * bonusHealth)); // Heals for % of health
+                }
+            }
+        }
+
+        private void Salvation(NPC.HitInfo hit)
+        {
+            if(Player.HasBuff(ModContent.BuffType<SalvationKillSkill>()) && Player.HeldItem.DamageType == DamageClass.Ranged)
+            {
+                float Lifesteal = Utilities.Utilities.SkillBonus(600f) - 1;
+
+                Player.Heal((int) (hit.SourceDamage * Lifesteal));
+            }
+        }
+
+        private void TerminationProtocols()
+        {
+            if(IsWearing(ModContent.ItemType<TerminationProtocols>()))
+            {
+                float damage = Player.statDefense * 4f;
+
+                VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
+                if(config.VaultHunterMode == 3)
+                {
+                    damage *= 2f;
+                }
+                else if(config.VaultHunterMode == 2)
+                {
+                    damage *= 1.5f;
+                }
+
+                if(Main.masterMode)
+                {
+                    damage *= 3;
+                }
+                else if(Main.expertMode)
+                {
+                    damage *= 2;
+                }
+
+                Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, (int) damage, 4);
             }
         }
     }

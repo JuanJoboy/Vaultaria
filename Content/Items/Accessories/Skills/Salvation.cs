@@ -20,8 +20,11 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy increases your Damage and Movement Speed for 7 seconds");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress");
+            int bonusLifesteal = Utilities.DisplaySkillBonusText(600f);
+
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy, grants you Gun Damage Lifesteal for 5 seconds", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusLifesteal}% Lifesteal");
         }
 
         public override void AddRecipes()
