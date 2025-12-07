@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             int bonusCrit = Utilities.DisplaySkillBonusText(55f, 0.05f);
             int bonusFireRate = Utilities.DisplaySkillBonusText(40f, 0.05f);
 
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy increases your Crit Damage and Fire Rate for 7 seconds.");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy increases your Projectile Crit Damage and Fire Rate for 7 seconds");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusCrit}% Crit Damage");
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusFireRate}% Fire Rate");

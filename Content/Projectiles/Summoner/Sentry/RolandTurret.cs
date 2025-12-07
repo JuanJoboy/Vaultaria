@@ -85,7 +85,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
                         Projectile.GetSource_FromThis(),
                         Projectile.Center + new Vector2(pos, 0),
                         GetAmmo(player)
-                    );   
+                    );
                 }
 
                 Projectile.ai[1] = 0f;

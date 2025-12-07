@@ -30,6 +30,7 @@ namespace Vaultaria.Content.Projectiles.Magic
             Projectile.timeLeft = 3600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Magic;
         }
 
         public override void AI()

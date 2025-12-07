@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int bonusDamage = Utilities.DisplaySkillBonusText(30f, 0.15f);
-            int bonusSpeed = Utilities.DisplaySkillBonusText(20f, 0.1f);
+            float bonusDamage = Utilities.SkillBonus(60f, 0.05f);
+            float bonusSpeed = Utilities.SkillBonus(42f, 0.05f);
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy increases your Damage and Movement Speed for 7 seconds");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);

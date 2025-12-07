@@ -16,20 +16,5 @@ namespace Vaultaria.Content.Buffs.SkillEffects
 
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
-
-        public override void Update(Player player, ref int buffIndex)
-        {
-            base.Update(player, ref buffIndex);
-
-            if(player.statLife <= player.statLifeMax2 * 0.3)
-            {
-                float bonusSpeed = Utilities.SkillBonus(27f, 0.1f);
-
-                player.moveSpeed *= bonusSpeed; 
-                player.runAcceleration *= bonusSpeed;
-                player.accRunSpeed *= bonusSpeed;
-                player.maxRunSpeed *= bonusSpeed;   
-            }
-        }
     }
 }

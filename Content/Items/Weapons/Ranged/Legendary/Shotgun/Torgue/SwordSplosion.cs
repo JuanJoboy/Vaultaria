@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Torgue;
+using Vaultaria.Content.Items.Accessories.Relics;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 {
@@ -24,7 +25,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             Item.Size = new Vector2(60, 20);
             Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.LightPurple;
 
             // Gun properties
             Item.noMelee = true;
@@ -42,6 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             Item.useAnimation = 20;
             Item.reuseDelay = 35;
             Item.autoReuse = true;
+            ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<MysteriousAmulet>();
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);

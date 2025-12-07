@@ -881,6 +881,206 @@ Items: {
 		DisplayName: Salvation
 		Tooltip: ""
 	}
+
+	PersonalSpace: {
+		Tooltip: ""
+		DisplayName: Personal Space
+	}
+
+	HuntersEye: {
+		DisplayName: Hunters Eye
+		Tooltip: ""
+	}
+
+	PackTactics: {
+		DisplayName: Pack Tactics
+		Tooltip: ""
+	}
+
+	TheFastAndTheFurryous: {
+		Tooltip: ""
+		DisplayName: The Fast And The Furryous
+	}
+
+	DesperateMeasures: {
+		Tooltip: ""
+		DisplayName: Desperate Measures
+	}
+
+	BrainFreeze: {
+		Tooltip: ""
+		DisplayName: Brain Freeze
+	}
+
+	Refreshment: {
+		Tooltip: ""
+		DisplayName: Refreshment
+	}
+
+	ViolentMomentum: {
+		Tooltip: ""
+		DisplayName: Violent Momentum
+	}
+
+	ViolentSpeed: {
+		Tooltip: ""
+		DisplayName: Violent Speed
+	}
+
+	Antifreeze: {
+		Tooltip: ""
+		DisplayName: Antifreeze
+	}
+
+	SeraphCrystal: {
+		Tooltip: ""
+		DisplayName: Seraph Crystal
+	}
+
+	Ringleader: {
+		Tooltip: ""
+		DisplayName: Ringleader
+	}
+
+	Innervate: {
+		Tooltip: ""
+		DisplayName: Innervate
+	}
+
+	OutOfBubblegum: {
+		Tooltip: ""
+		DisplayName: Out Of Bubblegum
+	}
+
+	JustGotReal: {
+		DisplayName: Just Got Real
+		Tooltip: ""
+	}
+
+	Wreck: {
+		DisplayName: Wreck
+		Tooltip: ""
+	}
+
+	Accelerate: {
+		DisplayName: Accelerate
+		Tooltip: ""
+	}
+
+	Foresight: {
+		Tooltip: ""
+		DisplayName: Foresight
+	}
+
+	Reaper: {
+		Tooltip: ""
+		DisplayName: Reaper
+	}
+
+	Immolate: {
+		DisplayName: Immolate
+		Tooltip: ""
+	}
+
+	Banshee: {
+		DisplayName: Banshee
+		Tooltip: ""
+	}
+
+	LegendarySiren: {
+		Tooltip: ""
+		DisplayName: Legendary Siren
+	}
+
+	QuickCharge: {
+		Tooltip: ""
+		DisplayName: Quick Charge
+	}
+
+	Impact: {
+		Tooltip: ""
+		DisplayName: Impact
+	}
+
+	MetalStorm: {
+		DisplayName: Metal Storm
+		Tooltip: ""
+	}
+
+	LegendaryRanger: {
+		Tooltip: ""
+		DisplayName: Legendary Ranger
+	}
+
+	Onslaught: {
+		DisplayName: Onslaught
+		Tooltip: ""
+	}
+
+	Ranger: {
+		Tooltip: ""
+		DisplayName: Ranger
+	}
+
+	Headshot: {
+		DisplayName: Headshot
+		Tooltip: ""
+	}
+
+	LegendaryKiller: {
+		DisplayName: Legendary Killer
+		Tooltip: ""
+	}
+
+	Velocity: {
+		DisplayName: Velocity
+		Tooltip: ""
+	}
+
+	CloudOfLead: {
+		Tooltip: ""
+		DisplayName: Cloud Of Lead
+	}
+
+	Redistribution: {
+		Tooltip: ""
+		DisplayName: Redistribution
+	}
+
+	HiddenMachine: {
+		DisplayName: Hidden Machine
+		Tooltip: ""
+	}
+
+	Inconceivable: {
+		DisplayName: Inconceivable
+		Tooltip: ""
+	}
+
+	LegendaryTrainer: {
+		Tooltip: ""
+		DisplayName: Legendary Trainer
+	}
+
+	Leech: {
+		DisplayName: Leech
+		Tooltip: ""
+	}
+
+	Flakker: {
+		DisplayName: Flakker
+		Tooltip: ""
+	}
+
+	FirstBlood: {
+		Tooltip: ""
+		DisplayName: First Blood
+	}
+
+	MysteriousAmulet: {
+		DisplayName: Mysterious Amulet
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -965,6 +1165,7 @@ Projectiles: {
 	RolandTurret.DisplayName: Roland Turret
 	AxtonTurret.DisplayName: Axton Turret
 	TaserLaser.DisplayName: Taser Laser
+	LeechModule.DisplayName: Leech Module
 }
 
 Buffs: {
@@ -1066,6 +1267,56 @@ Buffs: {
 	SalvationKillSkill: {
 		DisplayName: Salvation
 		Description: Killing an enemy, grants you Gun Damage Lifesteal for a short time
+	}
+
+	TheFastAndTheFurryousPassiveSkill: {
+		DisplayName: The Fast And The Furryous
+		Description: While above 50% Health, you gain increased Whip Damage, Summon Damage, and Movement Speed
+	}
+
+	ViolentSpeedKillSkill: {
+		DisplayName: Violent Speed
+		Description: Killing an enemy increases your Movement Speed for a short time
+	}
+
+	InnervatePassiveSkill: {
+		DisplayName: Innervate
+		Description: While Decepti0n is active you gain increased Ranged Damage, Movement Speed, and Health Regeneration
+	}
+
+	OutOfBubblegumPassiveSkill: {
+		DisplayName: Out Of Bubblegum
+		Description: While under 40% Health, you gain increased Fire Rate
+	}
+
+	WreckPassiveSkill: {
+		DisplayName: Wreck
+		Description: While an enemy is Phaselocked you gain increased Fire Rate and Damage for Magic weapons
+	}
+
+	ImmolatePassiveSkill: {
+		Description: While under 20% health, your magic attacks deal bonus Incendiary Damage
+		DisplayName: Immolate
+	}
+
+	QuickChargeKillSkill: {
+		DisplayName: Quick Charge
+		Description: Killing an enemy grants you Health Regeneration for a short time
+	}
+
+	MetalStormKillSkill: {
+		Description: Killing an enemy increases your Ranged Fire Rate for a short time
+		DisplayName: Metal Storm
+	}
+
+	OnslaughtKillSkill: {
+		DisplayName: Onslaught
+		Description: Killing an enemy increases your Ranged Damage and Movement Speed for a short time
+	}
+
+	RedistributionPassiveSkill: {
+		DisplayName: Redistribution
+		Description: Scoring a Critical Hit with a Ranged weapon grants Health and Ammo Regeneration for that weapon for a short time
 	}
 }
 

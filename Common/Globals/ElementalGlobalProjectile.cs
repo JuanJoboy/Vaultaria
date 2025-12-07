@@ -40,11 +40,32 @@ namespace Vaultaria.Common.Globals
                 modifiers.ArmorPenetration += 100000;
             }
 
-            if(player.HasBuff<KillerKillSkill>())
-            {
-                float critBonus = Utilities.Utilities.SkillBonus(55f, 0.05f);
-                modifiers.CritDamage *= critBonus;
-            }
+            JustGotReal(player, projectile, ref modifiers);
+
+            Wreck(player, projectile, ref modifiers);
+
+            Accelerate(player, projectile, ref modifiers);
+
+            Reaper(player, projectile, target, ref modifiers);
+
+            Impact(player, projectile, ref modifiers);
+
+            Ranger(player, projectile, ref modifiers);
+
+            Killer(player, projectile, ref modifiers);
+
+            Headshot(player, projectile, ref modifiers);
+
+            Velocity(player, projectile, ref modifiers);
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPC(projectile, target, hit, damageDone);
+
+            Player player=  Main.player[projectile.owner];
+
+            Immolate(player, projectile, target, hit);
         }
 
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
@@ -53,68 +74,7 @@ namespace Vaultaria.Common.Globals
 
             if(player.HeldItem.type == ModContent.ItemType<CatONineTails>())
             {
-                projectile.penetrate = 2;
-                projectile.penetrate--;
-
-                if (projectile.penetrate <= 0)
-                {
-                    projectile.Kill();
-                    return false;
-                }
-
-                if (Math.Abs(projectile.velocity.X - oldVelocity.X) > float.Epsilon)
-                {
-                    projectile.velocity.X = -oldVelocity.X;
-                }
-
-                if (Math.Abs(projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
-                {
-                    projectile.velocity.Y = -oldVelocity.Y;
-                }
-
-                // --- CLONING LOGIC ---
-                if (projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
-                {
-                    if (projectile.ai[0] == 1f && projectile.ai[1] == 1f) // If it's a cloner parent AND eligible for first split
-                    {
-                        const int numberOfClones = 9;
-                        const float totalSpreadDegrees = 5;
-                        float baseAngle = projectile.velocity.ToRotation();
-                        float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
-                        
-                        // Adjust the base angle so the spread is centered around the original velocity.
-                        baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
-
-                        for (int i = 0; i < numberOfClones; i++)
-                        {
-                            // Calculate the new angle for this specific clone
-                            float newAngle = baseAngle + (i * angleIncrement);
-
-                            // Create the new velocity vector using the calculated angle and the parent's speed.
-                            Vector2 newVelocity = newAngle.ToRotationVector2() * projectile.velocity.Length();
-
-                            // Spawn the new projectile (clone)
-                            Projectile.NewProjectile(
-                                projectile.GetSource_FromThis(),
-                                projectile.Center,
-                                newVelocity,
-                                projectile.type,
-                                20,
-                                projectile.knockBack,
-                                projectile.owner,
-                                0f,
-                                0f
-                            );
-                        }
-
-                        projectile.ai[0] = 0f;
-                        projectile.ai[1] = 0f;
-                    }
-                }
-
-                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-
-                return false;
+                return CatONineTails(projectile, oldVelocity);
             }
 
             return base.OnTileCollide(projectile, oldVelocity);
@@ -166,6 +126,10 @@ namespace Vaultaria.Common.Globals
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 120;
                 }
+
+                Accelerate(player, projectile);
+
+                Velocity(player, projectile);
             }
 
             if (source is EntitySource_Parent parent)
@@ -269,6 +233,238 @@ namespace Vaultaria.Common.Globals
             Vector2 newVelocity = velocity.RotatedByRandom(spread);
 
             Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI, 1f, 1f);
+        }
+
+        private bool CatONineTails(Projectile projectile, Vector2 oldVelocity)
+        {
+            projectile.penetrate = 2;
+            projectile.penetrate--;
+
+            if (projectile.penetrate <= 0)
+            {
+                projectile.Kill();
+                return false;
+            }
+
+            if (Math.Abs(projectile.velocity.X - oldVelocity.X) > float.Epsilon)
+            {
+                projectile.velocity.X = -oldVelocity.X;
+            }
+
+            if (Math.Abs(projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
+            {
+                projectile.velocity.Y = -oldVelocity.Y;
+            }
+
+            // --- CLONING LOGIC ---
+            if (projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
+            {
+                if (projectile.ai[0] == 1f && projectile.ai[1] == 1f) // If it's a cloner parent AND eligible for first split
+                {
+                    const int numberOfClones = 9;
+                    const float totalSpreadDegrees = 5;
+                    float baseAngle = projectile.velocity.ToRotation();
+                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
+                    
+                    // Adjust the base angle so the spread is centered around the original velocity.
+                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
+
+                    for (int i = 0; i < numberOfClones; i++)
+                    {
+                        // Calculate the new angle for this specific clone
+                        float newAngle = baseAngle + (i * angleIncrement);
+
+                        // Create the new velocity vector using the calculated angle and the parent's speed.
+                        Vector2 newVelocity = newAngle.ToRotationVector2() * projectile.velocity.Length();
+
+                        // Spawn the new projectile (clone)
+                        Projectile.NewProjectile(
+                            projectile.GetSource_FromThis(),
+                            projectile.Center,
+                            newVelocity,
+                            projectile.type,
+                            20,
+                            projectile.knockBack,
+                            projectile.owner,
+                            0f,
+                            0f
+                        );
+                    }
+
+                    projectile.ai[0] = 0f;
+                    projectile.ai[1] = 0f;
+                }
+            }
+
+            Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+
+            return false;
+        }
+
+        private void JustGotReal(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<JustGotReal>()))
+            {
+                float bonusDamage = Utilities.Utilities.ComparativeBonus(player.statLifeMax2, player.statLife, 3f) + Utilities.Utilities.SkillBonus(60f, 0.05f);
+
+                if(projectile.DamageType == DamageClass.Ranged)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Wreck(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(player.HasBuff(ModContent.BuffType<WreckPassiveSkill>()))
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(80f, 0.05f);
+
+                if(projectile.DamageType == DamageClass.Magic)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Accelerate(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Accelerate>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendarySiren>()))
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(100f, 0.05f);
+
+                if(projectile.DamageType == DamageClass.Magic)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Accelerate(Player player, Projectile projectile)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Accelerate>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendarySiren>()))
+            {
+                float bonusProjectileSpeed = Utilities.Utilities.SkillBonus(80f, 0.05f);
+
+                if(projectile.DamageType == DamageClass.Magic)
+                {
+                    projectile.velocity *= bonusProjectileSpeed;
+                }
+            }
+        }
+
+        private void Reaper(Player player, Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Reaper>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendarySiren>()))
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(35f, 0.05f);
+
+                if(projectile.DamageType == DamageClass.Magic && target.life >= target.lifeMax * 0.5f)
+                {
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Immolate(Player player, Projectile projectile, NPC target, NPC.HitInfo hit)
+        {
+            if(player.HasBuff(ModContent.BuffType<ImmolatePassiveSkill>()))
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(20f, 0.1f);
+
+                short incendiaryProjectile;
+
+                if(Utilities.Utilities.DownedBossCounter() < 16)
+                {
+                    incendiaryProjectile = ElementalID.IncendiaryProjectile;
+                }
+                else
+                {
+                    incendiaryProjectile = ProjectileID.SolarWhipSwordExplosion;
+                }
+
+                if(projectile.DamageType == DamageClass.Magic)
+                {
+                    ElementalProjectile.SetElementOnNPC(target, hit, bonusDamage, player, incendiaryProjectile, ElementalID.IncendiaryBuff, 120);
+                }
+            }
+        }
+
+        private void Impact(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Impact>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendaryRanger>()))
+            {
+                if(projectile.DamageType == DamageClass.Ranged)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(80f, 0.05f);
+
+                    modifiers.SourceDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Ranger(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Ranger>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendaryRanger>()))
+            {
+                if(projectile.DamageType == DamageClass.Ranged)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(300f, 0.01f);
+
+                    modifiers.SourceDamage *= bonusDamage;
+                    modifiers.CritDamage *= bonusDamage;
+                }
+            }
+        }
+
+        private void Killer(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(player.HasBuff<KillerKillSkill>() && (projectile.DamageType == DamageClass.Magic || projectile.DamageType == DamageClass.Ranged || projectile.DamageType == DamageClass.Throwing))
+            {
+                float critBonus = Utilities.Utilities.SkillBonus(55f, 0.05f);
+                modifiers.CritDamage *= critBonus;
+            }
+        }
+
+        private void Headshot(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Headshot>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendaryKiller>()))
+            {
+                if(projectile.DamageType == DamageClass.Magic || projectile.DamageType == DamageClass.Ranged || projectile.DamageType == DamageClass.Throwing)
+                {
+                    float bonusCrit = Utilities.Utilities.SkillBonus(80f, 0.05f);
+
+                    modifiers.CritDamage *= bonusCrit;
+                }
+            }
+        }
+
+        private void Velocity(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Velocity>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendaryKiller>()))
+            {
+                if(projectile.DamageType == DamageClass.Magic || projectile.DamageType == DamageClass.Ranged || projectile.DamageType == DamageClass.Throwing)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(200f, 0.05f);
+                    float bonusCrit = Utilities.Utilities.SkillBonus(150f, 0.05f);
+
+                    modifiers.SourceDamage *= bonusDamage;
+                    modifiers.CritDamage *= bonusCrit;
+                }
+            }
+        }
+
+        private void Velocity(Player player, Projectile projectile)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<Velocity>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<LegendaryKiller>()))
+            {
+                if(projectile.DamageType == DamageClass.Magic || projectile.DamageType == DamageClass.Ranged || projectile.DamageType == DamageClass.Throwing)
+                {
+                    float bonusProjectileSpeed = Utilities.Utilities.SkillBonus(15f, 0.1f);
+
+                    projectile.velocity *= bonusProjectileSpeed;
+                }
+            }
         }
     }
 }

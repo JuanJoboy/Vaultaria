@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Buffs.SkillEffects
         {
             base.Update(player, ref buffIndex);
 
-            float bonusDamage = Utilities.SkillBonus(30f, 0.15f);
-            float bonusSpeed = Utilities.SkillBonus(20f, 0.1f);
+            float bonusDamage = Utilities.SkillBonus(60f, 0.05f);
+            float bonusSpeed = Utilities.SkillBonus(42f, 0.05f);
 
             player.GetDamage(DamageClass.Generic) *= bonusDamage;
 

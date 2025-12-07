@@ -200,8 +200,8 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                     Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
                 }
             }
-
-            Utilities.RedText(tooltips, Mod, "(giggles) I'm really good at this!");
+            
+            Utilities.RedText(tooltips, Mod, "I love my powers!");
         }
     }
 }

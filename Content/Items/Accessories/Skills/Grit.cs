@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
             float gritChance = numberOfBossesDefeated * 2 + baseGrit;
 
-            Utilities.Text(tooltips, Mod, "Tooltip1", "You gain a chance to ignore damage.");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "You gain a chance to ignore damage");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{gritChance}% Grit Chance");
         }

@@ -46,7 +46,7 @@ namespace Vaultaria.Content.Items.Potions
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "100% Increased Gun Damage & 150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+100% Increased Ranged Damage & +150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Your eyes deceive you\nAn illusion fools you all\nI move for the kill.");
         }
     }

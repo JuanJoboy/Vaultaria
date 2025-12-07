@@ -36,6 +36,8 @@ using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Buffs.SkillEffects;
 using System.Formats.Tar;
 using Vaultaria.Common.Configs;
+using Vaultaria.Content.Buffs.MagicEffects;
+using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Hyperion;
 
 namespace Vaultaria.Common.Players
 {
@@ -50,7 +52,8 @@ namespace Vaultaria.Common.Players
         // 2. The Hook: Runs when the character first loads or enters the world.
         public override void OnEnterWorld()
         {
-            Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in this mod", Color.Red);
+            Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in Vaultaria", Color.Red);
+            Main.NewText($"Also be sure to check out the Vaultaria Config", Color.Red);
 
             // The logic runs only if this character has NOT been initialized yet.
             if (!hasInitialized)
@@ -88,6 +91,70 @@ namespace Vaultaria.Common.Players
             base.UpdateDead();
 
             TerminationProtocols();
+        }
+
+        public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
+        {
+            base.ModifyMaxStats(out health, out mana);
+
+            PackTactics(ref health);
+
+            if(IsWearing(ModContent.ItemType<Ranger>()) || IsWearing(ModContent.ItemType<LegendaryRanger>()))
+            {
+                float bonusLife = Utilities.Utilities.SkillBonus(300f, 0.01f);
+                health *= bonusLife;
+            }
+        }
+
+        public override void UpdateLifeRegen()
+        {
+            base.UpdateLifeRegen();
+
+            if(Player.HasBuff(ModContent.BuffType<InnervatePassiveSkill>()))
+            {
+                Player.lifeRegen += (int) (Player.statLifeMax2 * 0.01f);
+            }
+
+            QuickCharge();
+
+            if(Player.HasBuff(ModContent.BuffType<RedistributionPassiveSkill>()))
+            {
+                Player.lifeRegen += (int) (Player.statLifeMax2 * 0.01f);
+            }
+        }
+
+        public override void PostUpdate()
+        {
+            base.PostUpdate();
+
+            Fleet();
+
+            if(Player.statLife >= Player.statLifeMax2 * 0.5f && (IsWearing(ModContent.ItemType<TheFastAndTheFurryous>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>())))
+            {
+                Player.AddBuff(ModContent.BuffType<TheFastAndTheFurryousPassiveSkill>(), 90);
+            }
+
+            Innervate();
+
+            foreach(NPC npc in Main.ActiveNPCs)
+            {
+                if(npc.HasBuff(ModContent.BuffType<Phaselocked>()) && (IsWearing(ModContent.ItemType<Wreck>()) || IsWearing(ModContent.ItemType<LegendarySiren>())))
+                {
+                    Player.AddBuff(ModContent.BuffType<WreckPassiveSkill>(), 60);
+                }
+            }
+
+            Immolate();
+        }
+
+        public override void ResetEffects()
+        {
+            base.ResetEffects();
+
+            if(IsWearing(ModContent.ItemType<HiddenMachine>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                Player.maxMinions += 2;
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
@@ -170,13 +237,15 @@ namespace Vaultaria.Common.Players
                 }
             }
 
-            if(proj.active && proj.owner == Player.whoAmI && proj.minion && Player.HasBuff<GammaBurstBuff>())
+            if(proj.active && proj.owner == Player.whoAmI && (proj.minion || proj.sentry) && Player.HasBuff<GammaBurstBuff>())
             {
                 hit.SourceDamage *= 2;
                 ElementalProjectile.SetElementOnNPC(target, hit, 1f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 180);
             }
 
             Salvation(hit);
+
+            Redistribution(proj, hit);
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
@@ -217,7 +286,23 @@ namespace Vaultaria.Common.Players
 
             if(Player.HasBuff(ModContent.BuffType<KillerKillSkill>()))
             {
-                multiplier *= Utilities.Utilities.SkillBonus(40f, 0.05f);
+                if(item.DamageType == DamageClass.Magic || item.DamageType == DamageClass.Ranged || item.DamageType == DamageClass.Throwing)
+                {
+                    multiplier *= Utilities.Utilities.SkillBonus(40f, 0.05f);
+                }
+            }
+
+            OutOfBubblegum(ref multiplier);
+
+            Wreck(ref multiplier);
+
+            Foresight(ref multiplier);
+
+            MetalStorm(ref multiplier);
+
+            if(IsWearing(ModContent.ItemType<Ranger>()) || IsWearing(ModContent.ItemType<LegendaryRanger>()))
+            {
+                multiplier *= Utilities.Utilities.SkillBonus(300f, 0.01f);
             }
 
             return multiplier;
@@ -242,6 +327,16 @@ namespace Vaultaria.Common.Players
                 Player.wingAccRunSpeed *= speedPenalty;
             }
 
+            if(Player.HasBuff(ModContent.BuffType<FleetPassive>()))
+            {
+                float bonusSpeed = Utilities.Utilities.SkillBonus(27f, 0.1f);
+
+                Player.moveSpeed *= bonusSpeed; 
+                Player.runAcceleration *= bonusSpeed;
+                Player.accRunSpeed *= bonusSpeed;
+                Player.maxRunSpeed *= bonusSpeed;   
+            }
+
             if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
             {
                 float bonusSpeed = Utilities.Utilities.SkillBonus(85f, 0.05f);
@@ -251,6 +346,22 @@ namespace Vaultaria.Common.Players
                 Player.accRunSpeed *= bonusSpeed;
                 Player.maxRunSpeed *= bonusSpeed;
             }
+
+            TheFastAndTheFurryous();
+
+            ViolentSpeed();
+
+            if(Player.HasBuff(ModContent.BuffType<InnervatePassiveSkill>()))
+            {
+                float bonusSpeed = Utilities.Utilities.SkillBonus(180f, 0.05f);
+
+                Player.moveSpeed *= bonusSpeed; 
+                Player.runAcceleration *= bonusSpeed;
+                Player.accRunSpeed *= bonusSpeed;
+                Player.maxRunSpeed *= bonusSpeed;
+            }
+
+            LegendarySiren();
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
@@ -266,6 +377,26 @@ namespace Vaultaria.Common.Players
             {
                 damage *= 1.2f;
             }
+
+            PackTactics(item, ref damage);
+
+            TheFastAndTheFurryous(item, ref damage);
+
+            DesperateMeasures(item, ref damage);
+
+            ViolentMomentum(item, ref damage);
+
+            if(Player.HasBuff(ModContent.BuffType<InnervatePassiveSkill>()))
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(180f, 0.05f);
+
+                if(item.DamageType == DamageClass.Ranged)
+                {
+                    damage *= bonusDamage;
+                }
+            }
+
+            Impact(item, ref damage);
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
@@ -275,6 +406,27 @@ namespace Vaultaria.Common.Players
             BackStab(target, ref modifiers);
 
             KillingBlow(target, ref modifiers);
+
+            HuntersEye(target, ref modifiers);
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            base.ModifyHitNPCWithProj(proj, target, ref modifiers);
+
+            PersonalSpace(target, ref modifiers);
+
+            HiddenMachine(proj, target, ref modifiers);
+
+            HuntersEye(target, ref modifiers);
+
+            if(IsHolding(ModContent.ItemType<FirstBlood>()))
+            {
+                if(target.life >= target.lifeMax * 0.5f)
+                {
+                    modifiers.SourceDamage *= 1.25f;
+                }
+            }
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
@@ -371,6 +523,8 @@ namespace Vaultaria.Common.Players
             Grit(ref modifiers);
 
             Incite();
+
+            HuntersEye(npc, ref modifiers);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -397,6 +551,10 @@ namespace Vaultaria.Common.Players
             }
 
             Resurgence(target);
+
+            BrainFreeze(target, hit);
+
+            Refreshment(target);
         }
         
         public override void OnHitAnything(float x, float y, Entity victim)
@@ -584,6 +742,14 @@ namespace Vaultaria.Common.Players
             }
         }
 
+        private void Fleet()
+        {
+            if(Player.statLife <= Player.statLifeMax2 * 0.3f && (IsWearing(ModContent.ItemType<Fleet>()) || IsWearing(ModContent.ItemType<Banshee>())))
+            {
+                Player.AddBuff(ModContent.BuffType<FleetPassive>(), 60);
+            }
+        }
+
         private void Incite()
         {
             if(IsWearing(ModContent.ItemType<Incite>()))
@@ -655,6 +821,295 @@ namespace Vaultaria.Common.Players
                 }
 
                 Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, (int) damage, 4);
+            }
+        }
+
+        private void PersonalSpace(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<PersonalSpace>()) && Player.HeldItem.DamageType == DamageClass.Magic)
+            {
+                float distance = Vector2.Distance(Player.Center, target.Center);
+
+                if(distance <= 90)
+                {
+                    float damage = Utilities.Utilities.ComparativeBonus(100f, distance, 1.5f) + Utilities.Utilities.SkillBonus(120f, 0.1f);
+                    modifiers.FinalDamage *= damage;
+                }
+            }
+        }
+
+        private void PackTactics(ref StatModifier health)
+        {
+            if(IsWearing(ModContent.ItemType<PackTactics>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                float bonusLife = Utilities.Utilities.SkillBonus(150f, 0.05f);
+                health *= bonusLife;
+            }
+        }
+
+        private void PackTactics(Item item, ref StatModifier damage)
+        {
+            if((IsWearing(ModContent.ItemType<PackTactics>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>())) && item.DamageType == DamageClass.Summon)
+            {
+                float bonusDamage = Utilities.Utilities.SkillBonus(88f, 0.05f);
+                damage *= bonusDamage;
+            }
+        }
+
+        private void TheFastAndTheFurryous(Item item, ref StatModifier damage)
+        {
+            if(Player.HasBuff<TheFastAndTheFurryousPassiveSkill>())
+            {
+                if(item.DamageType == DamageClass.SummonMeleeSpeed)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(150f, 0.05f);
+                    damage *= bonusDamage;
+                }
+                if(item.DamageType == DamageClass.Summon)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(120f, 0.05f);
+                    damage *= bonusDamage;
+                }
+            }
+        }
+
+        private void TheFastAndTheFurryous()
+        {
+            if(Player.HasBuff<TheFastAndTheFurryousPassiveSkill>())
+            {
+                float bonusSpeed = Utilities.Utilities.SkillBonus(170f, 0.025f);
+
+                Player.moveSpeed *= bonusSpeed; 
+                Player.runAcceleration *= bonusSpeed;
+                Player.accRunSpeed *= bonusSpeed;
+                Player.maxRunSpeed *= bonusSpeed;
+            }
+        }
+
+        private void DesperateMeasures(Item item, ref StatModifier damage)
+        {
+            if(IsWearing(ModContent.ItemType<DesperateMeasures>()))
+            {
+                float bonusDamage = Utilities.Utilities.ComparativeBonus(Player.statLifeMax2, Player.statLife, 2.7f) + Utilities.Utilities.SkillBonus(46f, 0.05f);
+
+                if(item.DamageType == DamageClass.SummonMeleeSpeed || item.DamageType == DamageClass.Summon)
+                {
+                    damage *= bonusDamage;
+                }
+            }
+        }
+
+        private void BrainFreeze(NPC target, NPC.HitInfo hit)
+        {
+            if(IsWearing(ModContent.ItemType<BrainFreeze>()) || IsWearing(ModContent.ItemType<Ringleader>()))
+            {
+                if(hit.Crit)
+                {
+                    float bonusFreeze = Utilities.Utilities.SkillBonus(40f, 0.05f);
+
+                    if(Utilities.Utilities.Randomizer(bonusFreeze))
+                    {
+                        target.AddBuff(ModContent.BuffType<CryoBuff>(), 300);
+                    }
+                }
+            }
+        }
+
+        private void Refreshment(NPC target)
+        {
+            if(IsWearing(ModContent.ItemType<Refreshment>()) || IsWearing(ModContent.ItemType<Ringleader>()))
+            {
+                if(target.HasBuff(ModContent.BuffType<CryoBuff>()))
+                {
+                    float bonusHeal = Utilities.Utilities.SkillBonus(1500f) - 1;
+
+                    Player.Heal((int) (Player.statLifeMax2 * bonusHeal));
+                }
+            }
+        }
+
+        private void ViolentMomentum(Item item, ref StatModifier damage)
+        {
+            if(IsWearing(ModContent.ItemType<ViolentMomentum>()) || IsWearing(ModContent.ItemType<Antifreeze>()))
+            {
+                float realSpeed = Player.velocity.Length();
+
+                float bonusDamage = Utilities.Utilities.ComparativeBonus(1f, -realSpeed, 25f) + Utilities.Utilities.SkillBonus(87f, 0.05f);
+
+                if(item.DamageType != DamageClass.SummonMeleeSpeed && item.DamageType != DamageClass.Summon)
+                {
+                    damage *= bonusDamage;
+                }
+            }
+        }
+
+        private void ViolentSpeed()
+        {
+            if(Player.HasBuff(ModContent.BuffType<ViolentSpeedKillSkill>()))
+            {
+                float bonusSpeed = Utilities.Utilities.SkillBonus(40f, 0.05f);
+
+                Player.moveSpeed *= bonusSpeed; 
+                Player.runAcceleration *= bonusSpeed;
+                Player.accRunSpeed *= bonusSpeed;
+                Player.maxRunSpeed *= bonusSpeed;
+            }
+        }
+
+        private void Innervate()
+        {
+            if(Player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            {
+                Player.AddBuff(ModContent.BuffType<InnervatePassiveSkill>(), 90);
+            }
+        }
+
+        private void OutOfBubblegum(ref float multiplayer)
+        {
+            if(Player.HasBuff(ModContent.BuffType<OutOfBubblegumPassiveSkill>()))
+            {
+                float bonusFireRate = Utilities.Utilities.SkillBonus(45f, 0.05f);
+
+                multiplayer *= bonusFireRate;
+            }
+        }
+
+        private void Wreck(ref float multiplayer)
+        {
+            if(Player.HasBuff(ModContent.BuffType<WreckPassiveSkill>()))
+            {
+                float bonusFireRate = Utilities.Utilities.SkillBonus(45f, 0.05f);
+
+                if(Player.HeldItem.DamageType == DamageClass.Magic)
+                {
+                    multiplayer *= bonusFireRate;
+                }
+            }
+        }
+
+        private void Foresight(ref float multiplier)
+        {
+            if(IsWearing(ModContent.ItemType<Foresight>()) || IsWearing(ModContent.ItemType<LegendarySiren>()))
+            {
+                float bonusFireRate = Utilities.Utilities.SkillBonus(80f, 0.05f);
+
+                if(Player.HeldItem.DamageType == DamageClass.Magic)
+                {
+                    multiplier *= bonusFireRate;
+                }
+            }
+        }
+
+        private void Immolate()
+        {
+            if(Player.statLife <= Player.statLifeMax2 * 0.2f && (IsWearing(ModContent.ItemType<Immolate>()) || IsWearing(ModContent.ItemType<Banshee>())))
+            {
+                Player.AddBuff(ModContent.BuffType<ImmolatePassiveSkill>(), 60);
+            }
+        }
+
+        private void LegendarySiren()
+        {
+            foreach(NPC npc in Main.npc)
+            {
+                if( npc.active && npc.HasBuff(ModContent.BuffType<Phaselocked>()) && IsWearing(ModContent.ItemType<LegendarySiren>()))
+                {
+                    Player.moveSpeed *= 1.45f; 
+                    Player.runAcceleration *= 1.45f;
+                    Player.accRunSpeed *= 1.45f;
+                    Player.maxRunSpeed *= 1.45f;
+                }
+            }
+        }
+
+        private void QuickCharge()
+        {
+            if(Player.HasBuff(ModContent.BuffType<QuickChargeKillSkill>()))
+            {
+                Player.lifeRegen += (int) (Player.statLifeMax2 * 0.01f);
+            }
+        }
+
+        private void Impact(Item item, ref StatModifier damage)
+        {
+            if(IsWearing(ModContent.ItemType<Impact>()) || IsWearing(ModContent.ItemType<LegendaryRanger>()))
+            {
+                if(item.DamageType == DamageClass.Melee)
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(100f, 0.05f);
+
+                    damage *= bonusDamage;
+                }
+            }
+        }
+
+        private void MetalStorm(ref float multiplier)
+        {
+            if(Player.HasBuff(ModContent.BuffType<MetalStormKillSkill>()))
+            {
+                float bonusFireRate = Utilities.Utilities.SkillBonus(25f, 0.1f);
+
+                if(Player.HeldItem.DamageType == DamageClass.Ranged)
+                {
+                    multiplier *= bonusFireRate;
+                }
+            }
+        }
+
+        private void Redistribution(Projectile projectile, NPC.HitInfo hit)
+        {
+            if(IsWearing(ModContent.ItemType<Redistribution>()))
+            {
+                if(projectile.DamageType == DamageClass.Ranged && hit.Crit)
+                {
+                    Player.AddBuff(ModContent.BuffType<RedistributionPassiveSkill>(), 240);
+                }
+            }
+        }
+
+        private void HiddenMachine(Projectile projectile, NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<HiddenMachine>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                if(Player == Main.player[projectile.owner] && (projectile.minion || projectile.sentry))
+                {
+                    float bonusDamage = Utilities.Utilities.SkillBonus(60f, 0.05f);
+
+                    if(npc.direction == 1 && Player.Center.X < npc.Center.X)
+                    {
+                        modifiers.SourceDamage *= bonusDamage;
+                    }
+                    else if(npc.direction == -1 && Player.Center.X > npc.Center.X)
+                    {
+                        modifiers.SourceDamage *= bonusDamage;
+                    }
+                }
+            }
+        }
+
+        private void HuntersEye(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<HuntersEye>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                if(!npc.boss)
+                {
+                    float bonusCrit = Utilities.Utilities.SkillBonus(150f, 0.05f);
+
+                    modifiers.CritDamage *= bonusCrit;
+                }
+            }
+        }
+        
+        private void HuntersEye(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<HuntersEye>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                if(npc.boss)
+                {
+                    float bonusReduction = Utilities.Utilities.SkillBonus(150f, 0.05f);
+
+                    modifiers.FinalDamage /= bonusReduction;
+                }
             }
         }
     }

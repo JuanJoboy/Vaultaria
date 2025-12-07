@@ -25,7 +25,7 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "+40 HP\n+5 Defense");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, get the following bonuses:\n\t+20% Gun Damage\n\t+20% Fire Rate\nAnd if you are under 20% health, take damage to regain full health", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Every 30 seconds, for 10 seconds, get the following bonuses:\n\t+20% Damage\n\t+20% Fire Rate\nAnd if you are under 20% health, take damage to regain full health", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "I always hated you the most.");
         }
 

@@ -24,8 +24,21 @@ public class KillSkillActivator : GlobalNPC
             ActivateKillSkill(player, ModContent.ItemType<LegendaryNinja>(), ModContent.BuffType<FollowThroughKillSkill>(), 7);
 
             ActivateKillSkill(player, ModContent.ItemType<Killer>(), ModContent.BuffType<KillerKillSkill>(), 7);
+            ActivateKillSkill(player, ModContent.ItemType<LegendaryKiller>(), ModContent.BuffType<KillerKillSkill>(), 7);
 
             ActivateKillSkill(player, ModContent.ItemType<Salvation>(), ModContent.BuffType<SalvationKillSkill>(), 5);
+
+            ActivateKillSkill(player, ModContent.ItemType<ViolentSpeed>(), ModContent.BuffType<ViolentSpeedKillSkill>(), 8);
+            ActivateKillSkill(player, ModContent.ItemType<Antifreeze>(), ModContent.BuffType<ViolentSpeedKillSkill>(), 8);
+
+            ActivateKillSkill(player, ModContent.ItemType<QuickCharge>(), ModContent.BuffType<QuickChargeKillSkill>(), 7);
+            ActivateKillSkill(player, ModContent.ItemType<LegendaryRanger>(), ModContent.BuffType<QuickChargeKillSkill>(), 7);
+
+            ActivateKillSkill(player, ModContent.ItemType<MetalStorm>(), ModContent.BuffType<MetalStormKillSkill>(), 7);
+            ActivateKillSkill(player, ModContent.ItemType<LegendaryRanger>(), ModContent.BuffType<MetalStormKillSkill>(), 7);
+
+            ActivateKillSkill(player, ModContent.ItemType<Onslaught>(), ModContent.BuffType<OnslaughtKillSkill>(), 7);
+            ActivateKillSkill(player, ModContent.ItemType<LegendaryRanger>(), ModContent.BuffType<OnslaughtKillSkill>(), 7);
         }
     }
 

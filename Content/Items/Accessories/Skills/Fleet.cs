@@ -18,23 +18,13 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Item.value = Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
         }
-
-        public override void UpdateEquip(Player player)
-        {
-            base.UpdateEquip(player);
-
-            if(player.statLife <= player.statLifeMax2 * 0.3f)
-            {
-                player.AddBuff(ModContent.BuffType<FleetPassive>(), 120);
-            }
-        }
-
+        
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int bonusSpeed = Utilities.DisplaySkillBonusText(27f, 0.1f);
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "While under 30% health you gain increased Movement Speed");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Movement Speed increases as you progress");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusSpeed}% Movement Speed");
         }
 

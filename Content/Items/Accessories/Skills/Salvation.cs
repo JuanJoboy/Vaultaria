@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             int bonusLifesteal = Utilities.DisplaySkillBonusText(600f);
 
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy, grants you Gun Damage Lifesteal for 5 seconds", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Killing an enemy, grants you Ranged Damage Lifesteal for 5 seconds", Utilities.VaultarianColours.Healing);
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusLifesteal}% Lifesteal");
         }
