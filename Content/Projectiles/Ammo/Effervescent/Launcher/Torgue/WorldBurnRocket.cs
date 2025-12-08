@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
 {
@@ -33,6 +34,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             Projectile.timeLeft = 36000;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

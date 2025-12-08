@@ -23,6 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			Item.shoot = ModContent.ProjectileType<DestroyerLaserHoldout>();
 			Item.shootSpeed = 30f;
 			Item.UseSound = SoundID.NPCDeath52;
+			Item.DamageType = DamageClass.Magic;
 
 			// Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
 		}

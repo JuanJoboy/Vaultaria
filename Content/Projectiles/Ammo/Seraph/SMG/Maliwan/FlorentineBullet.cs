@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
 {
@@ -33,6 +34,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.SMG.Maliwan
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void SetStaticDefaults()

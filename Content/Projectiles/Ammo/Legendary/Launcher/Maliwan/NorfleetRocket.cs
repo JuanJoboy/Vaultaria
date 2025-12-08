@@ -34,6 +34,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void SetStaticDefaults()

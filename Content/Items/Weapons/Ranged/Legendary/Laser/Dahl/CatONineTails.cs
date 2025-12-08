@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 25);
+            Item.Size = new Vector2(69, 30);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 5f);
+            return new Vector2(-17f, 3f);
         }
 
         public override bool AllowPrefix(int pre)

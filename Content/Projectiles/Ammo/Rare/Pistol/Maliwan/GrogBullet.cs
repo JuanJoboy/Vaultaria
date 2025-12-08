@@ -32,6 +32,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Maliwan
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void SetStaticDefaults()

@@ -26,6 +26,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.AssaultRifle.Vladof
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 2;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

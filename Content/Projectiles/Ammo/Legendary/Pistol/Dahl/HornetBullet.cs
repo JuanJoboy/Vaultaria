@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl
 {
@@ -30,6 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

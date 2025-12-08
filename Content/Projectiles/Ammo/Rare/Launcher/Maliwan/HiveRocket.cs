@@ -33,6 +33,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

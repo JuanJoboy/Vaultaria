@@ -31,6 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             Projectile.timeLeft = 900;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override bool PreAI()

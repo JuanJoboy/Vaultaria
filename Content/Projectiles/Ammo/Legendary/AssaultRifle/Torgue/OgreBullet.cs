@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue
 {
@@ -31,6 +32,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Torgue
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

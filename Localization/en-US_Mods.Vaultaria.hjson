@@ -5,10 +5,10 @@ Tiles: {
 	Pedestal.MapEntry: Pedestal
 	PedestalTile.MapEntry: Pedestal Tile
 	BossSummoner.MapEntry: Boss Summoner
-	Vault1BossSummoner.MapEntry: Vault1 Boss Summoner
-	Vault2BossSummoner.MapEntry: Vault2 Boss Summoner
-	PedestalTile2.MapEntry: Pedestal Tile2
-	PedestalTile1.MapEntry: Pedestal Tile1
+	Vault1BossSummoner.MapEntry: Vault Boss Rush
+	Vault2BossSummoner.MapEntry: Vault Boss Rush
+	PedestalTile2.MapEntry: Vault of the Destroyer
+	PedestalTile1.MapEntry: Vault of the Warrior
 }
 
 Items: {
@@ -474,11 +474,11 @@ Items: {
 
 	Vault1BossSummoner: {
 		Tooltip: ""
-		DisplayName: Vault 1 Summoner
+		DisplayName: Vault of the Warrior
 	}
 
 	Pedestal1: {
-		DisplayName: Vault 1 Pedestal
+		DisplayName: Vault of the Warrior
 		Tooltip: ""
 	}
 
@@ -513,12 +513,12 @@ Items: {
 	}
 
 	Pedestal2: {
-		DisplayName: Vault 2 Pedestal
+		DisplayName: Vault of the Destroyer
 		Tooltip: ""
 	}
 
 	Vault2BossSummoner: {
-		DisplayName: Vault 2 Summoner
+		DisplayName: Vault of the Destroyer
 		Tooltip: ""
 	}
 
@@ -818,7 +818,7 @@ Items: {
 	}
 
 	Bore: {
-		DisplayName: Bore
+		DisplayName: B0re
 		Tooltip: ""
 	}
 
@@ -844,11 +844,6 @@ Items: {
 
 	Backstab: {
 		DisplayName: Backstab
-		Tooltip: ""
-	}
-
-	Forge: {
-		DisplayName: Forge
 		Tooltip: ""
 	}
 
@@ -888,7 +883,7 @@ Items: {
 	}
 
 	HuntersEye: {
-		DisplayName: Hunters Eye
+		DisplayName: Hunter's Eye
 		Tooltip: ""
 	}
 
@@ -1059,7 +1054,7 @@ Items: {
 
 	LegendaryTrainer: {
 		Tooltip: ""
-		DisplayName: Legendary Trainer
+		DisplayName: Legendary Tr4iner
 	}
 
 	Leech: {
@@ -1360,7 +1355,7 @@ NPCs: {
 	Claptrap: {
 		DisplayName: Mistake
 		DeathMessage: Claptrap is finally dead. Good Riddance.
-		DeathMessageAlt: Claptrap has officially gone rogue. Time to scrap the chassis.
+		DeathMessageAlt: Shadowtrap is dead. The world is safe.
 
 		Buttons: {
 			Shop: Gearbox Premiere Club
@@ -1383,34 +1378,37 @@ NPCs: {
 		}
 
 		VaultarianInfo: {
-			Vaultaria: Attention, Meatbag! I, CL4P-TP, your humble (and totally amazing) guide, will cycle through these pages to drop some knowledge bombs on Vaultaria's mechanics, so that you learn everything you need to not explode instantly in Vaultaria. (PS - If you haven't already installed the Quite Enough Recipes mod onto your EchoNet, then do so now, it will help out a bunch)
+			Vaultaria: Attention, Meatbag! I, CL4P-TP, your humble (and totally amazing) guide, will help drop some knowledge bombs about Vaultaria's mechanics, so that you learn everything you need to not explode instantly in Vaultaria. (PS - If you haven't already installed the Quite Enough Recipes mod onto your EchoNet, then do so now, it will help out a bunch)
 			Eridium: Whoa, look at the shiny stuff! Eridium is the universe's greatest resource, period! There's a rare chance for you to get tiny bits from every loser you kill, but BIG, beautiful stacks from bosses. You need it to craft EVERYTHING here! Start farming Vault Hunter, I'm not doing it for you!
 			Incendiary: BURN BABY BURN! Defeat the Torch God and unleash the FIRE! This prefix lights those psychos up with a powerful Burning DOT! Wanna be an arsonist? Grab the Attunement, it drops rarely from the pathetic losers in The Underworld.
 			Shock: ZAP! You get this electric power after kicking the Martian Saucer's metal butt! This bad boy Electrifies foes and summons a stationary Shock Ring for extra pain! Find the Attunement accessory where the weirdos hang out: Space, or during a Rain / Martian Invasion!
 			Corrosive: Time to melt some faces! Beat Your World Evil's Boss (you know, the Worm or the Brain, ugh gross) to unlock this goop. I'd personally never touch the stuff, Corrosion is a nasty thing to deal with. It inflicts Venom debuffs, poisoning them good! The Attunement accessory is hiding somewhere with the creepy crawlies in the Hardmode Jungle.
-			Explosive: EXPLOSIONSS!!!! I SAID EXPLOSIONS! You unlock Mr. Torgue's favorite prefix by defeating the measly Pirate Ship! Creates an explosion, dealing massive AOE damage and shatters enemy armor. THAT SENTENCE HAD TOO MANY SYLLABLES! APOLOGIZE! Get the Attunement during the Pirate Invasion or the Old One's Army.
-			Slag: Achievement Unlocked! Beat the Wall Of Flesh to unlock this purple goodness. Slag reduces enemy defense and makes them take increased damage from EVERYTHING else! It’s the Ultimate Vault Hunter way to fight. Find the Attunement from the spooky guys in the Hardmode Dungeon.
-			Cryo: So... Cold... This is worse than Windshear Waste. You earn this by beating those freaky Ice Golems. This prefix applies a nasty Frostburn DOT and has a chance to FREEZE enemies solid. Which means NO DANCING, definitely my least favorite thing to be hit with. Look for the Attunement in the chilly Hardmode Snow Biome or during the Frost Moon/Frost Legion.
-			Radiation: Radioactive! This is advanced science, obtained by defeating The Twins (which is like totally easy for me, maybe hard for you though). It reduces enemy defense and gives them Cursed Inferno DOT. Best part? When the irradiated guy dies, he EXPLODES and spreads the pain! The Attunement drops from the nasty folk in the Hardmode Corruption / Crimson Biome.
+			Explosive: EXPLOSIONSS!!!! I SAID EXPLOSIONS!!! You unlock Mr. Torgue's favorite prefix by defeating Captain Scarlett's friends! Creates an explosion, dealing massive AOE damage and shatters enemy armor. Get the Attunement during the Pirate Invasion or the Old One's Army. Aw Jeez I think I hear Torgue coming, *THAT SENTENCE HAD TOO MANY SYLLABLES! APOLOGIZE!*. Sorry Torgue.
+			Slag: Congratulations! You beat the Wall Of Flesh and unlocked this purple goodness. Slag reduces enemy defense and makes them take increased damage from EVERYTHING else! It’s the Ultimate Vault Hunter way to fight. Find the Attunement from the spooky guys in the Hardmode Dungeon.
+			Cryo: Sprinkle a bit of the Windshear Waste wherever you go by beating those freaky Ice Golems. This prefix applies a nasty Frostburn DOT and has a chance to FREEZE enemies solid. Which means NO DANCING, definitely my least favorite thing to be hit with. Look for the Attunement in the chilly Hardmode Snow Biome or during the Frost Moon/Frost Legion.
+			Radiation: Radioactive! This is advanced science, obtained by defeating The Twins (which is like totally easy for me, maybe hard for you though). It reduces enemy defense and gives them Cursed Inferno DOT. Best part? When the irradiated guy dies, he EXPLODES and spreads the pain! Pick up the Attunement from those disgusting creatures in the Hardmode Corruption / Crimson Biome.
 			DoublePenetrating: If any nimrod has ever told you that less is more, then IGNORE THEM! MORE IS MORE HERE! Beat Deerclops to get this incredible prefix. It doubles your projectiles, making you twice as cool! WARNING: It doubles your ammo cost! Still worth it. TRUST ME.
-			Trickshot: The first prefix available. You get this one just for existing! Trickshot is great for you losers who have terrible aim cause your bullets ricochet off surfaces, ensuring you eventually hit something (something that I'd never need).
-			Accessories: Listen up! You have three glorious new equipment types to play with: Shields, Relics, and Attunements. You can wear one of each (I know, mind-blowing). These gizmos grant special abilities to help you, the Vault Hunter, bring peace. (And by peace, I mean DEATH TO EVERYONE WHO DARES CROSS ME!)
-			Ammo: Ha! Your weak Terrarian ammo is pathetic! Some of the BEST weapons need my superior Ammo from the Borderlands. It drops from any marauder you kill. However if you wanna be a lazy squire, you can buy it from the Arms Dealer.
-			Vaults: The Vaults of Terraria are a dangerous place to enter. There are 2 within this world, and they can be entered using their Vault Key. A Vault Key can be crafted from Fragments, that are scattered about the lands, hidden in chests. After entering a Vault, traverse through it and fight the Raid Bosses at the end to get a reward of unimaginable power.
+			Trickshot: The first prefix available. You get this one just for existing! Trickshot is great for you losers who have terrible aim, as this lets your bullets ricochet off surfaces, ensuring you eventually hit something (something that I'd never need).
+			Accessories: Listen up! You have four glorious new equipment types to play with: Shields, Relics, Skills, and Attunements; and you can wear one of each (I know, mind-blowing). These gizmos grant special abilities to help you, the Vault Hunter, bring peace to the land (And by peace, I mean DEATH TO EVERYONE WHO DARES CROSS ME!).
+			Ammo: Ha! Terrarian ammo is pathetic! Some of the BEST weapons need my superior Ammo from the Borderlands. It drops from any marauder you kill. However if you wanna be a lazy squire, you can buy it from the Arms Dealer.
+			Vaults: There are TWO of 'em in your world! Just two! Don't look for a third! I counted! To get inside, you need a Vault Key. Duh! What, did you think they'd let just anyone waltz in? You gotta build the key yourself! Vault Fragments are scattered around the map, tucked away in chests! Go find 'em! Once you crack that Vault open, you'll have to fight against a rush of Raid Bosses. It's going to be brutal! But don't worry, I'll be here... far, far away! If you don't die and actually win, you get a reward of unimaginable power!
 		}
 
 		Dialogue: {
-			PartyGirlDialogue1: A fellow entertainer? I find Claptrap to be a fantastic dance partner! Wub wub wub!
-			PartyGirlDialogue2: Not sure what happened to Claptrap, but he no longer wants to dance anymore
+			PartyGirlDialogue1: Not sure what happened to Claptrap, but he no longer wants to dance anymore.
 			StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
-			StandardDialogue2: I hope there aren't any stairs here
+			StandardDialogue2: I hope there aren't any stairs here.
 			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.
 			StandardDialogue4: Wub wub wub wub wub wub.
 			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
 			RareDialogue: You wanna know a secret, I can actually go up stairs.
-			VeryRareDialogueSafe: My ***... Its full of stars.
-			VeryRareDialogueExp: My ass... Its full of stars.
 			TalkALot: You're such a good listener Squire.
+			ShimmerPartyGirlDialogue1: Not sure what happened to Claptrap, but he no longer wants to dance anymore.
+			ShimmerStandardDialogue1: You've made a mistake, a big mistake.
+			ShimmerStandardDialogue2: This Galaxy will be mine for the taking.
+			ShimmerStandardDialogue3: You will all bend to my will.
+			ShimmerStandardDialogue4: I'll grind you to paste
+			ShimmerRareDialogue: MINION, I'M STILL IN HERE, HELP ME SQUIRE. SHIMMER MY BODY AND BRING ME BACK.
 		}
 
 		TownNPCMood: {
@@ -1460,11 +1458,6 @@ Configs: {
 			Tooltip: The amount of additional damage taken by Slagged enemies (3 would make an enemy take 3x as much damage)
 		}
 
-		EnableProfanity: {
-			Label: Enable Profanity
-			Tooltip: Allows for cuss words to be displayed
-		}
-
 		DisplayName: Vaultaria Config
 
 		GetRuinFirst: {
@@ -1484,7 +1477,7 @@ Configs: {
 
 		VaultHunterMode: {
 			Label: Vault Hunter Mode
-			Tooltip: The amount of additional health & defense that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is tripled (UVHM))
+			Tooltip: The amount of additional health & defense that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is triple (UVHM))
 		}
 	}
 }

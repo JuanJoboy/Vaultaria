@@ -41,6 +41,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             Projectile.timeLeft = 300;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

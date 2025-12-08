@@ -41,6 +41,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Torgue
             Projectile.timeLeft = 300;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

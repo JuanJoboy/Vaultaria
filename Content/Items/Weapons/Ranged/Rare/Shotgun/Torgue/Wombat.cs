@@ -24,8 +24,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(109, 30);
-            Item.scale = 0.7f;
+            Item.Size = new Vector2(75, 30);
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -60,7 +60,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-0f, 0f);
+            return new Vector2(-3f, 0f);
         }
 
         public override void AddRecipes()

@@ -277,23 +277,15 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
 				if (partyGirl >= 0 && Main.rand.NextBool(4))
 				{
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.PartyGirlDialogue1", Main.npc[partyGirl].GivenName));
+					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerPartyGirlDialogue1", Main.npc[partyGirl].GivenName));
 				}
 				
 				// These are things that the NPC has a chance of telling you when you talk to it.
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue4"));
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.CommonDialogue"), 0.8f);
-				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.RareDialogue"), 0.5f);
-
-				NumberOfTimesTalkedTo++;
-				if (NumberOfTimesTalkedTo >= 10)
-				{
-					// This counter is linked to a single instance of the NPC, so if Claptrap is killed, the counter will reset.
-					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.TalkALot"));
-				}
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue1"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue2"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue3"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue4"));
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerRareDialogue"), 0.5f);
             }
 			else
             {

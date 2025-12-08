@@ -44,6 +44,7 @@ namespace Vaultaria.Content.Projectiles.Melee
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

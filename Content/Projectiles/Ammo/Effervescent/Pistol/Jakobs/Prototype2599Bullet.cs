@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
 {
@@ -28,6 +29,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

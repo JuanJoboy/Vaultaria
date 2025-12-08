@@ -20,8 +20,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 20);
-            Item.scale = 0.95f;
+            Item.Size = new Vector2(64, 30);
+            Item.scale = 0.7f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 5f);
+            return new Vector2(-18f, 0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

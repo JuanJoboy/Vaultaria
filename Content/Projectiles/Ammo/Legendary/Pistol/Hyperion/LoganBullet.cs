@@ -36,6 +36,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 0;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()

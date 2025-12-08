@@ -32,6 +32,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
             Projectile.ignoreWater = true; // Doesn't slow down in water
             Projectile.tileCollide = true; // Collides with tiles
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
 
             // Turn off immunity frames so that every projectile can hit
             Projectile.usesLocalNPCImmunity = true;

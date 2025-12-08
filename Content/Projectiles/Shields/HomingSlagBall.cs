@@ -31,6 +31,7 @@ namespace Vaultaria.Content.Projectiles.Shields
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 1;
+            Projectile.DamageType = DamageClass.Generic;
 
             // Bullet Config
             Projectile.timeLeft = 600;

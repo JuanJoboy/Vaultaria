@@ -26,6 +26,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 1;

@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			Item.damage = 15;
 			Item.shoot = ModContent.ProjectileType<WarriorLaserHoldout>();
 			Item.shootSpeed = 30f;
+			Item.DamageType = DamageClass.Magic;
 
 			// Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
 			Item.color = OverrideColor;

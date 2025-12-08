@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(46, 30);
+            Item.Size = new Vector2(45, 30);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic; // For Lists
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
+using Terraria.ModLoader;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
 {
@@ -31,6 +32,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()
