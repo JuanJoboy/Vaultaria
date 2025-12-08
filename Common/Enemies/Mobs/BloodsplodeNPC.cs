@@ -6,6 +6,7 @@ using Terraria.ID;
 using Vaultaria.Common.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using Vaultaria.Content.Items.Accessories.Skills;
+using Vaultaria.Content.Buffs.SkillEffects;
 
 public class BloodsplodeNPC : GlobalNPC
 {
@@ -65,8 +66,9 @@ public class BloodsplodeNPC : GlobalNPC
     {
         if(npc.life <= 2)
         {
-            ElementalProjectile.BloodSplode(npc, hit, 1, ElementalID.LargeExplosiveProjectile, buff, 240);
+            ElementalProjectile.BloodSplode(npc, hit, 1, ElementalID.SmallExplosiveProjectile, buff, 240);
             ElementalProjectile.BloodSplodeNearbyNPCs(npc, hit, (short) ElementalProjectile.WhatProjectileDoICreate(buff), buff, 0.4f);
+            npc.AddBuff(ModContent.BuffType<BloodsplosionKillSkill>(), 90);
         }
     }
 }

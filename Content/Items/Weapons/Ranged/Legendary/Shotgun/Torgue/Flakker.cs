@@ -15,8 +15,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 {
     public class Flakker : ModItem
     {
-        private int flakTimer = 0;
-
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -33,7 +31,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             // Gun properties
             Item.noMelee = true;
             Item.shootSpeed = 10;
-            Item.shoot = ProjectileID.Volcano;
+            Item.shoot = ModContent.ProjectileType<Flak>();
             Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
@@ -48,23 +46,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
-        }
-
-        public override void HoldItem(Player player)
-        {
-            base.HoldItem(player);
-
-            if(flakTimer < 180)
-            {
-                flakTimer++;
-            }
-
-            if(flakTimer >= 180)
-            {
-                flakTimer = 0;
-            }
+            Item.value = Item.buyPrice(gold: 2);
+            Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 120);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -74,27 +57,27 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
             for(int i = 0; i < 6; i++)
             {
-                // if(flakTimer % 30 == 0)
-                // {
-                    float flakShotX = Main.rand.NextFloat(mouse.BottomLeft().X, mouse.BottomLeft().X + area);
-                    float flakShotY = Main.rand.NextFloat(mouse.TopLeft().Y, mouse.TopLeft().Y + area);
-                    Vector2 flakShotZone = new Vector2(flakShotX, flakShotY);
+                float flakShotX = Main.rand.NextFloat(mouse.BottomLeft().X, mouse.BottomLeft().X + area);
+                float flakShotY = Main.rand.NextFloat(mouse.TopLeft().Y, mouse.TopLeft().Y + area);
+                Vector2 flakShotZone = new Vector2(flakShotX, flakShotY);
 
-                    Vector2 randomVel = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
+                Vector2 randomVel = new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));
 
-                    Projectile projectile = Projectile.NewProjectileDirect(source, flakShotZone, randomVel, type, damage, knockback, player.whoAmI, ai0: i);
+                Projectile projectile = Projectile.NewProjectileDirect(source, flakShotZone, randomVel, type, damage, knockback, player.whoAmI, ai0: i);
 
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-                // }
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 30;
             }
 
-            return true;
+            Projectile.NewProjectileDirect(source, position, velocity, ProjectileID.Volcano, damage, knockback, player.whoAmI);
+            Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 120);
+            
+            return false;
         }
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-13f, 0f);
+            return new Vector2(-10f, 0f);
         }
 
         public override bool AllowPrefix(int pre)
@@ -104,7 +87,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.MultiShotText(tooltips, Item, 5);
+            Utilities.MultiShotText(tooltips, Item, 6);
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots a chain of random Explosive Projectiles", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "Flak the world.");

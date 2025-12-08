@@ -934,11 +934,14 @@ namespace Vaultaria.Common.Players
             {
                 float realSpeed = Player.velocity.Length();
 
-                float bonusDamage = Utilities.Utilities.ComparativeBonus(1f, -realSpeed, 25f) + Utilities.Utilities.SkillBonus(87f, 0.05f);
-
-                if(item.DamageType != DamageClass.SummonMeleeSpeed && item.DamageType != DamageClass.Summon)
+                if(realSpeed > 0)
                 {
-                    damage *= bonusDamage;
+                    float bonusDamage = Utilities.Utilities.ComparativeBonus(1f, -realSpeed, 25f) + Utilities.Utilities.SkillBonus(87f, 0.05f);
+
+                    if(item.DamageType != DamageClass.SummonMeleeSpeed && item.DamageType != DamageClass.Summon)
+                    {
+                        damage *= bonusDamage;
+                    }   
                 }
             }
         }

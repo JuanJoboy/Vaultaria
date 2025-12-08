@@ -1161,6 +1161,7 @@ Projectiles: {
 	AxtonTurret.DisplayName: Axton Turret
 	TaserLaser.DisplayName: Taser Laser
 	LeechModule.DisplayName: Leech Module
+	Flak.DisplayName: Flak
 }
 
 Buffs: {
@@ -1312,6 +1313,11 @@ Buffs: {
 	RedistributionPassiveSkill: {
 		DisplayName: Redistribution
 		Description: Scoring a Critical Hit with a Ranged weapon grants Health and Ammo Regeneration for that weapon for a short time
+	}
+
+	BloodsplosionKillSkill: {
+		DisplayName: Bloodsplosion Kill Skill
+		Description: Mods.Vaultaria.Buffs.BloodsplosionKillSkill.Description
 	}
 }
 

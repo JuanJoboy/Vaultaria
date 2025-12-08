@@ -19,10 +19,13 @@ namespace Vaultaria.Common.Systems.GenPasses
         {
             base.PostWorldGen();
 
-            // VaultBuilder.GenerateVault("Vault1");
+            Point16 dimensions1 = StructureHelper.API.Generator.GetStructureDimensions("Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
 
-            VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
-            VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
+            VaultBuilder.GenerateVault("Vault1", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, (int) Main.worldSurface);
+            VaultBuilder.GenerateVault("Vault2");
+
+            // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
+            // VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
         }
 
         public override void SaveWorldData(TagCompound tag)

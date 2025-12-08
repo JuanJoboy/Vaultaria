@@ -218,7 +218,7 @@ namespace Vaultaria.Common.Utilities
         // An array of tiles that should be taken into consideration when trying to generate a vault when a world is made
         public static int[] badTiles =
         [
-            TileID.DemonAltar,
+            // TileID.DemonAltar,
             TileID.BlueDungeonBrick,
             TileID.PinkDungeonBrick, 
             TileID.GreenDungeonBrick,
@@ -233,16 +233,21 @@ namespace Vaultaria.Common.Utilities
             TileID.LihzahrdBrick,
             TileID.LihzahrdAltar,
             TileID.HeavenforgeBrick,
-            TileID.Containers,
-            TileID.Containers2,
-            TileID.FakeContainers,
-            TileID.FakeContainers2,
+            // TileID.Containers,
+            // TileID.Containers2,
+            // TileID.FakeContainers,
+            // TileID.FakeContainers2,
             TileID.Sand,
             TileID.SandFallBlock,
-            TileID.Silt,
-            TileID.Slush,
+            // TileID.Silt,
+            // TileID.Slush,
             TileID.PlatinumBrick,
             TileID.AstraBrick,
+
+            TileID.HeavyWorkBench,
+            TileID.Bottles,
+            TileID.OpenDoor,
+            TileID.ClosedDoor,
         ];
 
         public static int[] badLiquids =

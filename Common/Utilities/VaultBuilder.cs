@@ -34,7 +34,7 @@ namespace Vaultaria.Common.Utilities
             GenFlags flags = GenFlags.NullsKeepGivenSlope;
             Point16 dimensions = StructureHelper.API.Generator.GetStructureDimensions(path, mod);
 
-            CanVaultBeBuilt(path, pos, mod, flags, dimensions);
+            CanVaultBeBuilt(path, pos, mod, flags, dimensions, false, topLeftX, topLeftY);
         }
 
         public static void GenerateVault(string vault)
@@ -52,7 +52,7 @@ namespace Vaultaria.Common.Utilities
 
             GenFlags flags = GenFlags.NullsKeepGivenSlope;
 
-            CanVaultBeBuilt(path, pos, mod, flags, dimensions);
+            CanVaultBeBuilt(path, pos, mod, flags, dimensions, true);
         }
 
         public static void GenerateVaultBattleGround(string battleGround)
@@ -73,7 +73,7 @@ namespace Vaultaria.Common.Utilities
             StructureHelper.API.Generator.GenerateStructure(path, pos, mod, false, false, flags);
         }
 
-        private static void CanVaultBeBuilt(string path, Point16 pos, Mod mod, GenFlags flags, Point16 dimensions)
+        private static void CanVaultBeBuilt(string path, Point16 pos, Mod mod, GenFlags flags, Point16 dimensions, bool spawnRandomly, int topLeftX = 0, int topLeftY = 0)
         {
             bool structGenInBounds = StructureHelper.API.Generator.IsInBounds(path, mod, pos);
             bool notInZone = NotInZone(pos, dimensions);
@@ -99,7 +99,17 @@ namespace Vaultaria.Common.Utilities
             }
             else
             {
-                GenerateVault(vault);
+                if(spawnRandomly == true)
+                {
+                    GenerateVault(vault);
+                }
+                else
+                {
+                    topLeftX = Main.rand.Next(topLeftX - 200, topLeftX + 200 - dimensions.X);
+                    topLeftY = Main.rand.Next(topLeftY - 100, topLeftY + 100 - dimensions.Y);
+
+                    GenerateVault(vault, topLeftX, topLeftY);
+                }
             }
         }
 
