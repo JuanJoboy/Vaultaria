@@ -38,6 +38,11 @@ using System.Formats.Tar;
 using Vaultaria.Common.Configs;
 using Vaultaria.Content.Buffs.MagicEffects;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Hyperion;
+using Vaultaria.Content.NPCs.Town.Claptrap;
+using Vaultaria.Common.Systems;
+using System.Linq;
+using static System.Array;
+using static System.Linq.Enumerable;
 
 namespace Vaultaria.Common.Players
 {
@@ -58,20 +63,27 @@ namespace Vaultaria.Common.Players
             // The logic runs only if this character has NOT been initialized yet.
             if (!hasInitialized)
             {
-                // --- CUSTOM INITIALIZATION LOGIC GOES HERE ---
-
-                // Example 1: Give the player a starting item (e.g., a ModItem)
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<VaultHuntersRelic>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<CopperBullet>(), 600);
 
-                // Example 3: Display a welcome message
                 Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
 
                 // Set the flag to true so this code doesn't run again on the next login.
                 hasInitialized = true;
+            }
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
+            }
+
+            if(!TownNPCRespawnSystem.unlockedClaptrapSpawn)
+            {
+                NPC.NewNPCDirect(Player.GetSource_None(), Player.Center + new Vector2(10, 0), ModContent.NPCType<Claptrap>());
+                TownNPCRespawnSystem.unlockedClaptrapSpawn = true;
             }
         }
         

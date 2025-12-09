@@ -58,7 +58,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            for (int i = 0; i < 250; i++)
+            for (int i = 0; i < 249; i++)
             {
                 player.ConsumeItem(ammo.type, false);
             }

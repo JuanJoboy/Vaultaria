@@ -59,7 +59,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
         {
             if (altFireMode == true)
             {
-                for (int i = 0; i < 29; i++)
+                for (int i = 0; i < 100; i++)
                 {
                     player.ConsumeItem(ammo.type, false);
                 }

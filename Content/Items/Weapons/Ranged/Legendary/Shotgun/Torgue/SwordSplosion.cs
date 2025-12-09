@@ -57,6 +57,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             return false;
         }
 
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                player.ConsumeItem(ammo.type, false);
+            }
+
+            return true;
+        }
+
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10f, 0f);
@@ -65,7 +76,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.MultiShotText(tooltips, Item, 3);
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 3 Shotgun Ammo per shot");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots out swords that explode on contact", Utilities.VaultarianColours.Explosive);
             Utilities.Text(tooltips, Mod, "Tooltip3", "Given after completing 50 Angler quests", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Because Mister Torgue said so.");

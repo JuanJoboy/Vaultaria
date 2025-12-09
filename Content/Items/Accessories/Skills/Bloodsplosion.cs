@@ -14,8 +14,8 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(gold: 5);
+            Item.rare = ItemRarityID.Cyan;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

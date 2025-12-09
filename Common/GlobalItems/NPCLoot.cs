@@ -15,6 +15,11 @@ using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Items.Weapons.Magic;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit;
+using Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Eridian;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic;
@@ -34,6 +39,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore;
@@ -45,13 +51,22 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Bandit;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
+using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl;
+using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue;
+using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 using Vaultaria.Content.NPCs.Town.Claptrap;
 
@@ -136,6 +151,11 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.WyvernHead)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoonlightSaga>(), 10, 1, 1));
+            }
+
+            if (npc == NPCID.IceGolem)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BrainFreeze>(), 10, 1, 1));
             }
 
             if (npc == NPCID.Eyezor || npc == NPCID.Frankenstein || npc == NPCID.SwampThing || npc == NPCID.Vampire || npc == NPCID.CreatureFromTheDeep || npc == NPCID.Fritz || npc == NPCID.ThePossessed || npc == NPCID.Reaper || npc == NPCID.Mothron || npc == NPCID.Butcher || npc == NPCID.DeadlySphere || npc == NPCID.DrManFly || npc == NPCID.Nailhead || npc == NPCID.Psycho)
@@ -251,7 +271,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.TheDestroyer)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadStorm>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ViolentMomentum>(), 20, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<JustGotReal>(), 10, 1, 1));
                 Eridium(npcLoot, 18, 25);
             }
 
@@ -289,6 +309,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.IceQueen)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hive>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Refreshment>(), 10, 1, 1));
                 Eridium(npcLoot, 6, 10);
             }
 
@@ -327,7 +348,8 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 4, 50, 100));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 5, 50, 100));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Grit>(), 4, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GrogNozzle>(), 3, 1, 1));
                 Eridium(npcLoot, 6, 10);
             }
@@ -335,12 +357,14 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Plantera)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fibber>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Salvation>(), 10, 1, 1));
                 Eridium(npcLoot, 20, 30);
             }
 
             if (npc == NPCID.Golem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LuckCannon>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HuntersEye>(), 10, 1, 1));
                 Eridium(npcLoot, 10, 15);
             }
 
@@ -355,12 +379,14 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Lyuda>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new Conditions.EmpressOfLightIsGenuinelyEnraged(), ModContent.ItemType<Norfleet>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ViolentMomentum>(), 10, 1, 1));
                 Eridium(npcLoot, 20, 30);
             }
 
             if (npc == NPCID.CultistBoss)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Antagonist>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<QuickCharge>(), 5, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AkumasDemise>(), 1, 1, 1));
                 Eridium(npcLoot, 30, 35);
             }
@@ -533,11 +559,13 @@ namespace Vaultaria.Common.GlobalItems
             if(npc == NPCID.HallowBoss)
             {
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bore>(), 10, 1, 1));
             }
 
             if(npc == NPCID.CultistBoss)
             {
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bloodsplosion>(), 10, 1, 1));
             }
 
             if (npc == NPCID.MoonLordCore)
@@ -546,6 +574,105 @@ namespace Vaultaria.Common.GlobalItems
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
             }
+        }
+    }
+}
+
+public class NewItemLoot : GlobalItem
+{
+    public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+    {
+        if (item.type == ItemID.WoodenCrate)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<LumpyRoot>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Aegis>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Handgun>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Skatergun>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SmoothFox>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Inconceivable>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Incite>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OutOfBubblegum>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.IronCrate)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FlushRifle>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Snider>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.GoldenCrate)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ThreeWayHulk>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudOfLead>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Quad>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrphanMaker>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScorpioTurret>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Onslaught>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Reaper>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.JungleFishingCrate || item.type == ItemID.JungleFishingCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Revenant>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InspiringTransaction>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<AgilityRelic>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<PackTactics>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Killer>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impact>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.FrozenCrate || item.type == ItemID.FrozenCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TooScoops>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<NightSniper>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Carbine>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ViolentSpeed>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fleet>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.FloatingIslandFishingCrate || item.type == ItemID.FloatingIslandFishingCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OlPainful>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Boomacorn>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<NightHawkin>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bane>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.OasisCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.OceanCrate || item.type == ItemID.OceanCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Lascaux>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.WoodenCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Redistribution>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.IronCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Innervate>(), 10, 1, 1));
+        }
+
+        if (item.type == ItemID.GoldenCrateHard)
+        {
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesperateMeasures>(), 10, 1, 1));
         }
     }
 }

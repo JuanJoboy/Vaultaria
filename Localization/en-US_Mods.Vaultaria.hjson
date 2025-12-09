@@ -1359,7 +1359,7 @@ NPCs: {
 	}
 
 	Claptrap: {
-		DisplayName: Mistake
+		DisplayName: Hyperion Steward Bot
 		DeathMessage: Claptrap is finally dead. Good Riddance.
 		DeathMessageAlt: Shadowtrap is dead. The world is safe.
 
@@ -1402,6 +1402,7 @@ NPCs: {
 
 		Dialogue: {
 			PartyGirlDialogue1: Not sure what happened to Claptrap, but he no longer wants to dance anymore.
+			UVHM: If the squishy enemies here are making you yawn. Access your trusty EchoNet (your config settings) and crank that Vault Hunter Mode dial up to either 2 or 3.
 			StandardDialogue1: Greetings, traveler! I am the finest CL4P-TP unit Hyperion has ever produced. Now bow before your superior!
 			StandardDialogue2: I hope there aren't any stairs here.
 			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.

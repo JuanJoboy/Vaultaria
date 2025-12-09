@@ -75,6 +75,16 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             return false;
         }
 
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                player.ConsumeItem(ammo.type, false);
+            }
+
+            return true;
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-16f, 0f);
@@ -88,7 +98,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.MultiShotText(tooltips, Item, 6);
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 5 Shotgun Ammo per shot");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Shoots a chain of random Explosive Projectiles", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "Flak the world.");
         }

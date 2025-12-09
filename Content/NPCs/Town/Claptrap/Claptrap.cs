@@ -37,6 +37,7 @@ using Vaultaria.Common.Configs;
 using Vaultaria.Content.Items.Placeables.Vaults;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore;
 using Vaultaria.Content.Items.Accessories.Skills;
+using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
@@ -210,11 +211,9 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 			}
 		}
 
-		public override void OnSpawn(IEntitySource source) {
-			if (source is EntitySource_SpawnNPC) {
-				// A TownNPC is "unlocked" once it successfully spawns into the world.
-				TownNPCRespawnSystem.unlockedClaptrapSpawn = true;
-			}
+		public override void OnSpawn(IEntitySource source)
+		{
+			TownNPCRespawnSystem.unlockedClaptrapSpawn = true;
 		}
 
 		// Requirements for the town NPC to spawn.
@@ -243,9 +242,6 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 					"CL4P-TP",
 					"Fragtrap",
 					"FR4G-TP",
-					"Useless",
-					"Moron",
-					"Piece Of Junk"
 				};
             }
 		}
@@ -281,7 +277,6 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 					chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerPartyGirlDialogue1", Main.npc[partyGirl].GivenName));
 				}
 				
-				// These are things that the NPC has a chance of telling you when you talk to it.
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue1"));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue2"));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.ShimmerStandardDialogue3"));
@@ -297,6 +292,8 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				}
 				
 				// These are things that the NPC has a chance of telling you when you talk to it.
+				chat.Add($"You have defeated {Utilities.DownedBossCounter()} / 31 of the required enemies for full skill progression. Remember Vault Hunter, to unlock the full bonus, you must defeat every boss and complete every event", 1f);
+				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.UVHM", 1f));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue1"));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue2"));
 				chat.Add(Language.GetTextValue("Mods.Vaultaria.NPCs.Claptrap.Dialogue.StandardDialogue3"));
