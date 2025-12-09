@@ -29,26 +29,5 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Utilities.Text(tooltips, Mod, "Tooltip3", $"Up to +{bonusWhip}% Whip Damage");
             Utilities.Text(tooltips, Mod, "Tooltip4", $"Up to +{bonusSummon}% Summon Damage");
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-        }
     }
 }

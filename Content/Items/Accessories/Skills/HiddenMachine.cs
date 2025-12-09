@@ -14,69 +14,19 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(copper: 0);
+            Item.rare = ItemRarityID.White;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int bonusDamage = Utilities.DisplaySkillBonusText(60f, 0.05f);
+            int number = !Main.hardMode ? 1 : 2; // if not hardmode, then 1, else 2
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Your Summons deal increased damage to enemies that you are behind");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusDamage}% Summon Damage");
-            Utilities.Text(tooltips, Mod, "Tooltip4", $"Increases your max number of minions by 2");
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-        }
-    
-        private float CloudOfLeadCounter()
-        {
-            float numberOfBossesDefeated = Utilities.DownedBossCounter();
-
-            if(numberOfBossesDefeated > 25)
-            {
-                return 4;
-            }
-            else if(numberOfBossesDefeated > 19)
-            {
-                return 5;
-            }
-            else if(numberOfBossesDefeated > 13)
-            {
-                return 6;
-            }
-            else if(numberOfBossesDefeated > 7)
-            {
-                return 7;
-            }
-            else if(numberOfBossesDefeated > 1)
-            {
-                return 8;
-            }
-            else
-            {
-                return 9;
-            }
+            Utilities.Text(tooltips, Mod, "Tooltip4", $"Increases your max number of minions by {number}");
         }
     }
 }

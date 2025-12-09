@@ -24,27 +24,6 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Utilities.Text(tooltips, Mod, "Tooltip2", $"+1% Health Regen");
             Utilities.Text(tooltips, Mod, "Tooltip3", $"Ammo Regen is granted on every shot while the buff is active");
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-        }
     
         private float CloudOfLeadCounter()
         {

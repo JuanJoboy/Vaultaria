@@ -6,6 +6,7 @@ using Terraria;
 using System;
 using Terraria.ModLoader.IO;
 using Terraria.ID;
+using static System.Math;
 
 namespace Vaultaria.Common.Systems.GenPasses
 {
@@ -19,10 +20,8 @@ namespace Vaultaria.Common.Systems.GenPasses
         {
             base.PostWorldGen();
 
-            Point16 dimensions1 = StructureHelper.API.Generator.GetStructureDimensions("Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
-
-            VaultBuilder.GenerateVault("Vault1", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, (int) Main.worldSurface);
-            VaultBuilder.GenerateVault("Vault2");
+            VaultBuilder.GenerateVault("Vault1", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, GenVars.snowTop - 95);
+            VaultBuilder.GenerateVault("Vault2", Main.maxTilesX - GenVars.dungeonLocation, Main.UnderworldLayer + 50);
 
             // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
             // VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.

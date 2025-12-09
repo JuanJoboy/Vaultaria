@@ -253,7 +253,7 @@ namespace Vaultaria.Common.Utilities
         public static int[] badLiquids =
         [
             LiquidID.Shimmer,
-            LiquidID.Lava,
+            // LiquidID.Lava,
         ];
 
         // An array of items that cant be used when near a vault

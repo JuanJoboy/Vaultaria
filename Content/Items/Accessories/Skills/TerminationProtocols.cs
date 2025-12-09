@@ -15,7 +15,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Item.rare = ItemRarityID.Blue;
         }
 

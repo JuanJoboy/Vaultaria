@@ -15,8 +15,8 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(copper: 0);
+            Item.rare = ItemRarityID.Green;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -30,27 +30,6 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Utilities.Text(tooltips, Mod, "Tooltip3", $"+{bonusWhip}% Whip Damage");
             Utilities.Text(tooltips, Mod, "Tooltip4", $"+{bonusSummon}% Summon Damage");
             Utilities.Text(tooltips, Mod, "Tooltip5", $"+{bonusSpeed}% Movement Speed");
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
         }
     }
 }

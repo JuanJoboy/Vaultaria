@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Vaultaria.Content.Items.Accessories.Attunements;
 using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Accessories.Shields;
+using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Items.Weapons.Magic;
@@ -96,6 +97,10 @@ namespace Vaultaria.Common.GlobalItems
 
             Bane(npc, npcLoot);
 
+            if (npc == NPCID.GoblinSorcerer || npc == NPCID.GoblinArcher)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Headshot>(), 50, 1, 1));
+            }
             if (npc == NPCID.GraniteFlyer || npc == NPCID.GraniteGolem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ElectricBanjo>(), 50, 1, 1));
@@ -114,6 +119,13 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Medusa)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Oracle>(), 10, 1, 1));
+            }
+
+            Leech(npc, npcLoot);
+
+            if (npc == NPCID.RedDevil)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Flakker>(), 10, 1, 1));
             }
 
             if (npc == NPCID.Pixie || npc == NPCID.Unicorn)
@@ -141,6 +153,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.KingSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hornet>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Backstab>(), 5, 1, 1));
                 Eridium(npcLoot, 1, 3);
             }
 
@@ -148,6 +161,7 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Law>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PhaselockSpell>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Accelerate>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 
@@ -166,6 +180,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.EaterofWorldsHead || npc == NPCID.EaterofWorldsBody || npc == NPCID.EaterofWorldsTail)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 300, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Velocity>(), 450, 1, 1));
 
                 if (npc == NPCID.EaterofWorldsHead)
                 {
@@ -175,8 +190,8 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.QueenBee)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BabyMaker>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FlameOfTheFirehawk>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BabyMaker>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 
@@ -190,12 +205,14 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.SkeletronHead)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hail>(), 1, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Wreck>(), 1, 1, 1));
                 Eridium(npcLoot, 6, 10);
             }
 
             if (npc == NPCID.WallofFlesh)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impaler>(), 3, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FollowThrough>(), 10, 1, 1));
                 Eridium(npcLoot, 10, 15);
             }
 
@@ -209,6 +226,7 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Florentine>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Striker>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PersonalSpace>(), 10, 1, 1));
                 Eridium(npcLoot, 15, 18);
             }
 
@@ -233,12 +251,13 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.TheDestroyer)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadStorm>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ViolentMomentum>(), 20, 1, 1));
                 Eridium(npcLoot, 18, 25);
             }
 
             if (npc == NPCID.Retinazer || npc == NPCID.Spazmatism)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 5, 200, 600));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 5, 100, 200));
                 Eridium(npcLoot, 18, 25);
             }
 
@@ -276,7 +295,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Pumpking)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WorldBurn>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GhastCall>(), 20, 100, 150));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GhastCall>(), 20, 50, 100));
                 Eridium(npcLoot, 6, 10);
             }
 
@@ -294,8 +313,8 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.DD2DarkMageT3)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileRare>(), 5, 300, 600));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileEpic>(), 10, 400, 700));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileRare>(), 5, 50, 100));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagicMissileEpic>(), 10, 200, 300));
                 Eridium(npcLoot, 3, 5);
             }
 
@@ -308,7 +327,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 4, 200, 250));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 4, 50, 100));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GrogNozzle>(), 3, 1, 1));
                 Eridium(npcLoot, 6, 10);
             }
@@ -453,6 +472,14 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Vulture || npc == NPCID.Antlion || npc == NPCID.FlyingAntlion || npc == NPCID.WalkingAntlion || npc == NPCID.GiantWalkingAntlion || npc == NPCID.GiantFlyingAntlion || npc == NPCID.SandSlime || npc == NPCID.DesertGhoul)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bane>(), 100, 1, 1));
+            }
+        }
+
+        private void Leech(int npc, Terraria.ModLoader.NPCLoot npcLoot)
+        {
+            if (npc == NPCID.Hellbat || npc == NPCID.LavaSlime || npc == NPCID.FireImp || npc == NPCID.Demon || npc == NPCID.VoodooDemon)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Leech>(), 10, 5, 15));
             }
         }
 

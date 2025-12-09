@@ -77,7 +77,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-10f, 0f);
+            return new Vector2(-16f, 0f);
         }
 
         public override bool AllowPrefix(int pre)

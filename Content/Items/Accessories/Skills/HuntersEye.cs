@@ -25,29 +25,8 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "You get different Bonuses when fighting different enemy types");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
-            Utilities.Text(tooltips, Mod, "Tooltip3", $"Mobs: +{bonusCrit}% Crit Damage");
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"Mobs: +{bonusCrit}% Summon / Whip Crit Damage");
             Utilities.Text(tooltips, Mod, "Tooltip4", $"Bosses: +{bonusReduction}% Damage Reduction");
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
         }
     }
 }

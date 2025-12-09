@@ -14,16 +14,16 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(copper: 0);
+            Item.rare = ItemRarityID.White;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int bonusDamage = Utilities.DisplaySkillBonusText(300f, 0.01f);
-            int bonusCrit = Utilities.DisplaySkillBonusText(300f, 0.01f);
-            int bonusFireRate = Utilities.DisplaySkillBonusText(300f, 0.01f);
-            int bonusLife = Utilities.DisplaySkillBonusText(300f, 0.01f);
+            int bonusDamage = Utilities.DisplaySkillBonusText(200f, 0.01f);
+            int bonusCrit = Utilities.DisplaySkillBonusText(200f, 0.01f);
+            int bonusFireRate = Utilities.DisplaySkillBonusText(200f, 0.01f);
+            int bonusLife = Utilities.DisplaySkillBonusText(200f, 0.01f);
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Increases your Ranged Damage, Crit Damage, Fire Rate, and Maximum Health");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
@@ -31,27 +31,6 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Utilities.Text(tooltips, Mod, "Tooltip4", $"+{bonusCrit}% Crit Damage");
             Utilities.Text(tooltips, Mod, "Tooltip5", $"+{bonusFireRate}% Fire Rate");
             Utilities.Text(tooltips, Mod, "Tooltip6", $"+{bonusLife}% Maximum Health");
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.SilverBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient<Eridium>(10)
-                .AddIngredient(ItemID.TungstenBar, 12)
-                .AddIngredient(ItemID.Bomb, 100)
-                .AddIngredient(ItemID.Grenade, 100)
-                .AddIngredient(ItemID.Dynamite, 100)
-                .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())
-                .Register();
         }
     }
 }

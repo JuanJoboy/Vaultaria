@@ -36,6 +36,7 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Common.Configs;
 using Vaultaria.Content.Items.Placeables.Vaults;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore;
+using Vaultaria.Content.Items.Accessories.Skills;
 
 namespace Vaultaria.Content.NPCs.Town.Claptrap
 {
@@ -435,7 +436,11 @@ namespace Vaultaria.Content.NPCs.Town.Claptrap
 				.Add<GearboxProjectileConvergence>()
 				.Add<GearboxRenegade>()
 				.Add<GearboxMuckamuck>()
-				.Add<VaultHuntersRelic>();
+				.Add<VaultHuntersRelic>()
+				.Add<Ranger>()
+				.Add<Foresight>()
+				.Add<KillingBlow>()
+				.Add<HiddenMachine>();
 
 			// if (ModContent.GetInstance<VaultariaConfig>().ExampleWingsToggle) {
 			// 	npcShop.Add<ExampleWings>(ExampleConditions.InExampleBiome);

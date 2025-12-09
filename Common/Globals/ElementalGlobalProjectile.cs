@@ -409,7 +409,7 @@ namespace Vaultaria.Common.Globals
             {
                 if(projectile.DamageType == DamageClass.Ranged)
                 {
-                    float bonusDamage = Utilities.Utilities.SkillBonus(300f, 0.01f);
+                    float bonusDamage = Utilities.Utilities.SkillBonus(200f, 0.01f);
 
                     modifiers.SourceDamage *= bonusDamage;
                     modifiers.CritDamage *= bonusDamage;

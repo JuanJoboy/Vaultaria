@@ -101,7 +101,7 @@ namespace Vaultaria.Common.Players
 
             if(IsWearing(ModContent.ItemType<Ranger>()) || IsWearing(ModContent.ItemType<LegendaryRanger>()))
             {
-                float bonusLife = Utilities.Utilities.SkillBonus(300f, 0.01f);
+                float bonusLife = Utilities.Utilities.SkillBonus(200f, 0.01f);
                 health *= bonusLife;
             }
         }
@@ -153,7 +153,9 @@ namespace Vaultaria.Common.Players
 
             if(IsWearing(ModContent.ItemType<HiddenMachine>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
             {
-                Player.maxMinions += 2;
+                int number = !Main.hardMode ? 1 : 2; // if not hardmode, then 1, else 2
+
+                Player.maxMinions += number;
             }
         }
 
@@ -302,7 +304,7 @@ namespace Vaultaria.Common.Players
 
             if(IsWearing(ModContent.ItemType<Ranger>()) || IsWearing(ModContent.ItemType<LegendaryRanger>()))
             {
-                multiplier *= Utilities.Utilities.SkillBonus(300f, 0.01f);
+                multiplier *= Utilities.Utilities.SkillBonus(200f, 0.01f);
             }
 
             return multiplier;
@@ -407,7 +409,7 @@ namespace Vaultaria.Common.Players
 
             KillingBlow(target, ref modifiers);
 
-            HuntersEye(target, ref modifiers);
+            HuntersEye(item, target, ref modifiers);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
@@ -418,7 +420,7 @@ namespace Vaultaria.Common.Players
 
             HiddenMachine(proj, target, ref modifiers);
 
-            HuntersEye(target, ref modifiers);
+            HuntersEye(proj, target, ref modifiers);
 
             if(IsHolding(ModContent.ItemType<FirstBlood>()))
             {
@@ -1090,11 +1092,24 @@ namespace Vaultaria.Common.Players
             }
         }
 
-        private void HuntersEye(NPC npc, ref NPC.HitModifiers modifiers)
+        private void HuntersEye(Item item, NPC npc, ref NPC.HitModifiers modifiers)
         {
             if(IsWearing(ModContent.ItemType<HuntersEye>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
             {
-                if(!npc.boss)
+                if(!npc.boss && item.DamageType == DamageClass.MeleeNoSpeed)
+                {
+                    float bonusCrit = Utilities.Utilities.SkillBonus(150f, 0.05f);
+
+                    modifiers.CritDamage *= bonusCrit;
+                }
+            }
+        }
+
+        private void HuntersEye(Projectile proj, NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if(IsWearing(ModContent.ItemType<HuntersEye>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
+            {
+                if(!npc.boss && proj.active && proj.owner == Player.whoAmI && (proj.minion || proj.sentry))
                 {
                     float bonusCrit = Utilities.Utilities.SkillBonus(150f, 0.05f);
 

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Content.Items.Accessories.Relics;
+using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Materials;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
@@ -99,7 +100,7 @@ namespace Vaultaria.Common.Systems
         {
 			// Place some additional items in Wooden Chests:
 			// These are the new items we will place.
-			int[] itemsToPlaceInChest = [ModContent.ItemType<LumpyRoot>(), ModContent.ItemType<Aegis>(), ModContent.ItemType<Handgun>(), ModContent.ItemType<Skatergun>(), ModContent.ItemType<SmoothFox>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<LumpyRoot>(), ModContent.ItemType<Aegis>(), ModContent.ItemType<Handgun>(), ModContent.ItemType<Skatergun>(), ModContent.ItemType<SmoothFox>(), ModContent.ItemType<Inconceivable>(), ModContent.ItemType<Incite>(), ModContent.ItemType<OutOfBubblegum>()];
 			// This variable will help cycle through the items so that different Wooden Chests get different items
 			int itemsToPlaceInChestChoice = 0;
 			// Rather than place items in each chest, we'll place up to the array's length * 30 (30 of each). 
@@ -112,7 +113,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInGoldenChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<FlushRifle>(), ModContent.ItemType<Snider>(), ModContent.ItemType<ThreeWayHulk>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<FlushRifle>(), ModContent.ItemType<Snider>(), ModContent.ItemType<ThreeWayHulk>(), ModContent.ItemType<CloudOfLead>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length / 3;
@@ -123,7 +124,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInShadowChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Quad>(), ModContent.ItemType<OrphanMaker>(), ModContent.ItemType<ScorpioTurret>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Quad>(), ModContent.ItemType<OrphanMaker>(), ModContent.ItemType<ScorpioTurret>(), ModContent.ItemType<Onslaught>(), ModContent.ItemType<Reaper>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = itemsToPlaceInChest.Length * 3;
@@ -134,7 +135,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInJungleChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>(), ModContent.ItemType<AgilityRelic>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>(), ModContent.ItemType<AgilityRelic>(), ModContent.ItemType<PackTactics>(), ModContent.ItemType<Killer>(), ModContent.ItemType<Impact>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = itemsToPlaceInChest.Length * 10;
@@ -145,7 +146,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInFrozenChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<TooScoops>(), ModContent.ItemType<NightSniper>(), ModContent.ItemType<Carbine>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<TooScoops>(), ModContent.ItemType<NightSniper>(), ModContent.ItemType<Carbine>(), ModContent.ItemType<ViolentSpeed>(), ModContent.ItemType<Fleet>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = itemsToPlaceInChest.Length * 8;

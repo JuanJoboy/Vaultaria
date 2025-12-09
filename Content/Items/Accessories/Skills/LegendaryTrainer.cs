@@ -28,6 +28,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             int bonusCrit = Utilities.DisplaySkillBonusText(150f, 0.05f);
             int bonusReduction = Utilities.DisplaySkillBonusText(150f, 0.05f);
             int bonusDamageBehind = Utilities.DisplaySkillBonusText(60f, 0.05f);
+            int number = !Main.hardMode ? 1 : 2; // if not hardmode, then 1, else 2
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Gives all the previous bonuses in one Class Mod");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Increases your Maximum Health and your Summon Damage");
@@ -43,7 +44,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
             Utilities.Text(tooltips, Mod, "Tooltip11", $"+{bonusSummon}% Summon Damage while above 50% Health");
             Utilities.Text(tooltips, Mod, "Tooltip12", $"+{bonusSpeed}% Movement Speed while above 50% Health");
             Utilities.Text(tooltips, Mod, "Tooltip13", $"+{bonusDamageBehind}% Summon Damage while behind your target");
-            Utilities.Text(tooltips, Mod, "Tooltip13", $"Increases your max number of minions by 2");
+            Utilities.Text(tooltips, Mod, "Tooltip13", $"Increases your max number of minions by {number}");
             Utilities.RedText(tooltips, Mod, "If you can make God bleed, people will cease to believe in them.");
         }
 
