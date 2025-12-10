@@ -32,7 +32,10 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 			Main.time = Main.nightLength;
 			Main.dayRate = 0;
 
-			Utilities.Utilities.SpawnHardmodeBosses(player);
-        }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+				Utilities.Utilities.SpawnHardmodeBosses(player);
+            }
+		}
 	}
 }

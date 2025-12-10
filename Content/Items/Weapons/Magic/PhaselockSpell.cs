@@ -101,7 +101,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                     if (Main.mouseLeftRelease && npc.Hitbox.Intersects(mouse))
                     {
                         npc.AddBuff(ModContent.BuffType<Phaselocked>(), 300);
-                        Item.mana = player.statManaMax2;
+                        Item.mana = player.statManaMax2 / 3;
 
                         if(config.GetRuinFirst && Main.hardMode)
                         {

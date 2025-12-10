@@ -1076,6 +1076,11 @@ Items: {
 		DisplayName: Mysterious Amulet
 		Tooltip: ""
 	}
+
+	LobbedSingularity: {
+		Tooltip: ""
+		DisplayName: Lobbed Singularity
+	}
 }
 
 Projectiles: {
@@ -1162,6 +1167,7 @@ Projectiles: {
 	TaserLaser.DisplayName: Taser Laser
 	LeechModule.DisplayName: Leech Module
 	Flak.DisplayName: Flak
+	SingularityModule.DisplayName: Singularity Module
 }
 
 Buffs: {
@@ -1407,6 +1413,7 @@ NPCs: {
 			StandardDialogue2: I hope there aren't any stairs here.
 			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.
 			StandardDialogue4: Wub wub wub wub wub wub.
+			StandardDialogue5: So, this one time, I went to a party, and there was a beautiful subatomic particle accelerator there. Our circuits locked across the room and... I don't remember what happened next. I mean, I can't. We coulda gotten married and had gadgets together, but now, I'll never know.
 			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
 			RareDialogue: You wanna know a secret, I can actually go up stairs.
 			TalkALot: You're such a good listener Squire.

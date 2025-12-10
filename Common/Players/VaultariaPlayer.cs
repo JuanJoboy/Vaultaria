@@ -75,12 +75,7 @@ namespace Vaultaria.Common.Players
                 hasInitialized = true;
             }
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
-
-            if(!TownNPCRespawnSystem.unlockedClaptrapSpawn)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !TownNPCRespawnSystem.unlockedClaptrapSpawn)
             {
                 NPC.NewNPCDirect(Player.GetSource_None(), Player.Center + new Vector2(10, 0), ModContent.NPCType<Claptrap>());
                 TownNPCRespawnSystem.unlockedClaptrapSpawn = true;

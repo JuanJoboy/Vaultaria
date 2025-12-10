@@ -47,54 +47,6 @@ namespace Vaultaria.Common.Systems
 
 			PlaceVaultKeysInChests();
         }
-		
-        private void PlaceItemsInChest(int[] itemsToPlaceInChest, int itemsToPlaceInChestChoice, int itemsPlaced, int maxItems, int internalChestID)
-        {
-			// Loop over all the chests
-			for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
-            {
-				Chest chest = Main.chest[chestIndex];
-
-				if (chest == null)
-                {
-					continue;
-				}
-
-				Tile chestTile = Main.tile[chest.x, chest.y];
-				// We need to check if the current chest is the Frozen Chest. We need to check that it exists and has the TileType and TileFrameX values corresponding to the Frozen Chest.
-				// If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Frozen Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. An alternate approach is to check the wiki and looking for the "Internal Tile ID" section in the infobox: https://terraria.wiki.gg/wiki/Frozen_Chest
-				if (chestTile.TileType == TileID.Containers && chestTile.TileFrameX == internalChestID * 36)
-                {
-					// We have found a Frozen Chest
-					// If we don't want to add one of the items to every Frozen Chest, we can randomly skip this chest with a 33% chance.
-					// if (WorldGen.genRand.NextBool(3))
-                    // {
-					// 	continue;
-                    // }
-
-					// Next we need to find the first empty slot for our item
-					for (int inventoryIndex = 0; inventoryIndex < Chest.maxItems; inventoryIndex++)
-                    {
-						if (chest.item[inventoryIndex].type == ItemID.None)
-                        {
-							// Place the item
-							chest.item[inventoryIndex].SetDefaults(itemsToPlaceInChest[itemsToPlaceInChestChoice]);
-							// Decide on the next item that will be placed.
-							itemsToPlaceInChestChoice = (itemsToPlaceInChestChoice + 1) % itemsToPlaceInChest.Length;
-							// Alternate approach: Random instead of cyclical: chest.item[inventoryIndex].SetDefaults(WorldGen.genRand.Next(itemsToPlaceInChest));
-							itemsPlaced++;
-							break;
-						}
-					}
-				}
-
-				// Once we've placed as many items as we wanted, break out of the loop
-				if (itemsPlaced >= maxItems)
-                {
-					break;
-				}
-			}
-        }
 
         private void PlaceInWoodenChests()
         {
@@ -108,7 +60,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = Main.chest.Length;
 			int chest = 0;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInGoldenChests()
@@ -119,7 +71,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = Main.chest.Length / 3;
 			int chest = 1;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInShadowChests()
@@ -130,7 +82,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = itemsToPlaceInChest.Length * 3;
 			int chest = 4;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInJungleChests()
@@ -141,7 +93,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = itemsToPlaceInChest.Length * 10;
 			int chest = 8;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInFrozenChests()
@@ -152,7 +104,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = itemsToPlaceInChest.Length * 8;
 			int chest = 11;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInSkyWareChests()
@@ -163,7 +115,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = itemsToPlaceInChest.Length * 3;
 			int chest = 13;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInWebChests()
@@ -174,7 +126,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = Main.chest.Length;
 			int chest = 15;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
         private void PlaceInWaterChests()
@@ -185,7 +137,7 @@ namespace Vaultaria.Common.Systems
 			int maxItems = Main.chest.Length;
 			int chest = 17;
 
-            PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
+            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
 
 		private void PlaceVaultKeysInChests()
@@ -197,12 +149,12 @@ namespace Vaultaria.Common.Systems
 			int skyWareChest = 13;
 			int lihzahrdChest = 16;
 
-            PlaceItemsInChest([ModContent.ItemType<VaultFragment1>()], 0, 0, 1, waterChest);
-            PlaceItemsInChest([ModContent.ItemType<VaultFragment2>()], 0, 0, 1, lockedGoldChest);
-            PlaceItemsInChest([ModContent.ItemType<VaultFragment3>()], 0, 0, 1, lockedShadowChest);
+            Utilities.Utilities.PlaceItemsInChest([ModContent.ItemType<VaultFragment1>()], 0, 0, 1, waterChest);
+            Utilities.Utilities.PlaceItemsInChest([ModContent.ItemType<VaultFragment2>()], 0, 0, 1, lockedGoldChest);
+            Utilities.Utilities.PlaceItemsInChest([ModContent.ItemType<VaultFragment3>()], 0, 0, 1, lockedShadowChest);
 
-            PlaceItemsInChest([ModContent.ItemType<VaultFragment4>()], 0, 0, 1, skyWareChest);
-            PlaceItemsInChest([ModContent.ItemType<VaultFragment5>()], 0, 0, 1, lihzahrdChest);
+            Utilities.Utilities.PlaceItemsInChest([ModContent.ItemType<VaultFragment4>()], 0, 0, 1, skyWareChest);
+            Utilities.Utilities.PlaceItemsInChest([ModContent.ItemType<VaultFragment5>()], 0, 0, 1, lihzahrdChest);
         }
 	}
 }

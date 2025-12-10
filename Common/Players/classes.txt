@@ -105,7 +105,3 @@ First Blood - Deals 25% increased damage to enemies with more than 50% of their 
 "Warriors tail - Could do like
 Broken armor
 Or dazed"
-
-
-bloodsplosion
-bore
