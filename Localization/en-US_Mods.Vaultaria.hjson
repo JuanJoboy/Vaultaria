@@ -927,11 +927,6 @@ Items: {
 		DisplayName: Antifreeze
 	}
 
-	SeraphCrystal: {
-		Tooltip: ""
-		DisplayName: Seraph Crystal
-	}
-
 	Ringleader: {
 		Tooltip: ""
 		DisplayName: Ringleader
@@ -1080,6 +1075,11 @@ Items: {
 	LobbedSingularity: {
 		Tooltip: ""
 		DisplayName: Lobbed Singularity
+	}
+
+	Moonstone: {
+		Tooltip: ""
+		DisplayName: Moonstone
 	}
 }
 

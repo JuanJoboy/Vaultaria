@@ -112,12 +112,28 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                             ElementalProjectile.SetElements(player, npc);
                         }
 
+                        if(NPC.downedFishron)
+                        {
+                            PullInEnemies(mouse);
+                        }
+
                         return true;
                     }
                 }
             }
 
             return base.UseItem(player);
+        }
+
+        private void PullInEnemies(Rectangle mouse)
+        {
+            foreach(NPC npc in Main.ActiveNPCs)
+            {
+                if(Vector2.Distance(npc.Center, mouse.Center.ToVector2()) < 1000)
+                {
+                    Utilities.MoveToPosition(npc, mouse.Center.ToVector2(), 40f, 6f);
+                }
+            }
         }
 
         public override bool CanUseItem(Player player)
@@ -177,6 +193,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
             bool moonLord = NPC.downedMoonlord;
             bool wof = Main.hardMode;
+            bool fishron = NPC.downedFishron;
 
 			if(config.GetRuinFirst == true)
             {
@@ -184,9 +201,15 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                 {
                     Utilities.Text(tooltips, Mod, "Tooltip2", "Defeat the Wall of Flesh to get Ruin", Utilities.VaultarianColours.Information);
                 }
+
+                if(!fishron)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat Duke Fishron to get Converge", Utilities.VaultarianColours.Information);
+                }
+
                 if(!moonLord)
                 {
-                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat the Moon Lord to get Sub-Sequence", Utilities.VaultarianColours.Information);
+                    Utilities.Text(tooltips, Mod, "Tooltip4", "Defeat the Moon Lord to get Sub-Sequence", Utilities.VaultarianColours.Information);
                 }
             }
             else
@@ -195,9 +218,15 @@ namespace Vaultaria.Content.Items.Weapons.Magic
                 {
                     Utilities.Text(tooltips, Mod, "Tooltip2", "Defeat the Wall of Flesh to get Sub-Sequence", Utilities.VaultarianColours.Information);
                 }
+
+                if(!fishron)
+                {
+                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat Duke Fishron to get Converge", Utilities.VaultarianColours.Information);
+                }
+
                 if(!moonLord)
                 {
-                    Utilities.Text(tooltips, Mod, "Tooltip3", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
+                    Utilities.Text(tooltips, Mod, "Tooltip4", "Defeat the Moon Lord to get Ruin", Utilities.VaultarianColours.Information);
                 }
             }
             

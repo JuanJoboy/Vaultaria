@@ -59,6 +59,7 @@ namespace Vaultaria.Common.Players
         {
             Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in Vaultaria", Color.Red);
             Main.NewText($"Also be sure to check out the Vaultaria Config", Color.Red);
+            Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
 
             // The logic runs only if this character has NOT been initialized yet.
             if (!hasInitialized)
@@ -69,19 +70,11 @@ namespace Vaultaria.Common.Players
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<CopperBullet>(), 600);
 
-                Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
-
                 // Set the flag to true so this code doesn't run again on the next login.
                 hasInitialized = true;
             }
-
-            if (Main.netMode != NetmodeID.MultiplayerClient && !TownNPCRespawnSystem.unlockedClaptrapSpawn)
-            {
-                NPC.NewNPCDirect(Player.GetSource_None(), Player.Center + new Vector2(10, 0), ModContent.NPCType<Claptrap>());
-                TownNPCRespawnSystem.unlockedClaptrapSpawn = true;
-            }
         }
-        
+
         // 3. Data Saving: Ensure the flag is saved and loaded with the player
         public override void SaveData(TagCompound tag)
         {
@@ -97,7 +90,10 @@ namespace Vaultaria.Common.Players
         {
             base.UpdateDead();
 
-            TerminationProtocols();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                TerminationProtocols();
+            }
         }
 
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)
@@ -633,34 +629,40 @@ namespace Vaultaria.Common.Players
 
         private void HomingCauseProjectile(Projectile proj, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
         {
-            Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
-            Vector2 spawnPos = Player.Center + direction * 5f;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
+                Vector2 spawnPos = Player.Center + direction * 5f;
 
-            Projectile.NewProjectile(
-                proj.GetSource_OnHit(Player),
-                spawnPos,
-                direction * 12f,
-                homer,
-                (int)(hurtInfo.SourceDamage * damage),
-                0f,
-                Player.whoAmI
-            );
+                Projectile.NewProjectile(
+                    proj.GetSource_OnHit(Player),
+                    spawnPos,
+                    direction * 12f,
+                    homer,
+                    (int)(hurtInfo.SourceDamage * damage),
+                    0f,
+                    Player.whoAmI
+                );    
+            }
         }
 
         private void HomingCauseHit(NPC npc, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
         {
-            Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
-            Vector2 spawnPos = Player.Center + direction * 5f;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
+                Vector2 spawnPos = Player.Center + direction * 5f;
 
-            Projectile.NewProjectile(
-                npc.GetSource_OnHit(Player),
-                spawnPos,
-                direction * 12f,
-                homer,
-                (int)(hurtInfo.SourceDamage * damage),
-                0f,
-                Player.whoAmI
-            );
+                Projectile.NewProjectile(
+                    npc.GetSource_OnHit(Player),
+                    spawnPos,
+                    direction * 12f,
+                    homer,
+                    (int)(hurtInfo.SourceDamage * damage),
+                    0f,
+                    Player.whoAmI
+                );
+            }
         }
 
         private void RapierCurse(NPC npc, ref Player.HurtModifiers modifiers)
@@ -829,7 +831,7 @@ namespace Vaultaria.Common.Players
                     damage *= 2;
                 }
 
-                Projectile.NewProjectileDirect(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, (int) damage, 4);
+                Projectile.NewProjectileDirect(Player.GetSource_Death(), Player.Center, Vector2.Zero, ElementalID.LargeExplosiveProjectile, (int) damage, 4);
             }
         }
 

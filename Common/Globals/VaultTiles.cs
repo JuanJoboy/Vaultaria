@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Common.Globals
@@ -13,7 +14,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 return false;
             }
@@ -36,19 +37,20 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
-            {
-                Tile tile = Main.tile[i, j];
+            // Remove once you know what to do with the subworlds
+            // if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            // {
+            //     Tile tile = Main.tile[i, j];
 
-                if(tile.HasActuator)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            //     if(tile.HasActuator)
+            //     {
+            //         return true;
+            //     }
+            //     else
+            //     {
+            //         return false;
+            //     }
+            // }
 
             if(Utilities.Utilities.VaultArea(vault1Dimensions, VaultBuilder.vault1positionX, VaultBuilder.vault1positionY, i, j))
             {
@@ -68,7 +70,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 return false;
             }
@@ -91,7 +93,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 return false;
             }

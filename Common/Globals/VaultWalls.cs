@@ -7,6 +7,7 @@ using Vaultaria.Common.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using Vaultaria.Content.Buffs.PotionEffects;
 using Terraria.DataStructures;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 
 namespace Vaultaria.Common.Globals
 {
@@ -17,7 +18,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 return false;
             }
@@ -40,7 +41,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 fail = true;
             }
@@ -54,7 +55,7 @@ namespace Vaultaria.Common.Globals
             Point16 vault1Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault1", ModContent.GetInstance<Vaultaria>());
             Point16 vault2Dimensions = StructureHelper.API.Generator.GetStructureDimensions($"Common/Systems/GenPasses/Vaults/Vault2", ModContent.GetInstance<Vaultaria>());
 
-            if(SubworldLibrary.SubworldSystem.AnyActive())
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
                 return false;
             }

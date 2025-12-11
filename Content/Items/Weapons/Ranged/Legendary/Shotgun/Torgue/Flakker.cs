@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 0f;
             Item.damage = 35;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;

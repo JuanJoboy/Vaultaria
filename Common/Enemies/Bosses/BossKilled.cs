@@ -4,6 +4,7 @@ using Terraria.ID;
 using Vaultaria.Common.Systems;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 
 namespace Vaultaria.Common.Global
 {
@@ -11,16 +12,20 @@ namespace Vaultaria.Common.Global
     {
         public override void OnKill(NPC npc)
         {
-            // Ensure this logic only runs on the server in multiplayer, or locally in singleplayer.
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            // Ensure this logic only runs on the server in multiplayer, or locally in single player.
+            if(Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if(!SubworldLibrary.SubworldSystem.AnyActive())
                 {
                     CallAllPrefixUnlocked(npc);
                 }
-                else
+                if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
                 {
-                    CallAllVaultBossDowned(npc);
+                    CallAllVault1BossDowned(npc);
+                }
+                if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+                {
+                    CallAllVault2BossDowned(npc);
                 }
             }
         }
@@ -31,10 +36,12 @@ namespace Vaultaria.Common.Global
             {
                 if (npcDowned == false)
                 {
-                    Utilities.Utilities.DisplayStatusMessage(npc.Center, color, $"{prefixUnlocked} Prefix Unlocked!");
-
                     npcDowned = true;
                     NPC.SetEventFlagCleared(ref npcDowned, -1);
+
+                    Utilities.Utilities.DisplayStatusMessage(npc.Center, color, $"{prefixUnlocked} Prefix Unlocked!");
+                    
+                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in BossDownedSystem
                 }
             }   
         }
@@ -62,6 +69,8 @@ namespace Vaultaria.Common.Global
                 {
                     npcDowned = true;
                     NPC.SetEventFlagCleared(ref npcDowned, -1);
+
+                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in BossDownedSystem
                 }
             }
         }
@@ -74,7 +83,7 @@ namespace Vaultaria.Common.Global
             }
         }
 
-        private void CallAllVaultBossDowned(NPC npc)
+        private void CallAllVault1BossDowned(NPC npc)
         {
             // Vault 1
             VaultBossDowned(npc, ref BossDownedSystem.vaultKingSlime, NPCID.KingSlime);
@@ -84,7 +93,10 @@ namespace Vaultaria.Common.Global
             VaultBossDowned(npc, ref BossDownedSystem.vaultSkeletron, NPCID.SkeletronHead);
 
             ShowVaultMessage(npc, NPCID.SkeletronHead, Color.OrangeRed, "Vault of the Warrior Raided!");
+        }
 
+        private void CallAllVault2BossDowned(NPC npc)
+        {
             // Vault 2
             VaultBossDowned(npc, ref BossDownedSystem.vaultQueenSlime, NPCID.QueenSlimeBoss);
             VaultBossDowned(npc, ref BossDownedSystem.vaultTwins, NPCID.Retinazer);

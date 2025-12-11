@@ -1,6 +1,9 @@
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ModLoader.IO;
+using System.IO;
+using System.Collections;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 
 namespace Vaultaria.Common.Systems
 {
@@ -47,6 +50,29 @@ namespace Vaultaria.Common.Systems
         public static bool vaultLunaticCultistDR = false;
         public static bool vaultMoonLord = false;
         public static bool vaultMoonLordDR = false;
+
+        // These 2 methods are used to signal to every client that something in the world just happened
+		public override void NetSend(BinaryWriter writer)
+        {
+			// Order of parameters is important and has to match that of NetReceive
+			// writer.WriteFlags(iceGolem);
+			// WriteFlags supports up to 8 entries, if you have more than 8 flags to sync, call WriteFlags again.
+
+            writer.WriteFlags(torchGod, evilBoss, skeletron, deerClops, wallOfFlesh, pirateShip, twins, iceGolem);
+            writer.WriteFlags(martianSaucerCore, vaultKingSlime, vaultEyeOfCthulhu, vaultQueenBee, vaultDeerClops, vaultSkeletron, vaultQueenSlime, vaultTwins);
+            writer.WriteFlags(vaultSkeletronPrime, vaultBetsy, vaultPlantera, vaultGolem, vaultDukeFishron, vaultEmpress, vaultLunaticCultist, vaultMoonLord);
+		}
+
+		public override void NetReceive(BinaryReader reader)
+        {
+			// Order of parameters is important and has to match that of NetSend
+			// reader.ReadFlags(out iceGolem);
+			// ReadFlags supports up to 8 entries, if you have more than 8 flags to sync, call ReadFlags again.
+
+            reader.ReadFlags(out torchGod, out evilBoss, out skeletron, out deerClops, out wallOfFlesh, out pirateShip, out twins, out iceGolem);
+            reader.ReadFlags(out martianSaucerCore, out vaultKingSlime, out vaultEyeOfCthulhu, out vaultQueenBee, out vaultDeerClops, out vaultSkeletron, out vaultQueenSlime, out vaultTwins);
+            reader.ReadFlags(out vaultSkeletronPrime, out vaultBetsy, out vaultPlantera, out vaultGolem, out vaultDukeFishron, out vaultEmpress, out vaultLunaticCultist, out vaultMoonLord);
+		}
 
         // Use Save/LoadWorldData to ensure the state persists
         public override void SaveWorldData(TagCompound tag)

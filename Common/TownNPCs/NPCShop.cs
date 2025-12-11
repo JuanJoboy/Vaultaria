@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Potions;
 using Vaultaria.Content.Items.Weapons.Ammo;
+using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Maliwan;
 using Vaultaria.Content.NPCs.Town.Claptrap;
 
@@ -22,6 +23,11 @@ namespace ExampleMod.Common.GlobalNPCs
                 shop.Add<ShotgunAmmo>();
                 shop.Add<SniperAmmo>();
                 shop.Add<LauncherAmmo>();
+            }
+
+            if (shop.NpcType == NPCID.Demolitionist)
+            {
+                shop.Add<LobbedSingularity>();
             }
 
             if (shop.NpcType == NPCID.Wizard)

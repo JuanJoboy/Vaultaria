@@ -40,6 +40,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             Projectile.DamageType = DamageClass.Summon;
             Projectile.damage = 10;
             Projectile.CritChance = 4;
+            Projectile.netUpdate = true;
 
             // Sprite
             Projectile.spriteDirection = 1;

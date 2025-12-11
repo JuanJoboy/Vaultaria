@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(19, 29);
+            Item.Size = new Vector2(14, 30);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Blue;
             Item.maxStack = 9999;
@@ -29,7 +29,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -43,40 +43,21 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
             Item.shoot = ModContent.ProjectileType<SingularityModule>();
             Item.consumable = true;
             Item.ammo = Item.type;
-            Item.shootSpeed = 4;
+            Item.shootSpeed = 10;
 
             // Other properties
             Item.value = Item.buyPrice(silver: 10);
             Item.UseSound = SoundID.DD2_GoblinBomberThrow;
         }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            int projectileIndex = Projectile.NewProjectile(
-                source,
-                position,
-                velocity,
-                ModContent.ProjectileType<SingularityModule>(),
-                damage,
-                knockback,
-                player.whoAmI,
-                0f,
-                0f,
-                1f
-            );
-            
-            return false;
-        }
-
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-14, -7);
         }
-        
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Throws out 2 Slag balls that home in on an enemy and explode on impact", Utilities.VaultarianColours.Slag);
-            Utilities.RedText(tooltips, Mod, "No wand required. Just point and shoot.");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Creates a singularity on impact, pulling in nearby enemies", Utilities.VaultarianColours.Information);
+            Utilities.RedText(tooltips, Mod, "Suck! Suck! Suck!");
         }
     }
 }

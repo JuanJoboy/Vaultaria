@@ -37,7 +37,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
-                .AddIngredient<SeraphCrystal>(1)
+                .AddIngredient<Moonstone>(1)
                 .AddIngredient(ItemID.SwiftnessPotion, 100)
                 .AddIngredient<ViolentSpeed>(1)
                 .AddIngredient<ViolentMomentum>(1)

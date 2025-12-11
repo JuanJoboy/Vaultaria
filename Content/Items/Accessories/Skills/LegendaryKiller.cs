@@ -41,7 +41,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
-                .AddIngredient<SeraphCrystal>(1)
+                .AddIngredient<Moonstone>(1)
                 .AddIngredient<Headshot>(1)
                 .AddIngredient<Velocity>(1)
                 .AddIngredient<Killer>(1)

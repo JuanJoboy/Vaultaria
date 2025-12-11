@@ -7,7 +7,7 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Materials
 {
-    public class SeraphCrystal : ModItem
+    public class Moonstone : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,16 +16,16 @@ namespace Vaultaria.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.Size = new Vector2(9, 30);
+            Item.Size = new Vector2(28, 28);
             Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.buyPrice(gold: 50);
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Cyan;
             Item.consumable = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "The blood of fallen Seraphs -- lovely.", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "An invaluable, high-grade mineral granted by the Moon Lord, essential for advanced Vault Hunter gear", Utilities.VaultarianColours.CursedText);
         }
     }
 }

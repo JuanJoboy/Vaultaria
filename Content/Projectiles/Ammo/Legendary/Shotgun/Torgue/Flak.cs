@@ -31,6 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Torgue
 
             // Damage
             Projectile.damage = 35;
+            Projectile.knockBack = 0;
             Projectile.CritChance = 6;
             Projectile.friendly = true;
             Projectile.hostile = false;

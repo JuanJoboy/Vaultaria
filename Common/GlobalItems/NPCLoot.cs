@@ -194,6 +194,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.BrainofCthulhu)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CloudKill>(), 5, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Velocity>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 
@@ -518,53 +519,53 @@ namespace Vaultaria.Common.GlobalItems
 
             if(npc == NPCID.QueenSlimeBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.Retinazer)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.Spazmatism)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.SkeletronPrime)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.Plantera)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.Golem)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.DukeFishron)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
 
             if(npc == NPCID.HallowBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bore>(), 10, 1, 1));
             }
 
             if(npc == NPCID.CultistBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bloodsplosion>(), 10, 1, 1));
             }
 
@@ -572,7 +573,7 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<SeraphCrystal>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
             }
         }
     }

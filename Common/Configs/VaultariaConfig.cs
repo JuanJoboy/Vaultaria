@@ -3,7 +3,7 @@ using Terraria.ModLoader.Config;
 
 namespace Vaultaria.Common.Configs
 {
-    // Define the scope: ClientSide for settings that don't need server sync.
+    // Define the scope: ServerSide because everything here needs to be in sync with the server and clients
     public class VaultariaConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;

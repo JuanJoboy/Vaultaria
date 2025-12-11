@@ -15,14 +15,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
     {
         public float explosiveMultiplier = 0.15f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.SmallExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 90;
 
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 8);
+            Projectile.Size = new Vector2(8, 17);
             Projectile.scale = 1.4f;
 
             // Damage
@@ -54,10 +54,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
 
-            foreach(NPC npc in Main.ActiveNPCs)
-            {
-                Utilities.MoveToPosition(npc, Projectile.Center, 4f, 4f);
-            }
+            PullInEnemies();
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
@@ -68,10 +65,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
 
-            foreach(NPC npc in Main.ActiveNPCs)
-            {
-                Utilities.MoveToPosition(npc, Projectile.Center, 4f, 4f);
-            }
+            PullInEnemies();
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -82,25 +76,20 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
             }
 
-            foreach(NPC npc in Main.ActiveNPCs)
-            {
-                Utilities.MoveToPosition(npc, Projectile.Center, 20f, 4f);
-            }
+            PullInEnemies();
 
             return false;
         }
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+            SoundEngine.PlaySound(SoundID.DeerclopsRubbleAttack, Projectile.position);
 
             for (int i = 0; i < 20; i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.HallowSpray, 0f, 0f, 100, default(Color), 2f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptSpray, 0f, 0f, 100, default(Color), 2f);
             }
-
-            Utilities.RocketJump(Projectile, ModContent.ItemType<BasicGrenade>(), 4.5f, 12f);
         }
 
         public override List<string> GetElement()
@@ -109,6 +98,17 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
             {
                 "Explosive"
             };
+        }
+
+        private void PullInEnemies()
+        {
+            foreach(NPC npc in Main.ActiveNPCs)
+            {
+                if(Vector2.Distance(npc.Center, Projectile.Center) < 1000)
+                {
+                    Utilities.MoveToPosition(npc, Projectile.Center, 30f, 6f);
+                }
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
 using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Vaultaria.Common.Configs;
 using Vaultaria.Common.Systems;
@@ -736,6 +737,12 @@ namespace Vaultaria.Common.Utilities
         
         public static void DisplayStatusMessage(Vector2 position, Color colour, string msg)
         {
+            // Use MessageID.ChatText to send a chat message to all players.
+            // remoteClient: -1 (all clients)
+            // ignoreClient: -1 (no client ignored)
+            // Used for multiplayer to send the message to everyone
+            NetMessage.SendData(MessageID.CombatTextString, -1, -1, NetworkText.FromLiteral(msg), (int) colour.PackedValue, position.X, position.Y);
+
             // Display the text at the position
             CombatText.NewText(
                 new Rectangle((int)position.X, (int)position.Y, 1, 1), 
