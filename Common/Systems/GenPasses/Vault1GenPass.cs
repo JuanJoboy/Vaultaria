@@ -14,16 +14,19 @@ namespace Vaultaria.Common.Systems.GenPasses
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Generating Vault"; // Sets the text displayed for this pass
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {   
+                progress.Message = "Generating Vault"; // Sets the text displayed for this pass
 
-            progress.Set(0.01f);
+                progress.Set(0.01f);
 
-            Main.worldSurface = Main.maxTilesY - 42; // Hides the underground layer just out of bounds
-            Main.rockLayer = Main.maxTilesY; // Hides the cavern layer way out of bounds
+                Main.worldSurface = Main.maxTilesY - 42; // Hides the underground layer just out of bounds
+                Main.rockLayer = Main.maxTilesY; // Hides the cavern layer way out of bounds
 
-            VaultBuilder.GenerateVaultBattleGround("Vault1BattleGround");
+                VaultBuilder.GenerateVaultBattleGround("Vault1BattleGround");
 
-            progress.Set(1f);
+                progress.Set(1f);
+            }
         }
     }    
 }

@@ -27,17 +27,18 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         public override void Update()
         {
             base.Update();
-			Player player = Main.LocalPlayer;
-
-			Main.dayTime = false;
-			Main.time = Main.nightLength;
-			Main.dayRate = 0;
-
-			Wiring.UpdateMech(); // Make wiring work
-			DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
+				Player player = Main.LocalPlayer;
+
+				Main.dayTime = false;
+				Main.time = Main.nightLength;
+				Main.dayRate = 0;
+
+				Wiring.UpdateMech(); // Make wiring work
+				DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
+
 				Utilities.Utilities.SpawnPreHardmodeBosses(player);
             }
         }
@@ -46,17 +47,20 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         {
             base.OnLoad();
 
-			FindPlatinum(out int x, out int y);
-
-            if(x != -1 && y != -1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.spawnTileX = x;
-                Main.spawnTileY = y - 2; // Set spawn point to the start instead of the main arena
+    			FindPlatinum(out int x, out int y);
+
+				if(x != -1 && y != -1)
+				{
+					Main.spawnTileX = x;
+					Main.spawnTileY = y - 2; // Set spawn point to the start instead of the main arena
+				}
+
+				ActuateTiles();
+
+				PlaceInGoldenChests();   
             }
-
-			ActuateTiles();
-
-			PlaceInGoldenChests();
         }
 
         private void FindPlatinum(out int x, out int y)

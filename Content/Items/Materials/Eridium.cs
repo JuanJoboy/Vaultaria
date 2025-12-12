@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Items.Materials
         {
             Item.Size = new Vector2(22, 24);
             Item.maxStack = Item.CommonMaxStack;
-            Item.value = Item.buyPrice(silver: 50);
+            Item.value = Item.buyPrice(silver: 10);
             Item.rare = ItemRarityID.Purple;
             Item.ammo = ModContent.ItemType<Eridium>();
             Item.consumable = true;

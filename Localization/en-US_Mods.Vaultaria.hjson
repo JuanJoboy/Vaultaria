@@ -1168,6 +1168,8 @@ Projectiles: {
 	LeechModule.DisplayName: Leech Module
 	Flak.DisplayName: Flak
 	SingularityModule.DisplayName: Singularity Module
+	TinProjectile.DisplayName: Tin Projectile
+	CopperProjectile.DisplayName: Copper Projectile
 }
 
 Buffs: {

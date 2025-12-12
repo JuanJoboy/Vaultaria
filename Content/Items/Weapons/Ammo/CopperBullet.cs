@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Vaultaria.Content.Projectiles.Ammo.Terraria;
 
 namespace Vaultaria.Content.Items.Weapons.Ammo
 {
@@ -20,9 +21,11 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             // Damage
             Item.damage = 2;
             Item.DamageType = DamageClass.Ranged;
+            Item.shootSpeed = 10f;
 
             // Ammo
             Item.ammo = AmmoID.Bullet;
+            Item.shoot = ModContent.ProjectileType<CopperProjectile>();
 
             // Item Config
             Item.maxStack = Item.CommonMaxStack;

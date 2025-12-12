@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Potions
             Item.autoReuse = true;
             Item.useTurn = true;
 
-            Item.potion = true;
+            Item.potion = false;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<GammaBurstBuff>();
             Item.buffTime = 600;

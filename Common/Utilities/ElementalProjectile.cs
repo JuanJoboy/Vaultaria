@@ -6,6 +6,7 @@ using Vaultaria.Common.Globals;
 using Terraria.DataStructures;
 using System;
 using Vaultaria.Content.Buffs.Prefixes.Elements;
+using Terraria.ID;
 
 namespace Vaultaria.Common.Utilities
 {
@@ -177,27 +178,30 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                player.GetSource_OnHit(target),
-                target.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
-
-            // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
-            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            if(player.whoAmI == Main.myPlayer)
             {
-                if (SetElementalChance(20))
+                Projectile.NewProjectile(
+                    player.GetSource_OnHit(target),
+                    target.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f,
+                    player.whoAmI
+                );
+
+                // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
+                if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+                {
+                    if (SetElementalChance(20))
+                    {
+                        target.AddBuff(buffType, buffTime);
+                    }
+                }
+                else
                 {
                     target.AddBuff(buffType, buffTime);
-                }
-            }
-            else
-            {
-                target.AddBuff(buffType, buffTime);
+                }   
             }
         }
 
@@ -207,27 +211,30 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(1, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                player.GetSource_OnHit(target),
-                target.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
-
-            // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
-            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            if(player.whoAmI == Main.myPlayer)
             {
-                if (SetElementalChance(20))
+                Projectile.NewProjectile(
+                    player.GetSource_OnHit(target),
+                    target.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f,
+                    player.whoAmI
+                );
+
+                // A complete freeze only has a 20% chance to happen after the initial 40% chance of the element being produced.
+                if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+                {
+                    if (SetElementalChance(20))
+                    {
+                        target.AddBuff(buffType, buffTime);
+                    }
+                }
+                else
                 {
                     target.AddBuff(buffType, buffTime);
-                }
-            }
-            else
-            {
-                target.AddBuff(buffType, buffTime);
+                }   
             }
         }
 
@@ -255,26 +262,29 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                player.GetSource_OnHit(target),
-                target.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
-
-            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            if(player.whoAmI == Main.myPlayer)
             {
-                if (SetElementalChance(20))
+                Projectile.NewProjectile(
+                    player.GetSource_OnHit(target),
+                    target.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f,
+                    player.whoAmI
+                );
+
+                if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+                {
+                    if (SetElementalChance(20))
+                    {
+                        target.AddBuff(buffType, buffTime);
+                    }
+                }
+                else
                 {
                     target.AddBuff(buffType, buffTime);
-                }
-            }
-            else
-            {
-                target.AddBuff(buffType, buffTime);
+                }   
             }
         }
 
@@ -284,26 +294,29 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(1, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                player.GetSource_OnHit(target),
-                target.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
-
-            if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+            if(player.whoAmI == Main.myPlayer)
             {
-                if (SetElementalChance(20))
+                Projectile.NewProjectile(
+                    player.GetSource_OnHit(target),
+                    target.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f,
+                    player.whoAmI
+                );
+
+                if (WhatBuffDoICreate(elementalProjectile) == ElementalID.CryoBuff)
+                {
+                    if (SetElementalChance(20))
+                    {
+                        target.AddBuff(buffType, buffTime);
+                    }
+                }
+                else
                 {
                     target.AddBuff(buffType, buffTime);
                 }
-            }
-            else
-            {
-                target.AddBuff(buffType, buffTime);
             }
         }
 
@@ -331,17 +344,21 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                projectile.GetSource_FromThis(),
-                projectile.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f,
-                player.whoAmI
-            );
+            if(player.whoAmI == Main.myPlayer)
+            {
+                Projectile.NewProjectile(
+                    projectile.GetSource_FromThis(),
+                    projectile.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f,
+                    player.whoAmI
+                );
 
-            projectile.Kill();
+                projectile.Kill();
+            }
+            
             return false;
         }
 
@@ -403,16 +420,19 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            Projectile.NewProjectile(
-                target.GetSource_OnHit(target),
-                target.Center,
-                Vector2.Zero,
-                elementalProjectile,
-                elementalDamage,
-                0f
-            );
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Projectile.NewProjectile(
+                    target.GetSource_OnHit(target),
+                    target.Center,
+                    Vector2.Zero,
+                    elementalProjectile,
+                    elementalDamage,
+                    0f
+                );
 
-            target.AddBuff(buffType, buffTime);
+                target.AddBuff(buffType, buffTime);
+            }
         }
 
         public static void BloodSplodeNearbyNPCs(NPC explodingNPC, NPC.HitInfo hit, short elementalProjectile, int buffType, float elementalMultiplier = 0.2f)

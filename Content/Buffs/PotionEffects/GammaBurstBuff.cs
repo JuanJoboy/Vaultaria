@@ -25,7 +25,7 @@ namespace Vaultaria.Content.Buffs.PotionEffects
             {
                 Projectile p = Main.projectile[i];
 
-                if(p.active && p.owner == player.whoAmI && p.minion)
+                if(p.active && (p.owner == player.whoAmI) && (p.minion || p.sentry))
                 {
                     if(config.KeepMinionSizeTheSameWhenGammaBursting == false)
                     {
@@ -37,6 +37,9 @@ namespace Vaultaria.Content.Buffs.PotionEffects
                         {
                             p.scale = 1;
                         }
+
+                        p.netUpdate = true;
+                        NetMessage.SendData(MessageID.SyncProjectile, number: p.whoAmI);
                     }
                 }
             }

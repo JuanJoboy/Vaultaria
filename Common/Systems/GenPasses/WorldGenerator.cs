@@ -20,11 +20,14 @@ namespace Vaultaria.Common.Systems.GenPasses
         {
             base.PostWorldGen();
 
-            VaultBuilder.GenerateVault("Vault1", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, GenVars.snowTop - 95);
-            VaultBuilder.GenerateVault("Vault2", Main.maxTilesX - GenVars.dungeonLocation, Main.UnderworldLayer + 50);
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                VaultBuilder.GenerateVault("Vault1", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, GenVars.snowTop - 95);
+                VaultBuilder.GenerateVault("Vault2", Main.maxTilesX - GenVars.dungeonLocation, Main.UnderworldLayer + 50);
 
-            // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
-            // VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
+                // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
+                // VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.   
+            }
         }
 
         public override void SaveWorldData(TagCompound tag)

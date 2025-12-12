@@ -19,15 +19,18 @@ namespace Vaultaria.Common.Systems
         {
             base.PostUpdateWorld();
 
-            if (unlockedClaptrapSpawn == false)
+			if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int spawnX = Main.spawnTileX * 16;
-                int spawnY = Main.spawnTileY * 16;
-                NPC claptrap = NPC.NewNPCDirect(NPC.GetSource_None(), new Vector2(spawnX, spawnY), ModContent.NPCType<Claptrap>());
-				
-                unlockedClaptrapSpawn = true;
-                NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
-                NetMessage.SendData(MessageID.WorldData);
+				if (unlockedClaptrapSpawn == false)
+				{
+					int spawnX = Main.spawnTileX * 16;
+					int spawnY = Main.spawnTileY * 16;
+					NPC claptrap = NPC.NewNPCDirect(NPC.GetSource_None(), new Vector2(spawnX, spawnY), ModContent.NPCType<Claptrap>());
+					
+					unlockedClaptrapSpawn = true;
+					NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
+					NetMessage.SendData(MessageID.WorldData);
+				}   
             }
         }
 

@@ -219,18 +219,21 @@ namespace Vaultaria.Common.Players
             }
 
             if(IsHolding(ModContent.ItemType<Oracle>()))
-            {                
-                proj.penetrate = 2;
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    proj.penetrate = 2;
 
-                if(hit.Crit && numTimesPenetrated < 5)
-                {
-                    Utilities.Utilities.MoveToTarget(proj, target, 10, 10);
-                    numTimesPenetrated++;
-                }
-                else
-                {
-                    proj.Kill();
-                    numTimesPenetrated = 0;
+                    if(hit.Crit && numTimesPenetrated < 5)
+                    {
+                        Utilities.Utilities.MoveToTarget(proj, target, 10, 10);
+                        numTimesPenetrated++;
+                    }
+                    else
+                    {
+                        proj.Kill();
+                        numTimesPenetrated = 0;
+                    }
                 }
             }
 
@@ -451,10 +454,11 @@ namespace Vaultaria.Common.Players
                     proj.friendly = true;
                     proj.hostile = false;
                     proj.damage = (int)(hurtInfo.Damage * 8.8f); // 880% Reflection damage
+                    proj.netUpdate = true;
                     SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
                 }
 
-                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<HomingSlagBall>(), 0.1f, 2);
+                HomingCauseProjectile(proj, hurtInfo, ModContent.ProjectileType<HomingSlagBall>(), 0.1f, 2);   
             }
 
             if (IsWearing(impaler))
@@ -481,9 +485,12 @@ namespace Vaultaria.Common.Players
 
             if (IsWearing(impaler))
             {
-                npc.AddBuff(BuffID.Thorns, 60);
-                npc.life -= (int)(hurtInfo.SourceDamage * 0.35f);
-                npc.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);
+                if(Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    npc.AddBuff(BuffID.Thorns, 60);
+                    npc.life -= (int)(hurtInfo.SourceDamage * 0.35f);
+                    npc.AddBuff(ModContent.BuffType<CorrosiveBuff>(), 300);   
+                }
             }
 
             if (IsWearing(asteroidBelt))
@@ -509,11 +516,11 @@ namespace Vaultaria.Common.Players
 
             if (IsWearing(sham))
             {
-                Utilities.Utilities.AbsorbedAmmo(proj, ref modifiers, 94f);
+                Utilities.Utilities.AbsorbedAmmo(Player, proj, ref modifiers, 94f);
             }
             if (IsWearing(aequitas))
             {
-                Utilities.Utilities.AbsorbedAmmo(proj, ref modifiers, 50f);
+                Utilities.Utilities.AbsorbedAmmo(Player, proj, ref modifiers, 50f);
             }
 
             Grit(ref modifiers);
@@ -543,7 +550,7 @@ namespace Vaultaria.Common.Players
             {
                 if (target.life <= 0)
                 {
-                    Player.Heal((int)(Player.statLifeMax2 * 0.1f)); // Heals for 10% of health
+                    Utilities.Utilities.Heal(Player, Player.statLifeMax2 * 0.1f); // Heals for 10% of health
                 }
             }
 
@@ -559,7 +566,7 @@ namespace Vaultaria.Common.Players
 
             BrainFreeze(target, hit);
 
-            Refreshment(target);
+            Refreshment(target);   
         }
         
         public override void OnHitAnything(float x, float y, Entity victim)
@@ -629,7 +636,7 @@ namespace Vaultaria.Common.Players
 
         private void HomingCauseProjectile(Projectile proj, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            if (Player.whoAmI == Main.myPlayer)
             {
                 Vector2 direction = Vector2.Normalize(proj.Center - Player.Center);
                 Vector2 spawnPos = Player.Center + direction * 5f;
@@ -648,7 +655,7 @@ namespace Vaultaria.Common.Players
 
         private void HomingCauseHit(NPC npc, Player.HurtInfo hurtInfo, int homer, float damage, int knockback)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            if (Player.whoAmI == Main.myPlayer)
             {
                 Vector2 direction = Vector2.Normalize(npc.Center - Player.Center);
                 Vector2 spawnPos = Player.Center + direction * 5f;
@@ -790,7 +797,7 @@ namespace Vaultaria.Common.Players
 
                 if (npc.life <= 0)
                 {
-                    Player.Heal((int) (Player.statLifeMax2 * bonusHealth)); // Heals for % of health
+                    Utilities.Utilities.Heal(Player, Player.statLifeMax2 * bonusHealth); // Heals for % of health
                 }
             }
         }
@@ -801,7 +808,7 @@ namespace Vaultaria.Common.Players
             {
                 float Lifesteal = Utilities.Utilities.SkillBonus(600f) - 1;
 
-                Player.Heal((int) (hit.SourceDamage * Lifesteal));
+                Utilities.Utilities.Heal(Player, hit.SourceDamage * Lifesteal);
             }
         }
 
@@ -934,7 +941,7 @@ namespace Vaultaria.Common.Players
                 {
                     float bonusHeal = Utilities.Utilities.SkillBonus(1500f) - 1;
 
-                    Player.Heal((int) (Player.statLifeMax2 * bonusHeal));
+                    Utilities.Utilities.Heal(Player, Player.statLifeMax2 * bonusHeal);
                 }
             }
         }

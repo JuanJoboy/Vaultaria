@@ -257,22 +257,6 @@ namespace Vaultaria.Common.Utilities
             // LiquidID.Lava,
         ];
 
-        // An array of items that cant be used when near a vault
-        public static int[] blockedItems = 
-        [
-            ItemID.Bomb,
-            ItemID.Dynamite,
-            ItemID.StickyBomb,
-            ItemID.BouncyBomb, 
-            ItemID.LihzahrdAltar,
-            ItemID.Wire,
-            ItemID.Actuator,
-            ItemID.Explosives,
-            ItemID.WetBomb,
-            ItemID.DryBomb,
-            ItemID.LavaBomb,
-        ];
-
         public static ArrayList gunGunItemArray = new ArrayList();
 
         // The 'this' keyword in the signature allows for it to be used as an extension
@@ -342,9 +326,12 @@ namespace Vaultaria.Common.Utilities
         /// <param name="projectile"></param>
         public static void HealOnNPCHit(NPC target, int damageDone, float healingPercentage, Projectile projectile)
         {
-            int heal = (int)(damageDone * healingPercentage);
-            heal = (int)(heal / 0.075f); // Divide by 0.075f to bring it back to normal
-            projectile.vampireHeal(heal, projectile.Center, target);
+            if(projectile.owner == Main.myPlayer)
+            {
+                int heal = (int)(damageDone * healingPercentage);
+                heal = (int)(heal / 0.075f); // Divide by 0.075f to bring it back to normal
+                projectile.vampireHeal(heal, projectile.Center, target);   
+            }
         }
 
         /// <summary>
@@ -359,9 +346,23 @@ namespace Vaultaria.Common.Utilities
         /// <param name="projectile"></param>
         public static void HealOnPlayerHit(Player target, int damageDone, float healingPercentage, Projectile projectile)
         {
-            int heal = (int)(damageDone * healingPercentage);
-            heal = (int)(heal / 0.075f); // Divide by 0.075f to bring it back to normal
-            projectile.vampireHeal(heal, projectile.Center, target);
+            if(projectile.owner == Main.myPlayer)
+            {
+                int heal = (int)(damageDone * healingPercentage);
+                heal = (int)(heal / 0.075f); // Divide by 0.075f to bring it back to normal
+                projectile.vampireHeal(heal, projectile.Center, target);   
+            }
+        }
+
+        /// <summary>
+        /// Uses the regular heal method that Terraria provides, but is wrapped in a multiplayer-safe guard
+        /// </summary>
+        public static void Heal(Player player, float amount)
+        {
+            if (player.whoAmI == Main.myPlayer)
+            {
+                player.Heal((int) amount);
+            }
         }
 
         /// <summary>
@@ -378,38 +379,41 @@ namespace Vaultaria.Common.Utilities
         /// <param name="degreeSpread"></param>
         public static void CloneShots(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread, int min = 0, int max = 0)
         {
-            for (int i = 0; i < numberOfAdditionalBullets; i++)
+            if(player.whoAmI == Main.myPlayer)
             {
-                degreeSpread = Main.rand.Next(min, max) switch
+                for (int i = 0; i < numberOfAdditionalBullets; i++)
                 {
-                    1 => -45, // If 1 is returned then degreeSpread =- 5
-                    2 => -34,
-                    3 => -23,
-                    4 => -12,
-                    5 => -1,
-                    6 => +1,
-                    7 => +12,
-                    8 => +23,
-                    9 => +34,
-                    10 => +45,
-                    _ => degreeSpread, // Default
-                };
+                    degreeSpread = Main.rand.Next(min, max) switch
+                    {
+                        1 => -45, // If 1 is returned then degreeSpread =- 5
+                        2 => -34,
+                        3 => -23,
+                        4 => -12,
+                        5 => -1,
+                        6 => +1,
+                        7 => +12,
+                        8 => +23,
+                        9 => +34,
+                        10 => +45,
+                        _ => degreeSpread, // Default
+                    };
 
-                // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
-                float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
+                    // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
+                    float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
 
-                // Calculate the base rotation of the velocity vector
-                float baseRotation = velocity.ToRotation();
+                    // Calculate the base rotation of the velocity vector
+                    float baseRotation = velocity.ToRotation();
 
-                // Calculate the individual bullet's angle
-                // This distributes the bullets symmetrically around the original velocity direction
-                float bulletAngle = baseRotation + MathHelper.Lerp(-spreadAngle / 2, spreadAngle / 2, (float)i / (numberOfAdditionalBullets - 1));
+                    // Calculate the individual bullet's angle
+                    // This distributes the bullets symmetrically around the original velocity direction
+                    float bulletAngle = baseRotation + MathHelper.Lerp(-spreadAngle / 2, spreadAngle / 2, (float)i / (numberOfAdditionalBullets - 1));
 
-                // Calculate the new velocity vector for this bullet
-                Vector2 bulletVelocity = bulletAngle.ToRotationVector2() * velocity.Length();
+                    // Calculate the new velocity vector for this bullet
+                    Vector2 bulletVelocity = bulletAngle.ToRotationVector2() * velocity.Length();
 
-                Projectile.NewProjectile(source, position, bulletVelocity, type, damage, knockback, player.whoAmI);
-            }
+                    Projectile.NewProjectile(source, position, bulletVelocity, type, damage, knockback, player.whoAmI);
+                }
+            } 
         }
 
         /// <summary>
@@ -589,7 +593,7 @@ namespace Vaultaria.Common.Utilities
             return 0;
         }
 
-        public static void AbsorbedAmmo(Projectile proj, ref Player.HurtModifiers modifiers, float chance)
+        public static void AbsorbedAmmo(Player player, Projectile proj, ref Player.HurtModifiers modifiers, float chance)
         {
             int amountToGet = 5;
 
@@ -599,18 +603,8 @@ namespace Vaultaria.Common.Utilities
 
                 modifiers.FinalDamage *= 0.05f;
 
-                Main.LocalPlayer.QuickSpawnItem(proj.GetSource_DropAsItem(), projectileItem, amountToGet);
+                player.QuickSpawnItem(proj.GetSource_DropAsItem(), projectileItem, amountToGet);
             }
-        }
-
-        public static bool ItemIs(int itemType, int heldItem)
-        {
-            if (itemType == heldItem)
-            {
-                return true;
-            }
-
-            return false;
         }
 
         public static void MoveToTarget(Entity movingEntity, Entity target, float moveSpeed, float accelerationRate)
@@ -671,7 +665,7 @@ namespace Vaultaria.Common.Utilities
                 {
                     movingEntity.velocity.Y -= accelerationRate;
                 }
-            }
+            }   
         }
 
         public static void MoveToPosition(Entity movingEntity, Vector2 position, float moveSpeed, float accelerationRate)

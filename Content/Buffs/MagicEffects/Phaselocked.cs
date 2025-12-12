@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Buffs.MagicEffects
         private void Rise(Entity entity)
         {
             entity.position = entity.oldPosition;
-            entity.velocity.Y = 0f; // Go upwards
+            entity.velocity.Y = 0f;
             entity.velocity.X = 0f;
         }
     }

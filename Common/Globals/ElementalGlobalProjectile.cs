@@ -56,14 +56,14 @@ namespace Vaultaria.Common.Globals
 
             Headshot(player, projectile, ref modifiers);
 
-            Velocity(player, projectile, ref modifiers);
+            Velocity(player, projectile, ref modifiers);   
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitNPC(projectile, target, hit, damageDone);
 
-            Player player=  Main.player[projectile.owner];
+            Player player = Main.player[projectile.owner];
 
             Immolate(player, projectile, target, hit);
         }
@@ -95,41 +95,44 @@ namespace Vaultaria.Common.Globals
                 // The player instance that fired the projectile is available here
                 Player player = itemSource.Player;
 
-                if (ElementalProjectile.elementalPrefix.Contains(itemSource.Item.prefix))
+                if(player.whoAmI == Main.myPlayer)
                 {
-                    firedWeaponPrefixID = itemSource.Item.prefix;
-                }
+                    if (ElementalProjectile.elementalPrefix.Contains(itemSource.Item.prefix))
+                    {
+                        firedWeaponPrefixID = itemSource.Item.prefix;
+                    }
 
-                if (player.HasBuff(ModContent.BuffType<DrunkEffect>()))
-                {
-                    DrunkShot(itemSource.Item, itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
-                }
+                    if (player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+                    {
+                        DrunkShot(itemSource.Item, itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    }
 
-                if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
-                {
-                    OrcShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
-                }
+                    if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
+                    {
+                        OrcShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                    }
 
-                if (itemSource.Item.prefix == ModContent.PrefixType<MagicDP>() || itemSource.Item.prefix == ModContent.PrefixType<RangerDP>())
-                {
-                    MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
-                }
-                if (itemSource.Item.prefix == ModContent.PrefixType<MagicMasher>() || itemSource.Item.prefix == ModContent.PrefixType<RangerMasher>())
-                {
-                    MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
-                }
+                    if (itemSource.Item.prefix == ModContent.PrefixType<MagicDP>() || itemSource.Item.prefix == ModContent.PrefixType<RangerDP>())
+                    {
+                        MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
+                    }
+                    if (itemSource.Item.prefix == ModContent.PrefixType<MagicMasher>() || itemSource.Item.prefix == ModContent.PrefixType<RangerMasher>())
+                    {
+                        MultiShot(itemSource, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
+                    }
 
-                if (Utilities.Utilities.IsWearing(player, ModContent.ItemType<Bore>()))
-                {
-                    projectile.penetrate = -1;
-                    projectile.maxPenetrate = -1;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 120;
+                    if (Utilities.Utilities.IsWearing(player, ModContent.ItemType<Bore>()))
+                    {
+                        projectile.penetrate = -1;
+                        projectile.maxPenetrate = -1;
+                        projectile.usesLocalNPCImmunity = true;
+                        projectile.localNPCHitCooldown = 120;
+                    }
+
+                    Accelerate(player, projectile);
+
+                    Velocity(player, projectile);   
                 }
-
-                Accelerate(player, projectile);
-
-                Velocity(player, projectile);
             }
 
             if (source is EntitySource_Parent parent)
@@ -140,27 +143,30 @@ namespace Vaultaria.Common.Globals
                 {
                     Player player = Main.player[minion.owner];
 
-                    int minionPrefix = player.HeldItem.prefix;
-
-                    projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID = minionPrefix;
-
-                    if (player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+                    if(player.whoAmI == Main.myPlayer)
                     {
-                        DrunkShot(player.HeldItem, source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
-                    }
+                        int minionPrefix = player.HeldItem.prefix;
 
-                    if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
-                    {
-                        OrcShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
-                    }
+                        projectile.GetGlobalProjectile<ElementalGlobalProjectile>().firedWeaponPrefixID = minionPrefix;
 
-                    if (minionPrefix == ModContent.PrefixType<MagicDP>() || minionPrefix == ModContent.PrefixType<RangerDP>())
-                    {
-                        MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
-                    }
-                    if (minionPrefix == ModContent.PrefixType<MagicMasher>() || minionPrefix == ModContent.PrefixType<RangerMasher>())
-                    {
-                        MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
+                        if (player.HasBuff(ModContent.BuffType<DrunkEffect>()))
+                        {
+                            DrunkShot(player.HeldItem, source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                        }
+
+                        if (player.HasBuff(ModContent.BuffType<OrcEffect>()))
+                        {
+                            OrcShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player);
+                        }
+
+                        if (minionPrefix == ModContent.PrefixType<MagicDP>() || minionPrefix == ModContent.PrefixType<RangerDP>())
+                        {
+                            MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 1);
+                        }
+                        if (minionPrefix == ModContent.PrefixType<MagicMasher>() || minionPrefix == ModContent.PrefixType<RangerMasher>())
+                        {
+                            MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
+                        }   
                     }
                 }
             }
