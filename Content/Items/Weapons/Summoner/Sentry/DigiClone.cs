@@ -8,7 +8,7 @@ using Vaultaria.Content.Projectiles.Summoner.Sentry;
 using System.Collections.Generic;
 using Vaultaria.Content.Prefixes.Weapons;
 using Vaultaria.Common.Utilities;
-using System.Reflection.Metadata.Ecma335;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 
 namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 {
@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.reuseDelay = 2;
-            Item.knockBack = 2.3f;
+            Item.knockBack = 0f;
             Item.autoReuse = true;
             Item.mana = 20;
 
@@ -43,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
 
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<Clone>();
         }
 
@@ -53,7 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             {
                 player.AddBuff(Item.buffType, 2);
 
-                Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, Main.myPlayer);
+                Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI, 0, 0);
                 projectile.originalDamage = Item.damage;
             }
 
@@ -67,6 +67,11 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override bool AltFunctionUse(Player player)
         {
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            {
+                return false;
+            }
+            
             return true;
         }
 
@@ -94,7 +99,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 Item.DamageType = DamageClass.Generic;
                 Item.useStyle = ItemUseStyleID.RaiseLamp;
                 Item.noMelee = true;
-                Item.shootSpeed = 17f;
+                Item.shootSpeed = 0f;
                 Item.shoot = ModContent.ProjectileType<Clone>();
 
                 Item.useTime = 8;
@@ -118,7 +123,17 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Utilities.Text(tooltips, Mod, "Tooltip1", "Your Digi-Clone shoots a copy of whatever item your player is currently holding");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Digi-Clone won't consume your ammo, but still requires ammo to shoot the weapon");
             Utilities.Text(tooltips, Mod, "Tooltip3", "Only Magic and Ranged weapons can be copied");
-            Utilities.Text(tooltips, Mod, "Tooltip4", "Right-Click to swap positions with Digi-Clone");
+            Utilities.Text(tooltips, Mod, "Tooltip4", $"If holding an incompatible item, the damage defaults to your defense / 2 ({Main.LocalPlayer.statDefense / 2})");
+
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            {
+                Utilities.Text(tooltips, Mod, "Tooltip5", "Right-Clicking to swap with Digi-Clone is disabled while inside either Vault");
+            }
+            else
+            {
+                Utilities.Text(tooltips, Mod, "Tooltip5", "Right-Click to swap positions with Digi-Clone");
+            }
+
             Utilities.RedText(tooltips, Mod, "I know that fella. We went to the same assassin bars.");
         }
 
@@ -147,11 +162,15 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                         Dust.NewDust(p.position, p.width, p.height, DustID.Cloud, 0f, 0f, 0, default(Color), 0.7f);
                     }
 
-                    // Swaps the values of these 2 variables
-                    (p.Center, player.Center) = (player.Center, p.Center);
-                    p.netUpdate = true;
-                    
-                    return;
+                    if(player.whoAmI == Main.myPlayer || p.owner == Main.myPlayer)
+                    {
+                        // Swaps the values of these 2 variables
+                        (p.Center, player.Center) = (player.Center, p.Center);
+
+                        NetMessage.SendData(MessageID.SyncProjectile, number: p.whoAmI);
+                        
+                        return;
+                    }
                 }
             }
         }

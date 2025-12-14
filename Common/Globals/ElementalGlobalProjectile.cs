@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.GunEffects;
+using Vaultaria.Content.Buffs.PotionEffects;
 using Vaultaria.Content.Buffs.SkillEffects;
 using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
@@ -64,6 +65,12 @@ namespace Vaultaria.Common.Globals
             base.OnHitNPC(projectile, target, hit, damageDone);
 
             Player player = Main.player[projectile.owner];
+
+            if(projectile.active && projectile.owner == player.whoAmI && (projectile.minion || projectile.sentry) && player.HasBuff<GammaBurstBuff>())
+            {
+                hit.SourceDamage *= 2;
+                ElementalProjectile.SetElementOnNPC(target, hit, 1f, player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 180);
+            }
 
             Immolate(player, projectile, target, hit);
         }

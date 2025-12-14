@@ -76,7 +76,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
                 WorldGenerator.pedestalInVault2 = true;
             }
 
-            if(!SubworldSystem.AnyActive<Vaultaria>() && WorldGenerator.pedestalInVault2 == true)
+            if(WorldGenerator.pedestalInVault2 == true)
             {
                 SubworldSystem.Enter<Vault2Subworld>();
             }

@@ -43,7 +43,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             Item.UseSound = SoundID.Item44;
 
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<BloodwingMinion>();
             Item.buffType = ModContent.BuffType<Bloodwing>();
         }
@@ -57,7 +57,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
         {
             player.AddBuff(Item.buffType, 2);
 
-            Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, Main.myPlayer);
+            Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, player.whoAmI);
             projectile.originalDamage = Item.damage;
             
             return false;

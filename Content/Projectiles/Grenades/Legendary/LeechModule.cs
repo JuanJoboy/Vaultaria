@@ -57,9 +57,8 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-
                 Utilities.HealOnNPCHit(target, damageDone, 1f, Projectile);
+                SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 
@@ -68,9 +67,8 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
-
                 Utilities.HealOnPlayerHit(target, info.SourceDamage, 1f, Projectile);
+                SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
 

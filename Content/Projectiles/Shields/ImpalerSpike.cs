@@ -20,9 +20,6 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void SetDefaults()
         {
-            // Clone Chlorophytes homing
-            Projectile.CloneDefaults(ProjectileID.ChlorophyteBullet);
-
             // Size
             Projectile.Size = new Vector2(21, 29);
 
@@ -30,21 +27,50 @@ namespace Vaultaria.Content.Projectiles.Shields
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 1;
-            Projectile.DamageType = DamageClass.Generic;
+            Projectile.aiStyle = 0;
 
-            // Bullet Config
-            Projectile.timeLeft = 600;
+            // Config
+            Projectile.timeLeft = 3600;
             Projectile.ignoreWater = true;
-            Projectile.tileCollide = true;
-            Projectile.extraUpdates = 1;
-
-            AIType = ProjectileID.ChlorophyteBullet; // Inherit Chlorophyte AI
+            Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Generic;
+            Projectile.ai[0] = 1f;
         }
 
-        public override void PostAI()
+        public override void AI()
         {
-            base.PostAI();
+            base.AI();
             Utilities.FrameRotator(4, Projectile);
+
+            NPC target = FindTarget();
+
+            if (target != null && target.active && !target.friendly)
+            {
+                Utilities.MoveToTarget(Projectile, target, 4, 1);
+            }
+        }
+
+        private NPC FindTarget()
+        {
+            float range = 500f; // 500 pixels
+            NPC closest = null;
+
+            // Loops through every NPC in the world
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.CanBeChasedBy(this)) // Filters to only hostile and valid targets
+                {
+                    float dist = Vector2.Distance(Projectile.Center, npc.Center);
+                    if (dist < range)
+                    {
+                        closest = npc;
+                        range = dist;
+                    }
+                }
+            }
+
+            return closest; // Returns the best valid NPC target, or null if none found
         }
 
         public override void OnKill(int timeLeft)

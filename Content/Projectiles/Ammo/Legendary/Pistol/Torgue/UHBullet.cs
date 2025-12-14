@@ -56,56 +56,60 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
             // Add +MathHelper.PiOver2 if your sprite points UP by default.
             Projectile.rotation = Projectile.velocity.ToRotation();
 
-            // --- CLONING LOGIC ---
-            // Projectile.ai[0] is used to track if this is the "parent" bullet that should clone.
-            // I set it to 1f in the gun's Shoot method for the initial bullet.
-            if (Projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
+            if(Projectile.owner == Main.myPlayer)
             {
-                // I want the cloning to happen after a short delay (e.g., after 30 ticks = 0.5 seconds).
-                // Projectile.timeLeft counts down from 600. So, 600 - 30 = 570.
-                // I could also check Projectile.owner == Main.myPlayer to ensure the cloning only happens
-                // on the client that owns the projectile, preventing duplicate spawns in multiplayer.
-                if (Projectile.timeLeft == 575)
+                // --- CLONING LOGIC ---
+                // Projectile.ai[0] is used to track if this is the "parent" bullet that should clone.
+                // I set it to 1f in the gun's Shoot method for the initial bullet.
+                if (Projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
                 {
-                    const int numberOfClones = 6; // I want 6 bullets total
-                    const float totalSpreadDegrees = 25; // Total angle of the semi-circle spread in degrees
-                    float baseAngle = Projectile.velocity.ToRotation(); // Get the current direction of the parent bullet
-                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1)); // Angle between each cloned bullet
-                                                                                                            // (numberOfClones - 1) because there are (n-1) gaps for n bullets
-
-                    // Adjust the base angle so the spread is centered around the original velocity.
-                    // This moves the starting point of the loop to the far left of the desired spread arc.
-                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
-
-                    for (int i = 0; i < numberOfClones; i++) // Loop to spawn the 6 clones
+                    // I want the cloning to happen after a short delay (e.g., after 30 ticks = 0.5 seconds).
+                    // Projectile.timeLeft counts down from 600. So, 600 - 30 = 570.
+                    // I could also check Projectile.owner == Main.myPlayer to ensure the cloning only happens
+                    // on the client that owns the projectile, preventing duplicate spawns in multiplayer.
+                    if (Projectile.timeLeft == 575)
                     {
-                        // Calculate the new angle for this specific clone
-                        float newAngle = baseAngle + (i * angleIncrement);
+                        const int numberOfClones = 6; // I want 6 bullets total
+                        const float totalSpreadDegrees = 25; // Total angle of the semi-circle spread in degrees
+                        float baseAngle = Projectile.velocity.ToRotation(); // Get the current direction of the parent bullet
+                        float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1)); // Angle between each cloned bullet
+                                                                                                                // (numberOfClones - 1) because there are (n-1) gaps for n bullets
 
-                        // Create the new velocity vector using the calculated angle and the parent's speed.
-                        // Projectile.velocity.Length() gives the current speed of the parent.
-                        Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+                        // Adjust the base angle so the spread is centered around the original velocity.
+                        // This moves the starting point of the loop to the far left of the desired spread arc.
+                        baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
 
-                        // Spawn the new projectile (clone)
-                        Projectile.NewProjectile(
-                            Projectile.GetSource_FromThis(), // Source for the new projectile (this parent projectile)
-                            Projectile.Center,               // Spawn at the center of the parent bullet
-                            newVelocity,                     // The newly calculated velocity for spread
-                            Projectile.type,                 // Same projectile type as this one
-                            25,                               // Each bullet does 25 damage
-                            Projectile.knockBack,            // Same knockback as this one
-                            Projectile.owner,                // Same owner as this one
-                            0f,                              // ai[0] = 0f: This clone is NOT a parent; it won't clone further
-                            0f                               // Other ai values, if you had any
-                        );
+                        for (int i = 0; i < numberOfClones; i++) // Loop to spawn the 6 clones
+                        {
+                            // Calculate the new angle for this specific clone
+                            float newAngle = baseAngle + (i * angleIncrement);
+
+                            // Create the new velocity vector using the calculated angle and the parent's speed.
+                            // Projectile.velocity.Length() gives the current speed of the parent.
+                            Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+
+                            // Spawn the new projectile (clone)
+                            Projectile.NewProjectile(
+                                Projectile.GetSource_FromThis(), // Source for the new projectile (this parent projectile)
+                                Projectile.Center,               // Spawn at the center of the parent bullet
+                                newVelocity,                     // The newly calculated velocity for spread
+                                Projectile.type,                 // Same projectile type as this one
+                                25,                               // Each bullet does 25 damage
+                                Projectile.knockBack,            // Same knockback as this one
+                                Projectile.owner,                // Same owner as this one
+                                0f,                              // ai[0] = 0f: This clone is NOT a parent; it won't clone further
+                                0f                               // Other ai values, if you had any
+                            );
+                        }
+
+                        // After spawning all clones, the parent bullet should stop cloning.
+                        // You can either kill it or just change its ai[0] to 0f.
+                        // Killing it:
+                        // Projectile.Kill();
+                        // Changing its state so it continues as a normal bullet:
+                        Projectile.ai[0] = 0f; // Important! Prevents infinite cloning.
+                        Projectile.netUpdate = true;
                     }
-
-                    // After spawning all clones, the parent bullet should stop cloning.
-                    // You can either kill it or just change its ai[0] to 0f.
-                    // Killing it:
-                    // Projectile.Kill();
-                    // Changing its state so it continues as a normal bullet:
-                    Projectile.ai[0] = 0f; // Important! Prevents infinite cloning.
                 }
             }
         }

@@ -28,6 +28,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
             Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.aiStyle = 0;
+            Projectile.scale = 1.5f;
 
             // Bullet Config
             Projectile.timeLeft = 600;

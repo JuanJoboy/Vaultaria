@@ -129,7 +129,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
         {
             foreach(NPC npc in Main.ActiveNPCs)
             {
-                if(Vector2.Distance(npc.Center, mouse.Center.ToVector2()) < 1000)
+                if(Vector2.Distance(npc.Center, mouse.Center.ToVector2()) < 1000 && !npc.townNPC)
                 {
                     Utilities.MoveToPosition(npc, mouse.Center.ToVector2(), 40f, 6f);
                 }

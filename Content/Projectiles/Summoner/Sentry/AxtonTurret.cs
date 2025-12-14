@@ -39,25 +39,29 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
         // Nuke
         public override void OnSpawn(IEntitySource source)
         {
-            Projectile proj = Projectile.NewProjectileDirect(
-                Projectile.GetSource_FromThis(),
-                Projectile.Center,
-                Vector2.Zero,
-                ElementalID.LargeExplosiveProjectile,
-                100,
-                2f,
-                Projectile.owner
-            );
+            if(Projectile.owner == Main.myPlayer)
+            {
+                Projectile proj = Projectile.NewProjectileDirect(
+                    source,
+                    Projectile.Center,
+                    Vector2.Zero,
+                    ElementalID.LargeExplosiveProjectile,
+                    Main.player[Projectile.owner].statDefense * 2 < 100 ? Main.player[Projectile.owner].statDefense * 2 : 100,
+                    2f,
+                    Projectile.owner
+                );
 
-            proj.DamageType = DamageClass.Summon;
+                proj.DamageType = DamageClass.Summon;
 
-            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+            }
         }
 
         public override void AI()
         {
             // Gets the owner and ensures that only one turret can spawn
             Player owner = Main.player[Projectile.owner];
+            
             owner.maxTurrets++;
             owner.UpdateMaxTurrets();
 
@@ -66,74 +70,78 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             if (touchedTheGround == false)
             {
                 Projectile.velocity.Y += 15; // Fall to the ground
+                Projectile.netUpdate = true;
             }
 
             NPC target = FindTarget();
             int summonDamage = (int)(Projectile.damage * owner.GetDamage(DamageClass.Summon).Multiplicative);
 
-            if (EnemyFoundToShoot(target, 0, 6f))
+            if(owner.whoAmI == Main.myPlayer)
             {
-                // Calculates a normalized direction to the target and scales it to a bullet speed of 8
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
+                if (EnemyFoundToShoot(target, 0, 6f))
+                {
+                    // Calculates a normalized direction to the target and scales it to a bullet speed of 8
+                    Vector2 direction = target.Center - Projectile.Center;
+                    direction.Normalize();
+                    direction *= 8f;
 
-                Projectile proj = Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ProjectileID.ChlorophyteBullet,
-                    summonDamage,
-                    2f,
-                    Projectile.owner
-                );
+                    Projectile proj = Projectile.NewProjectileDirect(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        direction,
+                        ProjectileID.ChlorophyteBullet,
+                        summonDamage,
+                        2f,
+                        Projectile.owner
+                    );
 
-                proj.DamageType = DamageClass.Summon;
+                    proj.DamageType = DamageClass.Summon;
 
-                // Reset fire timer
-                Projectile.ai[0] = 0f;
-            }
+                    // Reset fire timer
+                    Projectile.ai[0] = 0f;
+                }
 
-            if (EnemyFoundToShoot(target, 1, 120f))
-            {
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
+                if (EnemyFoundToShoot(target, 1, 120f))
+                {
+                    Vector2 direction = target.Center - Projectile.Center;
+                    direction.Normalize();
+                    direction *= 8f;
 
-                Projectile proj = Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ProjectileID.ClusterRocketI,
-                    summonDamage * 2,
-                    0f,
-                    Projectile.owner
-                );
-                
-                proj.DamageType = DamageClass.Summon;
+                    Projectile proj = Projectile.NewProjectileDirect(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        direction,
+                        ProjectileID.ClusterRocketI,
+                        summonDamage * 2,
+                        0f,
+                        Projectile.owner
+                    );
+                    
+                    proj.DamageType = DamageClass.Summon;
 
-                Projectile.ai[1] = 0f;
-            }
+                    Projectile.ai[1] = 0f;
+                }
 
-            if (EnemyFoundToShoot(target, 2, 60f))
-            {
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
+                if (EnemyFoundToShoot(target, 2, 60f))
+                {
+                    Vector2 direction = target.Center - Projectile.Center;
+                    direction.Normalize();
+                    direction *= 8f;
 
-                Projectile proj = Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ModContent.ProjectileType<HomingSlagBall>(),
-                    1,
-                    2f,
-                    Projectile.owner
-                );
-                
-                proj.DamageType = DamageClass.Summon;
+                    Projectile proj = Projectile.NewProjectileDirect(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        direction,
+                        ModContent.ProjectileType<HomingSlagBall>(),
+                        1,
+                        2f,
+                        Projectile.owner
+                    );
+                    
+                    proj.DamageType = DamageClass.Summon;
 
-                Projectile.ai[2] = 0f;
+                    Projectile.ai[2] = 0f;
+                }
             }
         }
 
@@ -183,6 +191,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;
                 }
             }
@@ -195,6 +204,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             Projectile.velocity.Y = 0f; // Stop falling
             Projectile.position.Y += 16f; // Lower it by an additional 16 pixels since it stays in the air for some reason
             touchedTheGround = true;
+            Projectile.netUpdate = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
         }
     }

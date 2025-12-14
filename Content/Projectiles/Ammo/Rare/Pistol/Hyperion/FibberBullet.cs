@@ -69,42 +69,46 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion
             }
 
             // --- CLONING LOGIC ---
-            if (Projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
+            if(Projectile.owner == Main.myPlayer)
             {
-                if (Projectile.ai[0] == 1f && Projectile.ai[1] == 1f) // If it's a cloner parent AND eligible for first split
+                if (Projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
                 {
-                    const int numberOfClones = 10;
-                    const float totalSpreadDegrees = 5;
-                    float baseAngle = Projectile.velocity.ToRotation();
-                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
-                    
-                    // Adjust the base angle so the spread is centered around the original velocity.
-                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
-
-                    for (int i = 0; i < numberOfClones; i++)
+                    if (Projectile.ai[0] == 1f && Projectile.ai[1] == 1f) // If it's a cloner parent AND eligible for first split
                     {
-                        // Calculate the new angle for this specific clone
-                        float newAngle = baseAngle + (i * angleIncrement);
+                        const int numberOfClones = 10;
+                        const float totalSpreadDegrees = 5;
+                        float baseAngle = Projectile.velocity.ToRotation();
+                        float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
+                        
+                        // Adjust the base angle so the spread is centered around the original velocity.
+                        baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
 
-                        // Create the new velocity vector using the calculated angle and the parent's speed.
-                        Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+                        for (int i = 0; i < numberOfClones; i++)
+                        {
+                            // Calculate the new angle for this specific clone
+                            float newAngle = baseAngle + (i * angleIncrement);
 
-                        // Spawn the new projectile (clone)
-                        Projectile.NewProjectile(
-                            Projectile.GetSource_FromThis(),
-                            Projectile.Center,
-                            newVelocity,
-                            Projectile.type,
-                            20,
-                            Projectile.knockBack,
-                            Projectile.owner,
-                            0f,
-                            0f
-                        );
+                            // Create the new velocity vector using the calculated angle and the parent's speed.
+                            Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+
+                            // Spawn the new projectile (clone)
+                            Projectile.NewProjectile(
+                                Projectile.GetSource_FromThis(),
+                                Projectile.Center,
+                                newVelocity,
+                                Projectile.type,
+                                20,
+                                Projectile.knockBack,
+                                Projectile.owner,
+                                0f,
+                                0f
+                            );
+                        }
+
+                        Projectile.ai[0] = 0f;
+                        Projectile.ai[1] = 0f;
+                        Projectile.netUpdate = true;
                     }
-
-                    Projectile.ai[0] = 0f;
-                    Projectile.ai[1] = 0f;
                 }
             }
 

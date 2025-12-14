@@ -70,7 +70,7 @@ namespace Vaultaria.Common.Global
                     npcDowned = true;
                     NPC.SetEventFlagCleared(ref npcDowned, -1);
 
-                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in BossDownedSystem
+                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in VaultMonsterSystem
                 }
             }
         }
@@ -86,11 +86,11 @@ namespace Vaultaria.Common.Global
         private void CallAllVault1BossDowned(NPC npc)
         {
             // Vault 1
-            VaultBossDowned(npc, ref BossDownedSystem.vaultKingSlime, NPCID.KingSlime);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultEyeOfCthulhu, NPCID.EyeofCthulhu);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultQueenBee, NPCID.QueenBee);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultDeerClops, NPCID.Deerclops);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultSkeletron, NPCID.SkeletronHead);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultKingSlime, NPCID.KingSlime);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultEyeOfCthulhu, NPCID.EyeofCthulhu);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultQueenBee, NPCID.QueenBee);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultDeerClops, NPCID.Deerclops);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultSkeletron, NPCID.SkeletronHead);
 
             ShowVaultMessage(npc, NPCID.SkeletronHead, Color.OrangeRed, "Vault of the Warrior Raided!");
         }
@@ -98,16 +98,16 @@ namespace Vaultaria.Common.Global
         private void CallAllVault2BossDowned(NPC npc)
         {
             // Vault 2
-            VaultBossDowned(npc, ref BossDownedSystem.vaultQueenSlime, NPCID.QueenSlimeBoss);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultTwins, NPCID.Retinazer);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultSkeletronPrime, NPCID.SkeletronPrime);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultBetsy, NPCID.DD2Betsy);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultPlantera, NPCID.Plantera);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultGolem, NPCID.Golem);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultDukeFishron, NPCID.DukeFishron);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultEmpress, NPCID.HallowBoss);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultLunaticCultist, NPCID.CultistBoss);
-            VaultBossDowned(npc, ref BossDownedSystem.vaultMoonLord, NPCID.MoonLordCore);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultQueenSlime, NPCID.QueenSlimeBoss);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultTwins, NPCID.Retinazer);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultSkeletronPrime, NPCID.SkeletronPrime);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultBetsy, NPCID.DD2Betsy);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultPlantera, NPCID.Plantera);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultGolem, NPCID.Golem);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultDukeFishron, NPCID.DukeFishron);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultEmpress, NPCID.HallowBoss);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultLunaticCultist, NPCID.CultistBoss);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultMoonLord, NPCID.MoonLordCore);
 
             ShowVaultMessage(npc, NPCID.MoonLordCore, Color.LightBlue, "Vault of the Destroyer Raided!");
         }

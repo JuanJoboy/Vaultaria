@@ -8,6 +8,7 @@ using Microsoft.Build.Evaluation;
 using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare;
+using static System.Math;
 
 namespace Vaultaria.Content.Projectiles.Grenades.Rare
 {
@@ -106,7 +107,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
             {
                 if(Vector2.Distance(npc.Center, Projectile.Center) < 1000)
                 {
-                    Utilities.MoveToPosition(npc, Projectile.Center, 30f, 6f);
+                    if(Math.Abs(npc.Center.Y - Projectile.Center.Y) < 2)
+                    {
+                        Utilities.MoveToPosition(npc, Projectile.Center, 60f, 10f);
+                    }
+                    else
+                    {
+                        Utilities.MoveToPosition(npc, Projectile.Center, 30f, 6f);
+                    }
                 }
             }
         }

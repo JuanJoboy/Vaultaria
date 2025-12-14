@@ -147,6 +147,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;
                 }
             }
@@ -168,6 +169,8 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             {
                 Projectile.spriteDirection = -1; // Face left
             }
+
+            Projectile.netUpdate = true;
         }
     }
 }

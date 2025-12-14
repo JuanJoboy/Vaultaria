@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             // Visual properties
             Item.Size = new Vector2(31, 29);
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Yellow;
 
             // Combat properties
             Item.damage = 75;
@@ -34,14 +34,14 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.reuseDelay = 2;
             Item.knockBack = 2.3f;
             Item.autoReuse = true;
-            Item.mana = 20;
+            Item.mana = 40;
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
             Item.UseSound = SoundID.Item46;
 
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<AxtonTurret>();
         }
 
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         {
             player.AddBuff(Item.buffType, 2);
 
-            var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, Main.myPlayer);
+            var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, player.whoAmI);
             projectile.originalDamage = Item.damage;
 
             return false;

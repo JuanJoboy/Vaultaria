@@ -344,7 +344,7 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            if(player.whoAmI == Main.myPlayer)
+            if(player.whoAmI == Main.myPlayer) // Uses this check because the player owns the projectile, not an npc or the world
             {
                 Projectile.NewProjectile(
                     projectile.GetSource_FromThis(),
@@ -420,7 +420,7 @@ namespace Vaultaria.Common.Utilities
 
             SetElementalDamage(baseDamage, elementalMultiplier, out elementalDamage);
 
-            if(Main.netMode != NetmodeID.MultiplayerClient)
+            if(Main.netMode != NetmodeID.MultiplayerClient) // Uses this check because the npcs are spawning the projectile
             {
                 Projectile.NewProjectile(
                     target.GetSource_OnHit(target),

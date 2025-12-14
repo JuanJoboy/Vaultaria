@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vaultaria.Common.Players;
 using Vaultaria.Content.Items.Accessories.Attunements;
 using Vaultaria.Content.Items.Accessories.Relics;
 using Vaultaria.Content.Items.Accessories.Shields;
@@ -74,26 +75,24 @@ namespace Vaultaria.Common.GlobalItems
 {
     public class NPCLoot : GlobalNPC
     {
-        private static bool ladyFistCollected = false;
-        private static bool swordPlosionCollected = false;
-
         public override void OnChatButtonClicked(NPC npc, bool firstButton)
         {
             base.OnChatButtonClicked(npc, firstButton);
 
             Player player = Main.player[Main.myPlayer];
+            QuestRewardsPlayer modPlayer = player.GetModPlayer<QuestRewardsPlayer>();
 
-            QuestItem(npc, 30, ladyFistCollected, player, ModContent.ItemType<LadyFist>());
-            QuestItem(npc, 50, swordPlosionCollected, player, ModContent.ItemType<SwordSplosion>());
+            QuestItem(npc, 30, ref modPlayer.ladyFistCollected, player, ModContent.ItemType<LadyFist>());
+            QuestItem(npc, 50, ref modPlayer.swordSplosionCollected, player, ModContent.ItemType<SwordSplosion>());
         }
 
-        private void QuestItem(NPC npc, int questNumber, bool condition, Player player, int item)
+        private void QuestItem(NPC npc, int questNumber, ref bool condition, Player player, int item)
         {
             if(npc.type == NPCID.Angler)
             {
-                if(Main.anglerQuest > questNumber && condition == false)
+                if(player.anglerQuestsFinished > questNumber && condition == false)
                 {
-                    Item.NewItem(player.GetSource_GiftOrReward(), player.Center, item);
+                    player.QuickSpawnItem(player.GetSource_GiftOrReward(), item, 1);
                     condition = true;
                 }
             }

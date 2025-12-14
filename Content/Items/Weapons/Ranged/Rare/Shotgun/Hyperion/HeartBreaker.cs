@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 3;
+            Item.damage = 6;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -50,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 12, 3, 2, 10);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 3, 2, 10);
 
             return false;
         }
@@ -73,7 +73,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.MultiShotText(tooltips, Item, 12);
+            Utilities.MultiShotText(tooltips, Item, 6);
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
             Utilities.Text(tooltips, Mod, "Tooltip3", "+50% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "I don't want to set the world on fire…");

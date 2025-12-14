@@ -92,82 +92,86 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                 {
                     Projectile.spriteDirection = -1; // Face left
                 }
+            
+                if(player.whoAmI == Main.myPlayer)
+                {
+                    if (EnemyFoundToShoot(target, 0, 120f))
+                    {
+                        // Calculates a normalized direction to the target and scales it to a bullet speed of 8
+                        Vector2 direction = target.Center - Projectile.Center;
+                        direction.Normalize();
+                        direction *= 8f;
+
+                        Projectile proj = Projectile.NewProjectileDirect(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            direction,
+                            ProjectileID.ChlorophyteBullet,
+                            Projectile.damage,
+                            0f,
+                            Projectile.owner
+                        );
+
+                        proj.DamageType = DamageClass.Summon;
+
+                        // Reset fire timer
+                        Projectile.ai[0] = 0f;
+                    }
+
+                    if (EnemyFoundToShoot(target, 1, 180f))
+                    {
+                        Vector2 direction = target.Center - Projectile.Center;
+                        direction.Normalize();
+                        direction *= 8f;
+
+                        Projectile.NewProjectileDirect(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            direction,
+                            ModContent.ProjectileType<ZimBullet>(),
+                            Projectile.damage,
+                            0f,
+                            Projectile.owner
+                        );
+
+                        Projectile.NewProjectileDirect(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            direction,
+                            ModContent.ProjectileType<GubBullet>(),
+                            Projectile.damage,
+                            0f,
+                            Projectile.owner
+                        );
+                        
+                        Projectile.ai[1] = 0f;
+                    }
+
+                    if (EnemyFoundToShoot(target, 2, 240f))
+                    {
+                        Vector2 direction = target.Center - Projectile.Center;
+                        direction.Normalize();
+                        direction *= 8f;
+
+                        Projectile proj = Projectile.NewProjectileDirect(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            direction,
+                            ProjectileID.ClusterRocketI,
+                            Projectile.damage,
+                            2f,
+                            Projectile.owner
+                        );
+                        
+                        proj.DamageType = DamageClass.Summon;
+
+                        Projectile.ai[2] = 0f;
+                    }
+                }
+
             }
             
-            int summonDamage = (int)(Projectile.damage * player.GetDamage(DamageClass.Summon).Multiplicative);
-
-            if (EnemyFoundToShoot(target, 0, 120f))
-            {
-                // Calculates a normalized direction to the target and scales it to a bullet speed of 8
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
-
-                Projectile proj = Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ProjectileID.ChlorophyteBullet,
-                    Projectile.damage,
-                    0f,
-                    Projectile.owner
-                );
-
-                proj.DamageType = DamageClass.Summon;
-
-                // Reset fire timer
-                Projectile.ai[0] = 0f;
-            }
-
-            if (EnemyFoundToShoot(target, 1, 180f))
-            {
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
-
-                Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ModContent.ProjectileType<ZimBullet>(),
-                    Projectile.damage,
-                    0f,
-                    Projectile.owner
-                );
-
-                Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ModContent.ProjectileType<GubBullet>(),
-                    Projectile.damage,
-                    0f,
-                    Projectile.owner
-                );
-                
-                Projectile.ai[1] = 0f;
-            }
-
-            if (EnemyFoundToShoot(target, 2, 240f))
-            {
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
-
-                Projectile proj = Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ProjectileID.ClusterRocketI,
-                    Projectile.damage,
-                    2f,
-                    Projectile.owner
-                );
-                
-                proj.DamageType = DamageClass.Summon;
-
-                Projectile.ai[2] = 0f;
-            }
+            Projectile.netUpdate = true;
         }
 
         private void AIGeneral(Player player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
@@ -185,7 +189,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             {
                 Projectile.position = idlePosition;
                 Projectile.velocity *= 0.1f;
-                Projectile.netUpdate = true;
             }
 
             float overlapVelocity = 0.04f;

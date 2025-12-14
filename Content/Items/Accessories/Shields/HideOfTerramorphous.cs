@@ -25,7 +25,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             Utilities.Text(tooltips, Mod, "Tooltip1", "+150 HP\n+10 Defense\nRegenerates health rapidly");
             Utilities.Text(tooltips, Mod, "Tooltip2", "When under 65% health, melee attacks do 80% bonus damage", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", "Deals 100% bonus thorn damage", Utilities.VaultarianColours.Information);
-            Utilities.Text(tooltips, Mod, "Tooltip4", "Releases a Fire Nova blast that deals 100 damage when health dips under 30%", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip4", $"Releases a Fire Nova blast that deals {Main.LocalPlayer.statDefense * 4} damage when health dips under 30%", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "...His hide turned the mightiest tame...");
         }
 
@@ -39,29 +39,32 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             player.thorns = 1f; // 100% thorn damage
 
             // Fire Nova
-            if (player.statLife <= (player.statLifeMax2 * 0.3f) && usage == 1)
+            if(player.whoAmI == Main.myPlayer)
             {
-                usage = 0;
-                int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(100);
-                float novaKnockback = 5f;
-                int novaType = ElementalID.LargeExplosiveProjectile;
+                if (player.statLife <= (player.statLifeMax2 * 0.3f) && usage == 1)
+                {
+                    usage = 0;
+                    int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(player.statDefense * 4);
+                    float novaKnockback = 5f;
+                    int novaType = ElementalID.LargeExplosiveProjectile;
 
-                Projectile.NewProjectile(
-                    player.GetSource_Accessory(Item),
-                    player.Center,
-                    Vector2.Zero,
-                    novaType,
-                    novaDamage,
-                    novaKnockback,
-                    player.whoAmI
-                );
+                    Projectile.NewProjectile(
+                        player.GetSource_Accessory(Item),
+                        player.Center,
+                        Vector2.Zero,
+                        novaType,
+                        novaDamage,
+                        novaKnockback,
+                        player.whoAmI
+                    );
 
-                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
-            }
+                    SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
+                }
 
-            if (player.statLife > (player.statLifeMax2 * 0.3f))
-            {
-                usage = 1;
+                if (player.statLife > (player.statLifeMax2 * 0.3f))
+                {
+                    usage = 1;
+                }
             }
         }
 

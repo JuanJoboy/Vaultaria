@@ -66,11 +66,20 @@ namespace Vaultaria.Common.Utilities
             int x = (Main.maxTilesX / 2) - (dimensions.X / 2);
             int y = (Main.maxTilesY / 2) - (dimensions.Y / 2);
 
+            x = Utils.Clamp(x, 10, Main.maxTilesX - dimensions.X - 10);
+            y = Utils.Clamp(y, 10, Main.maxTilesY - dimensions.Y - 10);
+
             Point16 pos = new Point16(x, y);
 
             GenFlags flags = GenFlags.NullsKeepGivenSlope;
 
+            // Used in multiplayer so that the network isnt being overloaded with alot of packets. Just make it singleplayer for loading and then make it multiplayer after the world has been made
+            int oldNet = Main.netMode;
+            Main.netMode = NetmodeID.SinglePlayer;
+
             StructureHelper.API.Generator.GenerateStructure(path, pos, mod, false, false, flags);
+
+            Main.netMode = oldNet;
         }
 
         private static void CanVaultBeBuilt(string path, Point16 pos, Mod mod, GenFlags flags, Point16 dimensions, bool spawnRandomly, int topLeftX = 0, int topLeftY = 0)
@@ -105,10 +114,19 @@ namespace Vaultaria.Common.Utilities
                 }
                 else
                 {
-                    topLeftX = Main.rand.Next(topLeftX - 200, topLeftX + 200 - dimensions.X);
-                    topLeftY = Main.rand.Next(topLeftY - 100, topLeftY + 100 - dimensions.Y);
+                    int minX = topLeftX - 200;
+                    int maxX = topLeftX + 200 - dimensions.X;
 
-                    GenerateVault(vault, topLeftX, topLeftY);
+                    int minY = topLeftY - 100;
+                    int maxY = topLeftY + 100 - dimensions.Y;
+
+                    if (minX < maxX && minY < maxY)
+                    {
+                        topLeftX = Main.rand.Next(minX, maxX);
+                        topLeftY = Main.rand.Next(minY, maxY);
+
+                        GenerateVault(vault, topLeftX, topLeftY);
+                    }
                 }
             }
         }

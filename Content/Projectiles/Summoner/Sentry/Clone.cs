@@ -7,7 +7,6 @@ using Vaultaria.Content.Projectiles.Shields;
 using Terraria.DataStructures;
 using Vaultaria.Common.Utilities;
 using Terraria.Audio;
-using System.Net.Mail;
 using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Melee;
@@ -15,6 +14,8 @@ using Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore;
+using Vaultaria.Content.Items.Weapons.Magic;
+using Vaultaria.Content.Items.Weapons.Ranged.Eridian;
 
 namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 {
@@ -48,10 +49,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override void AI()
         {
-            // Gets the owner and ensures that only one turret can spawn
-            Player owner = Main.player[Projectile.owner];
-            owner.UpdateMaxTurrets();
-            Item item = owner.HeldItem;
+            // Gets the player and ensures that only one turret can spawn
+            Player player = Main.player[Projectile.owner];
+
+            player.UpdateMaxTurrets();
+            Item item = player.HeldItem;
             ModItem modItem = item.ModItem;
             int projectile = ProjectileID.Bullet;
             int damage = 0;
@@ -62,24 +64,38 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             if (touchedTheGround == false)
             {
                 Projectile.velocity.Y += 15; // Fall to the ground
+                Projectile.netUpdate = true;
             }
 
-            if((item.DamageType == DamageClass.Ranged || item.DamageType == DamageClass.Magic) && item.type != ModContent.ItemType<DigiClone>() && item.type != ModContent.ItemType<BuzzAxe>() && item.type != ModContent.ItemType<BreathOfTerramorphous>())
+            bool notABadItem = item.type != ModContent.ItemType<DigiClone>() && item.type != ModContent.ItemType<EridianFabricator>() && item.type != ModContent.ItemType<BuzzAxe>() && item.type != ModContent.ItemType<BreathOfTerramorphous>() && item.type != ModContent.ItemType<DestroyersEye>() && item.type != ModContent.ItemType<WarriorsTail>() && item.type != ItemID.LastPrism;
+
+            if(item.DamageType == DamageClass.Ranged && notABadItem)
             {
-                if(item.ammo != AmmoID.Arrow && item.ammo != AmmoID.Bullet && item.ammo != AmmoID.CandyCorn && item.ammo != AmmoID.Coin && item.ammo != AmmoID.Dart && item.ammo != AmmoID.FallenStar && item.ammo != AmmoID.Flare && item.ammo != AmmoID.Gel && item.ammo != AmmoID.JackOLantern && item.ammo != AmmoID.NailFriendly && item.ammo != AmmoID.None && item.ammo != AmmoID.Rocket && item.ammo != AmmoID.Sand && item.ammo != AmmoID.Snowball && item.ammo != AmmoID.Solution && item.ammo != AmmoID.Stake && item.ammo != AmmoID.StyngerBolt || item.mana > 1)
-                {
-                    projectile = item.shoot;
-                }
-                else
+                if(item.ammo == AmmoID.Arrow || item.ammo == AmmoID.Bullet || item.ammo == AmmoID.CandyCorn || item.ammo == AmmoID.Coin || item.ammo == AmmoID.Dart || item.ammo == AmmoID.FallenStar || item.ammo == AmmoID.Flare || item.ammo == AmmoID.Gel || item.ammo == AmmoID.JackOLantern || item.ammo == AmmoID.NailFriendly || item.ammo == AmmoID.Rocket || item.ammo == AmmoID.Sand || item.ammo == AmmoID.Snowball || item.ammo == AmmoID.Solution || item.ammo == AmmoID.Stake || item.ammo == AmmoID.StyngerBolt || item.ammo == AmmoID.None)
                 {
                     // Gets the ammo in the players inventory
-                    owner.PickAmmo(item, out projectile, out float speed, out damage, out knockback, out int usedAmmo, true);
+                    player.PickAmmo(item, out projectile, out float speed, out damage, out knockback, out int usedAmmo, true);
                 }
             }
 
-            if(item.shoot <= ProjectileID.None)
+            if(item.DamageType == DamageClass.Magic && notABadItem)
+            {
+                if(item.mana > 0)
+                {
+                    projectile = item.shoot;
+                }   
+            }
+
+            if(item.shoot <= ProjectileID.None) // For weapons that dont shoot
             {
                 projectile = ProjectileID.Bullet;
+                damage = item.damage;
+            }
+
+            if(item.type == ItemID.None)
+            {
+                item.reuseDelay = 20;
+                item.useAnimation = 20;
             }
 
             NPC target = FindTarget();
@@ -91,29 +107,35 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
             if (Projectile.ai[1] <= 0 && EnemyFoundToShoot(target, 0, item.useAnimation))
             {
-                // Calculates a normalized direction to the target and scales it to a bullet speed of 8
-                Vector2 direction = target.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= item.shootSpeed;
-
-                if(modItem != null)
+                if(player.whoAmI == Main.myPlayer)
                 {
-                    modItem.Shoot(owner, (EntitySource_ItemUse_WithAmmo)owner.GetSource_ItemUse_WithPotentialAmmo(item, item.ammo), Projectile.Center, direction, projectile, item.damage + damage, item.knockBack + damage);
+                    // Calculates a normalized direction to the target and scales it to a bullet speed of 8
+                    Vector2 direction = target.Center - Projectile.Center;
+                    direction.Normalize();
+                    direction *= item.shootSpeed > 0 ? item.shootSpeed : 8; // If greater than 0, then it returns direction * item.shootSpeed, otherwise it returns direction * 8
+
+                    damage = damage > 0 ? damage : player.statDefense / 2; // If greater than 0, then it returns the regular damage, otherwise it returns your defense
+                    damage = (int)(damage * player.GetDamage(DamageClass.Generic).Additive);
+
+                    if(modItem != null)
+                    {
+                        modItem.Shoot(player, (EntitySource_ItemUse_WithAmmo)player.GetSource_ItemUse_WithPotentialAmmo(item, item.ammo), Projectile.Center, direction, projectile, damage, item.knockBack + knockback);
+                    }
+
+                    Projectile.NewProjectileDirect(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        direction,
+                        projectile,
+                        damage, // Uses the damage that was found from the ammo cause that already has scaling and stuff applied (but is slightly weaker which is honestly fair for how op digi clone is)
+                        item.knockBack + knockback,
+                        Projectile.owner
+                    );
+
+                    // Reset fire timer
+                    Projectile.ai[0] = 0f;
+                    Projectile.ai[1] = item.reuseDelay;
                 }
-
-                Projectile.NewProjectileDirect(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    projectile,
-                    item.damage + damage,
-                    item.knockBack + knockback,
-                    Projectile.owner
-                );
-
-                // Reset fire timer
-                Projectile.ai[0] = 0f;
-                Projectile.ai[1] = item.reuseDelay;
             }
         }
 
@@ -121,8 +143,8 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
         {
             base.PostDraw(lightColor);
 
-            Player owner = Main.player[Projectile.owner];
-            Item item = owner.HeldItem;
+            Player player = Main.player[Projectile.owner];
+            Item item = player.HeldItem;
             Vector2 offset = new Vector2(10, 0);
 
 			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -204,6 +226,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;
                 }
             }
@@ -214,8 +237,9 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Projectile.velocity.Y = 0f; // Stop falling
-            Projectile.position.Y += 10f; // Lower it by an additional 16 pixels since it stays in the air for some reason
+            Projectile.position.Y += 10f; // Lower it by an additional 10 pixels since it stays in the air for some reason
             touchedTheGround = true;
+            Projectile.netUpdate = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
         }
     }

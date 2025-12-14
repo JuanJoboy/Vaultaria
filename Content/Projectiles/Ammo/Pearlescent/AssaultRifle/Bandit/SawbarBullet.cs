@@ -48,37 +48,41 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
 
             ChangeExplosion();
 
-            if (Projectile.ai[0] == 1f)
+            if(Projectile.owner == Main.myPlayer)
             {
-                if (Projectile.timeLeft <= 560)
+                if (Projectile.ai[0] == 1f)
                 {
-                    const int numberOfClones = 10;
-                    const float totalSpreadDegrees = 270;
-                    float baseAngle = Projectile.velocity.ToRotation();
-                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
-
-                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
-
-                    for (int i = 0; i < numberOfClones; i++)
+                    if (Projectile.timeLeft <= 560)
                     {
-                        float newAngle = baseAngle + (i * angleIncrement);
+                        const int numberOfClones = 10;
+                        const float totalSpreadDegrees = 270;
+                        float baseAngle = Projectile.velocity.ToRotation();
+                        float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
 
-                        Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+                        baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
 
-                        Projectile.NewProjectile(
-                            Projectile.GetSource_FromThis(),
-                            Projectile.Center,
-                            newVelocity,
-                            incendiaryProjectile,
-                            65,
-                            2.3f,
-                            Projectile.owner,
-                            0f,
-                            0f
-                        );
+                        for (int i = 0; i < numberOfClones; i++)
+                        {
+                            float newAngle = baseAngle + (i * angleIncrement);
+
+                            Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+
+                            Projectile.NewProjectile(
+                                Projectile.GetSource_FromThis(),
+                                Projectile.Center,
+                                newVelocity,
+                                incendiaryProjectile,
+                                65,
+                                2.3f,
+                                Projectile.owner,
+                                0f,
+                                0f
+                            );
+                        }
+
+                        Projectile.ai[0] = 0f;
+                        Projectile.netUpdate = true;
                     }
-
-                    Projectile.ai[0] = 0f;
                 }
             }
         }

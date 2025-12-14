@@ -90,14 +90,17 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 
         private void Shoot()
         {
-            Projectile.NewProjectile(
-                Projectile.GetSource_FromThis(),
-                Projectile.Center,
-                Projectile.velocity,
-                ProjectileID.ApprenticeStaffT3Shot,
-                Projectile.damage,
-                Projectile.knockBack
-            );
+            if(Projectile.owner == Main.myPlayer)
+            {
+                Projectile.NewProjectile(
+                    Projectile.GetSource_FromThis(),
+                    Projectile.Center,
+                    Projectile.velocity,
+                    ProjectileID.ApprenticeStaffT3Shot,
+                    Projectile.damage,
+                    Projectile.knockBack
+                );   
+            }
         }
 
         private void RepeatedlyShoot()

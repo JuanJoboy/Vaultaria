@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-8f, 0f);
+            return new Vector2(-8f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -59,8 +59,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
                 damage,
                 knockback,
                 player.whoAmI,
-                0f,
-                0f,
                 1f
             );
 

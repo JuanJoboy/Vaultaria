@@ -30,7 +30,7 @@ namespace Vaultaria.Common.Systems
 					unlockedClaptrapSpawn = true;
 					NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
 					NetMessage.SendData(MessageID.WorldData);
-				}   
+				}
             }
         }
 

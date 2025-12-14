@@ -96,31 +96,34 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Maliwan
 
         private void CreateFourProjectiles(Vector2 oldVelocity)
         {
-            int horizontal = 30;
-            int vertical = 30;
-
-            // Backwards
-            SpawnChildren(horizontal, -vertical, -oldVelocity / 3);
-            SpawnChildren(horizontal * 2, -vertical * 2, -oldVelocity / 2);
-
-            // Forwards
-            if(Projectile.direction == 1)
+            if(Projectile.owner == Main.myPlayer)
             {
-                float oldVelX = oldVelocity.X;
-                oldVelocity.X = oldVelocity.Y;
-                oldVelocity.Y = -oldVelX;
-                Projectile.rotation = oldVelocity.ToRotation() + MathHelper.ToRadians(90f);
-            }
-            else
-            {
-                float oldVelX = oldVelocity.X;
-                oldVelocity.X = -oldVelocity.Y;
-                oldVelocity.Y = oldVelX;
-                Projectile.rotation = oldVelocity.ToRotation() - MathHelper.ToRadians(90f);
-            }
+                int horizontal = 30;
+                int vertical = 30;
 
-            SpawnChildren(horizontal, -vertical, oldVelocity / 3);
-            SpawnChildren(horizontal * 2, -vertical * 2, oldVelocity / 2);
+                // Backwards
+                SpawnChildren(horizontal, -vertical, -oldVelocity / 3);
+                SpawnChildren(horizontal * 2, -vertical * 2, -oldVelocity / 2);
+
+                // Forwards
+                if(Projectile.direction == 1)
+                {
+                    float oldVelX = oldVelocity.X;
+                    oldVelocity.X = oldVelocity.Y;
+                    oldVelocity.Y = -oldVelX;
+                    Projectile.rotation = oldVelocity.ToRotation() + MathHelper.ToRadians(90f);
+                }
+                else
+                {
+                    float oldVelX = oldVelocity.X;
+                    oldVelocity.X = -oldVelocity.Y;
+                    oldVelocity.Y = oldVelX;
+                    Projectile.rotation = oldVelocity.ToRotation() - MathHelper.ToRadians(90f);
+                }
+
+                SpawnChildren(horizontal, -vertical, oldVelocity / 3);
+                SpawnChildren(horizontal * 2, -vertical * 2, oldVelocity / 2);
+            }
         }
 
         private void SpawnChildren(int posX, int posY, Vector2 vel)
@@ -128,7 +131,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Maliwan
             Vector2 positionToGetTo = Projectile.position + new Vector2(posX, posY);
             Vector2 projectileTraveling = Vector2.Lerp(Projectile.position, positionToGetTo, 0.1f);
 
-            Projectile.NewProjectileDirect(Projectile.GetSource_Death(), projectileTraveling, vel, ModContent.ProjectileType<PimpernelChildBullet>(), Projectile.damage, 2);
+            Projectile.NewProjectileDirect(Projectile.GetSource_Death(), projectileTraveling, vel, ModContent.ProjectileType<PimpernelChildBullet>(), Projectile.damage, 2, Projectile.owner);
         }
     }
 }

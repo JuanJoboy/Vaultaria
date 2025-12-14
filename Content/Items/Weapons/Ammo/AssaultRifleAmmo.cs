@@ -16,7 +16,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
         public override void SetDefaults()
         {
             // Size
-            Item.Size = new Vector2(8, 8);
+            Item.Size = new Vector2(35, 30);
 
             // Damage
             Item.damage = 0; // Does no damage. It's just used as the consumable ammo for all AR's

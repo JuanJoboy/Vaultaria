@@ -82,30 +82,35 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
 
             if (PlayerFoundToHeal(player, 0, 60f))
             {
-                // Calculates a normalized direction to the target and scales it to a bullet speed of 8
-                Vector2 direction = player.Center - Projectile.Center;
-                direction.Normalize();
-                direction *= 8f;
+                if(player.whoAmI == Main.myPlayer)
+                {
+                    // Calculates a normalized direction to the target and scales it to a bullet speed of 8
+                    Vector2 direction = player.Center - Projectile.Center;
+                    direction.Normalize();
+                    direction *= 8f;
 
-                // Heal the player
-                int healAmount = 5;
+                    // Heal the player
+                    int healAmount = 5;
 
-                // Fire a custom "heal line" projectile
-                Projectile.NewProjectile(
-                    Projectile.GetSource_FromThis(),
-                    Projectile.Center,
-                    direction,
-                    ProjectileID.SpiritHeal,
-                    0,
-                    0f,
-                    Projectile.owner,
-                    player.whoAmI, // pass target player
-                    healAmount     // pass amount (for visuals)
-                );
+                    // Fire a custom "heal line" projectile
+                    Projectile.NewProjectile(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        direction,
+                        ProjectileID.SpiritHeal,
+                        0,
+                        0f,
+                        Projectile.owner,
+                        player.whoAmI, // pass target player
+                        healAmount     // pass amount (for visuals)
+                    );
 
-                // Reset fire timer
-                Projectile.ai[0] = 0f;
+                    // Reset fire timer
+                    Projectile.ai[0] = 0f;
+                }
             }
+
+            Projectile.netUpdate = true;
         }
 
         private void AIGeneral(Player player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
@@ -123,7 +128,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             {
                 Projectile.position = idlePosition;
                 Projectile.velocity *= 0.1f;
-                Projectile.netUpdate = true;
             }
 
             float overlapVelocity = 0.04f;
@@ -271,6 +275,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;   
                 }
             }

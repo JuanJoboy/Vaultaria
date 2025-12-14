@@ -41,7 +41,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             Item.UseSound = SoundID.Item46;
 
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<RolandTurret>();
         }
 
@@ -49,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         {
             player.AddBuff(Item.buffType, 2);
 
-            var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, Main.myPlayer);
+            var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, player.whoAmI);
             projectile.originalDamage = Item.damage;
 
             return false;

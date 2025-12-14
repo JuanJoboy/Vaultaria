@@ -62,9 +62,25 @@ namespace Vaultaria.Content.Projectiles.Magic
                         {
                             SetElements(player, target);
                         }
+    
+                        if(NPC.downedFishron)
+                        {
+                            PullInEnemies(target);
+                        }
                     }
 
                     Projectile.Kill();
+                }
+            }
+        }
+
+        private void PullInEnemies(NPC target)
+        {
+            foreach(NPC npc in Main.ActiveNPCs)
+            {
+                if(Vector2.Distance(npc.Center, target.Center) < 1000 && !npc.townNPC)
+                {
+                    Utilities.MoveToPosition(npc, target.Center, 40f, 6f);
                 }
             }
         }

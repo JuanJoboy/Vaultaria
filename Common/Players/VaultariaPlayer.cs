@@ -43,13 +43,14 @@ using Vaultaria.Common.Systems;
 using System.Linq;
 using static System.Array;
 using static System.Linq.Enumerable;
+using Terraria.Graphics;
 
 namespace Vaultaria.Common.Players
 {
     public class VaultariaPlayer : ModPlayer
     {
         public NPC.HitInfo globalNpcHitInfo;
-        private static int numTimesPenetrated = 0;
+        private int numTimesPenetrated = 0;
 
         // 1. Persistence Flag: Saved with the character file.
         public bool hasInitialized = false;
@@ -68,7 +69,7 @@ namespace Vaultaria.Common.Players
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
                 Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<CopperBullet>(), 600);
+                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<TinBullet>(), 600);
 
                 // Set the flag to true so this code doesn't run again on the next login.
                 hasInitialized = true;
@@ -150,6 +151,32 @@ namespace Vaultaria.Common.Players
             Immolate();
         }
 
+        public override void PostUpdateBuffs()
+        {
+            base.PostUpdateBuffs();
+
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
+            if (config.KeepMinionSizeTheSameWhenGammaBursting == true)
+            {
+                return;
+            }
+
+            foreach (Projectile p in Main.ActiveProjectiles)
+            {
+                if (p.owner == Player.whoAmI && (p.minion || p.sentry))
+                {
+                    float size = Player.HasBuff<GammaBurstBuff>() ? 2f : 1f;
+
+                    if (p.scale != size)
+                    {
+                        p.scale = size;
+                        p.netUpdate = true;
+                    }
+                }
+            }
+        }
+
         public override void ResetEffects()
         {
             base.ResetEffects();
@@ -220,7 +247,7 @@ namespace Vaultaria.Common.Players
 
             if(IsHolding(ModContent.ItemType<Oracle>()))
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (proj.owner == Main.myPlayer)
                 {
                     proj.penetrate = 2;
 
@@ -243,12 +270,6 @@ namespace Vaultaria.Common.Players
                 {
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.75f, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 180);
                 }
-            }
-
-            if(proj.active && proj.owner == Player.whoAmI && (proj.minion || proj.sentry) && Player.HasBuff<GammaBurstBuff>())
-            {
-                hit.SourceDamage *= 2;
-                ElementalProjectile.SetElementOnNPC(target, hit, 1f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 180);
             }
 
             Salvation(hit);
@@ -574,35 +595,35 @@ namespace Vaultaria.Common.Players
             base.OnHitAnything(x, y, victim);
 
             float multiplier = 0.2f;
-            int buffTime = 60;
+            int buffTime = 180;
 
             if (victim is NPC npcVictim)
             {
-                if (IsWearing(ModContent.ItemType<BlightTiger>()))
+                if (IsWearing(ModContent.ItemType<BlightTiger>()) && !npcVictim.HasBuff(ElementalID.CorrosiveBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<ColdHearted>()))
+                if (IsWearing(ModContent.ItemType<ColdHearted>()) && !npcVictim.HasBuff(ElementalID.CryoBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.CryoProjectile, ElementalID.CryoBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<CorruptedSpirit>()))
+                if (IsWearing(ModContent.ItemType<CorruptedSpirit>()) && !npcVictim.HasBuff(ElementalID.SlagBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<MindBlown>()))
+                if (IsWearing(ModContent.ItemType<MindBlown>()) && !npcVictim.HasBuff(ElementalID.ExplosiveBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<Shockra>()))
+                if (IsWearing(ModContent.ItemType<Shockra>()) && !npcVictim.HasBuff(ElementalID.ShockBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.ShockProjectile, ElementalID.ShockBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<SoulFire>()))
+                if (IsWearing(ModContent.ItemType<SoulFire>()) && !npcVictim.HasBuff(ElementalID.IncendiaryBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
                 }
-                if (IsWearing(ModContent.ItemType<NuclearArms>()))
+                if (IsWearing(ModContent.ItemType<NuclearArms>()) && !npcVictim.HasBuff(ElementalID.RadiationBuff))
                 {
                     ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
                 }
@@ -1125,7 +1146,7 @@ namespace Vaultaria.Common.Players
         {
             if(IsWearing(ModContent.ItemType<HuntersEye>()) || IsWearing(ModContent.ItemType<LegendaryTrainer>()))
             {
-                if(!npc.boss && proj.active && proj.owner == Player.whoAmI && (proj.minion || proj.sentry))
+                if(!npc.boss && proj.active && proj.owner == Main.myPlayer && (proj.minion || proj.sentry))
                 {
                     float bonusCrit = Utilities.Utilities.SkillBonus(150f, 0.05f);
 

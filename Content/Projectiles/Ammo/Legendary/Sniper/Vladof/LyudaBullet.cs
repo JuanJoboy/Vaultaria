@@ -38,38 +38,42 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
 
             Projectile.rotation = Projectile.velocity.ToRotation();
 
-            if (Projectile.ai[0] == 1f)
+            if(Projectile.owner == Main.myPlayer)
             {
-                if (Projectile.timeLeft == 580)
+                if (Projectile.ai[0] == 1f)
                 {
-                    const int numberOfClones = 3;
-                    const float totalSpreadDegrees = 10f;
-                    float baseAngle = Projectile.velocity.ToRotation();
-                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
-
-                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
-
-                    for (int i = 0; i < numberOfClones; i++)
+                    if (Projectile.timeLeft == 580)
                     {
-                        float newAngle = baseAngle + (i * angleIncrement);
+                        const int numberOfClones = 3;
+                        const float totalSpreadDegrees = 10f;
+                        float baseAngle = Projectile.velocity.ToRotation();
+                        float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
 
-                        Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+                        baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
 
-                        Projectile.NewProjectile(
-                            Projectile.GetSource_FromThis(),
-                            Projectile.Center,
-                            newVelocity,
-                            Projectile.type, 
-                            80,
-                            2.3f,
-                            Projectile.owner,
-                            0f,
-                            0f
-                        );
+                        for (int i = 0; i < numberOfClones; i++)
+                        {
+                            float newAngle = baseAngle + (i * angleIncrement);
+
+                            Vector2 newVelocity = newAngle.ToRotationVector2() * Projectile.velocity.Length();
+
+                            Projectile.NewProjectile(
+                                Projectile.GetSource_FromThis(),
+                                Projectile.Center,
+                                newVelocity,
+                                Projectile.type, 
+                                80,
+                                2.3f,
+                                Projectile.owner,
+                                0f,
+                                0f
+                            );
+                        }
+
+                        Projectile.ai[0] = 0f;
+                        Projectile.netUpdate = true;
                     }
-
-                    Projectile.ai[0] = 0f;
-                }
+                }                
             }
         }
     }

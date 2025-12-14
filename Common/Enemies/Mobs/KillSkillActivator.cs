@@ -44,6 +44,18 @@ public class KillSkillActivator : GlobalNPC
         }
     }
 
+    public override void OnKill(NPC npc)
+    {
+        base.OnKill(npc);
+
+        Player? player = GetPlayer();
+
+        if(player != null)
+        {
+            ActivateAllKillSkills(player);
+        }
+    }
+
     private Player? GetPlayer()
     {
         if(lastRealHitPlayer >= 0 && lastRealHitPlayer < Main.maxPlayers)

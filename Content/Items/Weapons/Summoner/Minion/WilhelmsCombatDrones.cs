@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             Item.UseSound = SoundID.Item82;
 
             Item.noMelee = true;
-            Item.shootSpeed = 4f;
+            Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<Wolf>();
             Item.shoot = ModContent.ProjectileType<Saint>();
             Item.buffType = ModContent.BuffType<WolfAndSaint>();
@@ -59,8 +59,8 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
         {
             player.AddBuff(Item.buffType, 2);
 
-            Projectile.NewProjectileDirect(source, position, velocity, ModContent.ProjectileType<Saint>(), damage, Main.myPlayer);
-            Projectile.NewProjectileDirect(source, position, velocity, ModContent.ProjectileType<Wolf>(), damage, Main.myPlayer);
+            Projectile.NewProjectileDirect(source, position, velocity, ModContent.ProjectileType<Wolf>(), damage, player.whoAmI);
+            Projectile.NewProjectileDirect(source, position, velocity, ModContent.ProjectileType<Saint>(), damage, player.whoAmI);
             
             return false;
         }

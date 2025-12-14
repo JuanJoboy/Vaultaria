@@ -16,33 +16,5 @@ namespace Vaultaria.Content.Buffs.PotionEffects
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
         }
-
-        public override void Update(Player player, ref int buffIndex)
-        {
-            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
-
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile p = Main.projectile[i];
-
-                if(p.active && (p.owner == player.whoAmI) && (p.minion || p.sentry))
-                {
-                    if(config.KeepMinionSizeTheSameWhenGammaBursting == false)
-                    {
-                        if(player.HasBuff<GammaBurstBuff>())
-                        {
-                            p.scale = 2;
-                        }
-                        else
-                        {
-                            p.scale = 1;
-                        }
-
-                        p.netUpdate = true;
-                        NetMessage.SendData(MessageID.SyncProjectile, number: p.whoAmI);
-                    }
-                }
-            }
-        }
     }
 }

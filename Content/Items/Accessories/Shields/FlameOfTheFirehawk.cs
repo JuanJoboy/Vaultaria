@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+4 Defense");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Grants immunity to Incendiary damage", Utilities.VaultarianColours.Incendiary);
-            Utilities.Text(tooltips, Mod, "Tooltip3", "Continually releases Fire Nova blasts that deals 40 damage when under 30% health", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip3", $"Continually releases Fire Nova blasts that deals {Main.LocalPlayer.statDefense * 2} damage when under 30% health", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "From the ashes she will rise.");
         }
 
@@ -54,33 +54,36 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                 novaCooldown--;
             }
 
-            // 2. Check the condition for triggering the nova
-            //    - Player's health is below or equal to 30% of max health
-            //    - The cooldown timer has reached 0 (or less)
-            if (player.statLife <= (player.statLifeMax2 * 0.3f) && novaCooldown <= 0)
+            if(player.whoAmI == Main.myPlayer)
             {
-                player.AddBuff(BuffID.Inferno, 60); // Inferno
-                // 3. If conditions are met, spawn the nova
-                int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(50);
-                float novaKnockback = 5f;
-                int novaType = ElementalID.LargeExplosiveProjectile; // Using vanilla explosion projectile
+                // 2. Check the condition for triggering the nova
+                //    - Player's health is below or equal to 30% of max health
+                //    - The cooldown timer has reached 0 (or less)
+                if (player.statLife <= (player.statLifeMax2 * 0.3f) && novaCooldown <= 0)
+                {
+                    player.AddBuff(BuffID.Inferno, 60); // Inferno
+                    // 3. If conditions are met, spawn the nova
+                    int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(player.statDefense * 2);
+                    float novaKnockback = 5f;
+                    int novaType = ElementalID.LargeExplosiveProjectile; // Using vanilla explosion projectile
 
-                // Spawn the nova projectile
-                // Projectile.NewProjectile
-                Projectile.NewProjectile(
-                    player.GetSource_Accessory(Item), // Source: This accessory
-                    player.Center,                     // Spawn at player's center
-                    Vector2.Zero,                      // Nova explosions usually have no initial velocity
-                    novaType,                          // The projectile type (explosion)
-                    novaDamage,                        // Damage of the nova
-                    novaKnockback,                     // Knockback of the nova
-                    player.whoAmI                      // Owner is the player
-                );
+                    // Spawn the nova projectile
+                    // Projectile.NewProjectile
+                    Projectile.NewProjectile(
+                        player.GetSource_Accessory(Item), // Source: This accessory
+                        player.Center,                     // Spawn at player's center
+                        Vector2.Zero,                      // Nova explosions usually have no initial velocity
+                        novaType,                          // The projectile type (explosion)
+                        novaDamage,                        // Damage of the nova
+                        novaKnockback,                     // Knockback of the nova
+                        player.whoAmI                      // Owner is the player
+                    );
 
-                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
+                    SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode);
 
-                // 4. Reset the cooldown timer after spawning the nova
-                novaCooldown = 60; // 120 ticks = 2 seconds
+                    // 4. Reset the cooldown timer after spawning the nova
+                    novaCooldown = 60; // 120 ticks = 2 seconds
+                }
             }
         }
 

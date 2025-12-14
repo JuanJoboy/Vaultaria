@@ -78,6 +78,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             AIGeneral(player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
             AISearchForTarget(player, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             AIMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+            Projectile.netUpdate = true;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -103,7 +104,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             {
                 Projectile.position = idlePosition;
                 Projectile.velocity *= 0.1f;
-                Projectile.netUpdate = true;
             }
 
             float overlapVelocity = 0.04f;

@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             Projectile.damage = 0;
 
             // Bullet Config
-            Projectile.timeLeft = 900;
+            Projectile.timeLeft = 360;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Ranged;
@@ -70,10 +70,15 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
                 direction.Normalize();
                 direction *= 8f;
 
-                CloneShots(Projectile.GetSource_FromThis(), Projectile.Center, direction, ProjectileID.ChlorophyteBullet, 15, 2f, 8, 5f);
+                if(Projectile.owner == Main.myPlayer)
+                {
+                    CloneShots(Projectile.GetSource_FromThis(), Projectile.Center, direction, ProjectileID.ChlorophyteBullet, 15, 2f, 8, 5f);
+                }
 
                 Projectile.ai[0] = 0f;
             }
+
+            Projectile.netUpdate = true;
         }
 
         private void CloneShots(IEntitySource source, Vector2 position, Vector2 velocity, int type, int damage, float knockback, int numberOfAdditionalBullets, float degreeSpread)
@@ -130,6 +135,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;
                 }
             }
@@ -151,6 +157,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             {
                 Projectile.spriteDirection = -1; // Face left
             }
+
+            Projectile.netUpdate = true;
         }
 
         public override void OnKill(int timeLeft)
@@ -168,14 +176,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Explode();
-            return base.OnTileCollide(oldVelocity);
-        }
-
-        private void Explode()
-        {
             Projectile.damage = 250;
-            SetElementOnTile(Projectile, explosiveMultiplier, Main.player[Main.myPlayer], explosiveProjectile);
+            
+            Player player = Main.player[Projectile.owner];
+            SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+
+            return base.OnTileCollide(oldVelocity);
         }
 
         public override List<string> GetElement()

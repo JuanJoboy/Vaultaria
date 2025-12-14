@@ -44,25 +44,25 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
             if(NoBossIsActive())
             {
-                ResetBossDownedSystems();
+                ResetVaultMonsterSystems();
                 Utilities.SpawnBoss(player, NPCID.KingSlime);
             }
 
             return base.RightClick(i, j);
         }
 
-        private void ResetBossDownedSystems()
+        private void ResetVaultMonsterSystems()
         {
-            BossDownedSystem.vaultKingSlime = false;
-            BossDownedSystem.vaultKingSlimeDR = false;
-            BossDownedSystem.vaultEyeOfCthulhu = false;
-            BossDownedSystem.vaultEyeOfCthulhuDR = false;
-            BossDownedSystem.vaultQueenBee = false;
-            BossDownedSystem.vaultQueenBeeDR = false;
-            BossDownedSystem.vaultDeerClops = false;
-            BossDownedSystem.vaultDeerClopsDR = false;
-            BossDownedSystem.vaultSkeletron = false;
-            BossDownedSystem.vaultSkeletronDR = false;
+            VaultMonsterSystem.vaultKingSlime = false;
+            VaultMonsterSystem.vaultKingSlimeDR = false;
+            VaultMonsterSystem.vaultEyeOfCthulhu = false;
+            VaultMonsterSystem.vaultEyeOfCthulhuDR = false;
+            VaultMonsterSystem.vaultQueenBee = false;
+            VaultMonsterSystem.vaultQueenBeeDR = false;
+            VaultMonsterSystem.vaultDeerClops = false;
+            VaultMonsterSystem.vaultDeerClopsDR = false;
+            VaultMonsterSystem.vaultSkeletron = false;
+            VaultMonsterSystem.vaultSkeletronDR = false;
         }
 
         private bool NoBossIsActive()

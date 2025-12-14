@@ -53,22 +53,26 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
 
                 if (EnemyFoundToShoot(target))
                 {
-                    // Calculates a normalized direction to the target and scales it to a bullet speed of 8
-                    Vector2 direction = target.Center - Projectile.Center;
-                    direction.Normalize();
-                    direction *= 8f;
+                    if(Projectile.owner == Main.myPlayer)
+                    {
+                        // Calculates a normalized direction to the target and scales it to a bullet speed of 8
+                        Vector2 direction = target.Center - Projectile.Center;
+                        direction.Normalize();
+                        direction *= 8f;
 
-                    Projectile.NewProjectile(
-                        Projectile.GetSource_FromThis(),
-                        Projectile.Center,
-                        direction,
-                        ModContent.ProjectileType<ImpalerSpike>(),
-                        200,
-                        2f,
-                        Projectile.owner
-                    );
+                        Projectile.NewProjectile(
+                            Projectile.GetSource_FromThis(),
+                            Projectile.Center,
+                            direction,
+                            ModContent.ProjectileType<ImpalerSpike>(),
+                            200,
+                            2f,
+                            Projectile.owner
+                        );
 
-                    Projectile.ai[0] = 0f;
+                        Projectile.ai[0] = 0f;
+                        Projectile.netUpdate = true;
+                    }
                 }
             }
         }
@@ -113,6 +117,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
                         Projectile.spriteDirection = -1; // Face left
                     }
 
+                    Projectile.netUpdate = true;
                     return true;
                 }
             }

@@ -44,35 +44,35 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
             if(NoBossIsActive())
             {
-                ResetBossDownedSystems();
+                ResetVaultMonsterSystems();
                 Utilities.SpawnBoss(player, NPCID.QueenSlimeBoss);
             }
 
             return base.RightClick(i, j);
         }
 
-        private void ResetBossDownedSystems()
+        private void ResetVaultMonsterSystems()
         {
-            BossDownedSystem.vaultQueenSlime = false;
-            BossDownedSystem.vaultQueenSlimeDR = false;
-            BossDownedSystem.vaultTwins = false;
-            BossDownedSystem.vaultTwinsDR = false;
-            BossDownedSystem.vaultSkeletronPrime = false;
-            BossDownedSystem.vaultSkeletronPrimeDR = false;
-            BossDownedSystem.vaultBetsy = false;
-            BossDownedSystem.vaultBetsyDR = false;
-            BossDownedSystem.vaultPlantera = false;
-            BossDownedSystem.vaultPlanteraDR = false;
-            BossDownedSystem.vaultGolem = false;
-            BossDownedSystem.vaultGolemDR = false;
-            BossDownedSystem.vaultDukeFishron = false;
-            BossDownedSystem.vaultDukeFishronDR = false;
-            BossDownedSystem.vaultEmpress = false;
-            BossDownedSystem.vaultEmpressDR = false;
-            BossDownedSystem.vaultLunaticCultist = false;
-            BossDownedSystem.vaultLunaticCultistDR = false;
-            BossDownedSystem.vaultMoonLord = false;
-            BossDownedSystem.vaultMoonLordDR = false;
+            VaultMonsterSystem.vaultQueenSlime = false;
+            VaultMonsterSystem.vaultQueenSlimeDR = false;
+            VaultMonsterSystem.vaultTwins = false;
+            VaultMonsterSystem.vaultTwinsDR = false;
+            VaultMonsterSystem.vaultSkeletronPrime = false;
+            VaultMonsterSystem.vaultSkeletronPrimeDR = false;
+            VaultMonsterSystem.vaultBetsy = false;
+            VaultMonsterSystem.vaultBetsyDR = false;
+            VaultMonsterSystem.vaultPlantera = false;
+            VaultMonsterSystem.vaultPlanteraDR = false;
+            VaultMonsterSystem.vaultGolem = false;
+            VaultMonsterSystem.vaultGolemDR = false;
+            VaultMonsterSystem.vaultDukeFishron = false;
+            VaultMonsterSystem.vaultDukeFishronDR = false;
+            VaultMonsterSystem.vaultEmpress = false;
+            VaultMonsterSystem.vaultEmpressDR = false;
+            VaultMonsterSystem.vaultLunaticCultist = false;
+            VaultMonsterSystem.vaultLunaticCultistDR = false;
+            VaultMonsterSystem.vaultMoonLord = false;
+            VaultMonsterSystem.vaultMoonLordDR = false;
         }
 
         private bool NoBossIsActive()

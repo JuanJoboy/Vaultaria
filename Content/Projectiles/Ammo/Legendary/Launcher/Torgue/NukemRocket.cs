@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (Projectile.owner != target.whoAmI)
+            if (Projectile.owner != target.whoAmI) // So i dont hit myself
             {
                 if (SetElementalChance(elementalChance))
                 {
