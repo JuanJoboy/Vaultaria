@@ -27,6 +27,11 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 			new Vault2GenPass()
 		};
 
+		public override void OnEnter()
+		{
+			SubworldSystem.hideUnderworld = false;
+		}
+
         public override void OnLoad()
         {
             base.OnLoad();
@@ -46,18 +51,14 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 
 			if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-				foreach(Player player in Main.ActivePlayers)
+				Main.dayTime = false;
+				Main.time = Main.nightLength;
+				Main.dayRate = 0;
+
+				if(VaultMonsterSystem.vaultMoonLord && armouryOpened == false)
 				{
-					Main.dayTime = false;
-					Main.time = Main.nightLength;
-					Main.dayRate = 0;
-
-					Utilities.Utilities.SpawnHardmodeBosses(player);
-
-					if(VaultMonsterSystem.vaultQueenSlime && armouryOpened == false)
-					{
-						FindArmoury();
-					}
+					Utilities.Utilities.startedVault2BossRush = false;
+					FindArmoury();
 				}
             }
 		}

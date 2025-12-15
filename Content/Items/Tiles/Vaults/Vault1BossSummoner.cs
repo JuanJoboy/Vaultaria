@@ -40,13 +40,13 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
         public override bool RightClick(int i, int j)
         {
-            Player player = Main.LocalPlayer;
-
             if(NoBossIsActive())
             {
                 ResetVaultMonsterSystems();
-                Utilities.SpawnBoss(player, NPCID.KingSlime);
+                Utilities.startedVault1BossRush = true;
             }
+
+            NetMessage.SendData(MessageID.WorldData);
 
             return base.RightClick(i, j);
         }
@@ -67,18 +67,23 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
         private bool NoBossIsActive()
         {
-            if(Utilities.bossTimer < Utilities.countdown)
+            if(Utilities.startedVault1BossRush)
             {
                 return false;
             }
 
-            foreach(NPC n in Main.ActiveNPCs)
-            {
-                if(n.type == NPCID.KingSlime || n.type == NPCID.EyeofCthulhu || n.type == NPCID.QueenBee || n.type == NPCID.Deerclops || n.type == NPCID.SkeletronHead || n.type == NPCID.SkeletronHand)
-                {
-                    return false;
-                }
-            }
+            // if(Utilities.bossTimer < Utilities.countdown)
+            // {
+            //     return false;
+            // }
+
+            // foreach(NPC n in Main.ActiveNPCs)
+            // {
+            //     if(n.type == NPCID.KingSlime || n.type == NPCID.EyeofCthulhu || n.type == NPCID.QueenBee || n.type == NPCID.Deerclops || n.type == NPCID.SkeletronHead || n.type == NPCID.SkeletronHand)
+            //     {
+            //         return false;
+            //     }
+            // }
 
             return true;
         }

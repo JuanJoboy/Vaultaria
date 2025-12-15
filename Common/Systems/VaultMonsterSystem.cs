@@ -1,14 +1,23 @@
 ﻿using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Vaultaria.Common.Configs;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
+using Vaultaria.Content.Items.Placeables.Vaults;
 
 namespace Vaultaria.Common.Systems
 {
 	public class VaultMonsterSystem : ModSystem
 	{
+        // A timer that counts down from 60 to 0 and then spawns the next boss
+        private static int countdown = 600;
+        private static int bossTimer = countdown;
+
         public static bool vaultKingSlime = false;
         public static bool vaultKingSlimeDR = false;
         public static bool vaultEyeOfCthulhu = false;
@@ -47,33 +56,189 @@ namespace Vaultaria.Common.Systems
 
 			if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-				if (unlockedClaptrapSpawn == false)
-				{
-					int spawnX = Main.spawnTileX * 16;
-					int spawnY = Main.spawnTileY * 16;
-					NPC claptrap = NPC.NewNPCDirect(NPC.GetSource_None(), new Vector2(spawnX, spawnY), ModContent.NPCType<Claptrap>());
-					
-					unlockedClaptrapSpawn = true;
-					NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
-					NetMessage.SendData(MessageID.WorldData);
-				}
+                Player player = Main.LocalPlayer;
+
+                if(player != null)
+                {
+                    if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
+                    {
+                        if(Utilities.Utilities.startedVault1BossRush)
+                        {
+                            if(vaultKingSlimeDR == false)
+                            {
+                                SpawnBoss(player, NPCID.KingSlime);
+                                vaultKingSlimeDR = true;
+                            }
+
+                            SpawnPreHardmodeBosses(player);
+                        }
+                    }
+
+                    if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+                    {
+                        if(Utilities.Utilities.startedVault2BossRush)
+                        {
+                            if(vaultQueenSlimeDR == false)
+                            {
+                                SpawnBoss(player, NPCID.QueenSlimeBoss);
+                                vaultQueenSlimeDR = true;
+                            }
+                            
+                            SpawnHardmodeBosses(player);
+                        }
+                    }   
+                }
+            }
+        }
+
+		private void SpawnPreHardmodeBosses(Player player)
+        {
+            ContinueBossRush(player, ref vaultKingSlime, ref vaultEyeOfCthulhu, ref vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
+            ContinueBossRush(player, ref vaultEyeOfCthulhu, ref vaultQueenBee, ref vaultQueenBeeDR, NPCID.QueenBee);
+            ContinueBossRush(player, ref vaultQueenBee, ref vaultDeerClops, ref vaultDeerClopsDR, NPCID.Deerclops);
+            ContinueBossRush(player, ref vaultDeerClops, ref vaultSkeletron, ref vaultSkeletronDR, NPCID.SkeletronHead);
+        }
+
+		private void SpawnHardmodeBosses(Player player)
+        {
+            ContinueBossRush(player, ref vaultQueenSlime, ref vaultTwins, ref vaultTwinsDR, NPCID.Retinazer);
+            ContinueBossRush(player, ref vaultTwins, ref vaultSkeletronPrime, ref vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
+            ContinueBossRush(player, ref vaultSkeletronPrime, ref vaultBetsy, ref vaultBetsyDR, NPCID.DD2Betsy);
+            ContinueBossRush(player, ref vaultBetsy, ref vaultPlantera, ref vaultPlanteraDR, NPCID.Plantera);
+            ContinueBossRush(player, ref vaultPlantera, ref vaultGolem, ref vaultGolemDR, NPCID.Golem);
+            ContinueBossRush(player, ref vaultGolem, ref vaultDukeFishron, ref vaultDukeFishronDR, NPCID.DukeFishron);
+            ContinueBossRush(player, ref vaultDukeFishron, ref vaultEmpress, ref vaultEmpressDR, NPCID.HallowBoss);
+            ContinueBossRush(player, ref vaultEmpress, ref vaultLunaticCultist, ref vaultLunaticCultistDR, NPCID.CultistBoss);
+            ContinueBossRush(player, ref vaultLunaticCultist, ref vaultMoonLord, ref vaultMoonLordDR, NPCID.MoonLordCore);
+        }
+
+		private void ContinueBossRush(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned, int newBossToSpawn)
+        {
+            if(BossTimer(player, ref oldBossIsDead, ref newBossHasDied, ref newBossHasBeenSpawned) == true)
+            {
+                if(newBossToSpawn != NPCID.Retinazer)
+                {
+                    SpawnBoss(player, newBossToSpawn);
+                    newBossHasBeenSpawned = true;                    
+                }
+                else if(newBossToSpawn == NPCID.Retinazer)
+                {
+                    SpawnBoss(player, newBossToSpawn);
+                    SpawnBoss(player, NPCID.Spazmatism);
+                    newBossHasBeenSpawned = true;
+                }
+            }
+        }
+
+		private bool BossTimer(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned)
+        {
+            foreach(NPC n in Main.ActiveNPCs)
+            {
+                if(n.type == NPCID.Spazmatism || n.type == NPCID.Retinazer)
+                {
+                    return false;
+                }
+            }
+
+            if(oldBossIsDead == true && newBossHasDied == false && newBossHasBeenSpawned == false)
+			{
+                if(bossTimer <= 0)
+                {
+                    bossTimer = countdown;
+                    return true;
+                }
+
+                bossTimer--;
+
+                if(bossTimer > 0 && bossTimer % 60 == 0)
+                {
+                    string seconds = (bossTimer / 60).ToString();
+                    Utilities.Utilities.DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
+                }
+
+				return false;
+            }
+
+			return false;
+        }
+
+		private void SpawnBoss(Player player, int newBossToSpawn)
+        {
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
+                
+                SoundEngine.PlaySound(SoundID.Roar, boss.Center);
+                // This adds a screen shake (screenshake) similar to Deerclops
+                PunchCameraModifier modifier = new PunchCameraModifier(boss.Center, (Main.rand.NextFloat() * ((float)System.Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f);
+                Main.instance.CameraModifiers.Add(modifier);
+
+                if(newBossToSpawn != NPCID.Golem)
+                {
+                    if(newBossToSpawn == NPCID.Plantera || newBossToSpawn == NPCID.DukeFishron)
+                    {
+                        boss.boss = true;
+                        boss.lifeMax = (int) (boss.lifeMax * 1.5f);
+                        boss.life = boss.lifeMax;
+                        boss.damage = (int) (boss.damage * 1.25f);
+                        boss.velocity *= 1.5f;
+                    }
+                    else
+                    {
+                        boss.boss = true;
+                        boss.lifeMax *= 2;
+                        boss.life = boss.lifeMax;
+                        boss.damage *= 2;
+                        boss.velocity *= 2f;
+                    }
+
+                    VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+                    if(config.KeepBossSizeTheSameWhenBossRushing == false)
+                    {
+                        boss.scale *= 1.5f;
+                    }
+                }
+
+                boss.netUpdate = true;
+                NetMessage.SendData(MessageID.SyncNPC, number: boss.whoAmI);
+                NetMessage.SendData(MessageID.WorldData);
             }
         }
 
 		public override void NetSend(BinaryWriter writer)
         {
-            writer.WriteFlags(vaultKingSlime, vaultEyeOfCthulhu, vaultQueenBee, vaultDeerClops, vaultSkeletron, vaultQueenSlime, vaultTwins, vaultSkeletronPrime);
-            writer.WriteFlags(vaultBetsy, vaultPlantera, vaultGolem, vaultDukeFishron, vaultEmpress, vaultLunaticCultist, vaultMoonLord);
+            writer.WriteFlags(Utilities.Utilities.startedVault1BossRush, Utilities.Utilities.startedVault2BossRush);
+
+            writer.Write(countdown);
+            writer.Write(bossTimer);
+
+            writer.WriteFlags(vaultKingSlime, vaultKingSlimeDR, vaultEyeOfCthulhu, vaultEyeOfCthulhuDR, vaultQueenBee, vaultQueenBeeDR, vaultDeerClops, vaultDeerClopsDR);
+            writer.WriteFlags(vaultSkeletron, vaultSkeletronDR, vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR);
+            writer.WriteFlags(vaultBetsy, vaultBetsyDR, vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR);
+            writer.WriteFlags(vaultEmpress, vaultEmpressDR, vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
 		}
 
 		public override void NetReceive(BinaryReader reader)
         {
-            reader.ReadFlags(out vaultKingSlime, out vaultEyeOfCthulhu, out vaultQueenBee, out vaultDeerClops, out vaultSkeletron, out vaultQueenSlime, out vaultTwins, out vaultSkeletronPrime);
-            reader.ReadFlags(out vaultBetsy, out vaultPlantera, out vaultGolem, out vaultDukeFishron, out vaultEmpress, out vaultLunaticCultist, out vaultMoonLord);
+            reader.ReadFlags(out Utilities.Utilities.startedVault1BossRush, out Utilities.Utilities.startedVault2BossRush);
+
+            countdown = reader.ReadInt32();
+            bossTimer = reader.ReadInt32();
+
+            reader.ReadFlags(out vaultKingSlime, out vaultKingSlimeDR, out vaultEyeOfCthulhu, out vaultEyeOfCthulhuDR, out vaultQueenBee, out vaultQueenBeeDR, out vaultDeerClops, out vaultDeerClopsDR);
+            reader.ReadFlags(out vaultSkeletron, out vaultSkeletronDR, out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR);
+            reader.ReadFlags(out vaultBetsy, out vaultBetsyDR, out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR);
+            reader.ReadFlags(out vaultEmpress, out vaultEmpressDR, out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
 		}
 
 		public override void SaveWorldData(TagCompound tag)
 		{
+            tag["startedVault1BossRush"] = Utilities.Utilities.startedVault1BossRush;
+            tag["startedVault2BossRush"] = Utilities.Utilities.startedVault2BossRush;
+
+            tag["countdown"] = countdown;
+            tag["bossTimer"] = bossTimer;
+
             tag["vaultKingSlime"] = vaultKingSlime;
             tag["vaultKingSlimeDR"] = vaultKingSlimeDR; // DR = Don't Respawn
             tag["vaultEyeOfCthulhu"] = vaultEyeOfCthulhu;
@@ -109,6 +274,12 @@ namespace Vaultaria.Common.Systems
 
 		public override void LoadWorldData(TagCompound tag)
 		{
+            Utilities.Utilities.startedVault1BossRush = tag.GetBool("startedVault1BossRush");
+            Utilities.Utilities.startedVault2BossRush = tag.GetBool("startedVault2BossRush");
+
+            countdown = tag.GetInt("countdown");
+            bossTimer = tag.GetInt("bossTimer");
+
             vaultKingSlime = tag.GetBool("vaultKingSlime");
             vaultKingSlimeDR = tag.GetBool("vaultKingSlimeDR");
             vaultEyeOfCthulhu = tag.GetBool("vaultEyeOfCthulhu");
@@ -144,6 +315,12 @@ namespace Vaultaria.Common.Systems
 
 		public override void ClearWorld()
 		{
+            Utilities.Utilities.startedVault1BossRush = false;
+            Utilities.Utilities.startedVault2BossRush = false;
+            
+            countdown = 600;
+            bossTimer = countdown;
+
             vaultKingSlime = false;
             vaultKingSlimeDR = false;
             vaultEyeOfCthulhu = false;

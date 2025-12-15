@@ -26,6 +26,9 @@ namespace Vaultaria.Common.Utilities
 {
     public static class Utilities
     {
+        public static bool startedVault1BossRush = false;
+        public static bool startedVault2BossRush = false;
+
         public static Dictionary<int, int> bulletMap = new Dictionary<int, int>
         {
             { ProjectileID.Bullet, ItemID.MusketBall },
@@ -787,123 +790,123 @@ namespace Vaultaria.Common.Utilities
             }
         }
 
-		public static void SpawnPreHardmodeBosses(Player player)
-        {
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultKingSlime, ref VaultMonsterSystem.vaultEyeOfCthulhu, ref VaultMonsterSystem.vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultEyeOfCthulhu, ref VaultMonsterSystem.vaultQueenBee, ref VaultMonsterSystem.vaultQueenBeeDR, NPCID.QueenBee);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultQueenBee, ref VaultMonsterSystem.vaultDeerClops, ref VaultMonsterSystem.vaultDeerClopsDR, NPCID.Deerclops);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultDeerClops, ref VaultMonsterSystem.vaultSkeletron, ref VaultMonsterSystem.vaultSkeletronDR, NPCID.SkeletronHead);
-        }
+		// public static void SpawnPreHardmodeBosses(Player player)
+        // {
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultKingSlime, ref VaultMonsterSystem.vaultEyeOfCthulhu, ref VaultMonsterSystem.vaultEyeOfCthulhuDR, NPCID.EyeofCthulhu);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultEyeOfCthulhu, ref VaultMonsterSystem.vaultQueenBee, ref VaultMonsterSystem.vaultQueenBeeDR, NPCID.QueenBee);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultQueenBee, ref VaultMonsterSystem.vaultDeerClops, ref VaultMonsterSystem.vaultDeerClopsDR, NPCID.Deerclops);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultDeerClops, ref VaultMonsterSystem.vaultSkeletron, ref VaultMonsterSystem.vaultSkeletronDR, NPCID.SkeletronHead);
+        // }
 
-		public static void SpawnHardmodeBosses(Player player)
-        {
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultQueenSlime, ref VaultMonsterSystem.vaultTwins, ref VaultMonsterSystem.vaultTwinsDR, NPCID.Retinazer);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultTwins, ref VaultMonsterSystem.vaultSkeletronPrime, ref VaultMonsterSystem.vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultSkeletronPrime, ref VaultMonsterSystem.vaultBetsy, ref VaultMonsterSystem.vaultBetsyDR, NPCID.DD2Betsy);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultBetsy, ref VaultMonsterSystem.vaultPlantera, ref VaultMonsterSystem.vaultPlanteraDR, NPCID.Plantera);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultPlantera, ref VaultMonsterSystem.vaultGolem, ref VaultMonsterSystem.vaultGolemDR, NPCID.Golem);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultGolem, ref VaultMonsterSystem.vaultDukeFishron, ref VaultMonsterSystem.vaultDukeFishronDR, NPCID.DukeFishron);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultDukeFishron, ref VaultMonsterSystem.vaultEmpress, ref VaultMonsterSystem.vaultEmpressDR, NPCID.HallowBoss);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultEmpress, ref VaultMonsterSystem.vaultLunaticCultist, ref VaultMonsterSystem.vaultLunaticCultistDR, NPCID.CultistBoss);
-            ContinueBossRush(player, ref VaultMonsterSystem.vaultLunaticCultist, ref VaultMonsterSystem.vaultMoonLord, ref VaultMonsterSystem.vaultMoonLordDR, NPCID.MoonLordCore);
-        }
+		// public static void SpawnHardmodeBosses(Player player)
+        // {
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultQueenSlime, ref VaultMonsterSystem.vaultTwins, ref VaultMonsterSystem.vaultTwinsDR, NPCID.Retinazer);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultTwins, ref VaultMonsterSystem.vaultSkeletronPrime, ref VaultMonsterSystem.vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultSkeletronPrime, ref VaultMonsterSystem.vaultBetsy, ref VaultMonsterSystem.vaultBetsyDR, NPCID.DD2Betsy);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultBetsy, ref VaultMonsterSystem.vaultPlantera, ref VaultMonsterSystem.vaultPlanteraDR, NPCID.Plantera);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultPlantera, ref VaultMonsterSystem.vaultGolem, ref VaultMonsterSystem.vaultGolemDR, NPCID.Golem);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultGolem, ref VaultMonsterSystem.vaultDukeFishron, ref VaultMonsterSystem.vaultDukeFishronDR, NPCID.DukeFishron);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultDukeFishron, ref VaultMonsterSystem.vaultEmpress, ref VaultMonsterSystem.vaultEmpressDR, NPCID.HallowBoss);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultEmpress, ref VaultMonsterSystem.vaultLunaticCultist, ref VaultMonsterSystem.vaultLunaticCultistDR, NPCID.CultistBoss);
+        //     ContinueBossRush(player, ref VaultMonsterSystem.vaultLunaticCultist, ref VaultMonsterSystem.vaultMoonLord, ref VaultMonsterSystem.vaultMoonLordDR, NPCID.MoonLordCore);
+        // }
 
-		public static void ContinueBossRush(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned, int newBossToSpawn)
-        {
-            if(BossTimer(player, ref oldBossIsDead, ref newBossHasDied, ref newBossHasBeenSpawned) == true)
-            {
-                if(newBossToSpawn != NPCID.Retinazer)
-                {
-                    SpawnBoss(player, newBossToSpawn);
-                    newBossHasBeenSpawned = true;                    
-                }
-                else if(newBossToSpawn == NPCID.Retinazer)
-                {
-                    SpawnBoss(player, newBossToSpawn);
-                    SpawnBoss(player, NPCID.Spazmatism);
-                    newBossHasBeenSpawned = true;
-                }
-            }
-        }
+		// public static void ContinueBossRush(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned, int newBossToSpawn)
+        // {
+        //     if(BossTimer(player, ref oldBossIsDead, ref newBossHasDied, ref newBossHasBeenSpawned) == true)
+        //     {
+        //         if(newBossToSpawn != NPCID.Retinazer)
+        //         {
+        //             SpawnBoss(player, newBossToSpawn);
+        //             newBossHasBeenSpawned = true;                    
+        //         }
+        //         else if(newBossToSpawn == NPCID.Retinazer)
+        //         {
+        //             SpawnBoss(player, newBossToSpawn);
+        //             SpawnBoss(player, NPCID.Spazmatism);
+        //             newBossHasBeenSpawned = true;
+        //         }
+        //     }
+        // }
 
-        // A timer that counts down from 60 to 0 and then spawns the next boss
-        public static int countdown = 600;
-        public static int bossTimer = countdown;
+        // // A timer that counts down from 60 to 0 and then spawns the next boss
+        // public static int countdown = 600;
+        // public static int bossTimer = countdown;
 
-		public static bool BossTimer(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned)
-        {
-            foreach(NPC n in Main.ActiveNPCs)
-            {
-                if(n.type == NPCID.Spazmatism || n.type == NPCID.Retinazer)
-                {
-                    return false;
-                }
-            }
+		// public static bool BossTimer(Player player, ref bool oldBossIsDead, ref bool newBossHasDied, ref bool newBossHasBeenSpawned)
+        // {
+        //     foreach(NPC n in Main.ActiveNPCs)
+        //     {
+        //         if(n.type == NPCID.Spazmatism || n.type == NPCID.Retinazer)
+        //         {
+        //             return false;
+        //         }
+        //     }
 
-            if(oldBossIsDead == true && newBossHasDied == false && newBossHasBeenSpawned == false)
-			{
-                if(bossTimer <= 0)
-                {
-                    bossTimer = countdown;
-                    return true;
-                }
+        //     if(oldBossIsDead == true && newBossHasDied == false && newBossHasBeenSpawned == false)
+		// 	{
+        //         if(bossTimer <= 0)
+        //         {
+        //             bossTimer = countdown;
+        //             return true;
+        //         }
 
-                bossTimer--;
+        //         bossTimer--;
 
-                if(bossTimer > 0 && bossTimer % 60 == 0)
-                {
-                    string seconds = (bossTimer / 60).ToString();
-                    DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
-                }
+        //         if(bossTimer > 0 && bossTimer % 60 == 0)
+        //         {
+        //             string seconds = (bossTimer / 60).ToString();
+        //             DisplayStatusMessage(player.Center - new Vector2(0, 50), Color.Gold, seconds);
+        //         }
 
-				return false;
-            }
+		// 		return false;
+        //     }
 
-			return false;
-        }
+		// 	return false;
+        // }
 
-		public static void SpawnBoss(Player player, int newBossToSpawn)
-        {
-            if(Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
+		// public static void SpawnBoss(Player player, int newBossToSpawn)
+        // {
+        //     if(Main.netMode != NetmodeID.MultiplayerClient)
+        //     {
+        //         NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
                 
-                SoundEngine.PlaySound(SoundID.Roar, boss.Center);
-                // This adds a screen shake (screenshake) similar to Deerclops
-                PunchCameraModifier modifier = new PunchCameraModifier(boss.Center, (Main.rand.NextFloat() * ((float)System.Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f);
-                Main.instance.CameraModifiers.Add(modifier);
+        //         SoundEngine.PlaySound(SoundID.Roar, boss.Center);
+        //         // This adds a screen shake (screenshake) similar to Deerclops
+        //         PunchCameraModifier modifier = new PunchCameraModifier(boss.Center, (Main.rand.NextFloat() * ((float)System.Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f);
+        //         Main.instance.CameraModifiers.Add(modifier);
 
-                if(newBossToSpawn != NPCID.Golem)
-                {
-                    if(newBossToSpawn == NPCID.Plantera || newBossToSpawn == NPCID.DukeFishron)
-                    {
-                        boss.boss = true;
-                        boss.lifeMax = (int) (boss.lifeMax * 1.5f);
-                        boss.life = boss.lifeMax;
-                        boss.damage = (int) (boss.damage * 1.25f);
-                        boss.velocity *= 1.5f;
-                    }
-                    else
-                    {
-                        boss.boss = true;
-                        boss.lifeMax *= 2;
-                        boss.life = boss.lifeMax;
-                        boss.damage *= 2;
-                        boss.velocity *= 2f;
-                    }
+        //         if(newBossToSpawn != NPCID.Golem)
+        //         {
+        //             if(newBossToSpawn == NPCID.Plantera || newBossToSpawn == NPCID.DukeFishron)
+        //             {
+        //                 boss.boss = true;
+        //                 boss.lifeMax = (int) (boss.lifeMax * 1.5f);
+        //                 boss.life = boss.lifeMax;
+        //                 boss.damage = (int) (boss.damage * 1.25f);
+        //                 boss.velocity *= 1.5f;
+        //             }
+        //             else
+        //             {
+        //                 boss.boss = true;
+        //                 boss.lifeMax *= 2;
+        //                 boss.life = boss.lifeMax;
+        //                 boss.damage *= 2;
+        //                 boss.velocity *= 2f;
+        //             }
 
-                    VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
-                    if(config.KeepBossSizeTheSameWhenBossRushing == false)
-                    {
-                        boss.scale *= 1.5f;
-                    }
-                }
+        //             VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+        //             if(config.KeepBossSizeTheSameWhenBossRushing == false)
+        //             {
+        //                 boss.scale *= 1.5f;
+        //             }
+        //         }
 
-                boss.netUpdate = true;
-                NetMessage.SendData(MessageID.SyncNPC, number: boss.whoAmI);
-                NetMessage.SendData(MessageID.WorldData);
-            }
-        }
+        //         boss.netUpdate = true;
+        //         NetMessage.SendData(MessageID.SyncNPC, number: boss.whoAmI);
+        //         NetMessage.SendData(MessageID.WorldData);
+        //     }
+        // }
 
         public static bool IsWearing(Player player, int accessory)
         {

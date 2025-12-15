@@ -48,21 +48,17 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-				foreach(Player player in Main.ActivePlayers)
+				Main.dayTime = false;
+				Main.time = Main.nightLength;
+				Main.dayRate = 0;
+
+				// Wiring.UpdateMech(); // Make wiring work
+				// DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
+
+				if(VaultMonsterSystem.vaultSkeletron && armouryOpened == false)
 				{
-					Main.dayTime = false;
-					Main.time = Main.nightLength;
-					Main.dayRate = 0;
-
-					// Wiring.UpdateMech(); // Make wiring work
-					// DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
-
-					Utilities.Utilities.SpawnPreHardmodeBosses(player);
-
-					if(VaultMonsterSystem.vaultSkeletron && armouryOpened == false)
-					{
-						FindArmoury();
-					}
+					Utilities.Utilities.startedVault1BossRush = false;
+					FindArmoury();
 				}
             }
         }

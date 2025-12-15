@@ -81,6 +81,8 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
                 SubworldSystem.Enter<Vault2Subworld>();
             }
 
+            NetMessage.SendData(MessageID.WorldData);
+
             return base.RightClick(i, j);
         }
     }
