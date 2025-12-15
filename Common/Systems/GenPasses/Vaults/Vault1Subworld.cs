@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Vaultaria.Content.Items.Weapons.Magic;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
+using Vaultaria.Content.Items.Consumables.Bags;
 
 namespace Vaultaria.Common.Systems.GenPasses.Vaults
 {
@@ -106,8 +107,8 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 
         private void PlaceInFrozenChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<FlushRifle>()];
-			int itemsToPlaceInChestChoice = 0;
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
+			int itemsToPlaceInChestChoice = 10;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length;
 			int chest = 11;
@@ -117,8 +118,8 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 
         private void PlaceInIceChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Aegis>()];
-			int itemsToPlaceInChestChoice = 0;
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
+			int itemsToPlaceInChestChoice = 10;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length;
 			int chest = 22;

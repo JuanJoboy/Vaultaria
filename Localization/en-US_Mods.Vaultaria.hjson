@@ -1081,6 +1081,16 @@ Items: {
 		Tooltip: ""
 		DisplayName: Moonstone
 	}
+
+	Vault2Bag: {
+		Tooltip: ""
+		DisplayName: Treasure Bag (Vault 2)
+	}
+
+	Vault1Bag: {
+		Tooltip: ""
+		DisplayName: Treasure Bag (Vault 1)
+	}
 }
 
 Projectiles: {
