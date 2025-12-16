@@ -13,7 +13,6 @@ namespace Vaultaria.Content.Items.Consumables.Bags
         public override void SetStaticDefaults()
         {
             ItemID.Sets.BossBag[Type] = true;
-            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             Item.ResearchUnlockCount = 3;
         }
 
@@ -34,6 +33,7 @@ namespace Vaultaria.Content.Items.Consumables.Bags
 
         public override bool AltFunctionUse(Player player)
         {
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             GetRandomItems(player);
 
             return true;
@@ -48,14 +48,33 @@ namespace Vaultaria.Content.Items.Consumables.Bags
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCID.WallofFlesh));
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Right Click to open");
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Right Click in your inventory to get a random Vaultarian item");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Right Click while holding the bag to get a random Terrarian item that has a rarity of Gray - Light Red");
+        }
+
         private void GetRandomItems(Player player)
         {
             int itemIndex = Main.rand.Next(0, ItemID.Count); // Picks a random index from 0 to the end of the array
             Item item = new Item(itemIndex); // Get whatever item is at that index
 
-            if(item.rare == ItemRarityID.Orange || item.rare == ItemRarityID.LightRed)
+            if(item.rare >= ItemRarityID.Gray && item.rare <= ItemRarityID.LightRed)
             {
-                player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type); // Spawn the item at the player
+                SpawnItem(player, item);
+
+                // If it's a specific item, then drop more of it, but reduce it by 1 cause it's already being spawned above
+                SpawnItem(player, item, 299, "Block");
+                SpawnItem(player, item, 299, "Brick");
+                SpawnItem(player, item, 299, "Wall");
+                SpawnItem(player, item, 9, "Potion");
+                SpawnItem(player, item, 499, "Bullet");
+                SpawnItem2(player, item, 99, "Ore");
+                SpawnItem2(player, item, 24, "Bar");
+                SpawnItem2(player, item, 24, "Arrow");
+                SpawnItem2(player, item, 49, "Flare");
+                SpawnItem2(player, item, 99, "Dart");
             }
             else
             {
@@ -63,11 +82,34 @@ namespace Vaultaria.Content.Items.Consumables.Bags
             }
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        private void SpawnItem(Player player, Item item, int stack = 1, string condition = "12345678910")
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Right Click to open");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Right Click in your inventory to get a random Vaultarian item");
-            Utilities.Text(tooltips, Mod, "Tooltip3", "Right Click while holding the bag to get a random Terrarian item that has a rarity of Orange - Light Red");
+            if(item != null)
+            {
+                if(item.Name.Contains(condition))
+                {
+                    player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type, stack);
+                }
+                else
+                {
+                    player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type, stack); // Spawn the item at the player
+                }   
+            }
+        }
+
+        private void SpawnItem2(Player player, Item item, int stack = 1, string condition = "12345678910")
+        {
+            if(item != null)
+            {
+                if(item.Name.Length > 3 && item.Name[^condition.Length..] == condition) // Gets the last x letters of the name 
+                {
+                    player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type, stack);
+                }
+                else
+                {
+                    player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type, stack); // Spawn the item at the player
+                }   
+            }
         }
     }
 }

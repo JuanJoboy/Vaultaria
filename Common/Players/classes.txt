@@ -110,3 +110,4 @@ Or dazed"
 
 
 lowkey remove alot of stuff from vaultaria player like the oracle's crit ability and place it within the respective file for the weapon
+right click function for tediore dont show up for the other player, other than the projectile

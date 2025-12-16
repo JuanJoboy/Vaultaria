@@ -40,7 +40,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
             Item.useTime = 12;
             Item.useAnimation = 12;
-            Item.reuseDelay = 20;
+            Item.reuseDelay = 12;
             Item.autoReuse = true;
 
             // Other properties
@@ -94,6 +94,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
                 Item.useTime = 8;
                 Item.useAnimation = 8;
+                Item.reuseDelay = 8;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
@@ -113,7 +114,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
                 Item.useTime = 12;
                 Item.useAnimation = 12;
-                Item.reuseDelay = 20;
+                Item.reuseDelay = 12;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
