@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Vaultaria.Common.Networking;
 using Vaultaria.Common.Systems;
 using Vaultaria.Common.Systems.GenPasses;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
@@ -42,8 +43,13 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             if(NoBossIsActive())
             {
-                ResetVaultMonsterSystems();
                 Utilities.startedVault2BossRush = true;
+                ResetVaultMonsterSystems();
+
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    ModNetHandler.vault.SendBossRushStatus(Utilities.startedVault2BossRush, Main.myPlayer);
+                }
             }
 
             NetMessage.SendData(MessageID.WorldData);
@@ -81,19 +87,6 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             {
                 return false;
             }
-
-            // if(Utilities.bossTimer < Utilities.countdown)
-            // {
-            //     return false;
-            // }
-
-            // foreach(NPC n in Main.ActiveNPCs)
-            // {
-            //     if(n.type == NPCID.QueenSlimeBoss || n.type == NPCID.Retinazer || n.type == NPCID.Spazmatism || n.type == NPCID.SkeletronPrime || n.type == NPCID.DD2Betsy || n.type == NPCID.Plantera || n.type == NPCID.PlanterasHook || n.type == NPCID.PlanterasTentacle || n.type == NPCID.Golem || n.type == NPCID.GolemFistLeft || n.type == NPCID.GolemFistRight || n.type == NPCID.GolemHead || n.type == NPCID.GolemHeadFree || n.type == NPCID.DukeFishron || n.type == NPCID.HallowBoss || n.type == NPCID.CultistBoss || n.type == NPCID.CultistBossClone || n.type == NPCID.CultistDragonBody1 || n.type == NPCID.CultistDragonBody2 || n.type == NPCID.CultistDragonBody3 || n.type == NPCID.CultistDragonBody4 || n.type == NPCID.CultistDragonHead || n.type == NPCID.CultistDragonTail || n.type == NPCID.MoonLordCore || n.type == NPCID.MoonLordFreeEye || n.type == NPCID.MoonLordHand || n.type == NPCID.MoonLordHead || n.type == NPCID.MoonLordLeechBlob)
-            //     {
-            //         return false;
-            //     }
-            // }
 
             return true;
         }

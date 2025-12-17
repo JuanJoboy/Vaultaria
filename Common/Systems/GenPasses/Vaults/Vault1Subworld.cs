@@ -108,7 +108,7 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         private void PlaceInFrozenChests()
         {
 			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
-			int itemsToPlaceInChestChoice = 10;
+			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length;
 			int chest = 11;
@@ -119,7 +119,7 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         private void PlaceInIceChests()
         {
 			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
-			int itemsToPlaceInChestChoice = 10;
+			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length;
 			int chest = 22;

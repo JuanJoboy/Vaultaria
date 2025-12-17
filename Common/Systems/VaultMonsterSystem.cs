@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Vaultaria.Common.Configs;
+using Vaultaria.Common.Networking;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
 using Vaultaria.Content.Items.Placeables.Vaults;
 
@@ -82,9 +83,19 @@ namespace Vaultaria.Common.Systems
                             {
                                 SpawnBoss(player, NPCID.QueenSlimeBoss);
                                 vaultQueenSlimeDR = true;
+                                
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    ModNetHandler.vault.SendBossDeath(vaultQueenSlimeDR, Main.myPlayer);
+                                }
                             }
                             
                             SpawnHardmodeBosses(player);
+
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                            {
+                                ModNetHandler.vault.SendBossDeath(vaultQueenSlimeDR, Main.myPlayer);
+                            }
                         }
                     }   
                 }
