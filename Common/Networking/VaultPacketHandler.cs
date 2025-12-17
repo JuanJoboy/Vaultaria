@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.IO;
+using Terraria.ModLoader.IO;
+using Vaultaria.Common.Systems;
 
 namespace Vaultaria.Common.Networking
 {
@@ -53,20 +55,33 @@ namespace Vaultaria.Common.Networking
 
 		public void ReceiveBossDeath(BinaryReader reader, int fromWho)
 		{
-			bool bossDeaths = reader.ReadBoolean();
-			Utilities.Utilities.startedVault2BossRush = bossDeaths;
+			// Read every single boolean currently in the system
+			reader.ReadFlags(out VaultMonsterSystem.vaultQueenSlime, out VaultMonsterSystem.vaultQueenSlimeDR, out VaultMonsterSystem.vaultTwins, out VaultMonsterSystem.vaultTwinsDR, out VaultMonsterSystem.vaultSkeletronPrime, out VaultMonsterSystem.vaultSkeletronPrimeDR, out VaultMonsterSystem.vaultBetsy, out VaultMonsterSystem.vaultBetsyDR
+			);
+			
+			reader.ReadFlags(out VaultMonsterSystem.vaultPlantera, out VaultMonsterSystem.vaultPlanteraDR, out VaultMonsterSystem.vaultGolem, out VaultMonsterSystem.vaultGolemDR, out VaultMonsterSystem.vaultDukeFishron, out VaultMonsterSystem.vaultDukeFishronDR, out VaultMonsterSystem.vaultEmpress, out VaultMonsterSystem.vaultEmpressDR
+			);
+			
+			reader.ReadFlags(out VaultMonsterSystem.vaultLunaticCultist, out VaultMonsterSystem.vaultLunaticCultistDR, out VaultMonsterSystem.vaultMoonLord, out VaultMonsterSystem.vaultMoonLordDR
+			);
 
 			if (Main.netMode == NetmodeID.Server)
 			{
-				SendBossDeath(bossDeaths, fromWho);
+				SendBossDeath(fromWho);
 			}
 		}
 
-		public void SendBossDeath(bool bossDeaths, int fromWho)
+		public void SendBossDeath(int fromWho)
 		{
 			ModPacket packet = GetPacket(SyncBossDeaths, fromWho);
 
-			packet.Write(bossDeaths);
+			// Write every single boolean currently in the system
+			packet.WriteFlags(VaultMonsterSystem.vaultQueenSlime, VaultMonsterSystem.vaultQueenSlimeDR, VaultMonsterSystem.vaultTwins, VaultMonsterSystem.vaultTwinsDR, VaultMonsterSystem.vaultSkeletronPrime, VaultMonsterSystem.vaultSkeletronPrimeDR, VaultMonsterSystem.vaultBetsy, VaultMonsterSystem.vaultBetsyDR);
+
+			packet.WriteFlags(VaultMonsterSystem.vaultPlantera, VaultMonsterSystem.vaultPlanteraDR, VaultMonsterSystem.vaultGolem, VaultMonsterSystem.vaultGolemDR, VaultMonsterSystem.vaultDukeFishron, VaultMonsterSystem.vaultDukeFishronDR, VaultMonsterSystem.vaultEmpress, VaultMonsterSystem.vaultEmpressDR);
+
+			packet.WriteFlags(VaultMonsterSystem.vaultLunaticCultist, VaultMonsterSystem.vaultLunaticCultistDR, VaultMonsterSystem.vaultMoonLord, VaultMonsterSystem.vaultMoonLordDR);
+
 			packet.Send(-1, fromWho);
 		}
 	} 

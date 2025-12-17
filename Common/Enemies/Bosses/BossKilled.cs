@@ -5,6 +5,7 @@ using Vaultaria.Common.Systems;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
+using Vaultaria.Common.Networking;
 
 namespace Vaultaria.Common.Global
 {
@@ -71,6 +72,11 @@ namespace Vaultaria.Common.Global
                     NPC.SetEventFlagCleared(ref npcDowned, -1);
 
                     NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in VaultMonsterSystem
+
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+                    }
                 }
             }
         }

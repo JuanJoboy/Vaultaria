@@ -83,19 +83,10 @@ namespace Vaultaria.Common.Systems
                             {
                                 SpawnBoss(player, NPCID.QueenSlimeBoss);
                                 vaultQueenSlimeDR = true;
-                                
-                                if (Main.netMode != NetmodeID.SinglePlayer)
-                                {
-                                    ModNetHandler.vault.SendBossDeath(vaultQueenSlimeDR, Main.myPlayer);
-                                }
+                                ModNetHandler.vault.SendBossDeath(Main.myPlayer);
                             }
                             
                             SpawnHardmodeBosses(player);
-
-                            if (Main.netMode != NetmodeID.SinglePlayer)
-                            {
-                                ModNetHandler.vault.SendBossDeath(vaultQueenSlimeDR, Main.myPlayer);
-                            }
                         }
                     }   
                 }
@@ -137,6 +128,12 @@ namespace Vaultaria.Common.Systems
                     SpawnBoss(player, newBossToSpawn);
                     SpawnBoss(player, NPCID.Spazmatism);
                     newBossHasBeenSpawned = true;
+                }
+
+                // Add this to sync the 'DR' flag immediately upon spawn
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModNetHandler.vault.SendBossDeath(Main.myPlayer);
                 }
             }
         }
@@ -216,30 +213,51 @@ namespace Vaultaria.Common.Systems
             }
         }
 
+        // These 2 net methods are good for when players load into the vault and are able to see the bosses, but it doesn't help for when you're actually playing the game and new bosses come and go. Mod Packets are needed for that.
 		public override void NetSend(BinaryWriter writer)
         {
-            writer.WriteFlags(Utilities.Utilities.startedVault1BossRush, Utilities.Utilities.startedVault2BossRush);
-
             writer.Write(countdown);
             writer.Write(bossTimer);
 
-            writer.WriteFlags(vaultKingSlime, vaultKingSlimeDR, vaultEyeOfCthulhu, vaultEyeOfCthulhuDR, vaultQueenBee, vaultQueenBeeDR, vaultDeerClops, vaultDeerClopsDR);
-            writer.WriteFlags(vaultSkeletron, vaultSkeletronDR, vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR);
-            writer.WriteFlags(vaultBetsy, vaultBetsyDR, vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR);
-            writer.WriteFlags(vaultEmpress, vaultEmpressDR, vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
+            {
+                writer.WriteFlags(Utilities.Utilities.startedVault1BossRush);
+
+                writer.WriteFlags(vaultKingSlime, vaultKingSlimeDR, vaultEyeOfCthulhu, vaultEyeOfCthulhuDR, vaultQueenBee, vaultQueenBeeDR, vaultDeerClops, vaultDeerClopsDR);
+                writer.WriteFlags(vaultSkeletron, vaultSkeletronDR);
+            }
+
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            {
+                writer.WriteFlags(Utilities.Utilities.startedVault2BossRush);
+
+                writer.WriteFlags(vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR, vaultBetsy, vaultBetsyDR);
+                writer.WriteFlags(vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR, vaultEmpress, vaultEmpressDR);
+                writer.WriteFlags(vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
+            }
 		}
 
 		public override void NetReceive(BinaryReader reader)
         {
-            reader.ReadFlags(out Utilities.Utilities.startedVault1BossRush, out Utilities.Utilities.startedVault2BossRush);
-
             countdown = reader.ReadInt32();
             bossTimer = reader.ReadInt32();
 
-            reader.ReadFlags(out vaultKingSlime, out vaultKingSlimeDR, out vaultEyeOfCthulhu, out vaultEyeOfCthulhuDR, out vaultQueenBee, out vaultQueenBeeDR, out vaultDeerClops, out vaultDeerClopsDR);
-            reader.ReadFlags(out vaultSkeletron, out vaultSkeletronDR, out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR);
-            reader.ReadFlags(out vaultBetsy, out vaultBetsyDR, out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR);
-            reader.ReadFlags(out vaultEmpress, out vaultEmpressDR, out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
+            {
+                reader.ReadFlags(out Utilities.Utilities.startedVault1BossRush);
+
+                reader.ReadFlags(out vaultKingSlime, out vaultKingSlimeDR, out vaultEyeOfCthulhu, out vaultEyeOfCthulhuDR, out vaultQueenBee, out vaultQueenBeeDR, out vaultDeerClops, out vaultDeerClopsDR);
+                reader.ReadFlags(out vaultSkeletron, out vaultSkeletronDR);
+            }
+
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            {
+                reader.ReadFlags(out Utilities.Utilities.startedVault2BossRush);
+
+                reader.ReadFlags(out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR, out vaultBetsy, out vaultBetsyDR);
+                reader.ReadFlags(out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR, out vaultEmpress, out vaultEmpressDR);
+                reader.ReadFlags(out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
+            }
 		}
 
 		public override void SaveWorldData(TagCompound tag)

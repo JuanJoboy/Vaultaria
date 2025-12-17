@@ -79,6 +79,11 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             VaultMonsterSystem.vaultLunaticCultistDR = false;
             VaultMonsterSystem.vaultMoonLord = false;
             VaultMonsterSystem.vaultMoonLordDR = false;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+            }
         }
 
         private bool NoBossIsActive()
