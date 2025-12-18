@@ -49,10 +49,9 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
                     ModNetHandler.vault.SendBossRushStatus(Utilities.startedVault2BossRush, Main.myPlayer);
+                    NetMessage.SendData(MessageID.WorldData);
                 }
             }
-
-            NetMessage.SendData(MessageID.WorldData);
 
             return base.RightClick(i, j);
         }

@@ -97,7 +97,9 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 					if(tile.TileType == TileID.LeadBrick && WorldGen.InWorld(i, j))
 					{
                 		WorldGen.KillTile(i , j, false, false, true);
+						NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i, number3: j, number4: 0);
                 		WorldGen.KillTile(i + 1, j, false, false, true);
+						NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 1, number3: j, number4: 0);
 						armouryOpened = true;
                         return;
 					}

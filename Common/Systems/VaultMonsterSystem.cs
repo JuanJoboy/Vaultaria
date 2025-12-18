@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -55,9 +56,14 @@ namespace Vaultaria.Common.Systems
         {
             base.PostUpdateWorld();
 
-			if(Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Player player = Main.LocalPlayer;
+                Player player = null;
+                foreach(Player p in Main.ActivePlayers)
+                {
+                    player = p;
+                    break;
+                }
 
                 if(player != null)
                 {
@@ -129,12 +135,6 @@ namespace Vaultaria.Common.Systems
                     SpawnBoss(player, NPCID.Spazmatism);
                     newBossHasBeenSpawned = true;
                 }
-
-                // Add this to sync the 'DR' flag immediately upon spawn
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    ModNetHandler.vault.SendBossDeath(Main.myPlayer);
-                }
             }
         }
 
@@ -174,8 +174,8 @@ namespace Vaultaria.Common.Systems
         {
             if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC boss = NPC.NewNPCDirect(player.GetSource_DropAsItem(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
-                
+                NPC boss = NPC.NewNPCDirect(new EntitySource_WorldEvent(), (int) player.Center.X - 300, (int) player.Center.Y - 100, newBossToSpawn);
+
                 SoundEngine.PlaySound(SoundID.Roar, boss.Center);
                 // This adds a screen shake (screenshake) similar to Deerclops
                 PunchCameraModifier modifier = new PunchCameraModifier(boss.Center, (Main.rand.NextFloat() * ((float)System.Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f);
@@ -219,22 +219,16 @@ namespace Vaultaria.Common.Systems
             writer.Write(countdown);
             writer.Write(bossTimer);
 
-            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
-            {
-                writer.WriteFlags(Utilities.Utilities.startedVault1BossRush);
+            writer.WriteFlags(Utilities.Utilities.startedVault1BossRush);
 
-                writer.WriteFlags(vaultKingSlime, vaultKingSlimeDR, vaultEyeOfCthulhu, vaultEyeOfCthulhuDR, vaultQueenBee, vaultQueenBeeDR, vaultDeerClops, vaultDeerClopsDR);
-                writer.WriteFlags(vaultSkeletron, vaultSkeletronDR);
-            }
+            writer.WriteFlags(vaultKingSlime, vaultKingSlimeDR, vaultEyeOfCthulhu, vaultEyeOfCthulhuDR, vaultQueenBee, vaultQueenBeeDR, vaultDeerClops, vaultDeerClopsDR);
+            writer.WriteFlags(vaultSkeletron, vaultSkeletronDR);
 
-            if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
-            {
-                writer.WriteFlags(Utilities.Utilities.startedVault2BossRush);
+            writer.WriteFlags(Utilities.Utilities.startedVault2BossRush);
 
-                writer.WriteFlags(vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR, vaultBetsy, vaultBetsyDR);
-                writer.WriteFlags(vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR, vaultEmpress, vaultEmpressDR);
-                writer.WriteFlags(vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
-            }
+            writer.WriteFlags(vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR, vaultBetsy, vaultBetsyDR);
+            writer.WriteFlags(vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR, vaultEmpress, vaultEmpressDR);
+            writer.WriteFlags(vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
 		}
 
 		public override void NetReceive(BinaryReader reader)
@@ -242,22 +236,16 @@ namespace Vaultaria.Common.Systems
             countdown = reader.ReadInt32();
             bossTimer = reader.ReadInt32();
 
-            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>())
-            {
-                reader.ReadFlags(out Utilities.Utilities.startedVault1BossRush);
+            reader.ReadFlags(out Utilities.Utilities.startedVault1BossRush);
 
-                reader.ReadFlags(out vaultKingSlime, out vaultKingSlimeDR, out vaultEyeOfCthulhu, out vaultEyeOfCthulhuDR, out vaultQueenBee, out vaultQueenBeeDR, out vaultDeerClops, out vaultDeerClopsDR);
-                reader.ReadFlags(out vaultSkeletron, out vaultSkeletronDR);
-            }
+            reader.ReadFlags(out vaultKingSlime, out vaultKingSlimeDR, out vaultEyeOfCthulhu, out vaultEyeOfCthulhuDR, out vaultQueenBee, out vaultQueenBeeDR, out vaultDeerClops, out vaultDeerClopsDR);
+            reader.ReadFlags(out vaultSkeletron, out vaultSkeletronDR);
 
-            if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
-            {
-                reader.ReadFlags(out Utilities.Utilities.startedVault2BossRush);
+            reader.ReadFlags(out Utilities.Utilities.startedVault2BossRush);
 
-                reader.ReadFlags(out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR, out vaultBetsy, out vaultBetsyDR);
-                reader.ReadFlags(out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR, out vaultEmpress, out vaultEmpressDR);
-                reader.ReadFlags(out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
-            }
+            reader.ReadFlags(out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR, out vaultBetsy, out vaultBetsyDR);
+            reader.ReadFlags(out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR, out vaultEmpress, out vaultEmpressDR);
+            reader.ReadFlags(out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
 		}
 
 		public override void SaveWorldData(TagCompound tag)

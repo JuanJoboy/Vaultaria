@@ -11,6 +11,42 @@ namespace Vaultaria.Common.Global
 {
     public class BossKillGlobalNPC : GlobalNPC
     {
+// public override void AI(NPC npc)
+// {
+//     if (!npc.boss || Main.netMode == NetmodeID.MultiplayerClient)
+//     {
+//         return;
+//     }
+
+//     int bestTarget = npc.target;
+//     float bestDistance = float.MaxValue;
+
+//     for (int i = 0; i < Main.maxPlayers; i++)
+//     {
+//         Player p = Main.player[i];
+
+//         if (!p.active || p.dead)
+//         {
+//             continue;
+//         }
+
+//         float dist = Vector2.Distance(npc.Center, p.Center);
+
+//         if (dist < bestDistance)
+//         {
+//             bestDistance = dist;
+//             bestTarget = i;
+//         }
+//     }
+
+//     if (npc.target != bestTarget)
+//     {
+//         npc.target = bestTarget;
+//         npc.netUpdate = true;
+//         npc.netUpdate2 = true;
+//     }
+// }
+
         public override void OnKill(NPC npc)
         {
             // Ensure this logic only runs on the server in multiplayer, or locally in single player.
@@ -71,11 +107,10 @@ namespace Vaultaria.Common.Global
                     npcDowned = true;
                     NPC.SetEventFlagCleared(ref npcDowned, -1);
 
-                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in VaultMonsterSystem
-
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
                         ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+                        NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in VaultMonsterSystem
                     }
                 }
             }

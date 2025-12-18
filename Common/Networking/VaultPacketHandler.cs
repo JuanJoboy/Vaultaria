@@ -31,6 +31,11 @@ namespace Vaultaria.Common.Networking
 
 		public void ReceiveBossRush(BinaryReader reader, int fromWho) // This method runs when a SyncBossRush packet is received.
 		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				reader.ReadByte(); // Consumes the 'fromWho' byte written by GetPacket header
+			}
+
 			// Reads the two specific pieces of data sent by SendTarget in the exact same order (FIFO).
 			bool bossRushStarted = reader.ReadBoolean();
 			Utilities.Utilities.startedVault2BossRush = bossRushStarted; // 1. The "Perfect" Version (Assignment inside ReceiveBossRush). In this version, the assignment line is the very first thing that happens after reading the data. The Server receives the packet -> runs ReceiveBossRush -> sets its variable -> sends to others. The Clients receive the packet -> run ReceiveBossRush -> set their variables. Result: Everyone is synced.
@@ -55,15 +60,17 @@ namespace Vaultaria.Common.Networking
 
 		public void ReceiveBossDeath(BinaryReader reader, int fromWho)
 		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				reader.ReadByte(); // Consumes the 'fromWho' byte written by GetPacket header
+			}
+
 			// Read every single boolean currently in the system
-			reader.ReadFlags(out VaultMonsterSystem.vaultQueenSlime, out VaultMonsterSystem.vaultQueenSlimeDR, out VaultMonsterSystem.vaultTwins, out VaultMonsterSystem.vaultTwinsDR, out VaultMonsterSystem.vaultSkeletronPrime, out VaultMonsterSystem.vaultSkeletronPrimeDR, out VaultMonsterSystem.vaultBetsy, out VaultMonsterSystem.vaultBetsyDR
-			);
+			reader.ReadFlags(out VaultMonsterSystem.vaultQueenSlime, out VaultMonsterSystem.vaultQueenSlimeDR, out VaultMonsterSystem.vaultTwins, out VaultMonsterSystem.vaultTwinsDR, out VaultMonsterSystem.vaultSkeletronPrime, out VaultMonsterSystem.vaultSkeletronPrimeDR, out VaultMonsterSystem.vaultBetsy, out VaultMonsterSystem.vaultBetsyDR);
 			
-			reader.ReadFlags(out VaultMonsterSystem.vaultPlantera, out VaultMonsterSystem.vaultPlanteraDR, out VaultMonsterSystem.vaultGolem, out VaultMonsterSystem.vaultGolemDR, out VaultMonsterSystem.vaultDukeFishron, out VaultMonsterSystem.vaultDukeFishronDR, out VaultMonsterSystem.vaultEmpress, out VaultMonsterSystem.vaultEmpressDR
-			);
+			reader.ReadFlags(out VaultMonsterSystem.vaultPlantera, out VaultMonsterSystem.vaultPlanteraDR, out VaultMonsterSystem.vaultGolem, out VaultMonsterSystem.vaultGolemDR, out VaultMonsterSystem.vaultDukeFishron, out VaultMonsterSystem.vaultDukeFishronDR, out VaultMonsterSystem.vaultEmpress, out VaultMonsterSystem.vaultEmpressDR);
 			
-			reader.ReadFlags(out VaultMonsterSystem.vaultLunaticCultist, out VaultMonsterSystem.vaultLunaticCultistDR, out VaultMonsterSystem.vaultMoonLord, out VaultMonsterSystem.vaultMoonLordDR
-			);
+			reader.ReadFlags(out VaultMonsterSystem.vaultLunaticCultist, out VaultMonsterSystem.vaultLunaticCultistDR, out VaultMonsterSystem.vaultMoonLord, out VaultMonsterSystem.vaultMoonLordDR);
 
 			if (Main.netMode == NetmodeID.Server)
 			{
