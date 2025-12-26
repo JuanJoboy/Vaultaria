@@ -33,13 +33,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 15;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 8;
             Item.useAnimation = 8;
+            Item.reuseDelay = 8;
             Item.autoReuse = true;
 
             // Other properties
@@ -83,7 +84,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             {
                 altFireMode = true;
 
-                Item.damage = 100;
+                Item.damage = 50;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
@@ -93,6 +94,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 
                 Item.useTime = 8;
                 Item.useAnimation = 8;
+                Item.reuseDelay = 8;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
@@ -102,8 +104,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
             {
                 altFireMode = false;
 
-                Item.damage = 25;
-                Item.crit = 16;
+                Item.knockBack = 1f;
+                Item.damage = 15;
+                Item.crit = 6;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
@@ -112,6 +115,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 
                 Item.useTime = 8;
                 Item.useAnimation = 8;
+                Item.reuseDelay = 8;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 

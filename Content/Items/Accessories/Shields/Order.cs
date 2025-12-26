@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "+15 HP\n+2 Defense");
             Utilities.Text(tooltips, Mod, "Tooltip2", "When under 30% health, melee attacks do 40% bonus damage", Utilities.VaultarianColours.Information);
-            Utilities.Text(tooltips, Mod, "Tooltip3", "25% melee life-steal if Law is also equipped", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Gives you lifesteal if the Law is also equipped", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "Chung-gunk!");
         }
 

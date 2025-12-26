@@ -9,7 +9,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Maliwan
 {
     public class AegisBullet : ElementalProjectile
     {
-        public float shockMultiplier = 0.2f;
+        public float shockMultiplier = 0.6f;
         private float shockChance = 40f;
         private short shockProjectile = ElementalID.ShockProjectile;
         private int shockBuff = ElementalID.ShockBuff;

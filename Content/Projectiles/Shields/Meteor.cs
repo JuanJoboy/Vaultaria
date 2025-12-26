@@ -15,7 +15,7 @@ namespace Vaultaria.Content.Projectiles.Shields
     {
         public float explosiveMultiplier = 2f;
         private float elementalChance = 100;
-        private short slagProjectile = ElementalID.ExplosiveProjectile;
+        private short slagProjectile = ElementalID.RoundExplosiveProjectile;
         private int slagBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 

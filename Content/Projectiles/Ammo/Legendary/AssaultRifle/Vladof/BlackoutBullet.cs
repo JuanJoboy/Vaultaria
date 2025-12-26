@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.AssaultRifle.Vladof
         public float explosiveMultiplier = 1f;
         public float slagMultiplier = 0.5f;
         private float elementalChance = 10f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private short slagProjectile = ElementalID.SlagProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int slagBuff = ElementalID.SlagBuff;

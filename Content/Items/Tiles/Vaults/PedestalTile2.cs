@@ -7,8 +7,11 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Vaultaria.Common.Networking;
+using Vaultaria.Common.Systems;
 using Vaultaria.Common.Systems.GenPasses;
 using Vaultaria.Common.Systems.GenPasses.Vaults;
+using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Placeables.Vaults;
 
 namespace Vaultaria.Content.Items.Tiles.Vaults
@@ -61,8 +64,6 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
                     SpriteEffects.None,       // Flip effects
                     0f                        // Layer depth (0f is foreground)
                 );
-
-                NPC.SetEventFlagCleared(ref WorldGenerator.pedestalInVault2, -1);
             }
         }
 
@@ -70,18 +71,23 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             Player player = Main.player[Main.myPlayer];
 
+            if(WorldGenerator.pedestalInVault2 == true)
+            {
+                SubworldSystem.Enter<Vault2Subworld>();
+                return true;
+            }
+
             if(player.HeldItem.type == ModContent.ItemType<VaultKey2>())
             {
                 SoundEngine.PlaySound(SoundID.Item4);
                 WorldGenerator.pedestalInVault2 = true;
             }
 
-            if(WorldGenerator.pedestalInVault2 == true)
+            if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                SubworldSystem.Enter<Vault2Subworld>();
+                ModNetHandler.vault.SendPedestal2(WorldGenerator.pedestalInVault2, Main.myPlayer);
+                NetMessage.SendData(MessageID.WorldData);
             }
-
-            NetMessage.SendData(MessageID.WorldData);
 
             return base.RightClick(i, j);
         }

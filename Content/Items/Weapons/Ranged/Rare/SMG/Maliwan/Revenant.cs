@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 14;
+            Item.damage = 17;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 50);
             Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
         }
 

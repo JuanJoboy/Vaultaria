@@ -33,14 +33,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 55;
+            Item.damage = 40;
             Item.crit = 1;
             Item.ArmorPenetration = 1000000;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 48;
-            Item.useAnimation = 48;
-            Item.reuseDelay = 48;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
+            Item.reuseDelay = 35;
             Item.autoReuse = true;
 
             // Other properties
@@ -53,7 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
             CreateRecipe()
                 .AddIngredient<Eridium>(20)
                 .AddIngredient(ItemID.SharkToothNecklace, 2)
-                .AddIngredient(ItemID.IllegalGunParts, 2)
+                .AddIngredient(ItemID.IllegalGunParts, 1)
                 .AddIngredient(ModContent.ItemType<GearboxMuckamuck>(), 1)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();

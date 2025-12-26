@@ -36,6 +36,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             Utilities.Text(tooltips, Mod, "Tooltip1", "+20 HP\n+4 Defense");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Grants immunity to Incendiary damage", Utilities.VaultarianColours.Incendiary);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"Continually releases Fire Nova blasts that deals {Main.LocalPlayer.statDefense * 2} damage when under 30% health", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip4", $"Damage is based on your defense");
             Utilities.RedText(tooltips, Mod, "From the ashes she will rise.");
         }
 
@@ -65,7 +66,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                     // 3. If conditions are met, spawn the nova
                     int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(player.statDefense * 2);
                     float novaKnockback = 5f;
-                    int novaType = ElementalID.LargeExplosiveProjectile; // Using vanilla explosion projectile
+                    int novaType = ElementalID.IncendiaryNovaProjectile;
 
                     // Spawn the nova projectile
                     // Projectile.NewProjectile

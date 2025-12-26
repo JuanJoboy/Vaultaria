@@ -14,7 +14,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore
     {
         public float explosiveMultiplier = 1f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 

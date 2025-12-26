@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
 
         public override float RollChance(Item item)
         {
-            if (BossDownedSystem.torchGod == false)
+            if (BossDownedSystem.eyeOfCthulhu == false)
             {
                 return 0;
             }
@@ -25,7 +25,7 @@ namespace Vaultaria.Content.Prefixes.Weapons
         // Use this to control if a prefix can be rolled or not.
         public override bool CanRoll(Item item)
         {
-            if (BossDownedSystem.torchGod == false)
+            if (BossDownedSystem.eyeOfCthulhu == false)
             {
                 return false;
             }

@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.reuseDelay = 2;
-            Item.knockBack = 4f;
+            Item.knockBack = 1f;
             Item.autoReuse = true;
             Item.mana = 15;
 

@@ -44,6 +44,26 @@ namespace Vaultaria.Content.Items.Potions
             Item.UseSound = SoundID.Item3;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            if(!player.HasBuff(ModContent.BuffType<GammaBurstCooldownBuff>()))
+            {
+                player.AddBuff(ModContent.BuffType<GammaBurstCooldownBuff>(), 4200);
+            }
+
+            return base.UseItem(player);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if(player.HasBuff(ModContent.BuffType<GammaBurstCooldownBuff>()))
+            {
+                return false;
+            }
+
+            return base.CanUseItem(player);
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()

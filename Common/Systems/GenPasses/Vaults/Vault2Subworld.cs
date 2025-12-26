@@ -10,11 +10,16 @@ using Vaultaria.Content.Items.Weapons.Magic;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
 using Vaultaria.Content.Items.Consumables.Bags;
+using Vaultaria.Common.Networking;
+using Terraria.Localization;
+using System;
 
 namespace Vaultaria.Common.Systems.GenPasses.Vaults
 {
 	public class Vault2Subworld : Subworld
 	{
+		public override LocalizedText DisplayName => this.GetLocalization("Vault Of The Destroyer");
+
 		public override int Width => 2000;
 		public override int Height => 2000;
 
@@ -31,7 +36,16 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 		public override void OnEnter()
 		{
 			SubworldSystem.hideUnderworld = false;
+
+			Main.hideUI = false;
 		}
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+			Main.hideUI = false;
+        }
 
         public override void OnLoad()
         {
@@ -56,10 +70,23 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 				Main.time = Main.nightLength;
 				Main.dayRate = 0;
 
-				if(VaultMonsterSystem.vaultMoonLord && armouryOpened == false)
+				if(Utilities.Utilities.startedVault2BossRush)
 				{
-					Utilities.Utilities.startedVault2BossRush = false;
+					armouryOpened = false;
+				}
+
+				if(VaultMonsterSystem.vaultSkeletronPrime && armouryOpened == false)
+				{
 					FindArmoury();
+					Utilities.Utilities.startedVault2BossRush = false;
+					SubworldSystem.noReturn = false;
+
+					if(Main.netMode != NetmodeID.SinglePlayer)
+					{
+        	            ModNetHandler.vault.SendBossRushStatus2(Utilities.Utilities.startedVault2BossRush, Main.myPlayer);
+    	                ModNetHandler.vault.SendNoReturn(SubworldSystem.noReturn, Main.myPlayer);
+	                    NetMessage.SendData(MessageID.WorldData);
+					}
 				}
             }
 		}
@@ -97,10 +124,15 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 					if(tile.TileType == TileID.LeadBrick && WorldGen.InWorld(i, j))
 					{
                 		WorldGen.KillTile(i , j, false, false, true);
-						NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i, number3: j, number4: 0);
                 		WorldGen.KillTile(i + 1, j, false, false, true);
-						NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 1, number3: j, number4: 0);
 						armouryOpened = true;
+
+						if(Main.netMode != NetmodeID.SinglePlayer)
+						{
+							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i, number3: j, number4: 0);
+							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 1, number3: j, number4: 0);
+						}
+
                         return;
 					}
 				}

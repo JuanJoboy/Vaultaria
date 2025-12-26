@@ -33,13 +33,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 9;
+            Item.damage = 40;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 1;
-            Item.useAnimation = 16;
-            Item.reuseDelay = 2;
+            Item.useTime = 4;
+            Item.useAnimation = 32;
             Item.autoReuse = true;
 
             // Other properties
@@ -65,13 +64,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
                 // Combat properties
                 Item.knockBack = 2.3f;
-                Item.damage = 30;
+                Item.damage = 40;
                 Item.crit = 6;
                 Item.DamageType = DamageClass.Ranged;
 
-                Item.useTime = 1;
-                Item.useAnimation = 16;
-                Item.reuseDelay = 2;
+                Item.useTime = 4;
+                Item.useAnimation = 32;
                 Item.autoReuse = true;
 
                 Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
@@ -86,13 +84,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
                 // Combat properties
                 Item.knockBack = 2.3f;
-                Item.damage = 30;
+                Item.damage = 40;
                 Item.crit = 6;
                 Item.DamageType = DamageClass.Ranged;
 
-                Item.useTime = 1;
-                Item.useAnimation = 16;
-                Item.reuseDelay = 2;
+                Item.useTime = 4;
+                Item.useAnimation = 32;
                 Item.autoReuse = true;
 
                 Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);

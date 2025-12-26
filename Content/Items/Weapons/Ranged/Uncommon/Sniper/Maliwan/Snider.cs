@@ -28,12 +28,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 40;
+            Item.shootSpeed = 20;
             Item.shoot = ModContent.ProjectileType<SniderBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 2f;
             Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSniper, 60);
         }
 

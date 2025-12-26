@@ -12,9 +12,9 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 {
     public class LeechModule : ElementalProjectile
     {
-        public float explosiveMultiplier = 0.75f;
+        public float explosiveMultiplier = 1f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.SmallExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 120;
 
@@ -57,7 +57,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                Utilities.HealOnNPCHit(target, damageDone, 1f, Projectile);
+                Utilities.HealOnNPCHit(target, damageDone, 0.5f, Projectile);
                 SetElementOnNPC(target, hit, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }
@@ -67,7 +67,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                Utilities.HealOnPlayerHit(target, info.SourceDamage, 1f, Projectile);
+                Utilities.HealOnPlayerHit(target, info.SourceDamage, 0.5f, Projectile);
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
         }

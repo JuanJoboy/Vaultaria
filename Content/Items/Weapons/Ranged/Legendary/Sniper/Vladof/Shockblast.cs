@@ -22,18 +22,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 20);
-            Item.scale = 0.7f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.LightPurple;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 60f;
+            Item.shootSpeed = 30f;
             Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 1f;
             Item.damage = 70;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
@@ -60,8 +60,9 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
             {
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
+                Item.knockBack = 2.3f;
                 Item.noMelee = true;
-                Item.shootSpeed = 60f;
+                Item.shootSpeed = 20f;
                 Item.shoot = ModContent.ProjectileType<ShockblastExBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
                 Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
@@ -79,7 +80,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
-                Item.shootSpeed = 60f;
+                Item.shootSpeed = 30f;
                 Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
                 Utilities.ItemSound(Item, Utilities.Sounds.ETechSniperSingle, 60);

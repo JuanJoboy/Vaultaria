@@ -30,7 +30,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             Item.rare = ItemRarityID.Blue;
 
             // Combat properties
-            Item.damage = 30;
+            Item.damage = 20;
             Item.DamageType = DamageClass.Summon;
             Item.useTime = 20;
             Item.useAnimation = 20;
@@ -70,8 +70,10 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
             CreateRecipe()
                 .AddIngredient<Eridium>(25)
                 .AddIngredient(ItemID.OpticStaff, 1)
-                .AddIngredient(ItemID.SoulofLight, 20)
-                .AddIngredient(ItemID.SoulofNight, 20)
+                .AddIngredient(ItemID.HallowedBar, 15)
+                .AddIngredient(ItemID.MechanicalBatteryPiece, 1)
+                .AddIngredient(ItemID.AvengerEmblem, 1)
+                .AddIngredient(ItemID.PixieDust, 20)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

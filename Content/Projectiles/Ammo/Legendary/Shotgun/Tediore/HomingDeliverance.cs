@@ -14,7 +14,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
     public class HomingDeliverance : ElementalProjectile
     {
         public float explosiveMultiplier = 1f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
 
         public override void SetDefaults()
         {
@@ -72,7 +72,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
 
                 if(Projectile.owner == Main.myPlayer)
                 {
-                    CloneShots(Projectile.GetSource_FromThis(), Projectile.Center, direction, ProjectileID.ChlorophyteBullet, 15, 2f, 8, 5f);
+                    CloneShots(Projectile.GetSource_FromThis(), Projectile.Center, direction, ProjectileID.ChlorophyteBullet, Projectile.damage, 2f, 8, 5f);
                 }
 
                 Projectile.ai[0] = 0f;

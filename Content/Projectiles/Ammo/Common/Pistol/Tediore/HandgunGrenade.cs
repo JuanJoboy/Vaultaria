@@ -12,9 +12,9 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore
 {
     public class HandgunGrenade : ElementalProjectile
     {
-        public float explosiveMultiplier = 0.7f;
+        public float explosiveMultiplier = 4f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore
             Projectile.scale = 2.1f;
 
             // Damage
-            Projectile.damage = 8;
+            Projectile.damage = 0;
             Projectile.CritChance = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

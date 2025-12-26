@@ -33,18 +33,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 40;
-            Item.crit = 16;
+            Item.knockBack = 1f;
+            Item.damage = 30;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 7;
+            Item.reuseDelay = 15;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.JakobsShotgun, 60);
         }
 
@@ -67,7 +67,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
         public override bool? UseItem(Player player)
         {
-            player.statLife -= 5;
+            player.statLife -= 10;
 
             return base.UseItem(player);
         }
@@ -90,7 +90,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
 
             Utilities.RedText(tooltips, Mod, "Makes orphans. Often.");
-            Utilities.CursedText(tooltips, Mod, "Curse of the Nefarious Backlash!\n(-5 HP on use)");
+            Utilities.CursedText(tooltips, Mod, "Curse of the Nefarious Backlash!\n(-10 HP on use)");
         }
     }
 }

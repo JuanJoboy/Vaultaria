@@ -8,6 +8,7 @@ using Terraria.ModLoader.IO;
 using Terraria.ID;
 using static System.Math;
 using Vaultaria.Common.Players;
+using System.IO;
 
 namespace Vaultaria.Common.Systems.GenPasses
 {
@@ -29,6 +30,19 @@ namespace Vaultaria.Common.Systems.GenPasses
                 // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.
                 // VaultBuilder.GenerateVault("Vault2", Main.spawnTileX, Main.spawnTileY - 100); // Find a suitable tile coordinate (Point16) for the top-left of the structure.   
             }
+        }
+
+        // When a new player joins the world after a pedestal has been activated, this helps sync it for them so that it isn't deactivated
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(pedestalInVault1);
+            writer.Write(pedestalInVault2);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            pedestalInVault1 = reader.ReadBoolean();
+            pedestalInVault2 = reader.ReadBoolean();
         }
 
         public override void SaveWorldData(TagCompound tag)

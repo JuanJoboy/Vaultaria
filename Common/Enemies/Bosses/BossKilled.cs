@@ -11,41 +11,45 @@ namespace Vaultaria.Common.Global
 {
     public class BossKillGlobalNPC : GlobalNPC
     {
-// public override void AI(NPC npc)
-// {
-//     if (!npc.boss || Main.netMode == NetmodeID.MultiplayerClient)
-//     {
-//         return;
-//     }
+        public override void AI(NPC npc)
+        {
+            // Only do manual NPC AI tracking in a subworld
+            if(SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() || SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
+            {
+                if(Main.netMode != NetmodeID.MultiplayerClient) // Only the server should make the decisions
+                {
+                    if(npc.boss || npc.type == NPCID.Pumpking || npc.type == NPCID.IceQueen) // idk if pumpking or ice queen count as bosses
+                    {
+                        int bestTarget = npc.target; // Store the target that the boss is currently fighting
+                        float minDistance = float.MaxValue; // This just initially sets the distance to the max possible number, so that everyone is valid for the first check
 
-//     int bestTarget = npc.target;
-//     float bestDistance = float.MaxValue;
+                        for(int i = 0; i < Main.maxPlayers; i++)
+                        {
+                            Player player = Main.player[i];
 
-//     for (int i = 0; i < Main.maxPlayers; i++)
-//     {
-//         Player p = Main.player[i];
+                            if(player.active && !player.dead && !player.ghost) // Go through every player and check if they're valid
+                            {
+                                float distance = Vector2.Distance(player.Center, npc.Center); // Get the distance of the player and the boss
 
-//         if (!p.active || p.dead)
-//         {
-//             continue;
-//         }
-
-//         float dist = Vector2.Distance(npc.Center, p.Center);
-
-//         if (dist < bestDistance)
-//         {
-//             bestDistance = dist;
-//             bestTarget = i;
-//         }
-//     }
-
-//     if (npc.target != bestTarget)
-//     {
-//         npc.target = bestTarget;
-//         npc.netUpdate = true;
-//         npc.netUpdate2 = true;
-//     }
-// }
+                                if(distance < minDistance) // If the distance is less than that max value (on the first run this will be true)
+                                {
+                                    bestTarget = player.whoAmI; // Then set the target to that player
+                                    minDistance = distance; // And set the min distance to that distance so that it isn't 2 trillion or whatever that max value float is. Then on every run after, the checks above check if the next player is within this distance, and if they are, reduce it again and assign them as the target. And as players move apart, the distance grows larger as the AI constantly checks what the distance between players is.
+                                }
+                            }
+                        }
+                        
+                        // Set the actual target here only if it's a different target, you don't really need to do the check but its good, otherwise the network would be spammed
+                        if (npc.target != bestTarget)
+                        {
+                            npc.target = bestTarget;
+                            npc.netUpdate = true;
+                            npc.netUpdate2 = true;
+                        }
+                    }
+                }
+            }
+        }
 
         public override void OnKill(NPC npc)
         {
@@ -78,7 +82,10 @@ namespace Vaultaria.Common.Global
 
                     Utilities.Utilities.DisplayStatusMessage(npc.Center, color, $"{prefixUnlocked} Prefix Unlocked!");
                     
-                    NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in BossDownedSystem
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in BossDownedSystem
+                    }
                 }
             }   
         }
@@ -86,7 +93,7 @@ namespace Vaultaria.Common.Global
         private void CallAllPrefixUnlocked(NPC npc)
         {
             // PrefixUnlocked(npc, BossDownedSystem.skeletron, NPCID.SkeletronHead, Color.Gold, "Masher");
-            PrefixUnlocked(npc, ref BossDownedSystem.torchGod, NPCID.TorchGod, Color.OrangeRed, "Incendiary");
+            PrefixUnlocked(npc, ref BossDownedSystem.eyeOfCthulhu, NPCID.EyeofCthulhu, Color.OrangeRed, "Incendiary");
             PrefixUnlocked(npc, ref BossDownedSystem.evilBoss, NPCID.BrainofCthulhu, Color.LightGreen, "Corrosive");
             PrefixUnlocked(npc, ref BossDownedSystem.evilBoss, NPCID.EaterofWorldsHead, Color.LightGreen, "Corrosive");
             PrefixUnlocked(npc, ref BossDownedSystem.deerClops, NPCID.Deerclops, Color.Gold, "Double Penetrating");
@@ -109,7 +116,8 @@ namespace Vaultaria.Common.Global
 
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+                        ModNetHandler.vault.SendBossDeath1(Main.myPlayer);
+                        ModNetHandler.vault.SendBossDeath2(Main.myPlayer);
                         NetMessage.SendData(MessageID.WorldData); // If in multiplayer, immediately inform all clients of new world state. Uses netSend and netReceive in VaultMonsterSystem
                     }
                 }
@@ -140,7 +148,7 @@ namespace Vaultaria.Common.Global
         {
             // Vault 2
             VaultBossDowned(npc, ref VaultMonsterSystem.vaultQueenSlime, NPCID.QueenSlimeBoss);
-            VaultBossDowned(npc, ref VaultMonsterSystem.vaultTwins, NPCID.Retinazer);
+            VaultBossDowned(npc, ref VaultMonsterSystem.vaultSeasonalBosses, NPCID.Pumpking);
             VaultBossDowned(npc, ref VaultMonsterSystem.vaultSkeletronPrime, NPCID.SkeletronPrime);
             VaultBossDowned(npc, ref VaultMonsterSystem.vaultBetsy, NPCID.DD2Betsy);
             VaultBossDowned(npc, ref VaultMonsterSystem.vaultPlantera, NPCID.Plantera);

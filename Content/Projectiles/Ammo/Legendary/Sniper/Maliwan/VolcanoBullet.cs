@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Maliwan
         public float explosiveMultiplier = 1f;
         private float elementalChance = 100f;
         private short incendiaryProjectile = ProjectileID.SolarWhipSwordExplosion;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.IncendiaryExplosion;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 180;
@@ -67,8 +67,8 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Maliwan
             if (SetElementalChance(elementalChance))
             {
                 Player player = Main.player[Projectile.owner];
-                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
             }
 
             return false;

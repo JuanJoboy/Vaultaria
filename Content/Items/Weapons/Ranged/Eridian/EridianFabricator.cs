@@ -42,7 +42,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.LegendaryDrop, 60);
         }
 

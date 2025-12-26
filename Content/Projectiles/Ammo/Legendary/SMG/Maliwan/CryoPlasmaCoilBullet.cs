@@ -10,7 +10,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
     public class CryoPlasmaCoilBullet : ElementalProjectile
     {
         public float cryoMultiplier = 2f;
-        private float elementalChance = 20;
+        private float elementalChance = 100;
         private short cryoProjectile = ElementalID.CryoProjectile;
         private int cryoBuff = ElementalID.CryoBuff;
         private int buffTime = 180;

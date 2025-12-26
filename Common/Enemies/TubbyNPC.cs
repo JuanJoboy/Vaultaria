@@ -12,6 +12,7 @@ using Terraria.DataStructures;
 using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion;
 using Terraria.ModLoader.IO;
 using System.IO;
+using Vaultaria.Content.Items.Accessories.Skills;
 
 public class TubbyNPC : GlobalNPC
 {
@@ -23,19 +24,24 @@ public class TubbyNPC : GlobalNPC
     {
         base.SetDefaults(npc);
 
-        if(npc.type != NPCID.TargetDummy && !npc.townNPC && npc.lifeMax > 10 && !NPCID.Sets.CountsAsCritter[npc.type])
+        if(Main.netMode != NetmodeID.MultiplayerClient)
         {
-            if(Utilities.Randomizer(50)) // Make 0.7f;
+            bool boss = npc.boss || npc.type == NPCID.Pumpking || npc.type == NPCID.IceQueen;
+
+            if(npc.type != NPCID.TargetDummy && boss == false && !npc.townNPC && !NPCID.Sets.CountsAsCritter[npc.type])
             {
-                if(Main.hardMode)
+                if(Utilities.Randomizer(0.1f))
                 {
-                    SetTubbyDefaults(npc, ref isTubby, 3, 2, 2, 1.3f);
-                }
-                else
-                {
-                    SetTubbyDefaults(npc, ref isChubby, 2, 2, 2, 1.3f);
-                }
-            }   
+                    if(Main.hardMode)
+                    {
+                        SetTubbyDefaults(npc, ref isTubby, 3, 2, 2, 1.3f);
+                    }
+                    else
+                    {
+                        SetTubbyDefaults(npc, ref isChubby, 2, 2, 2, 1.3f);
+                    }
+                }   
+            }
         }
     }
 
@@ -66,15 +72,6 @@ public class TubbyNPC : GlobalNPC
         {
             typeName = $"Chubby {typeName}";
         }
-    }
-
-    public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-    {
-        base.ModifyNPCLoot(npc, npcLoot);
-
-        npcLoot.Add(ItemDropRule.ByCondition(new TubbyCondition(), ModContent.ItemType<Butcher>(), 1, 1, 1));
-
-        npcLoot.Add(ItemDropRule.ByCondition(new ChubbyCondition(), ModContent.ItemType<UnkemptHarold>(), 1, 1, 1));
     }
 
     public override void DrawEffects(NPC npc, ref Color drawColor)

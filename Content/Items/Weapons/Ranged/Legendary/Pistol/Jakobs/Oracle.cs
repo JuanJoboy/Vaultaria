@@ -32,13 +32,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 45;
-            Item.crit = 6;
+            Item.damage = 50;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 12;
             Item.useAnimation = 12;
-            Item.reuseDelay = 10;
+            Item.reuseDelay = 5;
             Item.autoReuse = false;
 
             // Other properties

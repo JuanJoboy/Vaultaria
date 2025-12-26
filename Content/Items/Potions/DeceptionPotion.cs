@@ -43,10 +43,30 @@ namespace Vaultaria.Content.Items.Potions
             Item.value = Item.buyPrice(gold: 2);
             Utilities.ItemSound(Item, Utilities.Sounds.Deception, 500);
         }
+
+        public override bool? UseItem(Player player)
+        {
+            if(!player.HasBuff(ModContent.BuffType<DeceptionCooldownBuff>()))
+            {
+                player.AddBuff(ModContent.BuffType<DeceptionCooldownBuff>(), 4020);
+            }
+
+            return base.UseItem(player);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if(player.HasBuff(ModContent.BuffType<DeceptionCooldownBuff>()))
+            {
+                return false;
+            }
+
+            return base.CanUseItem(player);
+        }
         
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "+100% Increased Ranged Damage & +150% increased Melee Damage while in Deception\n300% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
+            Utilities.Text(tooltips, Mod, "Tooltip1", "+50% Increased Ranged Damage & +75% increased Melee Damage while in Deception\n+100% Increased Melee Damage while holding Zero's Sword", Utilities.VaultarianColours.Information);
             Utilities.RedText(tooltips, Mod, "Your eyes deceive you\nAn illusion fools you all\nI move for the kill.");
         }
     }

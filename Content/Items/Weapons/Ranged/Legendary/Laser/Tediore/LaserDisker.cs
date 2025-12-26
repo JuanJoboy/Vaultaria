@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
         {
             // Visual properties
             Item.Size = new Vector2(60, 30);
-            Item.scale = 0.95f;
+            Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -61,7 +61,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
 
             if(altFireMode)
             {
-                mult = 3;
+                mult = 4;
             }
         }
 

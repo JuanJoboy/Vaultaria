@@ -15,7 +15,7 @@ namespace Vaultaria.Content.Projectiles.Melee
         public float explosiveMultiplier = 1f;
         public float incendiaryMultiplier = 0.25f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;

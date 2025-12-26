@@ -78,7 +78,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Maliwan
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Pistol Ammo\nHolding the Grog Nozzle has a chance to buff its wielder for 10 seconds.\nThe buff grants the following effects:");
             Utilities.Text(tooltips, Mod, "Tooltip2", "\t+5 Projectiles\n\t-50% Fire Rate", Utilities.VaultarianColours.Information);
-            Utilities.Text(tooltips, Mod, "Tooltip3", "+65% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Heals the player on enemy hit", Utilities.VaultarianColours.Healing);
             Utilities.Text(tooltips, Mod, "Tooltip3", "+100% Chance to Apply Slag", Utilities.VaultarianColours.Slag);
             Utilities.RedText(tooltips, Mod, "Hand over the keys, Sugar...");
         }

@@ -32,14 +32,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 2f;
             Item.damage = 40;
             Item.crit = 11;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 12;
-            Item.useAnimation = 12;
-            Item.reuseDelay = 8;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 18;
             Item.autoReuse = true;
 
             // Other properties

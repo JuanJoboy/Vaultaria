@@ -9,9 +9,9 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Jakobs
 {
     public class CobraBullet : ElementalProjectile
     {
-        public float explosiveMultiplier = 1f;
+        public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 180;
 

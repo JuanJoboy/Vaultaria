@@ -22,6 +22,14 @@ namespace Vaultaria.Content.Items.Materials
             Item.rare = ItemRarityID.Purple;
             Item.ammo = ModContent.ItemType<Eridium>();
             Item.consumable = true;
+
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.createTile = ModContent.TileType<Tiles.Bars.Eridium>();
+            Item.placeStyle = 0;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

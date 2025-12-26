@@ -35,17 +35,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 40;
+            Item.damage = 20;
             Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.reuseDelay = 7;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.JakobsShotgun, 60);
         }
 

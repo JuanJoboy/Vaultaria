@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
             // Combat properties
             Item.knockBack = 2.3f; // Gun knockback + bullet knockback = final knockback
-            Item.damage = 30; // Gun damage + bullet damage = final damage
+            Item.damage = 20; // Gun damage + bullet damage = final damage
             Item.crit = 10; // Crit chance + 4% base
             Item.DamageType = DamageClass.Ranged; // Does ranged damage
 
@@ -77,7 +77,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 5; i++)
             {
                 player.ConsumeItem(ammo.type, false);
             }
@@ -87,7 +87,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 3 Pistol Ammo per shot");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Consumes 6 Pistol Ammo per shot");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Fires multiple Explosive rounds", Utilities.VaultarianColours.Explosive);
             Utilities.RedText(tooltips, Mod, "Did I fire six shots, or only five? Three? Seven. Whatever.");
         }

@@ -60,7 +60,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
                 .AddIngredient(ItemID.ChlorophyteBar, 25)
                 .AddIngredient(ItemID.Handgun, 1)
                 .AddIngredient(ItemID.EndlessMusketPouch, 2)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

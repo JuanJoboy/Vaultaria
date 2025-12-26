@@ -76,7 +76,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses SMG Ammo");
-            Utilities.Text(tooltips, Mod, "Tooltip2", "Has a 40% chance to do 60% Slag & 60% Shock bonus damage", Utilities.VaultarianColours.Slag);
+            Utilities.Text(tooltips, Mod, "Tooltip2", "Has a chance to deal bonus Slag & Shock damage", Utilities.VaultarianColours.Slag);
             Utilities.RedText(tooltips, Mod, "Double trouble.");
         }
     }

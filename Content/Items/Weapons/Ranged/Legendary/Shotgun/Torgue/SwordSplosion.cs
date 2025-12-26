@@ -35,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 15;
+            Item.damage = 30;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -46,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
             ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<MysteriousAmulet>();
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 2);
             Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
         }
 

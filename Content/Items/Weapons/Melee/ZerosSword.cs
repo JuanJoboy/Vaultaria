@@ -27,13 +27,13 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Combat properties
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 2.3f;
-            Item.damage = 200;
+            Item.damage = 300;
             Item.crit = 6;
             Item.DamageType = DamageClass.Melee;
             Item.scale = 1.25f;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
             Item.autoReuse = false;
             Item.useTurn = true;
 

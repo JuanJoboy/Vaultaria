@@ -19,7 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             Item.Size = new Vector2(12, 12);
 
             // Damage
-            Item.damage = 2;
+            Item.damage = 3;
             Item.DamageType = DamageClass.Ranged;
             Item.shootSpeed = 10f;
 

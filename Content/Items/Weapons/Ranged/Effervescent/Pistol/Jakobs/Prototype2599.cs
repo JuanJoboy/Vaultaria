@@ -36,24 +36,26 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 60;
-            Item.crit = 6;
+            Item.damage = 35;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
+            Item.useStyle = ItemUseStyleID.Shoot;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 45;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 1);
+            Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         }
 
-        public override bool AltFunctionUse(Player player)
-        {
-            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-            return true;
-        }
+        // public override bool AltFunctionUse(Player player)
+        // {
+        //     ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+        //     return true;
+        // }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
@@ -65,53 +67,53 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
             return true;
         }
 
-        public override bool CanUseItem(Player player)
-        {
+        // public override bool CanUseItem(Player player)
+        // {
 
-            if (player.altFunctionUse == 2) // Burst Fire (alt)
-            {
-                altFireMode = true;
+        //     if (player.altFunctionUse == 2) // Burst Fire (alt)
+        //     {
+        //         altFireMode = true;
 
-                Item.damage = 15;
-                Item.crit = 1;
-                Item.DamageType = DamageClass.Ranged;
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.noMelee = true;
-                Item.shootSpeed = 10f;
-                Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
+        //         Item.damage = 15;
+        //         Item.crit = 1;
+        //         Item.DamageType = DamageClass.Ranged;
+        //         Item.useStyle = ItemUseStyleID.Shoot;
+        //         Item.noMelee = true;
+        //         Item.shootSpeed = 10f;
+        //         Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
 
-                Item.useTime = 12;
-                Item.useAnimation = 36;
-                Item.reuseDelay = 30;
-                Item.autoReuse = true;
-                Item.useTurn = false;
+        //         Item.useTime = 12;
+        //         Item.useAnimation = 36;
+        //         Item.reuseDelay = 30;
+        //         Item.autoReuse = true;
+        //         Item.useTurn = false;
 
-                // Item.UseSound = SoundID.Item31;
-                Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
-            }
-            else // Quad Shot (normal)
-            {
-                altFireMode = false;
+        //         // Item.UseSound = SoundID.Item31;
+        //         Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
+        //     }
+        //     else // Quad Shot (normal)
+        //     {
+        //         altFireMode = false;
 
-                Item.damage = 60;
-                Item.crit = 16;
-                Item.DamageType = DamageClass.Ranged;
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.noMelee = true;
-                Item.shootSpeed = 10f;
-                Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
+        //         Item.damage = 60;
+        //         Item.crit = 16;
+        //         Item.DamageType = DamageClass.Ranged;
+        //         Item.useStyle = ItemUseStyleID.Shoot;
+        //         Item.noMelee = true;
+        //         Item.shootSpeed = 10f;
+        //         Item.shoot = ModContent.ProjectileType<Prototype2599Bullet>();
 
-                Item.useTime = 30;
-                Item.useAnimation = 30;
-                Item.reuseDelay = 45;
-                Item.autoReuse = true;
-                Item.useTurn = false;
+        //         Item.useTime = 30;
+        //         Item.useAnimation = 30;
+        //         Item.reuseDelay = 45;
+        //         Item.autoReuse = true;
+        //         Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
-            }
+        //         Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
+        //     }
 
-            return base.CanUseItem(player);
-        }
+        //     return base.CanUseItem(player);
+        // }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

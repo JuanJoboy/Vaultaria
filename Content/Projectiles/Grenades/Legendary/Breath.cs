@@ -16,6 +16,11 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
         private int buffTime = 300;
 
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 4;
+        }
+
         public override void SetDefaults()
         {
             // Size

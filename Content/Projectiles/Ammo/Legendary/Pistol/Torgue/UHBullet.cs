@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
     {
         public float explosiveMultiplier;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 90;
 
@@ -94,7 +94,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
                                 Projectile.Center,               // Spawn at the center of the parent bullet
                                 newVelocity,                     // The newly calculated velocity for spread
                                 Projectile.type,                 // Same projectile type as this one
-                                25,                               // Each bullet does 25 damage
+                                Projectile.damage,                               // Each bullet does 25 damage
                                 Projectile.knockBack,            // Same knockback as this one
                                 Projectile.owner,                // Same owner as this one
                                 0f,                              // ai[0] = 0f: This clone is NOT a parent; it won't clone further

@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(73, 30);
+            Item.Size = new Vector2(80, 32);
             Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
@@ -36,13 +36,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
             // Combat properties
             Item.knockBack = 0f;
-            Item.damage = 35;
+            Item.damage = 20;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
-            Item.reuseDelay = 15;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties

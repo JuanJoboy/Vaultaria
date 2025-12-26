@@ -11,7 +11,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.AssaultRifle.Torgue
     {
         public float explosiveMultiplier = 1f;
         private float explosiveChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 
@@ -67,7 +67,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.AssaultRifle.Torgue
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
             }
 
-            return false;
+            return true;
         }
         
         public override List<string> GetElement()

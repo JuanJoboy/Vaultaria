@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
         public float explosiveMultiplier = 1f;
         private float cryoChance = 100f;
         private short cryoProjectile = ElementalID.CryoProjectile;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int cryoBuff = ElementalID.CryoBuff;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;

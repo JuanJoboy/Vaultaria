@@ -61,7 +61,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
                 .AddIngredient(ItemID.Revolver, 1)
                 .AddIngredient(ItemID.TacticalShotgun, 1)
                 .AddIngredient(ItemID.Ectoplasm, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 4)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

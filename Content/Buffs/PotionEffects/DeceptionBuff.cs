@@ -22,12 +22,12 @@ namespace Vaultaria.Content.Buffs.PotionEffects
 
             if (player.HeldItem.type == ModContent.ItemType<ZerosSword>())
             {
-                player.GetDamage(DamageClass.Melee) += 3.0f; // +300% Melee Damage
+                player.GetDamage(DamageClass.Melee) += 1.0f; // +100% Melee Damage
             }
             else
             {
-                player.GetDamage(DamageClass.Melee) += 1.5f; // +150% Melee Damage
-                player.GetDamage(DamageClass.Ranged) += 1.0f; // +100% Ranged/Gun Damage
+                player.GetDamage(DamageClass.Melee) += 0.75f; // +75% Melee Damage
+                player.GetDamage(DamageClass.Ranged) += 0.5f; // +50% Ranged/Gun Damage
             }
         }
     }

@@ -107,7 +107,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                             Projectile.Center,
                             direction,
                             ProjectileID.ChlorophyteBullet,
-                            Projectile.damage,
+                            Projectile.damage / 2,
                             0f,
                             Projectile.owner
                         );
@@ -129,7 +129,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                             Projectile.Center,
                             direction,
                             ModContent.ProjectileType<ZimBullet>(),
-                            Projectile.damage,
+                            Projectile.damage / 4,
                             0f,
                             Projectile.owner
                         );
@@ -139,7 +139,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
                             Projectile.Center,
                             direction,
                             ModContent.ProjectileType<GubBullet>(),
-                            Projectile.damage,
+                            Projectile.damage / 4,
                             0f,
                             Projectile.owner
                         );

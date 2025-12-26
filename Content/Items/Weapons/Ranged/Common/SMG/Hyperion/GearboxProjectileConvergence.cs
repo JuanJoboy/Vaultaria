@@ -26,19 +26,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Hyperion
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 15;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 1f;
-            Item.damage = 5;
-            Item.crit = 0;
+            Item.knockBack = 0f;
+            Item.damage = 7;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 4;
-            Item.useAnimation = 4;
-            Item.reuseDelay = 4;
+            Item.useTime = 5;
+            Item.useAnimation = 5;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties

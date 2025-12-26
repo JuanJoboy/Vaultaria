@@ -26,6 +26,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
             Utilities.Text(tooltips, Mod, "Tooltip2", "When under 65% health, melee attacks do 80% bonus damage", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", "Deals 100% bonus thorn damage", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip4", $"Releases a Fire Nova blast that deals {Main.LocalPlayer.statDefense * 4} damage when health dips under 30%", Utilities.VaultarianColours.Explosive);
+            Utilities.Text(tooltips, Mod, "Tooltip5", $"Damage is based on your defense");
             Utilities.RedText(tooltips, Mod, "...His hide turned the mightiest tame...");
         }
 
@@ -46,7 +47,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
                     usage = 0;
                     int novaDamage = (int)player.GetTotalDamage(DamageClass.Generic).ApplyTo(player.statDefense * 4);
                     float novaKnockback = 5f;
-                    int novaType = ElementalID.LargeExplosiveProjectile;
+                    int novaType = ElementalID.IncendiaryNovaProjectile;
 
                     Projectile.NewProjectile(
                         player.GetSource_Accessory(Item),

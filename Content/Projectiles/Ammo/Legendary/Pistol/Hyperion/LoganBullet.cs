@@ -14,7 +14,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Hyperion
         public float explosiveMultiplier = 0.35f;
         public float incendiaryMultiplier = 0.25f;
         private float elementalChance = 40f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;

@@ -34,8 +34,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 70;
-            Item.crit = 16;
+            Item.damage = 45;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 17;

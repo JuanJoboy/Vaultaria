@@ -37,17 +37,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Torgue
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 20;
-            Item.crit = 16;
+            Item.damage = 15;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 7;
+            Item.reuseDelay = 40;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(silver: 2);
             Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
         }
 

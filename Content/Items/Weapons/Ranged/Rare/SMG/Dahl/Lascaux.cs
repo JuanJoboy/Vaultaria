@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Dahl
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 8;
+            Item.damage = 10;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

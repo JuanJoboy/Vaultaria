@@ -44,6 +44,7 @@ using System.Linq;
 using static System.Array;
 using static System.Linq.Enumerable;
 using Terraria.Graphics;
+using Vaultaria.Common.Systems.GenPasses.Vaults;
 
 namespace Vaultaria.Common.Players
 {
@@ -58,21 +59,24 @@ namespace Vaultaria.Common.Players
         // 2. The Hook: Runs when the character first loads or enters the world.
         public override void OnEnterWorld()
         {
-            Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in Vaultaria", Color.Red);
-            Main.NewText($"Also be sure to check out the Vaultaria Config", Color.Red);
-            Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
-
-            // The logic runs only if this character has NOT been initialized yet.
-            if (!hasInitialized)
+            if(!SubworldLibrary.SubworldSystem.IsActive<Vault1Subworld>() && !SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
             {
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<VaultHuntersRelic>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
-                Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<TinBullet>(), 600);
+                Main.NewText($"If using Calamity's Prefix Roller, disable it to access all the prefixes in Vaultaria", Color.Red);
+                Main.NewText($"Also be sure to check out the Vaultaria Config", Color.Red);
+                Utilities.Utilities.DisplayStatusMessage(Player.Center, Color.Gold, $"Welcome to Vaultaria, {Player.name}!");
 
-                // Set the flag to true so this code doesn't run again on the next login.
-                hasInitialized = true;
+                // The logic runs only if this character has NOT been initialized yet.
+                if (!hasInitialized)
+                {
+                    Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<VaultHuntersRelic>(), 1);
+                    Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxProjectileConvergence>(), 1);
+                    Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxRenegade>(), 1);
+                    Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<GearboxMuckamuck>(), 1);
+                    Player.QuickSpawnItem(Player.GetSource_None(), ModContent.ItemType<TinBullet>(), 600);
+
+                    // Set the flag to true so this code doesn't run again on the next login.
+                    hasInitialized = true;
+                }
             }
         }
 
@@ -209,7 +213,7 @@ namespace Vaultaria.Common.Players
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CorrosivePrefix, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.SlagPrefix, ElementalID.SlagProjectile, ElementalID.SlagBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.CryoPrefix, ElementalID.CryoProjectile, ElementalID.CryoBuff, elementalBuffTime);
-            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, elementalBuffTime);
+            ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, elementalChance, multiplier, ElementalID.ExplosivePrefix, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, elementalBuffTime);
             ElementalProjectile.HandleElementalProjOnNPC(proj, Player, target, hit, 50, multiplier, ElementalID.RadiationPrefix, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 240);
 
             HitWithElectricBanjoOn(target, hit);
@@ -613,7 +617,7 @@ namespace Vaultaria.Common.Players
                 }
                 if (IsWearing(ModContent.ItemType<MindBlown>()) && !npcVictim.HasBuff(ElementalID.ExplosiveBuff))
                 {
-                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
+                    ElementalProjectile.SetElementOnNPC(npcVictim, globalNpcHitInfo, multiplier, Player, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
                 }
                 if (IsWearing(ModContent.ItemType<Shockra>()) && !npcVictim.HasBuff(ElementalID.ShockBuff))
                 {
@@ -721,7 +725,7 @@ namespace Vaultaria.Common.Players
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.CryoProjectile, ElementalID.CryoBuff, 60);
                     break;
                 case 6:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
+                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
                     break;
                 case 7:
                     ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, Player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 60);
@@ -977,7 +981,7 @@ namespace Vaultaria.Common.Players
                 {
                     float bonusDamage = Utilities.Utilities.ComparativeBonus(1f, -realSpeed, 25f) + Utilities.Utilities.SkillBonus(87f, 0.05f);
 
-                    if(item.DamageType != DamageClass.SummonMeleeSpeed && item.DamageType != DamageClass.Summon)
+                    if(item.DamageType != DamageClass.Summon)
                     {
                         damage *= bonusDamage;
                     }   
