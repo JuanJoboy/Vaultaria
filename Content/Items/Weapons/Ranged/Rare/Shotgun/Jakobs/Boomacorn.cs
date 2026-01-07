@@ -29,19 +29,19 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 30;
+            Item.shootSpeed = 20;
             Item.shoot = ModContent.ProjectileType<BoomacornBullet>();
             Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 40;
-            Item.crit = 16;
+            Item.damage = 15;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.reuseDelay = 7;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
+            Item.reuseDelay = 10;
             Item.autoReuse = true;
 
             // Other properties

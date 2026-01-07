@@ -28,23 +28,23 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 30;
+            Item.shootSpeed = 20;
             Item.shoot = ModContent.ProjectileType<HulkBullet>();
             Item.useAmmo = ModContent.ItemType<ShotgunAmmo>();
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 3;
+            Item.damage = 10;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
         }
 

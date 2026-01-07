@@ -15,9 +15,14 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
     {
         public float explosiveMultiplier = 0.15f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 90;
+
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 4;
+        }
 
         public override void SetDefaults()
         {
@@ -41,7 +46,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
+            Utilities.FrameRotator(3, Projectile);
 
             Projectile.velocity.Y += 0.175f;
         }
@@ -85,7 +90,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
             }
 
-            Utilities.RocketJump(Projectile, ModContent.ItemType<BasicGrenade>(), 4.5f, 12f);
+            Utilities.RocketJump(Projectile, ModContent.ItemType<BasicGrenade>(), 8f, 8f);
         }
 
         public override List<string> GetElement()

@@ -36,17 +36,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 15;
+            Item.damage = 20;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 35;
+            Item.reuseDelay = 20;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 3);
             Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
         }
 
@@ -75,7 +75,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
             {
                 altFireMode = true;
 
-                Item.damage = 0;
+                Item.damage = 15;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
@@ -96,17 +96,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
             {
                 altFireMode = false;
 
-                Item.damage = 60;
-                Item.crit = 16;
+                Item.damage = 15;
+                Item.crit = 6;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 10f;
                 Item.shoot = ProjectileID.Bullet;
 
-                Item.useTime = 30;
-                Item.useAnimation = 30;
-                Item.reuseDelay = 45;
+                Item.useTime = 20;
+                Item.useAnimation = 20;
+                Item.reuseDelay = 20;
                 Item.autoReuse = true;
                 Item.useTurn = false;
 

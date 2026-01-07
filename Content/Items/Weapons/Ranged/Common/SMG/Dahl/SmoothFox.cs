@@ -32,18 +32,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 5;
+            Item.knockBack = 1.5f;
+            Item.damage = 8;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.reuseDelay = 30;
+            Item.reuseDelay = 25;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
         }
 

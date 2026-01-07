@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vaultaria.Common.Utilities;
 using System.Collections.Generic;
-using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue;
+using Vaultaria.Content.Items.Accessories.Skills;
 
 namespace Vaultaria.Content.Items.Consumables.Bags
 {
@@ -18,9 +18,14 @@ namespace Vaultaria.Content.Items.Consumables.Bags
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Flakker>(), 1, 1, 1));
+            // Items
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemID.FrozenKey, ItemID.JungleKey, ItemID.CrimsonKey, ItemID.CorruptionKey, ItemID.HallowedKey, ItemID.DungeonDesertKey, ItemID.Uzi, ItemID.DiscountCard, ItemID.RodofDiscord, ItemID.CoinGun, ItemID.TheAxe, ItemID.TeleportationPylonVictory, ItemID.DiggingMoleMinecart, ModContent.ItemType<Bore>(), ModContent.ItemType<Bloodsplosion>()));
 
-            // Add Money
+            // Potions
+            itemLoot.Add(ItemDropRule.Common(ItemID.SuperHealingPotion, 10, 10, 20));
+            itemLoot.Add(ItemDropRule.Common(ItemID.SuperManaPotion, 10, 10, 20));
+
+            // Money
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCID.MoonLordCore));
         }
 

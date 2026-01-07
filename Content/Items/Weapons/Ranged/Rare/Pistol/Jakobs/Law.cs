@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             // Combat properties
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 1f;
-            Item.damage = 8;
+            Item.damage = 15;
             Item.crit = 4;
             Item.DamageType = DamageClass.Ranged;
 
@@ -83,7 +83,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
             }
             else // Left-click ranged
             {
-                Item.damage = 8;
+                Item.damage = 15;
                 Item.crit = 4;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;
@@ -112,7 +112,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
         {
             Utilities.Text(tooltips, Mod);
             Utilities.Text(tooltips, Mod, "Tooltip2", "Right-Click to do a melee attack");
-            Utilities.Text(tooltips, Mod, "Tooltip3", "+25% melee life-steal if Order is also equipped", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Gives you lifesteal if Order is also equipped", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "De Da.");
         }
 

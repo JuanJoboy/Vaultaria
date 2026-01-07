@@ -9,7 +9,7 @@ namespace Vaultaria.Common.Systems
 {
     public class BossDownedSystem : ModSystem
     {
-        public static bool torchGod = false;
+        public static bool eyeOfCthulhu = false;
         public static bool evilBoss = false;
         public static bool skeletron = false;
         public static bool deerClops = false;
@@ -26,7 +26,7 @@ namespace Vaultaria.Common.Systems
 			// writer.WriteFlags(iceGolem);
 			// WriteFlags supports up to 8 entries, if you have more than 8 flags to sync, call WriteFlags again.
 
-            writer.WriteFlags(torchGod, evilBoss, skeletron, deerClops, wallOfFlesh, pirateShip, twins, iceGolem);
+            writer.WriteFlags(eyeOfCthulhu, evilBoss, skeletron, deerClops, wallOfFlesh, pirateShip, twins, iceGolem);
             writer.WriteFlags(martianSaucerCore);
 		}
 
@@ -36,14 +36,14 @@ namespace Vaultaria.Common.Systems
 			// reader.ReadFlags(out iceGolem);
 			// ReadFlags supports up to 8 entries, if you have more than 8 flags to sync, call ReadFlags again.
 
-            reader.ReadFlags(out torchGod, out evilBoss, out skeletron, out deerClops, out wallOfFlesh, out pirateShip, out twins, out iceGolem);
+            reader.ReadFlags(out eyeOfCthulhu, out evilBoss, out skeletron, out deerClops, out wallOfFlesh, out pirateShip, out twins, out iceGolem);
             reader.ReadFlags(out martianSaucerCore);
 		}
 
         // Use Save/LoadWorldData to ensure the state persists
         public override void SaveWorldData(TagCompound tag)
         {
-            tag["torchGod"] = torchGod;
+            tag["eyeOfCthulhu"] = eyeOfCthulhu;
             tag["evilBoss"] = evilBoss;
             tag["skeletron"] = skeletron;
             tag["deerClops"] = deerClops;
@@ -57,7 +57,7 @@ namespace Vaultaria.Common.Systems
         // Load both flags
         public override void LoadWorldData(TagCompound tag)
         {
-            torchGod = tag.GetBool("torchGod");
+            eyeOfCthulhu = tag.GetBool("eyeOfCthulhu");
             evilBoss = tag.GetBool("evilBoss");
             skeletron = tag.GetBool("skeletron");
             deerClops = tag.GetBool("deerClops");
@@ -71,7 +71,7 @@ namespace Vaultaria.Common.Systems
         // This resets the flag when vaultQueenSlime new world is created
         public override void ClearWorld()
         {
-            torchGod = false;
+            eyeOfCthulhu = false;
             evilBoss = false;
             skeletron = false;
             deerClops = false;

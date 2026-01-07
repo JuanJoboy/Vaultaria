@@ -2,19 +2,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Common.Utilities;
+using Vaultaria.Content.Items.Weapons.Melee;
 
-namespace Vaultaria.Content.Buffs.SkillEffects
+namespace Vaultaria.Content.Buffs.PotionEffects
 {
-    public class BloodsplosionKillSkill : ModBuff
+    public class DeceptionCooldownBuff : ModBuff
     {
         public override void SetStaticDefaults()
         {
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
-            Main.buffNoTimeDisplay[Type] = true;
-
-            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
     }
 }

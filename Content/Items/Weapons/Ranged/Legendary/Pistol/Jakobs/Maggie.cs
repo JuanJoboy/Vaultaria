@@ -61,7 +61,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs
                 .AddIngredient(ItemID.Revolver, 1)
                 .AddIngredient(ItemID.Shotgun, 1)
                 .AddIngredient(ItemID.SoulofSight, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

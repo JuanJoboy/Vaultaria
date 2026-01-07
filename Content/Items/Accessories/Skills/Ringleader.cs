@@ -35,6 +35,10 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
+                .AddIngredient(ItemID.ShroomiteBar, 20)
+                .AddIngredient(ItemID.SoulofMight, 10)
+                .AddIngredient(ItemID.SoulofSight, 10)
+                .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<BrainFreeze>(1)
                 .AddIngredient<Refreshment>(1)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())

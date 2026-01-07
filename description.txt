@@ -5,31 +5,47 @@ Word on the ECHOnet is that it's crawling with weird monsters and some lunatic c
 
 -- MOD INFORMATION --
 
-This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 63 new items in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
+This is a simple Borderlands mod that I decided to make because I'm a huge fan of the franchise and I just wanted to import all of the unique and cool aspects over to Terraria. There are currently 200+ new items (with every weapon having it's respective Borderlands audio) in this mod (with more on the way) plus new prefixes to shake up how your gear behaves. Some prefixes might not work great on certain weapons, but hey, experimentation is part of the fun.
 
-This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique.
+This mod is designed to be played in either Expert or Master mode as that's what the items are scaled for. Each item has also been scaled to naturally fit into Terraria's progression, with every boss dropping something unique. And if you feel as though the game is too easy, then go into the config and bump up the Vault Hunter Mode to either 2 (TVHM) or 3 (UVHM). There are also 6 other config settings to tune the mod to something right for you.
+
+Some other new things in this mod include Claptrap, a helpful Town NPC available at the start of the game. He provides many different items at both the start of Pre Hardmode and Hardmode and also gives a lot of useful information in regards to mechanics within the mod. Mobs also have a rare chance to be either a Chubby (Pre-Hardmode) or a Tubby (Hardmode). These mobs drop rare items, so be on the lookout for them. And if you can't be bothered farming tubbies, then scour the land and find Vault Fragments to make 2 Vault Keys. With these keys you'll be able to go inside the 2 Vaults in the world and farm the items via a Boss Rush.
 
 And this is just the beginning - I plan to keep expanding with more weapons, mechanics, polish, and mayhem. Feedback, bug reports, and wild weapon ideas are always welcome!
 
 [i/s1:4] -- WEAPONS --
 
-[i/s1:2177] - 6 Ammo Types
-[i/s1:168] - 5 Grenades
-[i/s1:1297] - 1 Melee Weapon
-[i/s1:1513] - 3 Melee-Gun fusions
-[i/s1:1929] - 28 Guns
-[i/s1:1572] - 1 Sentry
+[i/s1:2177] - 8 Ammo Types
+[i/s1:168] - 8 Grenades
+[i/s1:1297] - 2 Melee Weapons
+[i/s1:1513] - 4 Melee-Gun Fusions
+[i/s1:1929] - 72 Guns
+[i/s1:3541] - 7 Magic Weapons
+[i/s1:3531] - 3 Minions
+[i/s1:1572] - 3 Sentries
 
 [i/s1:54] -- ACCESSORIES -- 
 
-[i/s1:156] - 13 Shields
-[i/s1:891] - 3 Relics
+[i/s1:156] - 14 Shields
+[i/s1:891] - 9 Relics
+[i/s1:1343] - 7 Attunements
+[i/s1:935] - 41 Skills
+[i/s1:3110] - 8 Class Mods
+
+[i/s1:398] -- PREFIXES --
+
+[i/s1:1613] - 7 Accessory Prefixes
+[i/s1:4956] - 9 Weapon Prefixes
+
+[i/s1:1787] -- CONSUMABLES --
+
+[i/s1:3544] - 2 Potions
+[i/s1:3324] - 2 Treasure Bags
 
 [i/s1:35] -- CRAFTING STATIONS --
 
-2 New Crafting Stations:
-    * 1 for Weapons
-    * 1 for Shields
+[i/s1:29] - Marcus's Vending Machine
+[i/s1:40] - Zed's Vending Machine
 
 [i/s1:23] -- MATERIALS --
 
@@ -38,10 +54,18 @@ Eridium:
     * Higher-tier bosses drop more
     * Used in most crafting recipes
 
+Vault Fragments:
+    * Found in chests scattered across the world
+    * Used to craft Vault Keys that can be used to enter Vaults
+
+Moonstone:
+    * Dropped by bosses in the Hardmode Vault at a rare chance
+    * Used to craft Class Mods
+
 -- CONSIDERATIONS --
 
 Q: What mods are compatible?
-A: Any mod should work fine, as no changes are being made to mobs, bosses or world generation.
+A: Most mods should be compatible, only 2 are incompatible as far as I'm aware: Secrets of the Shadow & Starlight River. The world generation for the structure in the Underworld for SOTS gets mixed in with the Vault placed there, and in my testing with SR, the world simply can't be generated.
 
 Q: Are you associated with Terralands: Project Vaulthalla?
 A: Nope, while we are both Borderlands mods, Vaultaria is a totally separate experience and is designed to stand on its own.
@@ -53,14 +77,14 @@ A: Quite Enough Recipes - For full recipe and drop info
    Any content mod you enjoy (Calamity, Fargo's, etc.)
 
 Q: Will you ever add modded Borderlands content?
-A: Yep, so far this mod has gotten approval to use any item from Exodus. In fact 1 weapon is already available, the Shockblast.
+A: Yep, so far this mod has gotten approval to use any item from Exodus. In fact 3 weapons are already available.
 
 Q: Where can I submit feedback?
 A: The steam workshop page would be the best place.
 
 -- FINAL WORD --
 
-That's all for now Minion. I'll be watching from Sanctuary III (and laughing at your failures).
+That's all for now Minion. I'll be watching you from a distance (and laughing at your failures).
 Now get out there and cause some mayhem, Vault Hunter...
 
 - CL4P-TP

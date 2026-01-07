@@ -22,25 +22,25 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Maliwan
         {
             // Visual properties
             Item.Size = new Vector2(118, 30);
-            Item.scale = 0.8f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 50f;
+            Item.shootSpeed = 30f;
             Item.shoot = ModContent.ProjectileType<VolcanoBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 100;
+            Item.damage = 30;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 10;
-            Item.useAnimation = 10;
-            Item.reuseDelay = 10;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.reuseDelay = 15;
             Item.autoReuse = true;
 
             // Other properties

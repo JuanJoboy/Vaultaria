@@ -40,7 +40,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
 
         public override void OnKill(int timeLeft)
         {
-            Utilities.DustMaker(2, Projectile, DustID.Ichor, false);
+            Utilities.DustMaker(2, Projectile, DustID.CursedTorch, false);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -69,7 +69,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
                 SetElementOnTile(Projectile, radiationMultiplier, player, radiationProjectile);
             }
 
-            return false;
+            return true;
         }
 
         public override List<string> GetElement()

@@ -12,10 +12,8 @@ namespace Vaultaria.Content.Projectiles.Magic
 {
 	public class DestroyerLaserHoldout : ElementalProjectile
 	{
-
-
 		// This controls how many individual beams are fired by the Prism.
-		public const int NumBeams = 10;
+		public const int NumBeams = 4;
 
 		// This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
 		public const float MaxCharge = 0f;

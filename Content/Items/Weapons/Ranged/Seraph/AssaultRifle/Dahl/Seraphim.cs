@@ -28,13 +28,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 40f;
+            Item.shootSpeed = 30f;
             Item.shoot = ModContent.ProjectileType<SeraphimBullet>();
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 40;
+            Item.knockBack = 1f;
+            Item.damage = 28;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 

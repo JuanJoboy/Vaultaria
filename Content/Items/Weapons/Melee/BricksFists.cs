@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.useAnimation = 6;
             Item.reuseDelay = 0;
             Item.autoReuse = true;
-            Item.useTurn = false;
+            Item.useTurn = true;
 
             // Berserker
             Item.shoot = ModContent.ProjectileType<BerserkerFists>();

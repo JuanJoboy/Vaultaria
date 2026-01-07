@@ -10,7 +10,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
     public class RadiationPlasmaCoilBullet : ElementalProjectile
     {
         public float radiationMultiplier = 2f;
-        private float elementalChance = 20;
+        private float elementalChance = 100;
         private short radiationProjectile = ElementalID.RadiationProjectile;
         private int radiationBuff = ElementalID.RadiationBuff;
         private int buffTime = 180;

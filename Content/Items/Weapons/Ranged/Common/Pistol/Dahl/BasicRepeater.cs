@@ -32,17 +32,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 5;
-            Item.crit = 0;
+            Item.damage = 12;
+            Item.crit = 4;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.reuseDelay = 30;
+            Item.reuseDelay = 25;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(copper: 60);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
             // Item.UseSound = SoundID.Item31;
         }

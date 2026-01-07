@@ -28,8 +28,12 @@ namespace Vaultaria.Common.Systems
 					NPC claptrap = NPC.NewNPCDirect(NPC.GetSource_None(), new Vector2(spawnX, spawnY), ModContent.NPCType<Claptrap>());
 					
 					unlockedClaptrapSpawn = true;
-					NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
-					NetMessage.SendData(MessageID.WorldData);
+
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+					{
+						NetMessage.SendData(MessageID.SyncNPC, number: claptrap.whoAmI);
+						NetMessage.SendData(MessageID.WorldData);
+					}
 				}
             }
         }

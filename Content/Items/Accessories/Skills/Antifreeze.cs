@@ -27,7 +27,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Gives all the previous bonuses in one Class Mod");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Killing an enemy increases your Movement Speed for 8 seconds");
-            Utilities.Text(tooltips, Mod, "Tooltip3", "While moving, you gain increased Damage (doesn't apply to Summon Damage). The faster you move, the greater this bonus");
+            Utilities.Text(tooltips, Mod, "Tooltip3", "While moving, you gain increased Damage. The faster you move, the greater this bonus");
             Utilities.Text(tooltips, Mod, "Tooltip4", $"+{bonusSpeed}% Movement Speed");
             Utilities.Text(tooltips, Mod, "Tooltip5", $"Up to +{bonusDamage}% Damage");
             Utilities.RedText(tooltips, Mod, "Jet propulsion, disengage.");

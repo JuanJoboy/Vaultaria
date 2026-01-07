@@ -21,7 +21,7 @@ namespace Vaultaria.Common.Utilities
             ElementalID.ShockProjectile,
             ElementalID.SlagProjectile,
             ElementalID.CorrosiveProjectile,
-            ElementalID.ExplosiveProjectile,
+            ElementalID.RoundExplosiveProjectile,
             ElementalID.IncendiaryProjectile,
             ElementalID.CryoProjectile,
             ElementalID.RadiationProjectile,
@@ -54,7 +54,7 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.ShockPrefix, ElementalID.ShockProjectile},
             {ElementalID.SlagPrefix, ElementalID.SlagProjectile},
             {ElementalID.CorrosivePrefix, ElementalID.CorrosiveProjectile},
-            {ElementalID.ExplosivePrefix, ElementalID.ExplosiveProjectile},
+            {ElementalID.ExplosivePrefix, ElementalID.RoundExplosiveProjectile},
             {ElementalID.IncendiaryPrefix, ElementalID.IncendiaryProjectile},
             {ElementalID.CryoPrefix, ElementalID.CryoProjectile},
             {ElementalID.RadiationPrefix, ElementalID.RadiationProjectile}
@@ -66,7 +66,7 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff},
             {ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff},
             {ElementalID.SlagProjectile, ElementalID.SlagBuff},
-            {ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff},
+            {ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff},
             {ElementalID.CryoProjectile, ElementalID.CryoBuff},
             {ElementalID.RadiationProjectile, ElementalID.RadiationBuff}
         };
@@ -77,9 +77,20 @@ namespace Vaultaria.Common.Utilities
             {ElementalID.IncendiaryBuff, ElementalID.IncendiaryProjectile},
             {ElementalID.CorrosiveBuff, ElementalID.CorrosiveProjectile},
             {ElementalID.SlagBuff, ElementalID.SlagProjectile},
-            {ElementalID.ExplosiveBuff, ElementalID.ExplosiveProjectile},
+            {ElementalID.ExplosiveBuff, ElementalID.RoundExplosiveProjectile},
             {ElementalID.CryoBuff, ElementalID.CryoProjectile},
             {ElementalID.RadiationBuff, ElementalID.RadiationProjectile}
+        };
+
+        public static readonly Dictionary<int, int> BuffToSplosion = new Dictionary<int, int>
+        {
+            {ElementalID.ShockBuff, ElementalID.ShockExplosion},
+            {ElementalID.IncendiaryBuff, ElementalID.IncendiaryExplosion},
+            {ElementalID.CorrosiveBuff, ElementalID.CorrosiveExplosion},
+            {ElementalID.SlagBuff, ElementalID.SlagExplosion},
+            {ElementalID.ExplosiveBuff, ElementalID.RoundExplosiveProjectile},
+            {ElementalID.CryoBuff, ElementalID.CryoExplosion},
+            {ElementalID.RadiationBuff, ElementalID.RadiationExplosion}
         };
 
         // ********************************************
@@ -145,6 +156,16 @@ namespace Vaultaria.Common.Utilities
             if (BuffToProjectile.TryGetValue(buffType, out int elementalProjectile))
             {
                 return elementalProjectile;
+            }
+
+            return 0;
+        }
+
+        public static int WhatSplosionDoICreate(int buffType)
+        {
+            if (BuffToSplosion.TryGetValue(buffType, out int elementalSplosion))
+            {
+                return elementalSplosion;
             }
 
             return 0;
@@ -422,16 +443,19 @@ namespace Vaultaria.Common.Utilities
 
             if(Main.netMode != NetmodeID.MultiplayerClient) // Uses this check because the npcs are spawning the projectile
             {
-                Projectile.NewProjectile(
-                    target.GetSource_OnHit(target),
-                    target.Center,
-                    Vector2.Zero,
-                    elementalProjectile,
-                    elementalDamage,
-                    0f
-                );
+                if (!target.townNPC && target.active && target != null) // Filters to only hostile targets
+                {
+                    Projectile.NewProjectile(
+                        target.GetSource_OnHit(target),
+                        target.Center,
+                        Vector2.Zero,
+                        elementalProjectile,
+                        elementalDamage,
+                        0f
+                    );
 
-                target.AddBuff(buffType, buffTime);
+                    target.AddBuff(buffType, buffTime);
+                }
             }
         }
 
@@ -443,11 +467,11 @@ namespace Vaultaria.Common.Utilities
                 NPC npc = Main.npc[i];
                 float dist = Vector2.Distance(explodingNPC.Center, npc.Center); // Measures the distance from the exploding npc to other npc's
 
-                if (!npc.townNPC) // Filters to only hostile targets
+                if (!npc.townNPC && npc.active && npc != null) // Filters to only hostile targets
                 {
-                    if (dist < 200)
+                    if (dist < 400)
                     {
-                        BloodSplode(npc, hit, elementalMultiplier, elementalProjectile, buffType, 240); // Set radiation again on nearby npc's
+                        BloodSplode(npc, hit, elementalMultiplier, elementalProjectile, buffType, 340); // Set radiation again on nearby npc's
                     }
                 }
             }
@@ -462,7 +486,7 @@ namespace Vaultaria.Common.Utilities
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
-                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
+                SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
                 SetElementOnNPC(npc, 0.25f, myPlayer, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
             }
             
@@ -471,7 +495,7 @@ namespace Vaultaria.Common.Utilities
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.SlagProjectile, ElementalID.SlagBuff, buffTime);
-                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.ExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
+                SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, buffTime);
                 SetElementOnPlayer(targetPlayer, 0.25f, myPlayer2, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, buffTime);
             }
         }

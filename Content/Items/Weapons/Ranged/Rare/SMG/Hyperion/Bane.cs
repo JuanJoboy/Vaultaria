@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Items.Weapons.Ammo;
 using Vaultaria.Content.Items.Materials;
+using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Hyperion;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
 {
@@ -21,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
         {
             // Visual properties
             Item.Size = new Vector2(64, 30);
-            Item.scale = 0.7f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -34,7 +35,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Hyperion
             // Combat properties
             Item.knockBack = 1f;
             Item.damage = 20;
-            Item.crit = 6;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 5;

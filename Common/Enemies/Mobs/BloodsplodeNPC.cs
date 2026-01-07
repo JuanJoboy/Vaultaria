@@ -55,7 +55,8 @@ public class BloodsplodeNPC : GlobalNPC
             {
                 BloodSplosion(npc, hit, radiation);
             }
-            else
+            
+            if(!npc.HasBuff(incendiary) && !npc.HasBuff(shock) &&!npc.HasBuff(corrosive) &&!npc.HasBuff(slag) &&!npc.HasBuff(cryo) &&!npc.HasBuff(radiation))
             {
                 BloodSplosion(npc, hit, explosive);
             }
@@ -64,11 +65,12 @@ public class BloodsplodeNPC : GlobalNPC
 
     private void BloodSplosion(NPC npc, NPC.HitInfo hit, int buff)
     {
+        float multiplier = hit.DamageType == DamageClass.Melee ? 2 : 1;
+
         if(npc.life <= 2)
         {
-            ElementalProjectile.BloodSplode(npc, hit, 1, ElementalID.SmallExplosiveProjectile, buff, 240);
-            ElementalProjectile.BloodSplodeNearbyNPCs(npc, hit, (short) ElementalProjectile.WhatProjectileDoICreate(buff), buff, 0.4f);
-            npc.AddBuff(ModContent.BuffType<BloodsplosionKillSkill>(), 90);
+            ElementalProjectile.BloodSplode(npc, hit, 1 * multiplier, (short) ElementalProjectile.WhatSplosionDoICreate(buff), buff, 240);
+            ElementalProjectile.BloodSplodeNearbyNPCs(npc, hit, (short) ElementalProjectile.WhatSplosionDoICreate(buff), buff, 0.4f * multiplier);
         }
     }
 }

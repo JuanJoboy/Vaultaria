@@ -11,7 +11,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Torgue
     {
         public float explosiveMultiplier = 0.4f;
         private float explosiveChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 

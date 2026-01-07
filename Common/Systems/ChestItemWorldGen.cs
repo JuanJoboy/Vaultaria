@@ -76,7 +76,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInShadowChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Quad>(), ModContent.ItemType<OrphanMaker>(), ModContent.ItemType<ScorpioTurret>(), ModContent.ItemType<Onslaught>(), ModContent.ItemType<Reaper>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<OrphanMaker>(), ModContent.ItemType<ScorpioTurret>(), ModContent.ItemType<Onslaught>(), ModContent.ItemType<Reaper>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = itemsToPlaceInChest.Length * 3;
@@ -87,7 +87,7 @@ namespace Vaultaria.Common.Systems
 
         private void PlaceInJungleChests()
         {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>(), ModContent.ItemType<AgilityRelic>(), ModContent.ItemType<PackTactics>(), ModContent.ItemType<Killer>(), ModContent.ItemType<Impact>()];
+			int[] itemsToPlaceInChest = [ModContent.ItemType<Revenant>(), ModContent.ItemType<InspiringTransaction>(), ModContent.ItemType<AgilityRelic>(), ModContent.ItemType<PackTactics>(), ModContent.ItemType<Impact>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = itemsToPlaceInChest.Length * 10;

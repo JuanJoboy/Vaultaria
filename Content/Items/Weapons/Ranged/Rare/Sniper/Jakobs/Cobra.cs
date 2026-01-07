@@ -22,29 +22,29 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(118, 32);
-            Item.scale = 0.85f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 40;
+            Item.shootSpeed = 20;
             Item.shoot = ModContent.ProjectileType<CobraBullet>();
             Item.useAmmo = ModContent.ItemType<SniperAmmo>();
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 150;
+            Item.damage = 200;
             Item.crit = 1;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
             Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 3);
+            Item.value = Item.buyPrice(gold: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
         }
 

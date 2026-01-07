@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int bonusHeal = Utilities.DisplaySkillBonusText(170f, 0.02f);
+            int bonusHeal = Utilities.DisplaySkillBonusText(1500f);
 
             Utilities.Text(tooltips, Mod, "Tooltip1", "Dealing Damage to Frozen enemies heals you", Utilities.VaultarianColours.Healing);
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);

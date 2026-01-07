@@ -10,11 +10,15 @@ using Vaultaria.Content.Items.Weapons.Magic;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan;
 using Vaultaria.Content.Items.Consumables.Bags;
+using Terraria.Localization;
+using Vaultaria.Common.Networking;
 
 namespace Vaultaria.Common.Systems.GenPasses.Vaults
 {
 	public class Vault1Subworld : Subworld
 	{
+		public override LocalizedText DisplayName => this.GetLocalization("Vault Of The Warrior");
+
 		public override int Width => 2000;
 		public override int Height => 2000;
 
@@ -28,6 +32,20 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 			new Vault1GenPass()
 		};
 
+		public override void OnEnter()
+		{
+			SubworldSystem.hideUnderworld = false;
+
+			Main.hideUI = false;
+		}
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+			Main.hideUI = false;
+        }
+
         public override void OnLoad()
         {
             base.OnLoad();
@@ -35,8 +53,6 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
     			FindSpawn();
-
-				// ActuateTiles();
 
 				PlaceInFrozenChests();
 				PlaceInIceChests();
@@ -47,22 +63,32 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
         {
             base.Update();
 
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+			if(Main.netMode != NetmodeID.MultiplayerClient)
             {
 				Main.dayTime = false;
 				Main.time = Main.nightLength;
 				Main.dayRate = 0;
 
-				// Wiring.UpdateMech(); // Make wiring work
-				// DestroyPressurePlate(); // After crossing the lead-point, destroy the pressure plate to go back
+				if(Utilities.Utilities.startedVault1BossRush)
+				{
+					armouryOpened = false;
+				}
 
 				if(VaultMonsterSystem.vaultSkeletron && armouryOpened == false)
 				{
-					Utilities.Utilities.startedVault1BossRush = false;
 					FindArmoury();
+					Utilities.Utilities.startedVault1BossRush = false;
+					SubworldSystem.noReturn = false;
+
+					if(Main.netMode != NetmodeID.SinglePlayer)
+					{
+						ModNetHandler.vault.SendBossRushStatus1(Utilities.Utilities.startedVault1BossRush, Main.myPlayer);
+						ModNetHandler.vault.SendNoReturn(SubworldSystem.noReturn, Main.myPlayer);
+						NetMessage.SendData(MessageID.WorldData);
+					}
 				}
             }
-        }
+		}
 
         private void FindSpawn()
         {
@@ -99,7 +125,14 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
                 		WorldGen.KillTile(i , j, false, false, true);
                 		WorldGen.KillTile(i + 1, j, false, false, true);
 						armouryOpened = true;
-                        return;
+
+						if(Main.netMode != NetmodeID.SinglePlayer)
+						{
+							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i, number3: j, number4: 0);
+							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 1, number3: j, number4: 0);
+						}
+
+						return;
 					}
 				}
 			}

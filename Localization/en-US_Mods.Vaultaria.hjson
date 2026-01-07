@@ -9,6 +9,7 @@ Tiles: {
 	Vault2BossSummoner.MapEntry: Vault Boss Rush
 	PedestalTile2.MapEntry: Vault of the Destroyer
 	PedestalTile1.MapEntry: Vault of the Warrior
+	Eridium.MapEntry: Eridium
 }
 
 Items: {
@@ -474,11 +475,11 @@ Items: {
 
 	Vault1BossSummoner: {
 		Tooltip: ""
-		DisplayName: Vault of the Warrior
+		DisplayName: Vault of the Warrior Boss Summoner
 	}
 
 	Pedestal1: {
-		DisplayName: Vault of the Warrior
+		DisplayName: Vault of the Warrior Pedestal
 		Tooltip: ""
 	}
 
@@ -513,12 +514,12 @@ Items: {
 	}
 
 	Pedestal2: {
-		DisplayName: Vault of the Destroyer
+		DisplayName: Vault of the Destroyer Pedestal
 		Tooltip: ""
 	}
 
 	Vault2BossSummoner: {
-		DisplayName: Vault of the Destroyer
+		DisplayName: Vault of the Destroyer Boss Summoner
 		Tooltip: ""
 	}
 
@@ -1084,12 +1085,12 @@ Items: {
 
 	Vault2Bag: {
 		Tooltip: ""
-		DisplayName: Treasure Bag (Vault 2)
+		DisplayName: Treasure Bag (Vault Of The Destroyer)
 	}
 
 	Vault1Bag: {
 		Tooltip: ""
-		DisplayName: Treasure Bag (Vault 1)
+		DisplayName: Treasure Bag (Vault Of The Warrior)
 	}
 }
 
@@ -1180,6 +1181,21 @@ Projectiles: {
 	SingularityModule.DisplayName: Singularity Module
 	TinProjectile.DisplayName: Tin Projectile
 	CopperProjectile.DisplayName: Copper Projectile
+	EProjectile.DisplayName: E Projectile
+	ExplosiveProjectile.DisplayName: Explosive Projectile
+	SlagProjectile.DisplayName: Slag Projectile
+	ShockProjectile.DisplayName: Shock Projectile
+	RadiationProjectile.DisplayName: Radiation Projectile
+	IncendiaryProjectile.DisplayName: Incendiary Projectile
+	CryoProjectile.DisplayName: Cryo Projectile
+	CorrosiveProjectile.DisplayName: Corrosive Projectile
+	IncendiaryNova.DisplayName: Incendiary Nova
+	SlagExplosion.DisplayName: Slag Explosion
+	ShockExplosion.DisplayName: Shock Explosion
+	RadiationExplosion.DisplayName: Radiation Explosion
+	IncendiaryExplosion.DisplayName: Incendiary Explosion
+	CryoExplosion.DisplayName: Cryo Explosion
+	CorrosiveExplosion.DisplayName: Corrosive Explosion
 }
 
 Buffs: {
@@ -1189,22 +1205,22 @@ Buffs: {
 	}
 
 	IncendiaryBuff: {
-		DisplayName: Incendiary Debuff
+		DisplayName: Burnt
 		Description: Take Fire damage over time
 	}
 
 	ShockBuff: {
-		DisplayName: Shock Debuff
+		DisplayName: Shocked
 		Description: Take Shock damage over time
 	}
 
 	CorrosiveBuff: {
-		DisplayName: Corrosive Buff
+		DisplayName: Corroded
 		Description: Take Corrosive damage over time
 	}
 
 	ExplosiveBuff: {
-		DisplayName: Explosive Debuff
+		DisplayName: Exploding
 		Description: EXPLOSIONS!!!
 	}
 
@@ -1229,13 +1245,13 @@ Buffs: {
 	}
 
 	RadiationBuff: {
-		DisplayName: Radiation Buff
+		DisplayName: Irradiated
 		Description: Take Radiation damage over time and Explode on death
 	}
 
 	DeceptionBuff: {
+		DisplayName: Deception
 		Description: And I disappear / A ghost amidst the combat / Preparing to strike.
-		DisplayName: Deception Buff
 	}
 
 	Phaselocked: {
@@ -1249,7 +1265,7 @@ Buffs: {
 	}
 
 	GammaBurstBuff: {
-		DisplayName: Gamma Burst Buff
+		DisplayName: Gamma Burst
 		Description: Makes minions irradiated
 	}
 
@@ -1333,9 +1349,14 @@ Buffs: {
 		Description: Scoring a Critical Hit with a Ranged weapon grants Health and Ammo Regeneration for that weapon for a short time
 	}
 
-	BloodsplosionKillSkill: {
-		DisplayName: Bloodsplosion Kill Skill
-		Description: Mods.Vaultaria.Buffs.BloodsplosionKillSkill.Description
+	DeceptionCooldownBuff: {
+		DisplayName: Deception Cooldown
+		Description: Cannot go into Deception
+	}
+
+	GammaBurstCooldownBuff: {
+		DisplayName: Gamma Burst Cooldown
+		Description: Cannot activate Gamma Burst
 	}
 }
 
@@ -1404,13 +1425,13 @@ NPCs: {
 		VaultarianInfo: {
 			Vaultaria: Attention, Meatbag! I, CL4P-TP, your humble (and totally amazing) guide, will help drop some knowledge bombs about Vaultaria's mechanics, so that you learn everything you need to not explode instantly in Vaultaria. (PS - If you haven't already installed the Quite Enough Recipes mod onto your EchoNet, then do so now, it will help out a bunch)
 			Eridium: Whoa, look at the shiny stuff! Eridium is the universe's greatest resource, period! There's a rare chance for you to get tiny bits from every loser you kill, but BIG, beautiful stacks from bosses. You need it to craft EVERYTHING here! Start farming Vault Hunter, I'm not doing it for you!
-			Incendiary: BURN BABY BURN! Defeat the Torch God and unleash the FIRE! This prefix lights those psychos up with a powerful Burning DOT! Wanna be an arsonist? Grab the Attunement, it drops rarely from the pathetic losers in The Underworld.
+			Incendiary: BURN BABY BURN! Defeat the Eye Of Cthulhu and unleash the FIRE! This prefix lights those psychos up with a powerful Burning DOT! Wanna be an arsonist? Grab the Attunement, it drops rarely from the pathetic losers in The Underworld.
 			Shock: ZAP! You get this electric power after kicking the Martian Saucer's metal butt! This bad boy Electrifies foes and summons a stationary Shock Ring for extra pain! Find the Attunement accessory where the weirdos hang out: Space, or during a Rain / Martian Invasion!
 			Corrosive: Time to melt some faces! Beat Your World Evil's Boss (you know, the Worm or the Brain, ugh gross) to unlock this goop. I'd personally never touch the stuff, Corrosion is a nasty thing to deal with. It inflicts Venom debuffs, poisoning them good! The Attunement accessory is hiding somewhere with the creepy crawlies in the Hardmode Jungle.
 			Explosive: EXPLOSIONSS!!!! I SAID EXPLOSIONS!!! You unlock Mr. Torgue's favorite prefix by defeating Captain Scarlett's friends! Creates an explosion, dealing massive AOE damage and shatters enemy armor. Get the Attunement during the Pirate Invasion or the Old One's Army. Aw Jeez I think I hear Torgue coming, *THAT SENTENCE HAD TOO MANY SYLLABLES! APOLOGIZE!*. Sorry Torgue.
 			Slag: Congratulations! You beat the Wall Of Flesh and unlocked this purple goodness. Slag reduces enemy defense and makes them take increased damage from EVERYTHING else! It’s the Ultimate Vault Hunter way to fight. Find the Attunement from the spooky guys in the Hardmode Dungeon.
 			Cryo: Sprinkle a bit of the Windshear Waste wherever you go by beating those freaky Ice Golems. This prefix applies a nasty Frostburn DOT and has a chance to FREEZE enemies solid. Which means NO DANCING, definitely my least favorite thing to be hit with. Look for the Attunement in the chilly Hardmode Snow Biome or during the Frost Moon/Frost Legion.
-			Radiation: Radioactive! This is advanced science, obtained by defeating The Twins (which is like totally easy for me, maybe hard for you though). It reduces enemy defense and gives them Cursed Inferno DOT. Best part? When the irradiated guy dies, he EXPLODES and spreads the pain! Pick up the Attunement from those disgusting creatures in the Hardmode Corruption / Crimson Biome.
+			Radiation: RADIATION! This advanced science is obtained by defeating The Twins (which is like totally easy for me, maybe hard for you though). It reduces enemy defense and gives them Cursed Inferno DOT. Best part? When the irradiated guy dies, he EXPLODES and spreads the pain! Pick up the Attunement from those disgusting creatures in the Hardmode Corruption / Crimson Biome.
 			DoublePenetrating: If any nimrod has ever told you that less is more, then IGNORE THEM! MORE IS MORE HERE! Beat Deerclops to get this incredible prefix. It doubles your projectiles, making you twice as cool! WARNING: It doubles your ammo cost! Still worth it. TRUST ME.
 			Trickshot: The first prefix available. You get this one just for existing! Trickshot is great for you losers who have terrible aim, as this lets your bullets ricochet off surfaces, ensuring you eventually hit something (something that I'd never need).
 			Accessories: Listen up! You have four glorious new equipment types to play with: Shields, Relics, Skills, and Attunements; and you can wear one of each (I know, mind-blowing). These gizmos grant special abilities to help you, the Vault Hunter, bring peace to the land (And by peace, I mean DEATH TO EVERYONE WHO DARES CROSS ME!).
@@ -1504,6 +1525,15 @@ Configs: {
 		VaultHunterMode: {
 			Label: Vault Hunter Mode
 			Tooltip: The amount of additional health & defense that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is triple (UVHM))
+		}
+	}
+}
+
+Mods: {
+	Vaultaria: {
+		Subworlds: {
+			Vault1Subworld.DisplayName: Vault Of The Warrior
+			Vault2Subworld.DisplayName: Vault Of The Destroyer
 		}
 	}
 }

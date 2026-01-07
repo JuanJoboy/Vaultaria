@@ -55,7 +55,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "tooltip1", "Uses Assault Rifle Ammo");
-            Utilities.Text(tooltips, Mod, "tooltip2", "+25% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "tooltip2", "Heals the player on enemy hit", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "What play thing can you offer me today?");
         }
     }

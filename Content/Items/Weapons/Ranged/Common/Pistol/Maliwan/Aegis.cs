@@ -28,13 +28,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 50f;
+            Item.shootSpeed = 20f;
             Item.shoot = ModContent.ProjectileType<AegisBullet>();
             Item.useAmmo = ModContent.ItemType<PistolAmmo>();
 
             // Combat properties
             Item.knockBack = 0.5f;
-            Item.damage = 10;
+            Item.damage = 16;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -44,7 +44,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Maliwan
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.MaliwanPistol, 60);
         }
 

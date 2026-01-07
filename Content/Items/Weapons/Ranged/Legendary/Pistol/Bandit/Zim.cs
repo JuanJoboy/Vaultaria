@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Bandit
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 29;
+            Item.damage = 40;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

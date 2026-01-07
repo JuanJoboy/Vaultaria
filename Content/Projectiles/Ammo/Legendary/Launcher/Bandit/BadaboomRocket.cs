@@ -13,7 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
     {
         public float explosiveMultiplier = 1.3f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 30;
 
@@ -51,7 +51,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
                 Dust.NewDustPerfect(Projectile.Center, DustID.YellowTorch).noGravity = true;
             }
 
-            Utilities.RocketJump(Projectile, ModContent.ItemType<Badaboom>(), 4.5f, 16f);
+            Utilities.RocketJump(Projectile, ModContent.ItemType<Badaboom>(), 6.5f, 12f);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

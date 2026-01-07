@@ -14,7 +14,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Torgue
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
-        private int buffTime = 30;
+        private int buffTime = 120;
 
         public override void SetDefaults()
         {

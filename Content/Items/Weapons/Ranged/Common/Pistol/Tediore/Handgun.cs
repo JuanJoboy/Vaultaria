@@ -12,8 +12,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 {
     public class Handgun : ModItem
     {
-        private bool altFireMode = false;
-
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -29,12 +27,12 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 8;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
             Item.knockBack = 0.5f;
-            Item.damage = 3;
+            Item.damage = 10;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -44,7 +42,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.TediorePistol, 60);
         }
 
@@ -55,7 +53,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            if (altFireMode == true)
+            if (player.altFunctionUse == 2)
             {
                 for (int i = 0; i < 29; i++)
                 {
@@ -68,7 +66,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (altFireMode)
+            if (player.altFunctionUse == 2)
             {
                 // Spawn the grenade manually
                 Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<HandgunGrenade>(), damage, knockback, player.whoAmI);
@@ -82,10 +80,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
         {
             if (player.altFunctionUse == 2) // Throw
             {
-                altFireMode = true;
-
-                Item.damage = 0;
-                Item.crit = 0;
+                Item.damage = 8;
+                Item.crit = 1;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
@@ -102,9 +98,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
             }
             else // Shoot
             {
-                altFireMode = false;
-
-                Item.damage = 10;
+                Item.damage = 8;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Shoot;

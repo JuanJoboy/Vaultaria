@@ -43,12 +43,14 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             if(NoBossIsActive())
             {
-                Utilities.startedVault2BossRush = true;
                 ResetVaultMonsterSystems();
+                Utilities.startedVault2BossRush = true;
+                SubworldSystem.noReturn = true;
 
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    ModNetHandler.vault.SendBossRushStatus(Utilities.startedVault2BossRush, Main.myPlayer);
+                    ModNetHandler.vault.SendBossRushStatus2(Utilities.startedVault2BossRush, Main.myPlayer);
+                    ModNetHandler.vault.SendNoReturn(SubworldSystem.noReturn, Main.myPlayer);
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
@@ -60,8 +62,8 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             VaultMonsterSystem.vaultQueenSlime = false;
             VaultMonsterSystem.vaultQueenSlimeDR = false;
-            VaultMonsterSystem.vaultTwins = false;
-            VaultMonsterSystem.vaultTwinsDR = false;
+            VaultMonsterSystem.vaultSeasonalBosses = false;
+            VaultMonsterSystem.vaultSeasonalBossesDR = false;
             VaultMonsterSystem.vaultSkeletronPrime = false;
             VaultMonsterSystem.vaultSkeletronPrimeDR = false;
             VaultMonsterSystem.vaultBetsy = false;
@@ -81,7 +83,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+                ModNetHandler.vault.SendBossDeath2(Main.myPlayer);
             }
         }
 
@@ -89,6 +91,7 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
         {
             if(Utilities.startedVault2BossRush)
             {
+                Main.NewText("Vault Rush in progress! Activation Blocked!");
                 return false;
             }
 

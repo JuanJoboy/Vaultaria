@@ -34,18 +34,18 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
-            Item.knockBack = 0.5f;
-            Item.damage = 8;
+            Item.knockBack = 0f;
+            Item.damage = 15;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 7;
-            Item.useAnimation = 7;
-            Item.reuseDelay = 0;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
+            Item.reuseDelay = 2;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.TorgueAR, 60);
         }
 

@@ -32,8 +32,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 4;
+            Item.knockBack = 2f;
+            Item.damage = 5;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
@@ -43,13 +43,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.BanditShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 5, 1, 11);
+            Utilities.CloneShots(player, source, position, velocity, type, damage, knockback, 6, 5, 2, 9);
             
             return false;
         }

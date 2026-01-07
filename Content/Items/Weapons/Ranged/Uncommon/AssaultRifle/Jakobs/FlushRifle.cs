@@ -33,17 +33,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 7;
+            Item.damage = 30;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.reuseDelay = 20;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
+            Item.reuseDelay = 10;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(silver: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.JakobsAR, 60);
         }
 

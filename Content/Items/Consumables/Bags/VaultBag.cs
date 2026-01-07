@@ -8,6 +8,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue;
 
 namespace Vaultaria.Content.Items.Consumables.Bags
 {
+    // The icon on the bag is 15x15 pixels
     public abstract class VaultBag : ModItem
     {
         internal string? MinRarity { get; set; }
@@ -83,14 +84,13 @@ namespace Vaultaria.Content.Items.Consumables.Bags
             player.QuickSpawnItem(player.GetSource_DropAsItem(), item.type, 1);
 
             // If it's a specific item, then drop more of it, but reduce it by 1 cause it's already being spawned above
-            SpawnItem(player, item, 299, "Block");
-            SpawnItem(player, item, 299, "Brick");
-            SpawnItem(player, item, 299, "Wall");
+            SpawnItem2(player, item, 299, "Block");
+            SpawnItem2(player, item, 299, "Brick");
+            SpawnItem2(player, item, 299, "Wall");
             SpawnItem(player, item, 9, "Potion");
-            SpawnItem(player, item, 499, "Bullet");
-            SpawnItem(player, item, 19, "Dye");
+            SpawnItem2(player, item, 499, "Bullet");
+            SpawnItem2(player, item, 19, "Dye");
             SpawnItem(player, item, 2, "Crate");
-
             SpawnItem2(player, item, 99, "Ore");
             SpawnItem2(player, item, 24, "Bar");
             SpawnItem2(player, item, 499, "Arrow");

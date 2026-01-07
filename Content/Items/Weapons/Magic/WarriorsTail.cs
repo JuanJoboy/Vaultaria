@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			// Start by using CloneDefaults to clone all the basic item properties from the vanilla Last Prism.
 			// For example, this copies sprite size, use style, sell price, and the item being a magic weapon.
 			Item.CloneDefaults(ItemID.LastPrism);
-			Item.mana = 30;
+			Item.mana = 15;
 			Item.damage = 15;
 			Item.shoot = ModContent.ProjectileType<WarriorLaserHoldout>();
 			Item.shootSpeed = 30f;

@@ -36,7 +36,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.useAnimation = 20;
             Item.reuseDelay = 2;
             Item.autoReuse = true;
-            Item.useTurn = false;
+            Item.useTurn = true;
 
             // BuzzAxe Bombardier
             Item.shoot = ModContent.ProjectileType<BuzzAxeBombardier>();
@@ -62,6 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
             if (player.altFunctionUse == 2) // Shoot
             {
+                Item.damage = 18;
                 Item.DamageType = DamageClass.Ranged;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = true;
@@ -72,12 +73,13 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.useAnimation = 20;
                 Item.reuseDelay = 2;
                 Item.autoReuse = true;
-                Item.useTurn = false;
+                Item.useTurn = true;
 
                 Item.UseSound = SoundID.Item23;
             }
             else // Melee
             {
+                Item.damage = 18;
                 Item.DamageType = DamageClass.Melee;
                 Item.useStyle = ItemUseStyleID.Swing;
                 Item.noMelee = false;
@@ -89,7 +91,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
                 Item.useAnimation = 20;
                 Item.reuseDelay = 0;
                 Item.autoReuse = true;
-                Item.useTurn = false;
+                Item.useTurn = true;
 
                 Item.UseSound = SoundID.Item23;
             }

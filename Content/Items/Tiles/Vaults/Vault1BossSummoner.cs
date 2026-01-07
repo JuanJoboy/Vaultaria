@@ -45,9 +45,15 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             {
                 ResetVaultMonsterSystems();
                 Utilities.startedVault1BossRush = true;
-            }
+                SubworldSystem.noReturn = true;
 
-            NetMessage.SendData(MessageID.WorldData);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    ModNetHandler.vault.SendBossRushStatus1(Utilities.startedVault1BossRush, Main.myPlayer);
+                    ModNetHandler.vault.SendNoReturn(SubworldSystem.noReturn, Main.myPlayer);
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
 
             return base.RightClick(i, j);
         }
@@ -64,27 +70,20 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             VaultMonsterSystem.vaultDeerClopsDR = false;
             VaultMonsterSystem.vaultSkeletron = false;
             VaultMonsterSystem.vaultSkeletronDR = false;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                ModNetHandler.vault.SendBossDeath1(Main.myPlayer);
+            }
         }
 
         private bool NoBossIsActive()
         {
             if(Utilities.startedVault1BossRush)
             {
+                Main.NewText("Vault Rush in progress! Activation Blocked!");
                 return false;
             }
-
-            // if(Utilities.bossTimer < Utilities.countdown)
-            // {
-            //     return false;
-            // }
-
-            // foreach(NPC n in Main.ActiveNPCs)
-            // {
-            //     if(n.type == NPCID.KingSlime || n.type == NPCID.EyeofCthulhu || n.type == NPCID.QueenBee || n.type == NPCID.Deerclops || n.type == NPCID.SkeletronHead || n.type == NPCID.SkeletronHand)
-            //     {
-            //         return false;
-            //     }
-            // }
 
             return true;
         }

@@ -9,9 +9,9 @@ namespace Vaultaria.Content.Projectiles.Ammo.Uncommon.Shotgun.Torgue
 {
     public class HulkBullet : ElementalProjectile
     {
-        public float explosiveMultiplier = 0.4f;
+        public float explosiveMultiplier = 1f;
         private float explosiveChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 60;
 

@@ -97,7 +97,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion
                                 Projectile.Center,
                                 newVelocity,
                                 Projectile.type,
-                                20,
+                                Projectile.damage,
                                 Projectile.knockBack,
                                 Projectile.owner,
                                 0f,

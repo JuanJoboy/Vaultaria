@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
         private float slagChance = 20f;
         private float cryoChance = 20f;
         private float radiationChance = 20f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private short shockProjectile = ElementalID.ShockProjectile;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private short corrosiveProjectile = ElementalID.CorrosiveProjectile;

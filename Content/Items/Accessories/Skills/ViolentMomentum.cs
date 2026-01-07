@@ -25,7 +25,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
 
             int bonusDamage = (int) (100f * (Utilities.ComparativeBonus(1f, -realSpeed, 25f)) + Utilities.DisplaySkillBonusText(87f, 0.05f));
 
-            Utilities.Text(tooltips, Mod, "Tooltip1", "While moving, you gain increased Ranged, Magic and Melee Damage. The faster you move, the greater this bonus");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "While moving, you gain increased Damage. The faster you move, the greater this bonus");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Bonuses increase as you progress", Utilities.VaultarianColours.Information);
             Utilities.Text(tooltips, Mod, "Tooltip3", $"Up to +{bonusDamage}% Damage");
         }

@@ -52,8 +52,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(35)
-                .AddIngredient(ItemID.SpaceGun, 1)
-                .AddIngredient(ItemID.IllegalGunParts, 2)
+                .AddIngredient(ItemID.FlintlockPistol, 1)
+                .AddIngredient(ItemID.IllegalGunParts, 1)
                 .AddIngredient(ItemID.Grenade, 60)
                 .AddIngredient(ItemID.HellstoneBar, 8)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())

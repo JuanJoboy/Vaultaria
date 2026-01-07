@@ -9,7 +9,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Uncommon.Sniper.Maliwan
 {
     public class SniderBullet : ElementalProjectile
     {
-        public float incendiaryMultiplier = 0.4f;
+        public float incendiaryMultiplier = 0.8f;
         private float incendiaryChance = 40f;
         private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;

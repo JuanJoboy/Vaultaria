@@ -32,14 +32,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.knockBack = 1.5f;
+            Item.damage = 25;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 3;
             Item.useAnimation = 12;
-            Item.reuseDelay = 2;
+            Item.reuseDelay = 12;
             Item.autoReuse = true;
 
             // Other properties

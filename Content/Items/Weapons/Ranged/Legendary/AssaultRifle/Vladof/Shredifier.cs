@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 300;
+            Item.shootSpeed = 30;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
@@ -60,7 +60,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
                 .AddIngredient(ItemID.ChlorophyteBar, 25)
                 .AddIngredient(ItemID.ChainGun, 1)
                 .AddIngredient(ItemID.SoulofNight, 25)
-                .AddIngredient(ItemID.IllegalGunParts, 5)
+                .AddIngredient(ItemID.IllegalGunParts, 2)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();
         }

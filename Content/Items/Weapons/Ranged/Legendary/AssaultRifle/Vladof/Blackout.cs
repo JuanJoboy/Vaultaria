@@ -34,13 +34,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 50;
-            Item.crit = 21;
+            Item.damage = 40;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 5;
-            Item.useAnimation = 5;
-            Item.reuseDelay = 0;
+            Item.useTime = 7;
+            Item.useAnimation = 7;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties

@@ -79,6 +79,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         {
             if (player.altFunctionUse == 2) // Teleport to Clone
             {
+                Item.damage = 10;
                 Item.useStyle = ItemUseStyleID.RaiseLamp;
                 Item.noMelee = true;
 
@@ -167,7 +168,10 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                         // Swaps the values of these 2 variables
                         (p.Center, player.Center) = (player.Center, p.Center);
 
-                        NetMessage.SendData(MessageID.SyncProjectile, number: p.whoAmI);
+                        if(Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.SyncProjectile, number: p.whoAmI);
+                        }
                         
                         return;
                     }

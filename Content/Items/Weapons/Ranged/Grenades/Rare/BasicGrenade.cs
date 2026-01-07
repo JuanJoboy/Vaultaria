@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.Text(tooltips, Mod, "Tooltip1", "Allows for grenade jumping", Utilities.VaultarianColours.Information);
-            Utilities.RedText(tooltips, Mod, "Double your fun");
+            Utilities.RedText(tooltips, Mod, "Double your fun.");
         }
     }
 }

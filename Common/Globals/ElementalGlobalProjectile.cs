@@ -10,8 +10,6 @@ using Vaultaria.Content.Buffs.PotionEffects;
 using Vaultaria.Content.Buffs.SkillEffects;
 using Vaultaria.Content.Items.Accessories.Skills;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl;
-using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Jakobs;
-using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
 using Vaultaria.Content.Prefixes.Weapons;
@@ -57,7 +55,9 @@ namespace Vaultaria.Common.Globals
 
             Headshot(player, projectile, ref modifiers);
 
-            Velocity(player, projectile, ref modifiers);   
+            Velocity(player, projectile, ref modifiers);
+
+            ViolentMomentum(player, projectile, ref modifiers);
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
@@ -270,25 +270,41 @@ namespace Vaultaria.Common.Globals
             }
 
             // --- CLONING LOGIC ---
-            if (projectile.ai[0] == 1f) // Check if this is the designated "parent" bullet
+            if(projectile.owner == Main.myPlayer)
             {
                 if (projectile.ai[0] == 1f && projectile.ai[1] == 1f) // If it's a cloner parent AND eligible for first split
                 {
                     const int numberOfClones = 9;
-                    const float totalSpreadDegrees = 5;
-                    float baseAngle = projectile.velocity.ToRotation();
-                    float angleIncrement = MathHelper.ToRadians(totalSpreadDegrees / (numberOfClones - 1));
-                    
-                    // Adjust the base angle so the spread is centered around the original velocity.
-                    baseAngle -= MathHelper.ToRadians(totalSpreadDegrees) / 2f;
 
                     for (int i = 0; i < numberOfClones; i++)
                     {
-                        // Calculate the new angle for this specific clone
-                        float newAngle = baseAngle + (i * angleIncrement);
+                        int degreeSpread = Main.rand.Next(1, 11) switch
+                        {
+                            1 => -45, // If 1 is returned then degreeSpread =- 5
+                            2 => -34,
+                            3 => -23,
+                            4 => -12,
+                            5 => -1,
+                            6 => +1,
+                            7 => +12,
+                            8 => +23,
+                            9 => +34,
+                            10 => +45,
+                            _ => 1,
+                        };
 
-                        // Create the new velocity vector using the calculated angle and the parent's speed.
-                        Vector2 newVelocity = newAngle.ToRotationVector2() * projectile.velocity.Length();
+                        // Define a slight spread angle for the bullets (e.g., degreeSpread = 5, 5 degrees total spread)
+                        float spreadAngle = MathHelper.ToRadians(degreeSpread); // Convert degrees to radians
+
+                        // Calculate the base rotation of the velocity vector
+                        float baseRotation = projectile.velocity.ToRotation();
+
+                        // Calculate the individual bullet's angle
+                        // This distributes the bullets symmetrically around the original velocity direction
+                        float bulletAngle = baseRotation + MathHelper.Lerp(-spreadAngle / 2, spreadAngle / 2, (float)i / (numberOfClones - 1));
+
+                        // Calculate the new velocity vector for this bullet
+                        Vector2 newVelocity = bulletAngle.ToRotationVector2() * projectile.velocity.Length();
 
                         // Spawn the new projectile (clone)
                         Projectile.NewProjectile(
@@ -296,7 +312,7 @@ namespace Vaultaria.Common.Globals
                             projectile.Center,
                             newVelocity,
                             projectile.type,
-                            20,
+                            projectile.damage,
                             projectile.knockBack,
                             projectile.owner,
                             0f,
@@ -306,6 +322,7 @@ namespace Vaultaria.Common.Globals
 
                     projectile.ai[0] = 0f;
                     projectile.ai[1] = 0f;
+                    projectile.netUpdate = true;
                 }
             }
 
@@ -476,6 +493,24 @@ namespace Vaultaria.Common.Globals
                     float bonusProjectileSpeed = Utilities.Utilities.SkillBonus(15f, 0.1f);
 
                     projectile.velocity *= bonusProjectileSpeed;
+                }
+            }
+        }
+
+        private void ViolentMomentum(Player player, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(Utilities.Utilities.IsWearing(player, ModContent.ItemType<ViolentMomentum>()) || Utilities.Utilities.IsWearing(player, ModContent.ItemType<Antifreeze>()))
+            {
+                float realSpeed = player.velocity.Length();
+
+                if(realSpeed > 0)
+                {
+                    float bonusDamage = Utilities.Utilities.ComparativeBonus(1f, -realSpeed, 25f) + Utilities.Utilities.SkillBonus(87f, 0.05f);
+
+                    if(projectile.active && projectile.owner == player.whoAmI && (projectile.minion || projectile.sentry))
+                    {
+                        modifiers.SourceDamage *= bonusDamage;
+                    }
                 }
             }
         }

@@ -29,17 +29,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
             Item.noMelee = true;
             Item.shootSpeed = 13;
             Item.shoot = ProjectileID.HeatRay;
-            Item.mana = 10;
+            Item.mana = 4;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 14;
-            Item.crit = 16;
+            Item.knockBack = 1f;
+            Item.damage = 20;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Magic;
 
-            Item.useTime = 8;
-            Item.useAnimation = 8;
-            Item.reuseDelay = 0;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.reuseDelay = 4;
             Item.autoReuse = true;
 
             // Other properties

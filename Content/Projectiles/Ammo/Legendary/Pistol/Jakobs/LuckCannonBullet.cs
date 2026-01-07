@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
     {
         public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.ExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 180;
 

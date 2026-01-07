@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using SubworldLibrary;
 using Terraria;
 using Terraria.DataStructures;
+using System.Collections;
+using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,8 +47,10 @@ using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs;
+using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.AssaultRifle.Bandit;
+using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion;
@@ -63,6 +67,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs;
 using Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof;
+using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Hyperion;
 using Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Maliwan;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Jakobs;
@@ -159,7 +164,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.Eyezor || npc == NPCID.Frankenstein || npc == NPCID.SwampThing || npc == NPCID.Vampire || npc == NPCID.CreatureFromTheDeep || npc == NPCID.Fritz || npc == NPCID.ThePossessed || npc == NPCID.Reaper || npc == NPCID.Mothron || npc == NPCID.Butcher || npc == NPCID.DeadlySphere || npc == NPCID.DrManFly || npc == NPCID.Nailhead || npc == NPCID.Psycho)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PlasmaCoil>(), 100, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PlasmaCoil>(), 1000, 1, 1));
             }
 
             OttoIdol(npc, npcLoot);
@@ -169,6 +174,11 @@ namespace Vaultaria.Common.GlobalItems
             Pimpernel(npc, npcLoot);
 
             //********************************** Bosses *********************************//
+            if(mob.boss)
+            {
+                Eridium(npcLoot, 1, 3);
+            }
+
             if (npc == NPCID.KingSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Hornet>(), 10, 1, 1));
@@ -232,7 +242,6 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.WallofFlesh)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impaler>(), 3, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FollowThrough>(), 10, 1, 1));
                 Eridium(npcLoot, 10, 15);
             }
 
@@ -277,7 +286,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.Retinazer || npc == NPCID.Spazmatism)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 5, 100, 200));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fastball>(), 10, 100, 200));
                 Eridium(npcLoot, 18, 25);
             }
 
@@ -348,7 +357,7 @@ namespace Vaultaria.Common.GlobalItems
 
             if (npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 5, 50, 100));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BreathOfTerramorphous>(), 8, 50, 100));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Grit>(), 4, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GrogNozzle>(), 3, 1, 1));
                 Eridium(npcLoot, 6, 10);
@@ -408,6 +417,7 @@ namespace Vaultaria.Common.GlobalItems
 
             DropMiscItems(globalLoot);
             Attunements(globalLoot);
+            TubbyDrops(globalLoot);
         }
 
         private void Eridium(Terraria.ModLoader.NPCLoot npcLoot, int min, int max)
@@ -476,7 +486,7 @@ namespace Vaultaria.Common.GlobalItems
         {
             if (npc == NPCID.Parrot || npc == NPCID.PirateCaptain || npc == NPCID.PirateCorsair || npc == NPCID.PirateCrossbower || npc == NPCID.PirateDeadeye || npc == NPCID.PirateDeckhand || npc == NPCID.PirateGhost || npc == NPCID.PirateShip)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 100, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 500, 1, 1));
             }
         }
 
@@ -518,62 +528,173 @@ namespace Vaultaria.Common.GlobalItems
 
             if(npc == NPCID.QueenSlimeBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
-            if(npc == NPCID.Retinazer)
+            if(npc == NPCID.Pumpking)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
-            if(npc == NPCID.Spazmatism)
+            if(npc == NPCID.IceQueen)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.SkeletronPrime)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.DD2Betsy)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.Plantera)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.Golem)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.DukeFishron)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.HallowBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bore>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if(npc == NPCID.CultistBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Bloodsplosion>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
 
             if (npc == NPCID.MoonLordCore)
             {
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<DestroyersEye>(), 1, 1, 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<EridianFabricator>(), 1, 1, 1));
-                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 50, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new VaultCondition(), ModContent.ItemType<Moonstone>(), 20, 1, 1));
             }
+        }
+
+        private void TubbyDrops(GlobalLoot npcLoot)
+        {
+            // Chubby Drops
+            // 1. Create the base condition rule
+            LeadingConditionRule chubbyRule = new LeadingConditionRule(new ChubbyCondition());
+
+            // 2. Chain your custom set rule to it using OnSuccess
+            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, AncientArmorDrop()));
+            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModePreHardmodeDrop()));
+            chubbyRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.Terragrim, ItemID.Arkhalis, ItemID.FalconBlade, ItemID.MoneyTrough, ItemID.SlimeStaff, ItemID.DirtiestBlock, ItemID.CreativeWings, ItemID.DemonHeart, ItemID.HardySaddle, ItemID.SuperheatedBlood, ItemID.HellMinecart, ModContent.ItemType<FollowThrough>(), ModContent.ItemType<Killer>(), ModContent.ItemType<Quad>(), ModContent.ItemType<UnkemptHarold>(), ModContent.ItemType<Volcano>(), ModContent.ItemType<FirstBlood>()));
+
+            // 3. Add the leading rule to the loot table
+            npcLoot.Add(chubbyRule);
+
+            // Tubby Drops
+            // 1. Create the base condition rule
+            LeadingConditionRule tubbyRule = new LeadingConditionRule(new TubbyCondition());
+
+            // 2. Chain your custom set rule to it using OnSuccess
+            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, DevSetDrop()));
+            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModeHardmodeDrop()));
+            tubbyRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.FrozenKey, ItemID.JungleKey, ItemID.CrimsonKey, ItemID.CorruptionKey, ItemID.HallowedKey, ItemID.DungeonDesertKey, ItemID.Uzi, ItemID.DiscountCard, ItemID.RodofDiscord, ItemID.CoinGun, ItemID.TheAxe, ItemID.TeleportationPylonVictory, ItemID.DiggingMoleMinecart, ItemID.GoldenFishingRod, ModContent.ItemType<Sawbar>()));
+
+            // 3. Add the leading rule to the loot table
+            npcLoot.Add(tubbyRule);
+        }
+
+        private int[][] DevSetDrop()
+        {
+            int[][] devSets = new int[][] 
+            {
+                new int[] { ItemID.AaronsHelmet, ItemID.AaronsBreastplate, ItemID.AaronsLeggings }, // Case 0
+                new int[] { ItemID.Arkhalis, ItemID.ArkhalisHat, ItemID.ArkhalisPants, ItemID.ArkhalisWings }, // Case 1
+                new int[] { ItemID.CrownosMask, ItemID.CrownosBreastplate, ItemID.CrownosLeggings, ItemID.CrownosWings }, // Case 2
+                new int[] { ItemID.DTownsHelmet, ItemID.DTownsBreastplate, ItemID.DTownsLeggings, ItemID.DTownsWings }, // Case 3
+                new int[] { ItemID.JimsHelmet, ItemID.JimsBreastplate, ItemID.JimsLeggings, ItemID.JimsWings }, // Case 4
+                new int[] { ItemID.BejeweledValkyrieHead, ItemID.BejeweledValkyrieBody, ItemID.BejeweledValkyrieWing, ItemID.ValkyrieYoyo }, // Case 5
+                new int[] { ItemID.LeinforsHat, ItemID.LeinforsShirt, ItemID.LeinforsPants, ItemID.LeinforsAccessory, ItemID.LeinforsWings }, // Case 6
+                new int[] { ItemID.LokisHelm, ItemID.LokisShirt, ItemID.LokisPants, ItemID.LokisDye, ItemID.LokisWings }, // Case 7
+                new int[] { ItemID.RedsHelmet, ItemID.RedsBreastplate, ItemID.RedsLeggings, ItemID.RedsYoyo, ItemID.RedsWings }, // Case 8
+                new int[] { ItemID.SkiphsHelm, ItemID.SkiphsShirt, ItemID.SkiphsPants, ItemID.SkiphsWings, ItemID.DevDye }, // Case 9
+                new int[] { ItemID.WillsHelmet, ItemID.WillsBreastplate, ItemID.WillsLeggings, ItemID.WillsWings }, // Case 10
+                new int[] { ItemID.Yoraiz0rHead, ItemID.Yoraiz0rShirt, ItemID.Yoraiz0rPants, ItemID.Yoraiz0rDarkness, ItemID.Yoraiz0rWings }, // Case 11
+                new int[] { ItemID.GroxTheGreatHelm, ItemID.GroxTheGreatArmor, ItemID.GroxTheGreatGreaves, ItemID.GroxTheGreatWings }, // Case 12
+                new int[] { ItemID.FoodBarbarianHelm, ItemID.FoodBarbarianArmor, ItemID.FoodBarbarianGreaves, ItemID.FoodBarbarianWings }, // Case 13
+                new int[] { ItemID.SafemanSunHair, ItemID.SafemanSunDress, ItemID.SafemanDressLeggings, ItemID.SafemanWings }, // Case 14
+                new int[] { ItemID.GhostarSkullPin, ItemID.GhostarShirt, ItemID.GhostarPants, ItemID.GhostarsWings } // Case 15
+            };
+
+            return devSets;
+        }
+
+        private int[][] AncientArmorDrop()
+        {
+            int[][] ancientArmorSets = new int[][]
+            {
+                new int[] { ItemID.AncientCobaltHelmet, ItemID.AncientCobaltBreastplate, ItemID.AncientCobaltLeggings },
+                new int[] { ItemID.AncientGoldHelmet, ItemID.GoldChainmail, ItemID.GoldGreaves },
+                new int[] { ItemID.AncientIronHelmet, ItemID.IronChainmail, ItemID.IronGreaves },
+                new int[] { ItemID.AncientNecroHelmet, ItemID.NecroBreastplate, ItemID.NecroGreaves },
+                new int[] { ItemID.AncientShadowHelmet, ItemID.AncientShadowScalemail, ItemID.AncientShadowGreaves }
+            };
+
+            return ancientArmorSets;
+        }
+
+        private int[][] MasterModePreHardmodeDrop()
+        {
+            int[][] ancientArmorSets = new int[][]
+            {
+                new int[] { ItemID.KingSlimePetItem },
+                new int[] { ItemID.EyeOfCthulhuPetItem },
+                new int[] { ItemID.EaterOfWorldsPetItem },
+                new int[] { ItemID.BrainOfCthulhuPetItem },
+                new int[] { ItemID.QueenBeePetItem },
+                new int[] { ItemID.SkeletronPetItem },
+                new int[] { ItemID.DeerclopsPetItem },
+                new int[] { ItemID.WallOfFleshGoatMountItem }
+            };
+
+            return ancientArmorSets;
+        }
+
+        private int[][] MasterModeHardmodeDrop()
+        {
+            int[][] ancientArmorSets = new int[][]
+            {
+                new int[] { ItemID.QueenSlimePetItem },
+                new int[] { ItemID.DestroyerPetItem },
+                new int[] { ItemID.TwinsPetItem },
+                new int[] { ItemID.SkeletronPrimePetItem },
+                new int[] { ItemID.PlanteraPetItem },
+                new int[] { ItemID.GolemPetItem },
+                new int[] { ItemID.FairyQueenPetItem },
+                new int[] { ItemID.DukeFishronPetItem },
+                new int[] { ItemID.LunaticCultistPetItem },
+                new int[] { ItemID.MoonLordPetItem },
+
+                new int[] { ItemID.SpookyWoodMountItem },
+                new int[] { ItemID.PumpkingPetItem },
+                new int[] { ItemID.EverscreamPetItem },
+                new int[] { ItemID.SantankMountItem },
+                new int[] { ItemID.IceQueenPetItem },
+                new int[] { ItemID.DarkMageBookMountItem },
+                new int[] { ItemID.DD2OgrePetItem },
+                new int[] { ItemID.DD2BetsyPetItem },
+                new int[] { ItemID.PirateShipMountItem },
+                new int[] { ItemID.MartianPetItem }
+            };
+
+            return ancientArmorSets;
         }
     }
 }
@@ -581,6 +702,83 @@ namespace Vaultaria.Common.GlobalItems
 public class NewItemLoot : GlobalItem
 {
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+    {
+        AllBossBags(item, itemLoot);
+
+        AllCrates(item, itemLoot);
+    }
+
+    private void AllBossBags(Item item, ItemLoot itemLoot)
+    {
+        BossBagLoot(item, itemLoot, ItemID.KingSlimeBossBag, ModContent.ItemType<Hornet>());
+        BossBagLoot(item, itemLoot, ItemID.KingSlimeBossBag, ModContent.ItemType<Backstab>(), 5);
+
+        BossBagLoot(item, itemLoot, ItemID.EyeOfCthulhuBossBag, ModContent.ItemType<Law>());
+        BossBagLoot(item, itemLoot, ItemID.EyeOfCthulhuBossBag, ModContent.ItemType<PhaselockSpell>());
+        BossBagLoot(item, itemLoot, ItemID.EyeOfCthulhuBossBag, ModContent.ItemType<Accelerate>());
+
+        BossBagLoot(item, itemLoot, ItemID.EaterOfWorldsBossBag, ModContent.ItemType<CloudKill>());
+        BossBagLoot(item, itemLoot, ItemID.EaterOfWorldsBossBag, ModContent.ItemType<Velocity>());
+
+        BossBagLoot(item, itemLoot, ItemID.BrainOfCthulhuBossBag, ModContent.ItemType<CloudKill>());
+        BossBagLoot(item, itemLoot, ItemID.BrainOfCthulhuBossBag, ModContent.ItemType<Velocity>());
+
+        BossBagLoot(item, itemLoot, ItemID.QueenBeeBossBag, ModContent.ItemType<FlameOfTheFirehawk>(), 5);
+        BossBagLoot(item, itemLoot, ItemID.QueenBeeBossBag, ModContent.ItemType<BabyMaker>());
+
+        BossBagLoot(item, itemLoot, ItemID.DeerclopsBossBag, ModContent.ItemType<UnkemptHarold>());
+        BossBagLoot(item, itemLoot, ItemID.DeerclopsBossBag, ModContent.ItemType<DigiClone>());
+
+        BossBagLoot(item, itemLoot, ItemID.SkeletronBossBag, ModContent.ItemType<Hail>(), 1);
+        BossBagLoot(item, itemLoot, ItemID.SkeletronBossBag, ModContent.ItemType<Wreck>(), 1);
+
+        BossBagLoot(item, itemLoot, ItemID.WallOfFleshBossBag, ModContent.ItemType<Impaler>(), 5);
+
+        BossBagLoot(item, itemLoot, ItemID.QueenSlimeBossBag, ModContent.ItemType<Florentine>());
+        BossBagLoot(item, itemLoot, ItemID.QueenSlimeBossBag, ModContent.ItemType<Striker>());
+        BossBagLoot(item, itemLoot, ItemID.QueenSlimeBossBag, ModContent.ItemType<PersonalSpace>());
+
+        BossBagLoot(item, itemLoot, ItemID.DestroyerBossBag, ModContent.ItemType<LeadStorm>());
+        BossBagLoot(item, itemLoot, ItemID.DestroyerBossBag, ModContent.ItemType<JustGotReal>());
+
+        BossBagLoot(item, itemLoot, ItemID.TwinsBossBag, ModContent.ItemType<Fastball>(), 5, 100, 200);
+
+        BossBagLoot(item, itemLoot, ItemID.SkeletronPrimeBossBag, ModContent.ItemType<TheBee>());
+
+        BossBagLoot(item, itemLoot, ItemID.BossBagBetsy, ModContent.ItemType<BreathOfTerramorphous>(), 8, 50, 100);
+        BossBagLoot(item, itemLoot, ItemID.BossBagBetsy, ModContent.ItemType<Grit>(), 4);
+        BossBagLoot(item, itemLoot, ItemID.BossBagBetsy, ModContent.ItemType<GrogNozzle>(), 3);
+
+        BossBagLoot(item, itemLoot, ItemID.PlanteraBossBag, ModContent.ItemType<Fibber>(), 5);
+        BossBagLoot(item, itemLoot, ItemID.PlanteraBossBag, ModContent.ItemType<Salvation>(), 10);
+
+        BossBagLoot(item, itemLoot, ItemID.GolemBossBag, ModContent.ItemType<LuckCannon>());
+        BossBagLoot(item, itemLoot, ItemID.GolemBossBag, ModContent.ItemType<HuntersEye>());
+
+        BossBagLoot(item, itemLoot, ItemID.FishronBossBag, ModContent.ItemType<DeathRattle>());
+        BossBagLoot(item, itemLoot, ItemID.FishronBossBag, ModContent.ItemType<Deliverance>());
+
+        BossBagLoot(item, itemLoot, ItemID.FairyQueenBossBag, ModContent.ItemType<Lyuda>());
+        BossBagLoot(item, itemLoot, ItemID.FairyQueenBossBag, ModContent.ItemType<ViolentMomentum>());
+
+        BossBagLoot(item, itemLoot, ItemID.CultistBossBag, ModContent.ItemType<Antagonist>(), 5);
+        BossBagLoot(item, itemLoot, ItemID.CultistBossBag, ModContent.ItemType<QuickCharge>(), 5);
+        BossBagLoot(item, itemLoot, ItemID.CultistBossBag, ModContent.ItemType<AkumasDemise>(), 1);
+
+        BossBagLoot(item, itemLoot, ItemID.MoonLordBossBag, ModContent.ItemType<VaultFragment6>(), 1);
+        BossBagLoot(item, itemLoot, ItemID.MoonLordBossBag, ModContent.ItemType<CommanderPlanetoid>());
+        BossBagLoot(item, itemLoot, ItemID.MoonLordBossBag, ModContent.ItemType<HideOfTerramorphous>(), 20);
+    }
+
+    private void BossBagLoot(Item item, ItemLoot itemLoot, int bossBag, int newItem, int chance = 10, int min = 1, int max = 1)
+    {
+        if (item.type == bossBag)
+        {
+            itemLoot.Add(ItemDropRule.Common(newItem, chance, min, max));
+        }
+    }
+
+    private void AllCrates(Item item, ItemLoot itemLoot)
     {
         if (item.type == ItemID.WoodenCrate)
         {
@@ -608,7 +806,6 @@ public class NewItemLoot : GlobalItem
 
         if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Quad>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrphanMaker>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScorpioTurret>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Onslaught>(), 10, 1, 1));
@@ -621,7 +818,6 @@ public class NewItemLoot : GlobalItem
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InspiringTransaction>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<AgilityRelic>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<PackTactics>(), 10, 1, 1));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Killer>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Impact>(), 10, 1, 1));
         }
 
@@ -652,7 +848,7 @@ public class NewItemLoot : GlobalItem
 
         if (item.type == ItemID.OasisCrateHard)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 10, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pimpernel>(), 30, 1, 1));
         }
 
         if (item.type == ItemID.OceanCrate || item.type == ItemID.OceanCrateHard)

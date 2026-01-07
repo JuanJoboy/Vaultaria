@@ -35,8 +35,8 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 50;
-            Item.crit = 16;
+            Item.damage = 20;
+            Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 6;
@@ -45,7 +45,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 1);
             Utilities.ItemSound(Item, Utilities.Sounds.GenericLaser, 60);
         }
 
@@ -59,7 +59,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
             CreateRecipe()
                 .AddIngredient<Eridium>(30)
                 .AddIngredient(ItemID.SpaceGun, 1)
-                .AddIngredient(ItemID.IllegalGunParts, 2)
+                .AddIngredient(ItemID.IllegalGunParts, 1)
                 .AddIngredient(ItemID.SoulofMight, 25)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.MarcusVendingMachine>())
                 .Register();

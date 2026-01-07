@@ -35,6 +35,10 @@ namespace Vaultaria.Content.Items.Accessories.Skills
         {
             CreateRecipe()
                 .AddIngredient<Eridium>(100)
+                .AddIngredient(ItemID.SpectreBar, 20)
+                .AddIngredient(ItemID.SoulofMight, 10)
+                .AddIngredient(ItemID.SoulofSight, 10)
+                .AddIngredient(ItemID.SoulofFright, 10)
                 .AddIngredient<Immolate>(1)
                 .AddIngredient<Fleet>(1)
                 .AddTile(ModContent.TileType<Tiles.VendingMachines.ZedVendingMachine>())

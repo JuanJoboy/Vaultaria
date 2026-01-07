@@ -62,7 +62,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
                                 Projectile.Center,
                                 newVelocity,
                                 Projectile.type, 
-                                80,
+                                Projectile.damage,
                                 2.3f,
                                 Projectile.owner,
                                 0f,

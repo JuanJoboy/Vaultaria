@@ -16,7 +16,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
     {
         public float explosiveMultiplier = 0.15f;
         private float elementalChance = 100f;
-        private short explosiveProjectile = ElementalID.SmallExplosiveProjectile;
+        private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 90;
 

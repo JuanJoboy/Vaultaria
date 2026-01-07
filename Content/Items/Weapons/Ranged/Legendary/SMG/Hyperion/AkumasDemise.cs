@@ -32,14 +32,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion
             Item.mana = 10;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 50;
+            Item.knockBack = 1f;
+            Item.damage = 60;
             Item.crit = 6;
             Item.DamageType = DamageClass.Magic;
 
             Item.useTime = 13;
             Item.useAnimation = 13;
-            Item.reuseDelay = 0;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties

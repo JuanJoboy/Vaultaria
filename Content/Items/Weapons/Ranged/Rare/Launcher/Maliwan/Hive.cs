@@ -54,7 +54,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 24; i++)
             {
                 player.ConsumeItem(ammo.type, false);
             }
@@ -64,7 +64,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Launcher.Maliwan
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "ToolTip1", "Consumes 15 Launcher Ammo per shot");
+            Utilities.Text(tooltips, Mod, "ToolTip1", "Consumes 25 Launcher Ammo per shot");
             Utilities.Text(tooltips, Mod, "ToolTip3", "After a second, the initial projectile will spawn Corrosive homing rockets", Utilities.VaultarianColours.Corrosive);
             Utilities.RedText(tooltips, Mod, "Full of bees.");
         }

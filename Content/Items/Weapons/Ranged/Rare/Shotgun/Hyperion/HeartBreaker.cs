@@ -34,13 +34,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 6;
-            Item.crit = 6;
+            Item.damage = 18;
+            Item.crit = 2;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.reuseDelay = 0;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties
@@ -68,14 +68,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Hyperion
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30f, 0f);
+            return new Vector2(-30f, 3f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Utilities.MultiShotText(tooltips, Item, 6);
             Utilities.Text(tooltips, Mod, "Tooltip1", "Uses Shotgun Ammo");
-            Utilities.Text(tooltips, Mod, "Tooltip3", "+50% Lifesteal per bullet", Utilities.VaultarianColours.Healing);
+            Utilities.Text(tooltips, Mod, "Tooltip3", "Heals the player on enemy hit", Utilities.VaultarianColours.Healing);
             Utilities.RedText(tooltips, Mod, "I don't want to set the world on fire…");
         }
     }

@@ -20,25 +20,25 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(123, 29);
-            Item.scale = 0.7f;
+            Item.scale = 0.8f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
             // Gun properties
             Item.noMelee = true;
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 20;
             Item.shoot = ProjectileID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 10;
-            Item.crit = 1;
+            Item.knockBack = 1f;
+            Item.damage = 30;
+            Item.crit = 16;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 48;
-            Item.useAnimation = 48;
-            Item.reuseDelay = 48;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.reuseDelay = 30;
             Item.autoReuse = true;
 
             // Other properties

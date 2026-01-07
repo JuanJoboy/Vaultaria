@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Laser.Tediore
 {
     public class LaserDiskerGrenade : ElementalProjectile
     {
-        public float explosiveMultiplier = 3f;
+        public float explosiveMultiplier = 2f;
         private float elementalChance = 100f;
         private short explosiveProjectile = ElementalID.LargeExplosiveProjectile;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Laser.Tediore
             Projectile.scale = 2.1f;
 
             // Damage
-            Projectile.damage = 1;
+            Projectile.damage = 0;
             Projectile.CritChance = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof
         {
             // Visual properties
             Item.Size = new Vector2(60, 27);
-            Item.scale = 0.95f;
+            Item.scale = 1.05f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.White;
 
@@ -31,14 +31,14 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof
             Item.useAmmo = AmmoID.Bullet;
 
             // Combat properties
-            Item.knockBack = 2.3f;
-            Item.damage = 4;
+            Item.knockBack = 0f;
+            Item.damage = 12;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 8;
-            Item.useAnimation = 8;
-            Item.reuseDelay = 8;
+            Item.useTime = 6;
+            Item.useAnimation = 6;
+            Item.reuseDelay = 2;
             Item.autoReuse = true;
 
             // Other properties
@@ -48,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-3f, 4f);
+            return new Vector2(-5f, 4f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

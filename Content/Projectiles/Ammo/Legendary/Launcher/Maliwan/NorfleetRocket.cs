@@ -67,7 +67,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Maliwan
             {
                 if (SetElementalChance(elementalChance))
                 {
-                    if(Vector2.Distance(Main.npc[i].Center, Projectile.Center) < 200 && !Main.npc[i].townNPC)
+                    if(Vector2.Distance(Main.npc[i].Center, Projectile.Center) < 200 && !Main.npc[i].townNPC && Main.npc[i].active && Main.npc[i] != null)
                     {
                         SetElementOnNPC(Main.npc[i], hit, shockMultiplier, player, shockProjectile, shockBuff, buffTime);
                         info = hit;

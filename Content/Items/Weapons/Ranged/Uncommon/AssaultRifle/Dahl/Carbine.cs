@@ -33,17 +33,17 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Uncommon.AssaultRifle.Dahl
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 7;
+            Item.damage = 21;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 
             Item.useTime = 7;
             Item.useAnimation = 21;
-            Item.reuseDelay = 7;
+            Item.reuseDelay = 9;
             Item.autoReuse = true;
 
             // Other properties
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(silver: 10);
             Utilities.ItemSound(Item, Utilities.Sounds.DahlARBurst, 60);
         }
 

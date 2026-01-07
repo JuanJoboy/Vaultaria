@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         {
             // Visual properties
             Item.Size = new Vector2(63, 29);
-            Item.scale = 0.95f;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 
@@ -32,7 +32,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
             // Combat properties
             Item.knockBack = 2.3f;
-            Item.damage = 2;
+            Item.damage = 8;
             Item.crit = 0;
             Item.DamageType = DamageClass.Ranged;
 

@@ -34,13 +34,13 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 40;
-            Item.crit = 16;
+            Item.damage = 20;
+            Item.crit = -4;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.useTime = 17;
-            Item.useAnimation = 17;
-            Item.reuseDelay = 2;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
+            Item.reuseDelay = 3;
             Item.autoReuse = true;
 
             // Other properties

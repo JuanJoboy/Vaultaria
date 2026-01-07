@@ -33,8 +33,8 @@ namespace Vaultaria.Common.Systems
 
         public static bool vaultQueenSlime = false;
         public static bool vaultQueenSlimeDR = false;
-        public static bool vaultTwins = false;
-        public static bool vaultTwinsDR = false;
+        public static bool vaultSeasonalBosses = false;
+        public static bool vaultSeasonalBossesDR = false;
         public static bool vaultSkeletronPrime = false;
         public static bool vaultSkeletronPrimeDR = false;
         public static bool vaultBetsy = false;
@@ -75,11 +75,16 @@ namespace Vaultaria.Common.Systems
                             {
                                 SpawnBoss(player, NPCID.KingSlime);
                                 vaultKingSlimeDR = true;
+                                
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    ModNetHandler.vault.SendBossDeath1(Main.myPlayer);
+                                }
                             }
-
+                            
                             SpawnPreHardmodeBosses(player);
                         }
-                    }
+                    }  
 
                     if(SubworldLibrary.SubworldSystem.IsActive<Vault2Subworld>())
                     {
@@ -89,7 +94,11 @@ namespace Vaultaria.Common.Systems
                             {
                                 SpawnBoss(player, NPCID.QueenSlimeBoss);
                                 vaultQueenSlimeDR = true;
-                                ModNetHandler.vault.SendBossDeath(Main.myPlayer);
+                                
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    ModNetHandler.vault.SendBossDeath2(Main.myPlayer);
+                                }
                             }
                             
                             SpawnHardmodeBosses(player);
@@ -109,8 +118,8 @@ namespace Vaultaria.Common.Systems
 
 		private void SpawnHardmodeBosses(Player player)
         {
-            ContinueBossRush(player, ref vaultQueenSlime, ref vaultTwins, ref vaultTwinsDR, NPCID.Retinazer);
-            ContinueBossRush(player, ref vaultTwins, ref vaultSkeletronPrime, ref vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
+            ContinueBossRush(player, ref vaultQueenSlime, ref vaultSeasonalBosses, ref vaultSeasonalBossesDR, NPCID.Pumpking);
+            ContinueBossRush(player, ref vaultSeasonalBosses, ref vaultSkeletronPrime, ref vaultSkeletronPrimeDR, NPCID.SkeletronPrime);
             ContinueBossRush(player, ref vaultSkeletronPrime, ref vaultBetsy, ref vaultBetsyDR, NPCID.DD2Betsy);
             ContinueBossRush(player, ref vaultBetsy, ref vaultPlantera, ref vaultPlanteraDR, NPCID.Plantera);
             ContinueBossRush(player, ref vaultPlantera, ref vaultGolem, ref vaultGolemDR, NPCID.Golem);
@@ -124,15 +133,15 @@ namespace Vaultaria.Common.Systems
         {
             if(BossTimer(player, ref oldBossIsDead, ref newBossHasDied, ref newBossHasBeenSpawned) == true)
             {
-                if(newBossToSpawn != NPCID.Retinazer)
+                if(newBossToSpawn != NPCID.Pumpking)
                 {
                     SpawnBoss(player, newBossToSpawn);
                     newBossHasBeenSpawned = true;                    
                 }
-                else if(newBossToSpawn == NPCID.Retinazer)
+                else if(newBossToSpawn == NPCID.Pumpking)
                 {
                     SpawnBoss(player, newBossToSpawn);
-                    SpawnBoss(player, NPCID.Spazmatism);
+                    SpawnBoss(player, NPCID.IceQueen);
                     newBossHasBeenSpawned = true;
                 }
             }
@@ -142,7 +151,7 @@ namespace Vaultaria.Common.Systems
         {
             foreach(NPC n in Main.ActiveNPCs)
             {
-                if(n.type == NPCID.Spazmatism || n.type == NPCID.Retinazer)
+                if(n.type == NPCID.IceQueen || n.type == NPCID.Pumpking)
                 {
                     return false;
                 }
@@ -208,8 +217,12 @@ namespace Vaultaria.Common.Systems
                 }
 
                 boss.netUpdate = true;
-                NetMessage.SendData(MessageID.SyncNPC, number: boss.whoAmI);
-                NetMessage.SendData(MessageID.WorldData);
+
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.SyncNPC, number: boss.whoAmI);
+                    NetMessage.SendData(MessageID.WorldData);
+                }
             }
         }
 
@@ -226,7 +239,7 @@ namespace Vaultaria.Common.Systems
 
             writer.WriteFlags(Utilities.Utilities.startedVault2BossRush);
 
-            writer.WriteFlags(vaultQueenSlime, vaultQueenSlimeDR, vaultTwins, vaultTwinsDR, vaultSkeletronPrime, vaultSkeletronPrimeDR, vaultBetsy, vaultBetsyDR);
+            writer.WriteFlags(vaultQueenSlime, vaultQueenSlimeDR, vaultSeasonalBosses, vaultSeasonalBossesDR, vaultSkeletronPrime, vaultSkeletronPrimeDR, vaultBetsy, vaultBetsyDR);
             writer.WriteFlags(vaultPlantera, vaultPlanteraDR, vaultGolem, vaultGolemDR, vaultDukeFishron, vaultDukeFishronDR, vaultEmpress, vaultEmpressDR);
             writer.WriteFlags(vaultLunaticCultist, vaultLunaticCultistDR, vaultMoonLord, vaultMoonLordDR);
 		}
@@ -243,7 +256,7 @@ namespace Vaultaria.Common.Systems
 
             reader.ReadFlags(out Utilities.Utilities.startedVault2BossRush);
 
-            reader.ReadFlags(out vaultQueenSlime, out vaultQueenSlimeDR, out vaultTwins, out vaultTwinsDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR, out vaultBetsy, out vaultBetsyDR);
+            reader.ReadFlags(out vaultQueenSlime, out vaultQueenSlimeDR, out vaultSeasonalBosses, out vaultSeasonalBossesDR, out vaultSkeletronPrime, out vaultSkeletronPrimeDR, out vaultBetsy, out vaultBetsyDR);
             reader.ReadFlags(out vaultPlantera, out vaultPlanteraDR, out vaultGolem, out vaultGolemDR, out vaultDukeFishron, out vaultDukeFishronDR, out vaultEmpress, out vaultEmpressDR);
             reader.ReadFlags(out vaultLunaticCultist, out vaultLunaticCultistDR, out vaultMoonLord, out vaultMoonLordDR);
 		}
@@ -269,8 +282,8 @@ namespace Vaultaria.Common.Systems
 
             tag["vaultQueenSlime"] = vaultQueenSlime;
             tag["vaultQueenSlimeDR"] = vaultQueenSlimeDR;
-            tag["vaultTwins"] = vaultTwins;
-            tag["vaultTwinsDR"] = vaultTwinsDR;
+            tag["vaultSeasonalBosses"] = vaultSeasonalBosses;
+            tag["vaultSeasonalBossesDR"] = vaultSeasonalBossesDR;
             tag["vaultSkeletronPrime"] = vaultSkeletronPrime;
             tag["vaultSkeletronPrimeDR"] = vaultSkeletronPrimeDR;
             tag["vaultBetsy"] = vaultBetsy;
@@ -310,8 +323,8 @@ namespace Vaultaria.Common.Systems
 
             vaultQueenSlime = tag.GetBool("vaultQueenSlime");
             vaultQueenSlimeDR = tag.GetBool("vaultQueenSlimeDR");
-            vaultTwins = tag.GetBool("vaultTwins");
-            vaultTwinsDR = tag.GetBool("vaultTwinsDR");
+            vaultSeasonalBosses = tag.GetBool("vaultSeasonalBosses");
+            vaultSeasonalBossesDR = tag.GetBool("vaultSeasonalBossesDR");
             vaultSkeletronPrime = tag.GetBool("vaultSkeletronPrime");
             vaultSkeletronPrimeDR = tag.GetBool("vaultSkeletronPrimeDR");
             vaultBetsy = tag.GetBool("vaultBetsy");
@@ -351,8 +364,8 @@ namespace Vaultaria.Common.Systems
 
             vaultQueenSlime = false;
             vaultQueenSlimeDR = false;
-            vaultTwins = false;
-            vaultTwinsDR = false;
+            vaultSeasonalBosses = false;
+            vaultSeasonalBossesDR = false;
             vaultSkeletronPrime = false;
             vaultSkeletronPrimeDR = false;
             vaultBetsy = false;
