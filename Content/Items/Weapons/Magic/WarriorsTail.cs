@@ -14,8 +14,8 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 	public class WarriorsTail : ModItem
 	{
 		// You can use a vanilla texture for your item by using the format: "Terraria/Item_<Item ID>".
-		public override string Texture => "Terraria/Images/Item_" + ItemID.LastPrism;
-		public static Color OverrideColor = new(161, 113, 240);
+		// public override string Texture => "Terraria/Images/Item_" + ItemID.LastPrism;
+		// public static Color OverrideColor = new(161, 113, 240);
 
 		public override void SetDefaults() {
 			// Start by using CloneDefaults to clone all the basic item properties from the vanilla Last Prism.
@@ -28,7 +28,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 
 			// Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
-			Item.color = OverrideColor;
+			// Item.color = OverrideColor;
 			Item.UseSound = SoundID.Item113;
 		}
 

@@ -34,7 +34,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
             // Combat properties
             Item.knockBack = 1f;
-            Item.damage = 30;
+            Item.damage = 35;
             Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
 
@@ -55,16 +55,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
             return false;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            if(Main.hardMode)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public override bool? UseItem(Player player)
         {
             player.statLife -= 10;
@@ -81,11 +71,6 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
         {
             Utilities.MultiShotText(tooltips, Item, 4);
             Utilities.Text(tooltips, Mod);
-
-            if(!Main.hardMode)
-            {
-                Utilities.Text(tooltips, Mod, "Tooltip2", "Can only be used in Hardmode", Utilities.VaultarianColours.Information);
-            }
 
             Utilities.Text(tooltips, Mod, "Tooltip3", "Found in Locked Shadow Chests", Utilities.VaultarianColours.Information);
 

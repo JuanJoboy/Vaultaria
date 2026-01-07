@@ -12,10 +12,10 @@ namespace Vaultaria.Content.Projectiles.Magic
 {
 	public class WarriorLaserHoldout : ElementalProjectile
 	{
-		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.LastPrism;
+		// public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.LastPrism;
 
-		// The vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
-		private const int NumAnimationFrames = 5;
+		// // The vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
+		// private const int NumAnimationFrames = 5;
 
 		// This controls how many individual beams are fired by the Prism.
 		public const int NumBeams = 3;
@@ -60,7 +60,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 		}
 
 		public override void SetStaticDefaults() {
-			Main.projFrames[Projectile.type] = NumAnimationFrames;
+			// Main.projFrames[Projectile.type] = NumAnimationFrames;
 
 			// Signals to Terraria that this Projectile requires a unique identifier beyond its index in the Projectile array.
 			// This prevents the issue with the vanilla Last Prism where the beams are invisible in multiplayer.
@@ -89,7 +89,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 			FrameCounter += 1f;
 
 			// Update Projectile visuals and sound.
-			UpdateAnimation();
+			// UpdateAnimation();
 			PlaySounds();
 
 			// Update the Prism's position in the world and relevant variables of the player holding it.
@@ -127,20 +127,20 @@ namespace Vaultaria.Content.Projectiles.Magic
 			Projectile.damage = (int)player.GetDamage(DamageClass.Magic).ApplyTo(player.HeldItem.damage);
 		}
 
-		private void UpdateAnimation() {
-			Projectile.frameCounter++;
+		// private void UpdateAnimation() {
+		// 	Projectile.frameCounter++;
 
-			// As the Prism charges up and focuses the beams, its animation plays faster.
-			int framesPerAnimationUpdate = FrameCounter >= MaxCharge ? 2 : FrameCounter >= (MaxCharge * 0.66f) ? 3 : 4;
+		// 	// As the Prism charges up and focuses the beams, its animation plays faster.
+		// 	int framesPerAnimationUpdate = FrameCounter >= MaxCharge ? 2 : FrameCounter >= (MaxCharge * 0.66f) ? 3 : 4;
 
-			// If necessary, change which specific frame of the animation is displayed.
-			if (Projectile.frameCounter >= framesPerAnimationUpdate) {
-				Projectile.frameCounter = 0;
-				if (++Projectile.frame >= NumAnimationFrames) {
-					Projectile.frame = 0;
-				}
-			}
-		}
+		// 	// If necessary, change which specific frame of the animation is displayed.
+		// 	if (Projectile.frameCounter >= framesPerAnimationUpdate) {
+		// 		Projectile.frameCounter = 0;
+		// 		if (++Projectile.frame >= NumAnimationFrames) {
+		// 			Projectile.frame = 0;
+		// 		}
+		// 	}
+		// }
 
 		private void PlaySounds() {
 			// The Prism makes sound intermittently while in use, using the vanilla Projectile variable soundDelay.
@@ -238,8 +238,7 @@ namespace Vaultaria.Content.Projectiles.Magic
 
 			// The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
 			// It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
-			Color drawColor = WarriorsTail.OverrideColor;
-			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
+			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), Color.White, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
 			return false;
 		}
 	}
