@@ -30,8 +30,8 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
 
         public override void SetDefaults()
         {
-            Projectile.width = 18;
-            Projectile.height = 28;
+            Projectile.width = 60;
+            Projectile.height = 34;
 
             Projectile.friendly = true;
             Projectile.hostile = false;

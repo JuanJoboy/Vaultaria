@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
         public override void SetDefaults()
         {
             // Size
-            Projectile.Size = new Vector2(8, 17);
+            Projectile.Size = new Vector2(20, 20);
             Projectile.scale = 1.4f;
 
             // Damage

@@ -18,7 +18,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.SMG.Hyperion
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(70, 29);
+            Item.Size = new Vector2(66, 30);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Pink;

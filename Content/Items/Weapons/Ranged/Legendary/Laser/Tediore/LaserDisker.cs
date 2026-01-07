@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(60, 30);
+            Item.Size = new Vector2(54, 30);
             Item.scale = 0.95f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;

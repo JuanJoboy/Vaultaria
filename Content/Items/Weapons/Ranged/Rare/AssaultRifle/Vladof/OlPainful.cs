@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(58, 29);
+            Item.Size = new Vector2(77, 30);
             Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;

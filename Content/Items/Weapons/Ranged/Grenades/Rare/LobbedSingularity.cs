@@ -20,7 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Rare
         public override void SetDefaults()
         {
             // Visual properties
-            Item.Size = new Vector2(14, 30);
+            Item.Size = new Vector2(17, 30);
             Item.scale = 1.2f;
             Item.rare = ItemRarityID.Blue;
             Item.maxStack = 9999;
