@@ -18,8 +18,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 4;
-
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
             Main.projPet[Projectile.type] = true;
@@ -30,8 +28,8 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
 
         public override void SetDefaults()
         {
-            Projectile.width = 18;
-            Projectile.height = 28;
+            Projectile.width = 64;
+            Projectile.height = 40;
 
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -60,7 +58,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
 
         public override void AI()
         {
-            Utilities.MinionFrameRotator(8, Projectile);
             Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.65f); // Gives it light
 
             Player player = Main.player[Projectile.owner];
