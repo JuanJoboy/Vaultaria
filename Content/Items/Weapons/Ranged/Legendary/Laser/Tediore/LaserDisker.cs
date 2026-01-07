@@ -125,7 +125,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Tediore
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20f, 5f);
+            return new Vector2(-10f, 2f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

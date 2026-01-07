@@ -20,6 +20,11 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int buffTime = 90;
 
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 4;
+        }
+
         public override void SetDefaults()
         {
             // Size
@@ -42,7 +47,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
         public override void AI()
         {
             base.AI();
-            Projectile.rotation = Projectile.velocity.ToRotation();
+            Utilities.FrameRotator(3, Projectile);
 
             Projectile.velocity.Y += 0.175f;
         }
