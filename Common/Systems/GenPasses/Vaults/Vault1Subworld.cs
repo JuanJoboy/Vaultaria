@@ -54,8 +54,7 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
             {
     			FindSpawn();
 
-				PlaceInFrozenChests();
-				PlaceInIceChests();
+				PlaceInChests();
             }
         }
 
@@ -124,12 +123,14 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 					{
                 		WorldGen.KillTile(i , j, false, false, true);
                 		WorldGen.KillTile(i + 1, j, false, false, true);
+                		WorldGen.KillTile(i + 2, j, false, false, true);
 						armouryOpened = true;
 
 						if(Main.netMode != NetmodeID.SinglePlayer)
 						{
 							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i, number3: j, number4: 0);
 							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 1, number3: j, number4: 0);
+							NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: i + 2, number3: j, number4: 0);
 						}
 
 						return;
@@ -138,24 +139,13 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 			}
         }
 
-        private void PlaceInFrozenChests()
+        private void PlaceInChests()
         {
 			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
 			int itemsToPlaceInChestChoice = 0;
 			int itemsPlaced = 0;
 			int maxItems = Main.chest.Length;
-			int chest = 11;
-
-            Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
-        }
-
-        private void PlaceInIceChests()
-        {
-			int[] itemsToPlaceInChest = [ModContent.ItemType<Vault1Bag>()];
-			int itemsToPlaceInChestChoice = 0;
-			int itemsPlaced = 0;
-			int maxItems = Main.chest.Length;
-			int chest = 22;
+			int chest = 44;
 
             Utilities.Utilities.PlaceItemsInChest(itemsToPlaceInChest, itemsToPlaceInChestChoice, itemsPlaced, maxItems, chest);
         }
