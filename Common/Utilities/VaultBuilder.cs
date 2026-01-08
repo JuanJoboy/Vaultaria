@@ -69,6 +69,11 @@ namespace Vaultaria.Common.Utilities
             x = Utils.Clamp(x, 10, Main.maxTilesX - dimensions.X - 10);
             y = Utils.Clamp(y, 10, Main.maxTilesY - dimensions.Y - 10);
 
+            if(battleGround == "Vault1BattleGround")
+            {
+                y = Main.maxTilesY - dimensions.Y - 10; // Make it spawn in hell
+            }
+
             Point16 pos = new Point16(x, y);
 
             GenFlags flags = GenFlags.NullsKeepGivenSlope;

@@ -89,6 +89,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
             return false;
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(254, 72, 27);
+        }
+
         public override List<string> GetElement()
         {
             return new List<string>

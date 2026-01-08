@@ -80,6 +80,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Torgue
             return false;
         }
         
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(240, 226, 172);
+        }
+        
         public override List<string> GetElement()
         {
             return new List<string>

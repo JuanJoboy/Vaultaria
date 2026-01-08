@@ -154,6 +154,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
                 Dust.NewDustPerfect(Projectile.Center, DustID.YellowTorch, newVelocity).noGravity = false; // Creating dust
             }
         }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(236, 200, 0);
+        }
         
         public override List<string> GetElement()
         {

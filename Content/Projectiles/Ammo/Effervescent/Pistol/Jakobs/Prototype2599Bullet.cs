@@ -72,6 +72,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Pistol.Jakobs
             return true;
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(243, 255, 93);
+        }
+
         public override List<string> GetElement()
         {
             return new List<string>

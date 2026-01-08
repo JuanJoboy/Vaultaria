@@ -94,6 +94,27 @@ namespace Vaultaria.Common.Utilities
         };
 
         // ********************************************
+        // *------------- Override Methods -------------*
+        // ********************************************
+        public override void AI()
+        {
+            base.AI();
+
+            // Adds lighting to all projectiles
+            // 0.25f = 64 (Dim)
+            // 0.50f = 127 (Mid)
+            // 0.75f = 191 (Bright)
+            // 1.00f = 255 (Full)
+            Vector3 rgb = SetProjectileLightColour();
+            rgb.X /= 255f;
+            rgb.Y /= 255f;
+            rgb.Z /= 255f;
+            Lighting.AddLight(Projectile.Center, rgb);
+        }
+
+        public abstract Vector3 SetProjectileLightColour();
+
+        // ********************************************
         // *------------- Helper Methods -------------*
         // ********************************************
 

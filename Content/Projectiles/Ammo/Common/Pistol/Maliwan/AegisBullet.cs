@@ -59,6 +59,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Maliwan
             }
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(20, 34, 172);
+        }
+
         public override List<string> GetElement()
         {
             return new List<string>

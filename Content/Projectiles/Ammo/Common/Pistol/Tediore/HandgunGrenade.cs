@@ -94,6 +94,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore
             }
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
+        }
+
         public override List<string> GetElement()
         {
             return new List<string>

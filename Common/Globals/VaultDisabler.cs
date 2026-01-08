@@ -67,7 +67,7 @@ namespace Vaultaria.Common.Globals
                 return true;
             }
 
-            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i, j))
+            if(Utilities.Utilities.VaultArea(vault2Dimensions, VaultBuilder.vault2positionX, VaultBuilder.vault2positionY, i + 2, j - 2))
             {
                 return true;
             }
