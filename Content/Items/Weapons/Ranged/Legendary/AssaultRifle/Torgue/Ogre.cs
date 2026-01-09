@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Torgue
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(103, 29);
             Item.scale = 1f;

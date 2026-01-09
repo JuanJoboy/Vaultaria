@@ -23,6 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(70, 30);
             Item.scale = 0.9f;

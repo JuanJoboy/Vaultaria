@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Torgue
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 14);
 

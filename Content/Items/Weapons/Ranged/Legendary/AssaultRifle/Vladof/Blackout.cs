@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(60, 33);
             Item.scale = 0.9f;

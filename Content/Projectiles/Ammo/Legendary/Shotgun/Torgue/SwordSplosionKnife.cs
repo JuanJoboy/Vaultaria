@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Torgue
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(8, 8);
             Projectile.scale = 1.6f;
@@ -92,6 +93,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Torgue
             }
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(194, 215, 255);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

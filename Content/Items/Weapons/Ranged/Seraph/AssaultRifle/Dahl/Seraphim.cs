@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Dahl
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(71, 30);
             Item.scale = 1f;

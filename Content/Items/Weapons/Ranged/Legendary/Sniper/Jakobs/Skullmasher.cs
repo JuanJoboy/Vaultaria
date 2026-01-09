@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(102, 26);
             Item.scale = 0.9f;

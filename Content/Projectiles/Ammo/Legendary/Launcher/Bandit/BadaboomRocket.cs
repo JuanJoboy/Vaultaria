@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(24, 13);
 
@@ -86,6 +87,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Launcher.Bandit
             return false;
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(253, 221, 3);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

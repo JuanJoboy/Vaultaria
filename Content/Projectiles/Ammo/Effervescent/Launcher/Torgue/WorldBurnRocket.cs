@@ -21,6 +21,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(18, 42);
 
@@ -91,7 +92,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue
 
         public override Vector3 SetProjectileLightColour()
         {
-            return new Vector3(254, 72, 27);
+            return new Vector3(0, 0, 0);
         }
 
         public override List<string> GetElement()

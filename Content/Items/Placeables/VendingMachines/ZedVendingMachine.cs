@@ -16,6 +16,7 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Item.Size = new Vector2(40, 40);
 
             Item.useTime = 15;

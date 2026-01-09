@@ -360,5 +360,10 @@ namespace Vaultaria.Content.Projectiles.Magic
 			// In this case, it is cutting all tiles which can be destroyed by Projectiles, for example grass or pots.
 			Utils.PlotTileLine(beamStartPos, beamEndPos, Projectile.width * Projectile.scale, cut);
 		}
+		
+		public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(119, 49, 122);
+        }
 	}
 }

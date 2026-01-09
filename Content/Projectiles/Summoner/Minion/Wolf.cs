@@ -28,6 +28,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 60;
             Projectile.height = 34;
 
@@ -37,7 +38,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             Projectile.penetrate = -1;
             Projectile.timeLeft = 36000;
             Projectile.ignoreWater = true;
-            Projectile.tileCollide = true;
+            Projectile.tileCollide = false;
 
             Projectile.extraUpdates = 1;
             Projectile.CritChance = 0;
@@ -350,6 +351,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             }
 
             return false;
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(161, 140, 140);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(69, 30);
             Item.scale = 0.95f;

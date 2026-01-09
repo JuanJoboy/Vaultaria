@@ -241,5 +241,10 @@ namespace Vaultaria.Content.Projectiles.Magic
 			Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), Color.White, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
 			return false;
 		}
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
+        }
 	}
 }

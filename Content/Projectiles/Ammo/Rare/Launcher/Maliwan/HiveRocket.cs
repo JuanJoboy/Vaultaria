@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(25, 28);
 
@@ -163,6 +164,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Launcher.Maliwan
             return false;
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(201, 194, 201);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

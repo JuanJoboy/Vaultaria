@@ -11,6 +11,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Pistol.Hyperion
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(28, 2);
 

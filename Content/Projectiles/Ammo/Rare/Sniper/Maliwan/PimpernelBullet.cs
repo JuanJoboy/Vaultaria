@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Maliwan
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(17, 20);
 
@@ -132,6 +133,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Maliwan
             Vector2 projectileTraveling = Vector2.Lerp(Projectile.position, positionToGetTo, 0.1f);
 
             Projectile.NewProjectileDirect(Projectile.GetSource_Death(), projectileTraveling, vel, ModContent.ProjectileType<PimpernelChildBullet>(), Projectile.damage, 2, Projectile.owner);
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(98, 37, 255);
         }
     }
 }

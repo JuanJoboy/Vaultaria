@@ -385,5 +385,10 @@ namespace Vaultaria.Content.Projectiles.Magic
                 SetElementOnPlayer(target, info, slagMultiplier, player, slagProjectile, slagBuff, buffTime);
             }
         }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(169, 32, 159);
+        }
 	}
 }

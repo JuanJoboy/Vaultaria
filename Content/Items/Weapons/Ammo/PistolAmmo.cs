@@ -14,6 +14,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Item.Size = new Vector2(16, 29);
 

@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(21, 29);
 
@@ -100,6 +101,11 @@ namespace Vaultaria.Content.Projectiles.Shields
                 Player player = Main.player[Projectile.owner];
                 SetElementOnPlayer(target, info, corrosiveMultiplier, player, corrosiveProjectile, corrosiveBuff, buffTime);
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(61, 82, 58);
         }
 
         public override List<string> GetElement()

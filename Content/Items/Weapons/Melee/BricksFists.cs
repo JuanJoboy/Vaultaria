@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(51, 60);
             Item.scale = 0.5f;

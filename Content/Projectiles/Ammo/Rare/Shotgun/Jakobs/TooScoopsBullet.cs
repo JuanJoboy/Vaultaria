@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(14, 14);
 
@@ -76,6 +77,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
             }
         }
         
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(129, 181, 227);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

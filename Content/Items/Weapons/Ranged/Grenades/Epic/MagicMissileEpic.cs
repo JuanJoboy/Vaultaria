@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Epic
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(22, 30);
             Item.scale = 1.2f;

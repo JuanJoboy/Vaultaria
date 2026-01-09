@@ -26,6 +26,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(8, 8);
             Projectile.scale = 1.4f;
@@ -91,6 +92,11 @@ namespace Vaultaria.Content.Projectiles.Grenades.Rare
             }
 
             Utilities.RocketJump(Projectile, ModContent.ItemType<BasicGrenade>(), 8f, 8f);
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
         }
 
         public override List<string> GetElement()

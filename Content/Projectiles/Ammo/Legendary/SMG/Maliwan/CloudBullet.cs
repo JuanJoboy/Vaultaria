@@ -17,6 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(40, 40);
 
@@ -83,6 +84,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan
             return false;
         }
         
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(79, 245, 137);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

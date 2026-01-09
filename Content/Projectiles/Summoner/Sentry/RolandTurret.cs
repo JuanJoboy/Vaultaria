@@ -22,6 +22,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.Size = new Vector2(51, 60);
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
@@ -39,6 +40,8 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override void AI()
         {
+            base.AI();
+
             // Gets the player and ensures that only one turret can spawn
             Player player = Main.player[Projectile.owner];
 
@@ -220,6 +223,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
                 default:
                     return ItemID.SilverBullet;
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(177, 178, 172);
         }
     }
 }

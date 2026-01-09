@@ -30,6 +30,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.Size = new Vector2(34, 60);
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
@@ -49,6 +50,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override void AI()
         {
+            base.AI();
             // Gets the player and ensures that only one turret can spawn
             Player player = Main.player[Projectile.owner];
 
@@ -241,6 +243,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             touchedTheGround = true;
             Projectile.netUpdate = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(88, 206, 195);
         }
     }
 }

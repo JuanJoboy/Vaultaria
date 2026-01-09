@@ -29,6 +29,7 @@ namespace Vaultaria.Content.Projectiles.Melee
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(30, 29);
             Projectile.scale = 2.1f;
@@ -98,6 +99,11 @@ namespace Vaultaria.Content.Projectiles.Melee
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1f);
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 1f);
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
         }
 
         public override List<string> GetElement()

@@ -16,6 +16,7 @@ namespace Vaultaria.Content.Items.Materials
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Item.Size = new Vector2(22, 24);
             Item.maxStack = 1;
             Item.value = Item.buyPrice(gold: 2);

@@ -16,6 +16,7 @@ namespace Vaultaria.Content.Items.Placeables.VendingMachines
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Sets the width and height of the item's sprite when it's in the inventory or on the ground.
             // This does NOT affect the placed tile's size.
             Item.Size = new Vector2(40, 40);

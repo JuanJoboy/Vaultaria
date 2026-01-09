@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Jakobs
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(80, 32);
             Item.scale = 0.9f;

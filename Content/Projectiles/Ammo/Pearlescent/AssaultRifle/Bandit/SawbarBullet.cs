@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 2);
 
@@ -129,6 +130,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Pearlescent.AssaultRifle.Bandit
             };
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(253, 249, 3);
+        }
+     
         private void ChangeExplosion()
         {
             VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();

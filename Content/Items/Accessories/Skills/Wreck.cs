@@ -13,6 +13,7 @@ namespace Vaultaria.Content.Items.Accessories.Skills
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Item.Size = new Vector2(30, 30);
             Item.accessory = true;
             Item.value = Item.buyPrice(silver: 10);

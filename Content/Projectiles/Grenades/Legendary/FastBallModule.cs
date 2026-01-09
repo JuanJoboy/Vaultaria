@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 16);
             Projectile.scale = 1.6f;
@@ -90,6 +91,11 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
         }
 
         public override List<string> GetElement()

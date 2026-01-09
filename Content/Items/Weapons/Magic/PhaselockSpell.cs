@@ -25,6 +25,7 @@ namespace Vaultaria.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(28, 30);
 

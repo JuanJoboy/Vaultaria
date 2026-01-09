@@ -17,6 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Maliwan
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(22, 6);
 

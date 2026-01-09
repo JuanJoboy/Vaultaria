@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Jakobs
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(28, 6);
 

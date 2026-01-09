@@ -20,6 +20,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Maliwan
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(118, 30);
             Item.scale = 0.9f;

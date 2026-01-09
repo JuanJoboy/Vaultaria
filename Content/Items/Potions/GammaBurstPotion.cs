@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Items.Potions
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(30, 30);
             Item.scale = 1.2f;

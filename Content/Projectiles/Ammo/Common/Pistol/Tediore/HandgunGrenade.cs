@@ -26,6 +26,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(8, 8);
             Projectile.scale = 2.1f;

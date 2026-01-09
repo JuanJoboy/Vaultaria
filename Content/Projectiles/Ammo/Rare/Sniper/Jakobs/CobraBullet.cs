@@ -17,6 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Jakobs
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(28, 6);
 

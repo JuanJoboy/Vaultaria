@@ -21,6 +21,7 @@ namespace Vaultaria.Content.Projectiles.Shields
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 20);
 
@@ -183,6 +184,11 @@ namespace Vaultaria.Content.Projectiles.Shields
                     Projectile.ai[0] = 0f;
                 }
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(179, 48, 239);
         }
 
         public override List<string> GetElement()

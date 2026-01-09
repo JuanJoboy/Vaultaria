@@ -21,6 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(31, 29);
             Item.useStyle = ItemUseStyleID.Shoot;

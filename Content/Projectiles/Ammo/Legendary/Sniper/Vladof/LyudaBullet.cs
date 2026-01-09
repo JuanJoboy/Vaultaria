@@ -11,6 +11,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 2);
 
@@ -75,6 +76,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof
                     }
                 }                
             }
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(0, 0, 0);
         }
     }
 }

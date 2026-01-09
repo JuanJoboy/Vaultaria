@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Hyperion
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(71, 30);
             Item.scale = 0.95f;

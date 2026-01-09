@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(70, 30);
 
@@ -184,6 +185,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore
             return base.OnTileCollide(oldVelocity);
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(114, 122, 98);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

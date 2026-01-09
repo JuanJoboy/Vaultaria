@@ -22,6 +22,7 @@ namespace Vaultaria.Content.Items.Consumables.Bags
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Item.width = 32;
             Item.height = 32;
             Item.rare = ItemRarityID.Master;

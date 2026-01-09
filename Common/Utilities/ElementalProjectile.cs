@@ -96,6 +96,18 @@ namespace Vaultaria.Common.Utilities
         // ********************************************
         // *------------- Override Methods -------------*
         // ********************************************
+        private Vector3 rgb;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+
+            rgb = SetProjectileLightColour();
+            rgb.X /= 255f;
+            rgb.Y /= 255f;
+            rgb.Z /= 255f;
+        }
+
         public override void AI()
         {
             base.AI();
@@ -105,10 +117,6 @@ namespace Vaultaria.Common.Utilities
             // 0.50f = 127 (Mid)
             // 0.75f = 191 (Bright)
             // 1.00f = 255 (Full)
-            Vector3 rgb = SetProjectileLightColour();
-            rgb.X /= 255f;
-            rgb.Y /= 255f;
-            rgb.Z /= 255f;
             Lighting.AddLight(Projectile.Center, rgb);
         }
 

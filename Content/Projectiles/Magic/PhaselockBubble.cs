@@ -17,6 +17,7 @@ namespace Vaultaria.Content.Projectiles.Magic
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(54, 54);
 
@@ -106,6 +107,11 @@ namespace Vaultaria.Content.Projectiles.Magic
             }
 
             return closest; // Returns the best valid NPC target, or null if none found
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(151, 75, 122);
         }
     }
 }

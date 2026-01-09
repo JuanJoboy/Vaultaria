@@ -17,6 +17,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 2);
 
@@ -71,6 +72,11 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Hyperion
             }
         }
 
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(253, 249, 3);
+        }
+     
         public override List<string> GetElement()
         {
             return new List<string>

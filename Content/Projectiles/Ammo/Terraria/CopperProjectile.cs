@@ -7,10 +7,11 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Projectiles.Ammo.Terraria
 {
-    public class CopperProjectile : ElementalProjectile
+    public class CopperProjectile : ModProjectile
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 2);
 

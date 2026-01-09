@@ -14,6 +14,7 @@ namespace Vaultaria.Content.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             Item.Size = new Vector2(68, 35);
             Item.accessory = true;
             Item.value = Item.buyPrice(platinum: 1);

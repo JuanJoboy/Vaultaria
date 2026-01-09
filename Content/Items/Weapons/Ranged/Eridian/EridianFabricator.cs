@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Eridian
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(83, 30);
             Item.scale = 0.8f;

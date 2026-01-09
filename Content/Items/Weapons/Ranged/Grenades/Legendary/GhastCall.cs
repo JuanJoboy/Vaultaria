@@ -18,6 +18,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Grenades.Legendary
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(20, 35);
             Item.scale = 1.2f;

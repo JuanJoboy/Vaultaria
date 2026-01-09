@@ -23,6 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(31, 29);
             Item.useStyle = ItemUseStyleID.Swing;

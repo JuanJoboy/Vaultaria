@@ -21,6 +21,7 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(26, 26);
             Projectile.scale = 1.6f;
@@ -171,6 +172,11 @@ namespace Vaultaria.Content.Projectiles.Grenades.Legendary
             }
 
             Projectile.netUpdate = true;
+        }
+
+        public override Vector3 SetProjectileLightColour()
+        {
+            return new Vector3(72, 102, 218);
         }
     }
 }

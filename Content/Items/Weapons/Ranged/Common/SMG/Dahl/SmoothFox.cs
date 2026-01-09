@@ -19,6 +19,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(60, 34);
             Item.scale = 0.9f;

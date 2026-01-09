@@ -13,6 +13,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Seraph.AssaultRifle.Vladof
     {
         public override void SetDefaults()
         {
+            base.SetDefaults();
             // Size
             Projectile.Size = new Vector2(20, 2);
 
