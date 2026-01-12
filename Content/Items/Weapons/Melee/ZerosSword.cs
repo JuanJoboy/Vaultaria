@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         {
             base.SetDefaults();
             // Visual properties
-            Item.Size = new Vector2(55, 25);
+            Item.Size = new Vector2(33, 63);
 
             // Combat properties
             Item.useStyle = ItemUseStyleID.Swing;
@@ -31,7 +31,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.damage = 300;
             Item.crit = 6;
             Item.DamageType = DamageClass.Melee;
-            Item.scale = 1.25f;
+            Item.scale = 1f;
 
             Item.useTime = 20;
             Item.useAnimation = 20;
@@ -41,7 +41,8 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Other properties
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
-            Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
+            Item.UseSound = SoundID.Item3;
+            // Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

@@ -118,6 +118,7 @@ namespace Vaultaria.Common.Utilities
             DigiCloneSpawn,
             DigiCloneSwap,
             Norfleet,
+            Boomacorn,
             Execute,
             GenericLaser,
             BanditAR,
