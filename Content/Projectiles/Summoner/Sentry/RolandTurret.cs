@@ -70,7 +70,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
                     Projectile proj = Projectile.NewProjectileDirect(
                         Projectile.GetSource_FromThis(),
-                        Projectile.Center,
+                        Projectile.TopRight + new Vector2(0, 10),
                         direction,
                         ProjectileID.SilverBullet,
                         summonDamage,

@@ -41,7 +41,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             // Other properties
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
-            Item.UseSound = SoundID.Item3;
+            Item.UseSound = SoundID.Item1;
             // Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
         }
 

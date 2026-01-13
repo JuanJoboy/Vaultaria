@@ -12,9 +12,9 @@ namespace Vaultaria.Content.Items.Accessories.Relics
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Item.Size = new Vector2(20, 20);
+            Item.Size = new Vector2(30, 30);
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 2);
             Item.rare = ItemRarityID.Yellow;
         }
 
