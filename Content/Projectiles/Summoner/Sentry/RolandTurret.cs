@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.Size = new Vector2(51, 60);
+            Projectile.Size = new Vector2(152, 120);
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.sentry = true;
@@ -70,7 +70,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
                     Projectile proj = Projectile.NewProjectileDirect(
                         Projectile.GetSource_FromThis(),
-                        Projectile.TopRight + new Vector2(0, 10),
+                        Projectile.Center,
                         direction,
                         ProjectileID.SilverBullet,
                         summonDamage,

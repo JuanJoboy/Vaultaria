@@ -24,7 +24,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         {
             base.SetDefaults();
             // Visual properties
-            Item.Size = new Vector2(31, 29);
+            Item.Size = new Vector2(30, 30);
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Yellow;
 
@@ -81,7 +81,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
             if (player.altFunctionUse == 2) // Teleport to Clone
             {
                 Item.damage = 10;
-                Item.useStyle = ItemUseStyleID.RaiseLamp;
+                Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
 
                 Item.useTime = 8;
@@ -99,7 +99,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 Item.damage = 10;
                 Item.crit = 0;
                 Item.DamageType = DamageClass.Generic;
-                Item.useStyle = ItemUseStyleID.RaiseLamp;
+                Item.useStyle = ItemUseStyleID.Shoot;
                 Item.noMelee = true;
                 Item.shootSpeed = 0f;
                 Item.shoot = ModContent.ProjectileType<Clone>();
@@ -117,7 +117,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(4f, -0f);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

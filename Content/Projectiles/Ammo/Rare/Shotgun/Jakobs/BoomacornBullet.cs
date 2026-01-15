@@ -24,12 +24,12 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
         private float cryoChance = 20f;
         private float radiationChance = 20f;
         private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
-        private short shockProjectile = ElementalID.ShockProjectile;
-        private short incendiaryProjectile = ElementalID.IncendiaryProjectile;
-        private short corrosiveProjectile = ElementalID.CorrosiveProjectile;
-        private short slagProjectile = ElementalID.SlagProjectile;
-        private short cryoProjectile = ElementalID.CryoProjectile;
-        private short radiationProjectile = ElementalID.RadiationProjectile;
+        private short shockProjectile = ElementalID.ShockExplosion;
+        private short incendiaryProjectile = ElementalID.IncendiaryExplosion;
+        private short corrosiveProjectile = ElementalID.CorrosiveExplosion;
+        private short slagProjectile = ElementalID.SlagExplosion;
+        private short cryoProjectile = ElementalID.CryoExplosion;
+        private short radiationProjectile = ElementalID.RadiationExplosion;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
         private int shockBuff = ElementalID.ShockBuff;
         private int incendiaryBuff = ElementalID.IncendiaryBuff;
@@ -146,10 +146,41 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            Player player = Main.player[Projectile.owner];
+
             if (SetElementalChance(explosiveChance))
             {
-                Player player = Main.player[Projectile.owner];
                 SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+            }
+
+            if (SetElementalChance(shockChance))
+            {
+                SetElementOnTile(Projectile, shockMultiplier, player, shockProjectile);
+            }
+
+            if (SetElementalChance(incendiaryChance))
+            {
+                SetElementOnTile(Projectile, incendiaryMultiplier, player, incendiaryProjectile);
+            }
+
+            if (SetElementalChance(corrosiveChance))
+            {
+                SetElementOnTile(Projectile, corrosiveMultiplier, player, corrosiveProjectile);
+            }
+
+            if (SetElementalChance(slagChance))
+            {
+                SetElementOnTile(Projectile, slagMultiplier, player, slagProjectile);
+            }
+
+            if (SetElementalChance(cryoChance))
+            {
+                SetElementOnTile(Projectile, cryoMultiplier, player, cryoProjectile);
+            }
+
+            if (SetElementalChance(radiationChance))
+            {
+                SetElementOnTile(Projectile, radiationMultiplier, player, radiationProjectile);
             }
 
             return false;

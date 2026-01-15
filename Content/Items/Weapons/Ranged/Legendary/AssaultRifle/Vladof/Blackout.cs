@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.AssaultRifle.Vladof
             base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(60, 33);
-            Item.scale = 0.9f;
+            Item.scale = 1.1f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.LightPurple;
 

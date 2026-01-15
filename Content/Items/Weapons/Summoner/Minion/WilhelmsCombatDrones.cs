@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
         {
             base.SetDefaults();
             // Visual properties
-            Item.Size = new Vector2(31, 29);
+            Item.Size = new Vector2(17, 30);
             Item.useStyle = ItemUseStyleID.Swing;
             Item.rare = ItemRarityID.Blue;
 

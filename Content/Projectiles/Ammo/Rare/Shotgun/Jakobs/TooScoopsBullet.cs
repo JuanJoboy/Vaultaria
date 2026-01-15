@@ -12,7 +12,7 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
         public float cryoMultiplier = 1f;
         public float explosiveMultiplier = 1f;
         private float cryoChance = 100f;
-        private short cryoProjectile = ElementalID.CryoProjectile;
+        private short cryoProjectile = ElementalID.CryoExplosion;
         private short explosiveProjectile = ElementalID.RoundExplosiveProjectile;
         private int cryoBuff = ElementalID.CryoBuff;
         private int explosiveBuff = ElementalID.ExplosiveBuff;
@@ -54,7 +54,6 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
             }
         }
 
-
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
@@ -75,6 +74,18 @@ namespace Vaultaria.Content.Projectiles.Ammo.Rare.Shotgun.Jakobs
                 SetElementOnPlayer(target, info, cryoMultiplier, player, cryoProjectile, cryoBuff, buffTime);
                 SetElementOnPlayer(target, info, explosiveMultiplier, player, explosiveProjectile, explosiveBuff, buffTime);
             }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (SetElementalChance(cryoChance))
+            {
+                Player player = Main.player[Projectile.owner];
+                SetElementOnTile(Projectile, explosiveMultiplier, player, explosiveProjectile);
+                SetElementOnTile(Projectile, cryoMultiplier, player, cryoProjectile);
+            }
+
+            return false;
         }
         
         public override Vector3 SetProjectileLightColour()

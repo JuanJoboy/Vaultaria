@@ -26,7 +26,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Torgue
             base.SetDefaults();
             // Visual properties
             Item.Size = new Vector2(75, 30);
-            Item.scale = 0.8f;
+            Item.scale = 0.9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 

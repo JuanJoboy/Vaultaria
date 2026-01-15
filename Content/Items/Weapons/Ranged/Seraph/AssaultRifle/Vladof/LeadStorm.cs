@@ -33,7 +33,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Seraph.AssaultRifle.Vladof
             Item.useAmmo = ModContent.ItemType<AssaultRifleAmmo>();
 
             // Combat properties
-            Item.knockBack = 2.3f;
+            Item.knockBack = 0.2f;
             Item.damage = 20;
             Item.crit = 20;
             Item.DamageType = DamageClass.Ranged;
