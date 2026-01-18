@@ -120,6 +120,7 @@ namespace Vaultaria.Common.Utilities
             Norfleet,
             Boomacorn,
             Execute,
+            RolandsMilkshakes,
             GenericLaser,
             BanditAR,
             BanditARRocket,
@@ -741,7 +742,7 @@ namespace Vaultaria.Common.Utilities
             );
         }
 
-        public static void ItemSound(Item item, Sounds sound, int instances = 60)
+        public static void SetItemSound(Item item, Sounds sound, int instances = 60)
         {
             item.UseSound = new SoundStyle($"Vaultaria/Common/Sounds/{sound}") 
             {

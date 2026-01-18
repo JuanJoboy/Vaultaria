@@ -31,6 +31,7 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
             Item.consumable = true;
 
             Item.createTile = ModContent.TileType<Tiles.Vaults.PedestalTile1>();
+            Item.lavaWet = true; // This makes the item float/survive in lava
 
             // Specifies which "style" of the tile to place. Useful for multi-frame tiles
             // or tiles with different visual variations. 0 means the first (default) style.
@@ -40,7 +41,7 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
 
             // Sets the rarity of the item, which affects its name color in the inventory.
             // ItemRarityID.Blue corresponds to the default blue rarity color.
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Master;
         }
     }
 }

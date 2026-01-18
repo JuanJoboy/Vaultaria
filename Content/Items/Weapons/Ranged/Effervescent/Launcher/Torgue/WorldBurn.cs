@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Effervescent.Launcher.Torgue;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 {
-    public class WorldBurn : ModItem
+    public class WorldBurn : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Launcher.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.TorgueLauncher, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TorgueLauncher, 60);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

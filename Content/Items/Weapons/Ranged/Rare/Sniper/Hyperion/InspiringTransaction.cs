@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion
 {
-    public class InspiringTransaction : ModItem
+    public class InspiringTransaction : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(silver: 50);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionSniper, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.HyperionSniper, 60);
         }
 
         public override Vector2? HoldoutOffset()

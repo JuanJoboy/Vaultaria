@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Rare.SMG.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 {
-    public class Revenant : ModItem
+    public class Revenant : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(silver: 50);
-            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
         }
 
         public override Vector2? HoldoutOffset()

@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 {
-    public class BasicRepeater : ModItem
+    public class BasicRepeater : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
             // Item.UseSound = SoundID.Item31;
         }
 

@@ -231,25 +231,25 @@ namespace Vaultaria.Content.Projectiles.Summoner.Minion
             switch (Main.rand.Next(1, 50))
             {
                 case 1:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ElementalID.IncendiaryProjectile, ElementalID.IncendiaryBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.IncendiaryExplosion, ElementalID.IncendiaryBuff, 60);
                     break;
                 case 2:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ProjectileID.None, ElementalID.ShockBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.ShockExplosion, ElementalID.ShockBuff, 60);
                     break;
                 case 3:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ElementalID.CorrosiveProjectile, ElementalID.CorrosiveBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.CorrosiveExplosion, ElementalID.CorrosiveBuff, 60);
                     break;
                 case 4:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ElementalID.SlagProjectile, ElementalID.SlagBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.SlagExplosion, ElementalID.SlagBuff, 60);
                     break;
                 case 5:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ProjectileID.None, ElementalID.CryoBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.CryoExplosion, ElementalID.CryoBuff, 60);
                     break;
                 case 6:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.RoundExplosiveProjectile, ElementalID.ExplosiveBuff, 60);
                     break;
                 case 7:
-                    ElementalProjectile.SetElementOnNPC(target, hit, 0.25f, player, ElementalID.RadiationProjectile, ElementalID.RadiationBuff, 60);
+                    SetElementOnNPC(target, hit, 0.25f, player, ElementalID.RadiationExplosion, ElementalID.RadiationBuff, 60);
                     break;
                 default:
                     break;

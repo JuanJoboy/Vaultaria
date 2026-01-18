@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 {
-    public class Rapier : ModItem
+    public class Rapier : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -47,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.VladofAR, 60);
         }
 
         public override bool CanUseItem(Player player)
@@ -79,7 +81,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.AssaultRifle.Vladof
                 Item.shootSpeed = 12;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.VladofAR, 60);
 
                 Item.damage = 40;
                 Item.crit = 0;

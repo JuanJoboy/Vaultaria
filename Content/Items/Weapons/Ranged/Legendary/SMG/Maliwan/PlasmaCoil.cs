@@ -10,8 +10,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 {
-    public class PlasmaCoil : ModItem
+    public class PlasmaCoil : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
+            Utilities.SetItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -73,7 +75,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
                 Item.useAnimation = 32;
                 Item.autoReuse = true;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
             }
             else // Shoot Radiation
             {
@@ -93,7 +95,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
                 Item.useAnimation = 32;
                 Item.autoReuse = true;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.PlasmaCoil, 120);
             }
 
             return base.CanUseItem(player);

@@ -11,8 +11,10 @@ using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
 {
-    public class CatONineTails : ModItem
+    public class CatONineTails : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Laser.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.GenericLaser, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.GenericLaser, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

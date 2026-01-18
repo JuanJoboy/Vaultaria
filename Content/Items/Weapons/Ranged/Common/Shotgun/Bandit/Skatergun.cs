@@ -10,8 +10,10 @@ using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 {
-    public class Skatergun : ModItem
+    public class Skatergun : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -45,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Shotgun.Bandit
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.BanditShotgun, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.BanditShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

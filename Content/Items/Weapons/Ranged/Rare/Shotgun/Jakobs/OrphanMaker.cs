@@ -11,8 +11,10 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 {
-    public class OrphanMaker : ModItem
+    public class OrphanMaker : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Shotgun.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsShotgun, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.JakobsShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

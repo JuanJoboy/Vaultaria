@@ -41,7 +41,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
+            Utilities.SetItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
 
             Item.noMelee = true;
             Item.shootSpeed = 0f;
@@ -92,7 +92,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
 
                 TeleportToClone(player);
 
-                Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSwap, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.DigiCloneSwap, 120);
             }
             else // Summon Clone
             {
@@ -109,7 +109,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.DigiCloneSpawn, 120);
             }
 
             return base.CanUseItem(player);

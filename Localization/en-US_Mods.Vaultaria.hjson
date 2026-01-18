@@ -778,8 +778,8 @@ Items: {
 		DisplayName: Bloodwing
 	}
 
-	BloodwingStaff: {
-		DisplayName: Bloodwing Staff
+	MordecaiRakkAle: {
+		DisplayName: Mordecai's Rakk Ale
 		Tooltip: ""
 	}
 
@@ -1091,6 +1091,11 @@ Items: {
 	Vault1Bag: {
 		Tooltip: ""
 		DisplayName: Treasure Bag (Vault Of The Warrior)
+	}
+
+	HandsomeJackMask: {
+		DisplayName: Handsome Jack's Mask
+		Tooltip: ""
 	}
 }
 
@@ -1524,7 +1529,21 @@ Configs: {
 
 		VaultHunterMode: {
 			Label: Vault Hunter Mode
-			Tooltip: The amount of additional health & defense that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is triple (UVHM))
+			Tooltip: The amount of additional health that NPC's have (1 is no change (NVHM), 2 is double (TVHM), 3 is triple (UVHM))
+		}
+
+		DisableMilkshakeVoiceLine: {
+			Label: Disable Milkshake Voice Line
+			Tooltip: Stops Handsome Jack from imitating Roland when consuming a Milkshake
+		}
+	}
+
+	VaultariaConfig2: {
+		DisplayName: Vaultaria Config2
+
+		DisableMilkshakeVoiceLine: {
+			Label: Disable Milkshake Voice Line
+			Tooltip: ""
 		}
 	}
 }

@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof
 {
-    public class GearboxRenegade : ModItem
+    public class GearboxRenegade : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(copper: 0);
-            Utilities.ItemSound(Item, Utilities.Sounds.VladofAR, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.VladofAR, 60);
         }
 
         public override Vector2? HoldoutOffset()

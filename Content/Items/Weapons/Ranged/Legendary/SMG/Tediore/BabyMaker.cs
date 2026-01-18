@@ -10,8 +10,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Tediore;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 {
-    public class BabyMaker : ModItem
+    public class BabyMaker : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         private bool altFireMode = false;
 
         public override void SetStaticDefaults()
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMG, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TedioreSMG, 60);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -99,7 +101,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TedioreSMGThrow, 120);
             }
             else // Shoot
             {
@@ -120,7 +122,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreSMG, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TedioreSMG, 60);
             }
 
             return base.CanUseItem(player);

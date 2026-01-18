@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.Shotgun.Tediore;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 {
-    public class Deliverance : ModItem
+    public class Deliverance : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         private bool altFireMode = false;
         public static bool thrown = false;
 
@@ -48,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -90,7 +92,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgunThrow, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TedioreShotgunThrow, 120);
                 thrown = true;
             }
             else // Shoot
@@ -111,7 +113,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TedioreShotgun, 60);
             }
 
             return base.CanUseItem(player);

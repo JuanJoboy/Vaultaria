@@ -10,8 +10,10 @@ using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
 {
-    public class Infinity : ModItem
+    public class Infinity : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Vladof
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
             // Item.UseSound = SoundID.Item31;
-            Utilities.ItemSound(Item, Utilities.Sounds.VladofPistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.VladofPistol, 60);
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

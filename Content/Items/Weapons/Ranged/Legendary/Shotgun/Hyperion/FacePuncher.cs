@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Hyperion
 {
-    public class FacePuncher : ModItem
+    public class FacePuncher : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 10);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionShotgun, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.HyperionShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

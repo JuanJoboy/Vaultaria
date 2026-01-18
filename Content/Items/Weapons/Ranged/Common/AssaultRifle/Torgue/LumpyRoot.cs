@@ -12,8 +12,10 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
 {
-    public class LumpyRoot : ModItem
+    public class LumpyRoot : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -47,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.AssaultRifle.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.TorgueAR, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TorgueAR, 60);
         }
 
         public override Vector2? HoldoutOffset()

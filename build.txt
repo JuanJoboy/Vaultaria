@@ -1,5 +1,5 @@
 displayName = Vaultaria
 author = Doctor Zeus
-version = 0.4.1.21
+version = 1.0.0
 
 modReferences = StructureHelper, SubworldLibrary

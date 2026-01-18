@@ -40,7 +40,7 @@ namespace Vaultaria.Content.Items.Placeables.Vaults
 
             // Sets the rarity of the item, which affects its name color in the inventory.
             // ItemRarityID.Blue corresponds to the default blue rarity color.
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Master;
         }
     }
 }

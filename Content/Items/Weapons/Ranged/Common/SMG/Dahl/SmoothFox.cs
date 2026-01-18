@@ -10,8 +10,10 @@ using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 {
-    public class SmoothFox : ModItem
+    public class SmoothFox : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -45,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.SMG.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
         }
 
         public override Vector2? HoldoutOffset()

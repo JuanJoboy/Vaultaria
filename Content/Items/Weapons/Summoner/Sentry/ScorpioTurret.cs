@@ -23,7 +23,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Sentry
         {
             base.SetDefaults();
             // Visual properties
-            Item.Size = new Vector2(31, 29);
+            Item.Size = new Vector2(40, 19);
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Blue;
 

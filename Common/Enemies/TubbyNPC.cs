@@ -30,7 +30,7 @@ public class TubbyNPC : GlobalNPC
 
             if(npc.type != NPCID.TargetDummy && boss == false && !npc.townNPC && !NPCID.Sets.CountsAsCritter[npc.type])
             {
-                if(Utilities.Randomizer(0.1f))
+                if(Utilities.Randomizer(1f))
                 {
                     if(Main.hardMode)
                     {

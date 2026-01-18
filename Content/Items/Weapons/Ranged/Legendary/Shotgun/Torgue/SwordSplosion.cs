@@ -12,8 +12,10 @@ using Vaultaria.Content.Items.Accessories.Relics;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 {
-    public class SwordSplosion : ModItem
+    public class SwordSplosion : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -48,7 +50,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Shotgun.Torgue
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TorgueShotgun, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

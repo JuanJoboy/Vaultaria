@@ -18,7 +18,6 @@ public class VaultHunterMode : GlobalNPC
         if(entity.type != NPCID.DungeonGuardian)
         {
             entity.lifeMax *= config.VaultHunterMode;
-            entity.defense *= config.VaultHunterMode;
         }
     }
 }

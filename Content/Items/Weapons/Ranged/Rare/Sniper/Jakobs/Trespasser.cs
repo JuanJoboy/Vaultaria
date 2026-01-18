@@ -10,8 +10,10 @@ using Vaultaria.Content.Items.Weapons.Ranged.Common.Sniper.Jakobs;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
 {
-    public class Trespasser : ModItem
+    public class Trespasser : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
         }
 
         public override void AddRecipes()

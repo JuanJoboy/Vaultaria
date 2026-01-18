@@ -10,8 +10,10 @@ using Terraria.Audio;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 {
-    public class Law : ModItem
+    public class Law : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -47,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         }
 
         public override Vector2? HoldoutOffset()
@@ -92,7 +94,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Jakobs
                 Item.shootSpeed = 10f;
                 Item.shoot = ProjectileID.Bullet;
                 Item.useAmmo = AmmoID.Bullet;
-                Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
 
                 Item.useTime = 12;
                 Item.useAnimation = 12;

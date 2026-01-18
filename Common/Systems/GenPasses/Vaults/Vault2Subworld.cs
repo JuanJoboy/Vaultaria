@@ -72,7 +72,7 @@ namespace Vaultaria.Common.Systems.GenPasses.Vaults
 					armouryOpened = false;
 				}
 
-				if(VaultMonsterSystem.vaultSkeletronPrime && armouryOpened == false)
+				if(VaultMonsterSystem.vaultMoonLord && armouryOpened == false)
 				{
 					FindArmoury();
 					Utilities.Utilities.startedVault2BossRush = false;

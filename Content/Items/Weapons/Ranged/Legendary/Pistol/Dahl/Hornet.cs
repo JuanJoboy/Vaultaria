@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.Pistol.Dahl;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 {
-    public class Hornet : ModItem
+    public class Hornet : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
             // Item.UseSound = SoundID.Item31;
         }
 

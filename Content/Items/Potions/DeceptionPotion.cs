@@ -9,8 +9,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Potions
 {
-    public class DeceptionPotion : ModItem
+    public class DeceptionPotion : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 20;
@@ -42,7 +44,7 @@ namespace Vaultaria.Content.Items.Potions
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.Deception, 500);
+            Utilities.SetItemSound(Item, Utilities.Sounds.Deception, 500);
         }
 
         public override bool? UseItem(Player player)

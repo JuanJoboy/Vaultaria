@@ -33,6 +33,8 @@ namespace Vaultaria.Content.Items.Tiles.Vaults
             TileID.Sets.IgnoredByNpcStepUp[Type] = true; // Prevents NPCs from standing on top of this tile
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            TileObjectData.newTile.LavaDeath = false; 
+            TileObjectData.newTile.WaterDeath = false;
             TileObjectData.addTile(Type); // Adding the tile type to this style
 
             AddMapEntry(new Color(200, 200, 200), CreateMapEntryName()); // Adds the name to the minimap

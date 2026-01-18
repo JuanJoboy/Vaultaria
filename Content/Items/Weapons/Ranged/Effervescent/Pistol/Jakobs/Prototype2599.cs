@@ -11,8 +11,10 @@ using Vaultaria.Content.Items.Weapons.Ammo;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 {
-    public class Prototype2599 : ModItem
+    public class Prototype2599 : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         private bool altFireMode = false;
 
         public override void SetStaticDefaults()
@@ -49,7 +51,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         }
 
         // public override bool AltFunctionUse(Player player)
@@ -90,7 +92,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
         //         Item.useTurn = false;
 
         //         // Item.UseSound = SoundID.Item31;
-        //         Utilities.ItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
+        //         Utilities.SetItemSound(Item, Utilities.Sounds.DahlPistolBurst, 60);
         //     }
         //     else // Quad Shot (normal)
         //     {
@@ -110,7 +112,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Effervescent.Pistol.Jakobs
         //         Item.autoReuse = true;
         //         Item.useTurn = false;
 
-        //         Utilities.ItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
+        //         Utilities.SetItemSound(Item, Utilities.Sounds.JakobsPistol, 60);
         //     }
 
         //     return base.CanUseItem(player);

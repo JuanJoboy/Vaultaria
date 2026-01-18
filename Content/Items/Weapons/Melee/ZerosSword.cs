@@ -42,7 +42,7 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
             Item.UseSound = SoundID.Item1;
-            // Utilities.ItemSound(Item, Utilities.Sounds.Execute, 60);
+            // Utilities.SetItemSound(Item, Utilities.Sounds.Execute, 60);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

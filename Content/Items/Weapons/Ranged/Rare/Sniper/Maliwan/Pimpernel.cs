@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Rare.Sniper.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan
 {
-    public class Pimpernel : ModItem
+    public class Pimpernel : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Sniper.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 3);
-            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSniper, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.MaliwanSniper, 60);
         }
 
         public override Vector2? HoldoutOffset()

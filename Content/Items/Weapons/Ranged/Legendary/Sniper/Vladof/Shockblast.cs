@@ -11,8 +11,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.Sniper.Vladof;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 {
-    public class Shockblast : ModItem
+    public class Shockblast : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.ETechSniperSingle, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.ETechSniperSingle, 60);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -66,7 +68,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.shootSpeed = 20f;
                 Item.shoot = ModContent.ProjectileType<ShockblastExBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
-                Utilities.ItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.ETechLauncher, 60);
 
                 Item.damage = 200;
                 Item.crit = 0;
@@ -84,7 +86,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Vladof
                 Item.shootSpeed = 30f;
                 Item.shoot = ModContent.ProjectileType<ShockblastElBullet>();
                 Item.useAmmo = ModContent.ItemType<SniperAmmo>();
-                Utilities.ItemSound(Item, Utilities.Sounds.ETechSniperSingle, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.ETechSniperSingle, 60);
 
                 Item.damage = 70;
                 Item.crit = 0;

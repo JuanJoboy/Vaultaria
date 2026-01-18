@@ -104,6 +104,7 @@ namespace Vaultaria.Common.Utilities
                     case "Vault1":
                         vault1positionX = pos.X;
                         vault1positionY = pos.Y;
+                        Main.tile[pos.X, pos.Y].LiquidAmount = 0; // Idk, i guess it removes the lava at that spot
                         break;
                     case "Vault2":
                         vault2positionX = pos.X;

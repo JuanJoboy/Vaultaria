@@ -144,13 +144,11 @@ namespace Vaultaria.Common.Globals
 
             if (source is EntitySource_Parent parent)
             {
-                Projectile minion = parent.Entity as Projectile;
-
-                if (minion != null && (minion.minion || minion.sentry))
+                if (parent.Entity is Projectile minion && (minion.minion || minion.sentry))
                 {
                     Player player = Main.player[minion.owner];
 
-                    if(player.whoAmI == Main.myPlayer)
+                    if (player.whoAmI == Main.myPlayer)
                     {
                         int minionPrefix = player.HeldItem.prefix;
 
@@ -173,7 +171,7 @@ namespace Vaultaria.Common.Globals
                         if (minionPrefix == ModContent.PrefixType<MagicMasher>() || minionPrefix == ModContent.PrefixType<RangerMasher>())
                         {
                             MultiShot(source, projectile.position, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, player, 4);
-                        }   
+                        }
                     }
                 }
             }

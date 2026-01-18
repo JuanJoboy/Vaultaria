@@ -11,8 +11,10 @@ using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 {
-    public class Hellfire : ModItem
+    public class Hellfire : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Maliwan
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.MaliwanSMG, 60);
         }
 
         public override Vector2? HoldoutOffset()

@@ -12,8 +12,10 @@ using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 {
-    public class Taser : ModItem
+    public class Taser : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -47,7 +49,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.GenericLaser, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.GenericLaser, 60);
         }
 
         public override Vector2? HoldoutOffset()

@@ -15,8 +15,10 @@ using Vaultaria.Content.Prefixes.Weapons;
 
 namespace Vaultaria.Content.Items.Weapons.Magic
 {
-    public class PhaselockSpell : ModItem
+    public class PhaselockSpell : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -61,22 +63,22 @@ namespace Vaultaria.Content.Items.Weapons.Magic
             {
                 if(wof)
                 {
-                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
+                    Utilities.SetItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
                 }
                 else
                 {
-                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
+                    Utilities.SetItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
                 }
             }
             else
             {
                 if(moonLord)
                 {
-                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
+                    Utilities.SetItemSound(Item, Utilities.Sounds.PhaselockRuin, 300);
                 }
                 else
                 {
-                    Utilities.ItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
+                    Utilities.SetItemSound(Item, Utilities.Sounds.PhaselockBase, 300);   
                 }
             }
         }

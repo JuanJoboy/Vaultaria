@@ -10,8 +10,10 @@ using Vaultaria.Content.Projectiles.Ammo.Common.Pistol.Tediore;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 {
-    public class Handgun : ModItem
+    public class Handgun : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -44,7 +46,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
 
             // Other properties
             Item.value = Item.buyPrice(silver: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.TediorePistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.TediorePistol, 60);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -95,7 +97,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TediorePistolThrow, 120);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TediorePistolThrow, 120);
             }
             else // Shoot
             {
@@ -113,7 +115,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Common.Pistol.Tediore
                 Item.autoReuse = true;
                 Item.useTurn = false;
 
-                Utilities.ItemSound(Item, Utilities.Sounds.TediorePistol, 60);
+                Utilities.SetItemSound(Item, Utilities.Sounds.TediorePistol, 60);
             }
 
             return base.CanUseItem(player);

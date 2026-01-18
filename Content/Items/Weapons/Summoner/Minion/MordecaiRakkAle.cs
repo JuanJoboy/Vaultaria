@@ -12,7 +12,7 @@ using Vaultaria.Content.Buffs.SummonerEffects;
 
 namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
 {
-    public class BloodwingStaff : ModItem
+    public class MordecaiRakkAle : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,8 +25,8 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
         {
             base.SetDefaults();
             // Visual properties
-            Item.Size = new Vector2(31, 29);
-            Item.useStyle = ItemUseStyleID.Swing;
+            Item.Size = new Vector2(10, 30);
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.rare = ItemRarityID.White;
 
             // Combat properties
@@ -86,7 +86,7 @@ namespace Vaultaria.Content.Items.Weapons.Summoner.Minion
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Utilities.Text(tooltips, Mod, "Tooltip1", "Summons a bird to fight for you");
+            Utilities.Text(tooltips, Mod, "Tooltip1", "Summons Bloodwing to fight for you");
             Utilities.Text(tooltips, Mod, "Tooltip2", "Has a chance to inflict a random element on enemies");
             Utilities.RedText(tooltips, Mod, "Oh, where the hell is... argh, I had a violin somewhere,\nI was gonna play it all sarcastically... goddammit, it was gonna be awesome.\nBLAKE! WHERE'S THE BLOODY VIOLIN?!");
         }

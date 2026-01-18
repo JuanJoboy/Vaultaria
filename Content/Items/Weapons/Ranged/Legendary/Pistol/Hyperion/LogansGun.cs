@@ -11,8 +11,10 @@ using Vaultaria.Content.Items.Materials;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 {
-    public class LogansGun : ModItem
+    public class LogansGun : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
         }
 
         public override void AddRecipes()

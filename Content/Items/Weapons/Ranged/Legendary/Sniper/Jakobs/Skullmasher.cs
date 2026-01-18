@@ -10,8 +10,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs
 {
-    public class Skullmasher : ModItem
+    public class Skullmasher : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -45,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.Sniper.Jakobs
 
             // Other properties
             Item.value = Item.buyPrice(gold: 5);
-            Utilities.ItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.JakobsSniper, 60);
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

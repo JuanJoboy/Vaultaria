@@ -11,8 +11,10 @@ using Vaultaria.Common.Utilities;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 {
-    public class LadyFist : ModItem
+    public class LadyFist : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -46,7 +48,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Rare.Pistol.Hyperion
 
             // Other properties
             Item.value = Item.buyPrice(gold: 2);
-            Utilities.ItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.HyperionPistol, 60);
         }
 
         public override bool CanUseItem(Player player)

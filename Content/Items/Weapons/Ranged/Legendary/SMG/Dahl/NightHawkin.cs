@@ -10,8 +10,10 @@ using Vaultaria.Content.Projectiles.Ammo.Legendary.SMG.Maliwan;
 
 namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
 {
-    public class NightHawkin : ModItem
+    public class NightHawkin : ElementalItem
     {
+        protected override Utilities.Sounds[] ItemSounds => [];
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -45,7 +47,7 @@ namespace Vaultaria.Content.Items.Weapons.Ranged.Legendary.SMG.Dahl
 
             // Other properties
             Item.value = Item.buyPrice(gold: 1);
-            Utilities.ItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
+            Utilities.SetItemSound(Item, Utilities.Sounds.DahlSMGBurst, 60);
         }
 
         public override bool CanUseItem(Player player)
