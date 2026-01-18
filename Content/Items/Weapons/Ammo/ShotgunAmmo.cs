@@ -21,7 +21,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             // Damage
             Item.damage = 0;
             Item.DamageType = DamageClass.Ranged;
-            Item.knockBack = 4;
+            Item.knockBack = 0;
 
             // Ammo
             Item.ammo = ModContent.ItemType<ShotgunAmmo>();

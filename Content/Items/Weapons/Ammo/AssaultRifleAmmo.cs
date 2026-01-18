@@ -22,7 +22,7 @@ namespace Vaultaria.Content.Items.Weapons.Ammo
             // Damage
             Item.damage = 0; // Does no damage. It's just used as the consumable ammo for all AR's
             Item.DamageType = DamageClass.Ranged;
-            Item.knockBack = 6;
+            Item.knockBack = 0;
 
             // Ammo
             Item.ammo = ModContent.ItemType<AssaultRifleAmmo>();
