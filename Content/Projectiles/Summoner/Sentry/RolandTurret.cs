@@ -13,8 +13,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 {
     public class RolandTurret : ElementalProjectile
     {
-        private bool touchedTheGround = false;
-
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
@@ -33,6 +31,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.damage = 75;
+            Projectile.netImportant = true;
 
             // Sprite
             Projectile.spriteDirection = 1;
@@ -50,10 +49,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
             Projectile.velocity = Vector2.Zero; // Stay stationary
 
-            if (touchedTheGround == false)
+			Projectile.velocity.X = 0f;
+            Projectile.velocity.Y += 10f;
+            if (Projectile.velocity.Y > 16f)
             {
-                Projectile.velocity.Y += 15; // Fall to the ground
-                Projectile.netUpdate = true;
+                Projectile.velocity.Y = 16f;
             }
 
             NPC target = FindTarget();
@@ -140,13 +140,15 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.velocity.Y = 0f; // Stop falling
-            Projectile.position.Y += 16f; // Lower it by an additional 16 pixels since it stays in the air for some reason
-            touchedTheGround = true;
             Projectile.netUpdate = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
         }
 
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+			fallThrough = false; // Allow this projectile to collide with platforms
+			return true;
+		}
         private NPC FindTarget()
         {
             float range = 500f; // 500 pixels

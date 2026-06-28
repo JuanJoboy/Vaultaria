@@ -75,6 +75,7 @@ using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Shotgun.Torgue;
 using Vaultaria.Content.Items.Weapons.Ranged.Uncommon.Sniper.Maliwan;
 using Vaultaria.Content.Items.Weapons.Summoner.Sentry;
 using Vaultaria.Content.NPCs.Town.Claptrap;
+using Vaultaria.Common.Systems;
 
 namespace Vaultaria.Common.GlobalItems
 {
@@ -584,16 +585,25 @@ namespace Vaultaria.Common.GlobalItems
             }
         }
 
-        private void TubbyDrops(GlobalLoot npcLoot)
+        private static void TubbyDrops(GlobalLoot npcLoot)
         {
             // Chubby Drops
             // 1. Create the base condition rule
             LeadingConditionRule chubbyRule = new LeadingConditionRule(new ChubbyCondition());
 
             // 2. Chain your custom set rule to it using OnSuccess
-            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, AncientArmorDrop()));
-            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModePreHardmodeDrop()));
-            chubbyRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.Terragrim, ItemID.Arkhalis, ItemID.FalconBlade, ItemID.MoneyTrough, ItemID.SlimeStaff, ItemID.DirtiestBlock, ItemID.CreativeWings, ItemID.DemonHeart, ItemID.HardySaddle, ItemID.SuperheatedBlood, ItemID.HellMinecart, ModContent.ItemType<FollowThrough>(), ModContent.ItemType<Killer>(), ModContent.ItemType<Quad>(), ModContent.ItemType<UnkemptHarold>(), ModContent.ItemType<Volcano>(), ModContent.ItemType<FirstBlood>()));
+            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, ancientArmorSets));
+            chubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModePreHardmodeDrop));
+            chubbyBaseDrops.AddConditionalItem(ItemID.Terragrim, () => NPC.downedBoss1);
+            chubbyBaseDrops.AddConditionalItem(ItemID.Arkhalis, () => NPC.downedBoss1);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<Killer>(), () => NPC.downedBoss3);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<Volcano>(), () => NPC.downedBoss3);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<FirstBlood>(), () => NPC.downedBoss3);
+            chubbyBaseDrops.AddConditionalItem(ItemID.DemonHeart, () => NPC.downedDeerclops);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<FollowThrough>(), () => NPC.downedDeerclops);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<Quad>(), () => NPC.downedDeerclops);
+            chubbyBaseDrops.AddConditionalItem(ModContent.ItemType<UnkemptHarold>(), () => NPC.downedDeerclops);
+            chubbyRule.OnSuccess(chubbyBaseDrops);
 
             // 3. Add the leading rule to the loot table
             npcLoot.Add(chubbyRule);
@@ -603,99 +613,110 @@ namespace Vaultaria.Common.GlobalItems
             LeadingConditionRule tubbyRule = new LeadingConditionRule(new TubbyCondition());
 
             // 2. Chain your custom set rule to it using OnSuccess
-            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, DevSetDrop()));
-            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModeHardmodeDrop()));
-            tubbyRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.FrozenKey, ItemID.JungleKey, ItemID.CrimsonKey, ItemID.CorruptionKey, ItemID.HallowedKey, ItemID.DungeonDesertKey, ItemID.Uzi, ItemID.DiscountCard, ItemID.RodofDiscord, ItemID.CoinGun, ItemID.TheAxe, ItemID.TeleportationPylonVictory, ItemID.DiggingMoleMinecart, ItemID.GoldenFishingRod, ModContent.ItemType<Sawbar>()));
+            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, devSets));
+            tubbyRule.OnSuccess(new OneFromManyOptions(1, 1, MasterModeHardmodeDrop));
+            tubbyBaseDrops.AddConditionalItem(ItemID.HallowedKey, () => NPC.downedMechBoss1);
+            tubbyBaseDrops.AddConditionalItem(ItemID.JungleKey, () => NPC.downedMechBoss1);
+            tubbyBaseDrops.AddConditionalItem(ItemID.CrimsonKey, () => NPC.downedMechBoss2);
+            tubbyBaseDrops.AddConditionalItem(ItemID.CorruptionKey, () => NPC.downedMechBoss2);
+            tubbyBaseDrops.AddConditionalItem(ItemID.FrozenKey, () => NPC.downedMechBoss3);
+            tubbyBaseDrops.AddConditionalItem(ItemID.DungeonDesertKey, () => NPC.downedMechBoss3);
+            tubbyBaseDrops.AddConditionalItem(ItemID.Uzi, () => NPC.downedPlantBoss);
+            tubbyBaseDrops.AddConditionalItem(ItemID.TheAxe, () => NPC.downedPlantBoss);
+            tubbyBaseDrops.AddConditionalItem(ModContent.ItemType<Sawbar>(), () => NPC.downedGolemBoss);
+            tubbyRule.OnSuccess(tubbyBaseDrops);
 
             // 3. Add the leading rule to the loot table
             npcLoot.Add(tubbyRule);
         }
 
-        private int[][] DevSetDrop()
-        {
-            int[][] devSets = new int[][] 
-            {
-                new int[] { ItemID.AaronsHelmet, ItemID.AaronsBreastplate, ItemID.AaronsLeggings }, // Case 0
-                new int[] { ItemID.Arkhalis, ItemID.ArkhalisHat, ItemID.ArkhalisPants, ItemID.ArkhalisWings }, // Case 1
-                new int[] { ItemID.CrownosMask, ItemID.CrownosBreastplate, ItemID.CrownosLeggings, ItemID.CrownosWings }, // Case 2
-                new int[] { ItemID.DTownsHelmet, ItemID.DTownsBreastplate, ItemID.DTownsLeggings, ItemID.DTownsWings }, // Case 3
-                new int[] { ItemID.JimsHelmet, ItemID.JimsBreastplate, ItemID.JimsLeggings, ItemID.JimsWings }, // Case 4
-                new int[] { ItemID.BejeweledValkyrieHead, ItemID.BejeweledValkyrieBody, ItemID.BejeweledValkyrieWing, ItemID.ValkyrieYoyo }, // Case 5
-                new int[] { ItemID.LeinforsHat, ItemID.LeinforsShirt, ItemID.LeinforsPants, ItemID.LeinforsAccessory, ItemID.LeinforsWings }, // Case 6
-                new int[] { ItemID.LokisHelm, ItemID.LokisShirt, ItemID.LokisPants, ItemID.LokisDye, ItemID.LokisWings }, // Case 7
-                new int[] { ItemID.RedsHelmet, ItemID.RedsBreastplate, ItemID.RedsLeggings, ItemID.RedsYoyo, ItemID.RedsWings }, // Case 8
-                new int[] { ItemID.SkiphsHelm, ItemID.SkiphsShirt, ItemID.SkiphsPants, ItemID.SkiphsWings, ItemID.DevDye }, // Case 9
-                new int[] { ItemID.WillsHelmet, ItemID.WillsBreastplate, ItemID.WillsLeggings, ItemID.WillsWings }, // Case 10
-                new int[] { ItemID.Yoraiz0rHead, ItemID.Yoraiz0rShirt, ItemID.Yoraiz0rPants, ItemID.Yoraiz0rDarkness, ItemID.Yoraiz0rWings }, // Case 11
-                new int[] { ItemID.GroxTheGreatHelm, ItemID.GroxTheGreatArmor, ItemID.GroxTheGreatGreaves, ItemID.GroxTheGreatWings }, // Case 12
-                new int[] { ItemID.FoodBarbarianHelm, ItemID.FoodBarbarianArmor, ItemID.FoodBarbarianGreaves, ItemID.FoodBarbarianWings }, // Case 13
-                new int[] { ItemID.SafemanSunHair, ItemID.SafemanSunDress, ItemID.SafemanDressLeggings, ItemID.SafemanWings }, // Case 14
-                new int[] { ItemID.GhostarSkullPin, ItemID.GhostarShirt, ItemID.GhostarPants, ItemID.GhostarsWings } // Case 15
-            };
+        private static readonly int[][] ancientArmorSets =
+        [
+            [ItemID.AncientCobaltHelmet, ItemID.AncientCobaltBreastplate, ItemID.AncientCobaltLeggings],
+            [ItemID.AncientGoldHelmet, ItemID.GoldChainmail, ItemID.GoldGreaves],
+            [ItemID.AncientIronHelmet, ItemID.IronChainmail, ItemID.IronGreaves],
+            [ItemID.AncientNecroHelmet, ItemID.NecroBreastplate, ItemID.NecroGreaves],
+            [ItemID.AncientShadowHelmet, ItemID.AncientShadowScalemail, ItemID.AncientShadowGreaves]
+        ];
+        
+        private static readonly int[][] MasterModePreHardmodeDrop =
+        [
+            [ItemID.KingSlimePetItem],
+            [ItemID.EyeOfCthulhuPetItem],
+            [ItemID.EaterOfWorldsPetItem],
+            [ItemID.BrainOfCthulhuPetItem],
+            [ItemID.QueenBeePetItem],
+            [ItemID.SkeletronPetItem],
+            [ItemID.DeerclopsPetItem],
+            [ItemID.WallOfFleshGoatMountItem]
+        ];
 
-            return devSets;
-        }
+        private static readonly ProgressionOneFromOptionsRule chubbyBaseDrops = new ProgressionOneFromOptionsRule(
+        [
+            ItemID.FalconBlade,
+            ItemID.MoneyTrough,
+            ItemID.SlimeStaff,
+            ItemID.DirtiestBlock,
+            ItemID.CreativeWings,
+            ItemID.HardySaddle,
+            ItemID.SuperheatedBlood,
+            ItemID.HellMinecart,
+        ]);
 
-        private int[][] AncientArmorDrop()
-        {
-            int[][] ancientArmorSets = new int[][]
-            {
-                new int[] { ItemID.AncientCobaltHelmet, ItemID.AncientCobaltBreastplate, ItemID.AncientCobaltLeggings },
-                new int[] { ItemID.AncientGoldHelmet, ItemID.GoldChainmail, ItemID.GoldGreaves },
-                new int[] { ItemID.AncientIronHelmet, ItemID.IronChainmail, ItemID.IronGreaves },
-                new int[] { ItemID.AncientNecroHelmet, ItemID.NecroBreastplate, ItemID.NecroGreaves },
-                new int[] { ItemID.AncientShadowHelmet, ItemID.AncientShadowScalemail, ItemID.AncientShadowGreaves }
-            };
+        private static readonly ProgressionOneFromOptionsRule tubbyBaseDrops = new ProgressionOneFromOptionsRule(
+        [
+            ItemID.CoinGun,
+            ItemID.DiscountCard,
+            ItemID.RodofDiscord,
+            ItemID.TeleportationPylonVictory,
+            ItemID.DiggingMoleMinecart,
+            ItemID.GoldenFishingRod,
+        ]);
 
-            return ancientArmorSets;
-        }
+        private static readonly int[][] devSets = 
+        [
+            [ItemID.AaronsHelmet, ItemID.AaronsBreastplate, ItemID.AaronsLeggings], // Case 0
+            [ItemID.Arkhalis, ItemID.ArkhalisHat, ItemID.ArkhalisPants, ItemID.ArkhalisWings], // Case 1
+            [ItemID.CrownosMask, ItemID.CrownosBreastplate, ItemID.CrownosLeggings, ItemID.CrownosWings], // Case 2
+            [ItemID.DTownsHelmet, ItemID.DTownsBreastplate, ItemID.DTownsLeggings, ItemID.DTownsWings], // Case 3
+            [ItemID.JimsHelmet, ItemID.JimsBreastplate, ItemID.JimsLeggings, ItemID.JimsWings], // Case 4
+            [ItemID.BejeweledValkyrieHead, ItemID.BejeweledValkyrieBody, ItemID.BejeweledValkyrieWing, ItemID.ValkyrieYoyo], // Case 5
+            [ItemID.LeinforsHat, ItemID.LeinforsShirt, ItemID.LeinforsPants, ItemID.LeinforsAccessory, ItemID.LeinforsWings], // Case 6
+            [ItemID.LokisHelm, ItemID.LokisShirt, ItemID.LokisPants, ItemID.LokisDye, ItemID.LokisWings], // Case 7
+            [ItemID.RedsHelmet, ItemID.RedsBreastplate, ItemID.RedsLeggings, ItemID.RedsYoyo, ItemID.RedsWings], // Case 8
+            [ItemID.SkiphsHelm, ItemID.SkiphsShirt, ItemID.SkiphsPants, ItemID.SkiphsWings, ItemID.DevDye], // Case 9
+            [ItemID.WillsHelmet, ItemID.WillsBreastplate, ItemID.WillsLeggings, ItemID.WillsWings], // Case 10
+            [ItemID.Yoraiz0rHead, ItemID.Yoraiz0rShirt, ItemID.Yoraiz0rPants, ItemID.Yoraiz0rDarkness, ItemID.Yoraiz0rWings], // Case 11
+            [ItemID.GroxTheGreatHelm, ItemID.GroxTheGreatArmor, ItemID.GroxTheGreatGreaves, ItemID.GroxTheGreatWings], // Case 12
+            [ItemID.FoodBarbarianHelm, ItemID.FoodBarbarianArmor, ItemID.FoodBarbarianGreaves, ItemID.FoodBarbarianWings], // Case 13
+            [ItemID.SafemanSunHair, ItemID.SafemanSunDress, ItemID.SafemanDressLeggings, ItemID.SafemanWings], // Case 14
+            [ItemID.GhostarSkullPin, ItemID.GhostarShirt, ItemID.GhostarPants, ItemID.GhostarsWings] // Case 15
+        ];
 
-        private int[][] MasterModePreHardmodeDrop()
-        {
-            int[][] ancientArmorSets = new int[][]
-            {
-                new int[] { ItemID.KingSlimePetItem },
-                new int[] { ItemID.EyeOfCthulhuPetItem },
-                new int[] { ItemID.EaterOfWorldsPetItem },
-                new int[] { ItemID.BrainOfCthulhuPetItem },
-                new int[] { ItemID.QueenBeePetItem },
-                new int[] { ItemID.SkeletronPetItem },
-                new int[] { ItemID.DeerclopsPetItem },
-                new int[] { ItemID.WallOfFleshGoatMountItem }
-            };
+        private static readonly int[][] MasterModeHardmodeDrop =
+        [
+            [ItemID.QueenSlimePetItem],
+            [ItemID.DestroyerPetItem],
+            [ItemID.TwinsPetItem],
+            [ItemID.SkeletronPrimePetItem],
+            [ItemID.PlanteraPetItem],
+            [ItemID.GolemPetItem],
+            [ItemID.FairyQueenPetItem],
+            [ItemID.DukeFishronPetItem],
+            [ItemID.LunaticCultistPetItem],
+            [ItemID.MoonLordPetItem],
 
-            return ancientArmorSets;
-        }
-
-        private int[][] MasterModeHardmodeDrop()
-        {
-            int[][] ancientArmorSets = new int[][]
-            {
-                new int[] { ItemID.QueenSlimePetItem },
-                new int[] { ItemID.DestroyerPetItem },
-                new int[] { ItemID.TwinsPetItem },
-                new int[] { ItemID.SkeletronPrimePetItem },
-                new int[] { ItemID.PlanteraPetItem },
-                new int[] { ItemID.GolemPetItem },
-                new int[] { ItemID.FairyQueenPetItem },
-                new int[] { ItemID.DukeFishronPetItem },
-                new int[] { ItemID.LunaticCultistPetItem },
-                new int[] { ItemID.MoonLordPetItem },
-
-                new int[] { ItemID.SpookyWoodMountItem },
-                new int[] { ItemID.PumpkingPetItem },
-                new int[] { ItemID.EverscreamPetItem },
-                new int[] { ItemID.SantankMountItem },
-                new int[] { ItemID.IceQueenPetItem },
-                new int[] { ItemID.DarkMageBookMountItem },
-                new int[] { ItemID.DD2OgrePetItem },
-                new int[] { ItemID.DD2BetsyPetItem },
-                new int[] { ItemID.PirateShipMountItem },
-                new int[] { ItemID.MartianPetItem }
-            };
-
-            return ancientArmorSets;
-        }
+            [ItemID.SpookyWoodMountItem],
+            [ItemID.PumpkingPetItem],
+            [ItemID.EverscreamPetItem],
+            [ItemID.SantankMountItem],
+            [ItemID.IceQueenPetItem],
+            [ItemID.DarkMageBookMountItem],
+            [ItemID.DD2OgrePetItem],
+            [ItemID.DD2BetsyPetItem],
+            [ItemID.PirateShipMountItem],
+            [ItemID.MartianPetItem]
+        ];
     }
 }
 

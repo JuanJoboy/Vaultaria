@@ -38,5 +38,10 @@ namespace Vaultaria.Common.Configs
         [Range(1.0f, 3.0f)]
         [Increment(0.1f)] // Optional: Sets the slider step size
         public float SlagDamageMultiplier;
+
+        [DefaultValue(0.5f)]
+        [Range(0.0f, 100.0f)]
+        [Increment(0.5f)]
+        public float ChubbySpawnChance;
     }
 }

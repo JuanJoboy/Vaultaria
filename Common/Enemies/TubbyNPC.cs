@@ -30,7 +30,9 @@ public class TubbyNPC : GlobalNPC
 
             if(npc.type != NPCID.TargetDummy && boss == false && !npc.townNPC && !NPCID.Sets.CountsAsCritter[npc.type])
             {
-                if(Utilities.Randomizer(1f))
+                VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+
+                if(Utilities.Randomizer(config.ChubbySpawnChance))
                 {
                     if(Main.hardMode)
                     {

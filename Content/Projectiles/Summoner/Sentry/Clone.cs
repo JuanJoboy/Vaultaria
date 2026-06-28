@@ -21,8 +21,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 {
     public class Clone : ElementalProjectile
     {
-        private bool touchedTheGround = false;
-
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
@@ -43,11 +41,12 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             Projectile.damage = 10;
             Projectile.CritChance = 4;
             Projectile.netUpdate = true;
+			Projectile.netImportant = true; // Sentries need this so they are synced to newly joining players
 
             // Sprite
             Projectile.spriteDirection = 1;
         }
-
+        
         public override void AI()
         {
             base.AI();
@@ -63,10 +62,11 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
             Projectile.velocity = Vector2.Zero; // Stay stationary
 
-            if (touchedTheGround == false)
+			Projectile.velocity.X = 0f;
+            Projectile.velocity.Y += 10f;
+            if (Projectile.velocity.Y > 16f)
             {
-                Projectile.velocity.Y += 15; // Fall to the ground
-                Projectile.netUpdate = true;
+                Projectile.velocity.Y = 16f;
             }
 
             bool notABadItem = item.type != ModContent.ItemType<DigiClone>() && item.type != ModContent.ItemType<EridianFabricator>() && item.type != ModContent.ItemType<BuzzAxe>() && item.type != ModContent.ItemType<BreathOfTerramorphous>() && item.type != ModContent.ItemType<DestroyersEye>() && item.type != ModContent.ItemType<WarriorsTail>() && item.type != ItemID.LastPrism;
@@ -238,12 +238,15 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.velocity.Y = 0f; // Stop falling
-            Projectile.position.Y += 10f; // Lower it by an additional 10 pixels since it stays in the air for some reason
-            touchedTheGround = true;
             Projectile.netUpdate = true;
             return false; // False will allow it to not despawn on tile collide since its a projectile
         }
+
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+			fallThrough = false; // Allow this projectile to collide with platforms
+			return true;
+		}
 
         public override Vector3 SetProjectileLightColour()
         {

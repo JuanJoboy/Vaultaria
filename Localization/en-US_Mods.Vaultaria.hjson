@@ -1536,6 +1536,11 @@ Configs: {
 			Label: Disable Milkshake Voice Line
 			Tooltip: Stops Handsome Jack from imitating Roland when consuming a Milkshake
 		}
+
+		ChubbySpawnChance: {
+			Label: Chubby Spawn Chance
+			Tooltip: Alters the spawn rate of Chubbies and Tubbies
+		}
 	}
 
 	VaultariaConfig2: {
