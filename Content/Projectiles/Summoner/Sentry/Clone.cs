@@ -129,7 +129,7 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
                         Projectile.Center,
                         direction,
                         projectile,
-                        damage, // Uses the damage that was found from the ammo cause that already has scaling and stuff applied (but is slightly weaker which is honestly fair for how op digi clone is)
+                        (int)(damage * 0.75f), // Uses the damage that was found from the ammo cause that already has scaling and stuff applied (but is slightly weaker which is honestly fair for how op digi clone is)
                         item.knockBack + knockback,
                         Projectile.owner
                     );

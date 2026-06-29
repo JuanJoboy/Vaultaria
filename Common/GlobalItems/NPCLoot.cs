@@ -229,7 +229,7 @@ namespace Vaultaria.Common.GlobalItems
             if (npc == NPCID.Deerclops)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnkemptHarold>(), 10, 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DigiClone>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScorpioTurret>(), 10, 1, 1));
                 Eridium(npcLoot, 3, 6);
             }
 
@@ -382,6 +382,7 @@ namespace Vaultaria.Common.GlobalItems
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DeathRattle>(), 10, 1, 1));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Deliverance>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DigiClone>(), 10, 1, 1));
                 Eridium(npcLoot, 20, 30);
             }
 
@@ -748,7 +749,7 @@ public class NewItemLoot : GlobalItem
         BossBagLoot(item, itemLoot, ItemID.QueenBeeBossBag, ModContent.ItemType<BabyMaker>());
 
         BossBagLoot(item, itemLoot, ItemID.DeerclopsBossBag, ModContent.ItemType<UnkemptHarold>());
-        BossBagLoot(item, itemLoot, ItemID.DeerclopsBossBag, ModContent.ItemType<DigiClone>());
+        BossBagLoot(item, itemLoot, ItemID.DeerclopsBossBag, ModContent.ItemType<ScorpioTurret>());
 
         BossBagLoot(item, itemLoot, ItemID.SkeletronBossBag, ModContent.ItemType<Hail>(), 1);
         BossBagLoot(item, itemLoot, ItemID.SkeletronBossBag, ModContent.ItemType<Wreck>(), 1);
@@ -828,7 +829,6 @@ public class NewItemLoot : GlobalItem
         if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrphanMaker>(), 10, 1, 1));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScorpioTurret>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Onslaught>(), 10, 1, 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Reaper>(), 10, 1, 1));
         }

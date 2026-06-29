@@ -1561,3 +1561,12 @@ Mods: {
 		}
 	}
 }
+
+BossChecklistIntegration: {
+	VaultOfTheWarrior.EntryName: Vault Of The Warrior
+	VaultOfTheDestroyer.EntryName: Vault Of The Destroyer
+	VaultWarriorDisplayName: Vault Of The Warrior
+	VaultDestroyerDisplayName: Vault Of The Destroyer
+	VaultWarriorSpawnInfo: Activate the Pedestal in the {0} Vault using the {1} Vault Key {2}.
+	VaultDestroyerSpawnInfo: Activate the Pedestal in the {0} Vault using the {1} Vault Key {2}.
+}

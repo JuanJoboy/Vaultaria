@@ -309,7 +309,7 @@ namespace Vaultaria.Common.Players
 
             if (IsWearing(ModContent.ItemType<SuperSoldier>()) && Player.statLife == Player.statLifeMax2)
             {
-                multiplier *= 1.5f;
+                multiplier *= 1.25f;
             }
 
             if(Player.HasBuff(ModContent.BuffType<IncitePassive>()))
