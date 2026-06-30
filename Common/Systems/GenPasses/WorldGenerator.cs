@@ -9,6 +9,7 @@ using Terraria.ID;
 using static System.Math;
 using Vaultaria.Common.Players;
 using System.IO;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Common.Systems.GenPasses
 {
@@ -24,7 +25,10 @@ namespace Vaultaria.Common.Systems.GenPasses
 
             if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                VaultBuilder.GenerateVault("Vault1", Main.maxTilesX - GenVars.dungeonLocation, Main.UnderworldLayer + 50);
+                VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+                int increasedDistance = config.InfernumModEnabled == false ? 200 : 1000;
+
+                VaultBuilder.GenerateVault("Vault1", Main.maxTilesX - (GenVars.dungeonLocation + increasedDistance), Main.UnderworldLayer + 50);
                 VaultBuilder.GenerateVault("Vault2", (GenVars.snowOriginLeft + GenVars.snowOriginRight) / 2, GenVars.snowTop - 95);
 
                 // VaultBuilder.GenerateVault("Vault1", Main.spawnTileX, Main.spawnTileY); // Find a suitable tile coordinate (Point16) for the top-left of the structure.

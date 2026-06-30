@@ -1,18 +1,12 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vaultaria.Content.Buffs.Prefixes.Elements;
 using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Common.Configs;
-using Terraria.GameContent.ItemDropRules;
-using Vaultaria.Content.Items.Weapons.Ranged.Legendary.Pistol.Torgue;
-using Terraria.DataStructures;
-using Vaultaria.Content.Items.Weapons.Ranged.Pearlescent.Shotgun.Hyperion;
 using Terraria.ModLoader.IO;
 using System.IO;
-using Vaultaria.Content.Items.Accessories.Skills;
 
 public class TubbyNPC : GlobalNPC
 {

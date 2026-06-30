@@ -1097,6 +1097,26 @@ Items: {
 		DisplayName: Handsome Jack's Mask
 		Tooltip: ""
 	}
+
+	PsychoMask: {
+		Tooltip: ""
+		DisplayName: Psycho Mask
+	}
+
+	PsychoMask1: {
+		Tooltip: ""
+		DisplayName: Psycho Mask1
+	}
+
+	RedPsychoMask: {
+		Tooltip: ""
+		DisplayName: Red Psycho Mask
+	}
+
+	BluePsychoMask: {
+		Tooltip: ""
+		DisplayName: Blue Psycho Mask
+	}
 }
 
 Projectiles: {
@@ -1452,6 +1472,7 @@ NPCs: {
 			StandardDialogue3: Look at me everybody, I'm dancing, IM DANCIN'.
 			StandardDialogue4: Wub wub wub wub wub wub.
 			StandardDialogue5: So, this one time, I went to a party, and there was a beautiful subatomic particle accelerator there. Our circuits locked across the room and... I don't remember what happened next. I mean, I can't. We coulda gotten married and had gadgets together, but now, I'll never know.
+			StandardDialogue6: MINION! HEY! OVER HERE! Listen up, because I'm only gonna say this once, and it’s gonna be fantastic! If you've got some brilliant ideas, or if you find a bug, fast travel over to the Vaultaria Discord server and tell us about it! The link is just sitting there on the Steam page, waiting for a trigger-happy vault hunter like you to click it! GO! GO! GO!
 			CommonDialogue: I've learned to count! One! Two! Five! You get the picture. Counting is hard.
 			RareDialogue: You wanna know a secret, I can actually go up stairs.
 			TalkALot: You're such a good listener Squire.
@@ -1540,6 +1561,11 @@ Configs: {
 		ChubbySpawnChance: {
 			Label: Chubby Spawn Chance
 			Tooltip: Alters the spawn rate of Chubbies and Tubbies
+		}
+
+		InfernumModEnabled: {
+			Label: Infernum Mod Enabled
+			Tooltip: If you are playing with the Calamity Infernum mod, enable this (should be done before creating the world)
 		}
 	}
 
