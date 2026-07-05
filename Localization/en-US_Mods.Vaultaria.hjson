@@ -1567,6 +1567,11 @@ Configs: {
 			Label: Infernum Mod Enabled
 			Tooltip: If you are playing with the Calamity Infernum mod, enable this (should be done before creating the world)
 		}
+
+		ExecuteSoundEffect: {
+			Label: Execute Sound Effect
+			Tooltip: Enable this to have the swoosh sound effect play when in Deception
+		}
 	}
 
 	VaultariaConfig2: {

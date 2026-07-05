@@ -91,7 +91,6 @@ namespace Vaultaria.Content.Projectiles.Summoner.Sentry
             if(item.shoot <= ProjectileID.None) // For weapons that dont shoot
             {
                 projectile = ProjectileID.Bullet;
-                damage = item.damage;
             }
 
             if(item.type == ItemID.None)

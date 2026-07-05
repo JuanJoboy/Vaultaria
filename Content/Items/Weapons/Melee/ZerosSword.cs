@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Vaultaria.Common.Utilities;
 using Vaultaria.Content.Buffs.PotionEffects;
 using Vaultaria.Content.Prefixes.Weapons;
+using Vaultaria.Common.Configs;
 
 namespace Vaultaria.Content.Items.Weapons.Melee
 {
@@ -42,7 +43,6 @@ namespace Vaultaria.Content.Items.Weapons.Melee
             Item.value = Item.buyPrice(copper: 20);
             Item.rare = ItemRarityID.Master;
             Item.UseSound = SoundID.Item1;
-            // Utilities.SetItemSound(Item, Utilities.Sounds.Execute, 60);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
@@ -61,6 +61,16 @@ namespace Vaultaria.Content.Items.Weapons.Melee
         public override void HoldItem(Player player)
         {
             base.HoldItem(player);
+
+            VaultariaConfig config = ModContent.GetInstance<VaultariaConfig>();
+            if(config.ExecuteSoundEffect == true && player.HasBuff(ModContent.BuffType<DeceptionBuff>()))
+            {
+                Utilities.SetItemSound(Item, Utilities.Sounds.Execute, 60);
+            }
+            else
+            {
+                Item.UseSound = SoundID.Item1;
+            }
 
             for (int i = 0; i < Main.maxNPCs; i++)
             {
