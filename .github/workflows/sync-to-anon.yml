@@ -1,0 +1,29 @@
+name: Mirror to Anonymous Repo
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Re-author and push to anonymous repository
+        run: |
+          git config user.name "IchorLabs"
+          git config user.email "317717161+IchorLabs@users.noreply.github.com"
+
+          # Create a clean, unlinked branch containing the latest code state
+          git checkout --orphan anon-sync
+          git add -A
+          git commit -m "Update Vaultaria code"
+
+          # Force push to IchorLabs repository
+          git push https://${{ secrets.ICHOR_LABS_PAT }}@github.com/IchorLabs/Vaultaria.git anon-sync:main --force
