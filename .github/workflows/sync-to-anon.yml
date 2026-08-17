@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -14,19 +15,40 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: main-repo
           persist-credentials: false
 
-      - name: Re-author and push to anonymous repository
+      - name: Checkout IchorLabs repository code
+        uses: actions/checkout@v4
+        with:
+          repository: IchorLabs/Vaultaria
+          token: ${{ secrets.ICHOR_LABS_PAT }}
+          path: anon-repo
+          persist-credentials: false
+
+      - name: Sync changes and commit to IchorLabs
         env:
           PAT_TOKEN: ${{ secrets.ICHOR_LABS_PAT }}
         run: |
+          # 1. Capture original commit message
+          cd main-repo
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          cd ..
+
+          # 2. Sync all updated code files into IchorLabs folder (excluding .git and .github)
+          rsync -av --delete --exclude='.git' --exclude='.github' main-repo/ anon-repo/
+
+          # 3. Commit and push from inside IchorLabs folder
+          cd anon-repo
           git config user.name "IchorLabs"
           git config user.email "317717161+IchorLabs@users.noreply.github.com"
 
-          # Create a clean, unlinked branch containing the latest code state
-          git checkout --orphan anon-sync
           git add -A
-          git commit -m "Update Vaultaria code"
-
-          # Force push to IchorLabs repository using the explicit PAT secret
-          git push https://x-access-token:${PAT_TOKEN}@github.com/IchorLabs/Vaultaria.git anon-sync:main --force
+          
+          # Only commit and push if actual file changes exist
+          if ! git diff --staged --quiet; then
+            echo "$COMMIT_MSG" | git commit -F -
+            git push https://x-access-token:${PAT_TOKEN}@github.com/IchorLabs/Vaultaria.git HEAD:main
+          else
+            echo "No file changes to push."
+          fi
