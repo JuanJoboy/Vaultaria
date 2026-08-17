@@ -35,7 +35,7 @@ jobs:
           COMMIT_MSG=$(git log -1 --pretty=%B)
           cd ..
 
-          # 2. Sync all updated code files into IchorLabs folder (excluding .git and .github)
+          # 2. Sync code files (excluding .git and .github)
           rsync -av --delete --exclude='.git' --exclude='.github' main-repo/ anon-repo/
 
           # 3. Commit and push from inside IchorLabs folder
@@ -43,12 +43,11 @@ jobs:
           git config user.name "IchorLabs"
           git config user.email "317717161+IchorLabs@users.noreply.github.com"
 
+          # Remove .github directory if it exists on IchorLabs
+          git rm -rf .github/ || true
+
           git add -A
           
-          # Only commit and push if actual file changes exist
-          if ! git diff --staged --quiet; then
-            echo "$COMMIT_MSG" | git commit -F -
-            git push https://x-access-token:${PAT_TOKEN}@github.com/IchorLabs/Vaultaria.git HEAD:main
-          else
-            echo "No file changes to push."
-          fi
+          # Force commit and push
+          echo "$COMMIT_MSG" | git commit -F - || true
+          git push https://x-access-token:${PAT_TOKEN}@github.com/IchorLabs/Vaultaria.git HEAD:main --force
