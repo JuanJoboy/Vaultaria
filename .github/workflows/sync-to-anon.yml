@@ -16,6 +16,8 @@ jobs:
           fetch-depth: 0
 
       - name: Re-author and push to anonymous repository
+        env:
+          PAT_TOKEN: ${{ secrets.ICHOR_LABS_PAT }}
         run: |
           git config user.name "IchorLabs"
           git config user.email "317717161+IchorLabs@users.noreply.github.com"
@@ -25,5 +27,5 @@ jobs:
           git add -A
           git commit -m "Update Vaultaria code"
 
-          # Force push to IchorLabs repository
-          git push https://${{ secrets.ICHOR_LABS_PAT }}@github.com/IchorLabs/Vaultaria.git anon-sync:main --force
+          # Force push to IchorLabs repository using the explicit PAT secret
+          git push https://x-access-token:${PAT_TOKEN}@github.com/IchorLabs/Vaultaria.git anon-sync:main --force
